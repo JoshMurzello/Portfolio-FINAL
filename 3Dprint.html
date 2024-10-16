@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    body {
+      background-color: rgb(15, 11, 11);
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: rgb(15, 11, 11);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      background-color: rgb(15, 11, 11);
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-family: 'Teko', sans-serif;
+      font-size: 20px;
+      color: white;
+    }
+
+    .brand {
+      font-family: 'Teko', sans-serif;
+      font-size: 27px;
+      color: white;
+    }
+
+    .header ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 200px;
+    }
+
+    .text-body-emphasis {
+      color: white;
+      font-family: 'Londrina Outline', cursive;
+      font-size: 230px;
+      text-shadow: -1px 6px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
+      text-align: center;
+      letter-spacing: 10px;
+      margin-bottom: 0px;
+    }
+
+    .lead {
+      color: white;
+      font-family: Noto Sans Japanese;
+      font-size: 35px;
+      margin-left: 100px;
+    }
+
+    .last {
+      color: white;
+      font-family: Roboto, sans-serif;
+      font-size: 22px;
+    }
+
+    .project_title {
+      color: white;
+      font-size: 100px;
+      font-family: Teko;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Gallery Section */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .gallery-item {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .gallery-item h3 {
+      margin-top: 15px;
+      font-size: 24px;
+      font-family: 'Teko', sans-serif;
+      color: rgb(15, 11, 11);
+    }
+
+    .gallery-item p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="px-3 py-1 header">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
+        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
+          JOSH MURZELLO
+        </a>
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          <li>
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li>
+            <a href="Engineering.html" class="nav-link">Engineering</a>
+          </li>
+          <li>
+            <a href="Creatives.html" class="nav-link">Creatives</a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li>
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-4 pt- my-5 border-bottom" style="background-color:  rgb(15, 11, 11)">
+    <h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">3D Print Portfolio</h1>
+    <div class="col-lg-6">
+      <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">A gallery through my 3D Prints</p>
+    </div>
+  </div>
+
+  <!-- Gallery Section -->
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="images/toothbrush with brush.png" alt="3D Print 1">
+      <h3>Toothbrush Holder</h3>
+      <p>Toothbrush holder with fun message</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/spiral holder with items.png" alt="3D Print 2">
+      <h3>Spiral design storage container</h3>
+      <p>Container for various items with spiral design</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/guitar holder with guitar.png" alt="3D Print 3">
+      <h3>Guitar Holder</h3>
+      <p>3D Printed guitar holster for fender stratocaster</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="images/phone shower holder w phone better.png" alt="3D Print 4">
+      <h3>Phone Shower Holder</h3>
+      <p>Holster for a phone to put in shower. Avoids water, and amplifies sound.</p>
+    </div>
+    <div class="gallery-item">
+        <img src="images/pickle with racket.png" alt="3D Print 3">
+        <h3>Pickleball Paddle Holster</h3>
+        <p>Pickleball paddle holsters to hang paddles up</p>
+      </div>
+  
+      
+  </div>
+
+</body>
+
+</html>
