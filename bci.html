@@ -143,19 +143,108 @@ JOSH MURZELLO
 </div>
 
 
-<div class="px-4 pt- my-5 border-bottom" style="background-color:  rgb(15, 11, 11)">
-<h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">Brain Controlled Interface</h1>
-<div class="col-lg-6">
-<p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">
-Controlling sh*t with my brain. </p>
+<div class="px-4 pt- my-5 border-bottom" style="background-color: rgb(15, 11, 11); position: relative;">
+    <div class="hero-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(15,11,11,0.7), rgba(15,11,11,0.7)), url('./images/IMG_0754.JPG') center/cover no-repeat; z-index: 1;"></div>
+    <div style="position: relative; z-index: 2;">
+        <h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">Brain Controlled Interface</h1>
+        <div class="col-lg-6">
+            <p class="lead mb-4" style="color: white; font-family: 'Space Grotesk', sans-serif;">
+            Bridging mind and machine through neural interfaces</p>
+        </div>
+    </div>
 </div>
+
+<!-- Project Overview Section -->
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="project-image-wrapper" style="border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <img src="./images/IMG_0764.JPG" alt="BCI Project Setup" class="img-fluid" style="width: 100%; transform: scale(1.02);">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="project-content" style="color: white; padding: 2rem;">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1.5rem;">Project Overview</h2>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+                    This brain-computer interface project demonstrates the fascinating potential of direct neural control over mechanical systems. Using the NeuroSky MindWave Mobile 2 EEG headset, I developed a system capable of detecting and interpreting specific brainwave patterns—particularly alpha waves (8-12 Hz) associated with relaxation and beta waves (12-30 Hz) linked to active thinking and concentration.
+                </p>
+                <div class="tech-stack" style="margin-bottom: 2rem;">
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Technology Stack</h3>
+                    <div class="tech-pills" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">NeuroSky MindWave</span>
+                        <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Arduino</span>
+                        <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Python</span>
+                        <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Signal Processing</span>
+                    </div>
+                </div>
+                <div class="implementation-details">
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Implementation</h3>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.9);">
+                        The system translates neural activity into real-time control commands for an RC car through an Arduino-based interface. By developing custom signal processing algorithms, I was able to distinguish between different mental states and map them to specific vehicle movements. This creates an intuitive control mechanism where sustained concentration can be used to navigate the vehicle in real-time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Technical Details Section -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="technical-details" style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 3rem; margin-bottom: 3rem;">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 2rem;">Technical Architecture</h2>
+                <div class="details-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <div class="detail-card">
+                        <h4 style="font-family: 'Space Grotesk', sans-serif; color: white; margin-bottom: 1rem;">Data Acquisition</h4>
+                        <p style="font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                            Real-time EEG data collection through the NeuroSky's ThinkGear™ technology, capturing both raw brainwave data and derived attention/meditation metrics.
+                        </p>
+                    </div>
+                    <div class="detail-card">
+                        <h4 style="font-family: 'Space Grotesk', sans-serif; color: white; margin-bottom: 1rem;">Signal Processing</h4>
+                        <p style="font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                            Custom algorithms for noise reduction and feature extraction, focusing on alpha and beta wave isolation for reliable control signals.
+                        </p>
+                    </div>
+                    <div class="detail-card">
+                        <h4 style="font-family: 'Space Grotesk', sans-serif; color: white; margin-bottom: 1rem;">Control Interface</h4>
+                        <p style="font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                            Arduino-based system translating processed neural signals into precise motor control commands for the RC vehicle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-
-
-
+<style>
+    /* Additional Styles */
+    .project-image-wrapper img {
+        transition: transform 0.5s ease;
+    }
+    .project-image-wrapper:hover img {
+        transform: scale(1.05);
+    }
+    .tech-pills span {
+        transition: all 0.3s ease;
+    }
+    .tech-pills span:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-2px);
+    }
+    .detail-card {
+        transition: transform 0.3s ease;
+        padding: 1.5rem;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.05);
+    }
+    .detail-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.07);
+    }
+</style>
 
 </body>
 

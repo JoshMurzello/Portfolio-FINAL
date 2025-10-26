@@ -26,98 +26,176 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Roboto:wght@00;900&display=swap" rel="stylesheet">
   <style>
+    /* Color Variables */
+    :root {
+      --primary-dark: rgb(15, 11, 11);
+      --accent-purple: #8B5CF6;
+      --accent-blue: #3B82F6;
+      --accent-teal: #14B8A6;
+      --accent-pink: #EC4899;
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.8);
+      --gradient-1: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      --gradient-2: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+      --gradient-3: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    }
+
+    /* Global Styles */
     body {
-      background-color: rgb(15, 11, 11);
+      background-color: var(--primary-dark);
       margin: 0;
       padding: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-primary);
     }
 
     .header {
-      background-color: rgb(15, 11, 11);
+      background-color: rgba(15, 11, 11, 0.98);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
       margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
+      padding: 1rem 0;
     }
 
     .nav-link {
-      font-family: 'Teko', sans-serif;
-      font-size: 20px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
       color: white;
+      transform: translateY(-1px);
     }
 
     .brand {
-      font-family: 'Teko', sans-serif;
-      font-size: 27px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: white;
+      letter-spacing: -0.5px;
     }
 
-    .header ul {
-      margin: 0;
-      padding: 0;
+    /* Hero Section */
+    .hero-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 0 4rem;
+      position: relative;
     }
 
-    h1 {
-      margin-top: 200px;
-    }
-
-    .text-body-emphasis {
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 700;
       color: white;
-      font-family: 'Londrina Outline', cursive;
-      font-size: 230px;
-      text-shadow: -1px 6px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
+      margin-bottom: 2rem;
+      line-height: 1.1;
+    }
+
+    .hero-description {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
       text-align: center;
-      letter-spacing: 10px;
-      margin-bottom: 0px;
+      margin: 2rem 0;
+      padding: 1rem;
     }
 
-    .lead {
+    .filter-bar .filter-btn {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-primary);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      margin: 0 0.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .filter-bar .filter-btn.active {
+      background: var(--gradient-1);
       color: white;
-      font-family: Noto Sans Japanese;
-      font-size: 35px;
-      margin-left: 100px;
-      
+      box-shadow: 0 6px 18px rgba(59,130,246,0.12);
     }
-    .last{
+
+    /* Grid Layout */
+    .creatives-grid {
+      width: 95%;
+      max-width: 1800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .creative-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .creative-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .creative-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .creative-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .creative-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      transform: translateY(100px);
+      transition: transform 0.3s ease;
+    }
+
+    .creative-card:hover .creative-overlay {
+      transform: translateY(0);
+    }
+
+    .creative-title {
       color: white;
-      font-family: Roboto, sans-serif;
-      font-size: 22px;
-     
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
-    .project_title {
-      color: white;
-      font-size: 100px;
-      font-family: Teko;
+    .creative-details {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
-    .container {
-  max-width: 100%;
-  margin: 0 auto; /* Centers the container horizontally */
-}
 
-  
-button{
-    color: w;
-}
-
-.container.col-xxl-8 {
-  padding-left: 0; /* Remove extra padding */
-  padding-right: 0; /* Remove extra padding */
-}
-.album{
-        max-width: 50%;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(15, 11, 11);
-        margin-left: 25%
-
-    }
-    .card{
-      background-color: rgb(209, 209, 209)
+    .hidden {
+      display: none;
     }
 
   </style>
@@ -152,15 +230,123 @@ button{
   </div>
 
   
-  <div class="px-4 pt- my-5 border-bottom" style="background-color:  rgb(15, 11, 11)">
-    <h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">Creatives</h1>
-    <div class="col-lg-6">
-      <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">
-        A big part of my life is also in the creatives field. From music, dance, photography & videography, I enjoy sharing, creating, and expressing my ideas. Check out some of the outlets I've used and created.
+  <section class="hero-section">
+    <div class="container text-center">
+      <h1 class="hero-title">Visual Stories</h1>
+      <p class="hero-description">
+        Through photography, videography, and design, I capture moments and create experiences that leave lasting impressions. Explore my creative journey across different mediums and styles.
       </p>
     </div>
-  </div>
+  </section>
 
+  <section class="filter-bar">
+    <div class="control-group">
+      <button class="filter-btn active" data-filter="all">All Work</button>
+      <button class="filter-btn" data-filter="photo">Photography</button>
+      <button class="filter-btn" data-filter="video">Videography</button>
+      <button class="filter-btn" data-filter="portrait">Portraits</button>
+    </div>
+  </section>
+
+  <section class="creatives-grid">
+    <!-- Photography -->
+    <div class="creative-card" data-category="photo">
+      <img src="./images/Greenville.jpg" alt="Greenville Cityscape">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Urban Exploration</h3>
+        <p class="creative-details">Greenville, South Carolina • 2023</p>
+      </div>
+    </div>
+
+    <!-- Portrait -->
+    <div class="creative-card" data-category="portrait">
+      <img src="./images/phillu good closeup.jpg" alt="Portrait in Philadelphia">
+      <div class="creative-overlay">
+        <h3 class="creative-title">City Lights</h3>
+        <p class="creative-details">Philadelphia Portrait • 2024</p>
+      </div>
+    </div>
+
+    <div class="creative-card" data-category="portrait">
+      <img src="./images/DSC00008.jpg" alt="Portrait Study">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Natural Light Portrait</h3>
+        <p class="creative-details">Studio Session • 2024</p>
+      </div>
+    </div>
+
+    <div class="creative-card" data-category="photo">
+      <img src="./images/DSC00011.jpg" alt="Urban Photography">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Urban Perspectives</h3>
+        <p class="creative-details">Greenville • 2023</p>
+      </div>
+    </div>
+
+    <div class="creative-card" data-category="photo">
+      <img src="./images/DSC00038.jpg" alt="Creative Photography">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Abstract Light</h3>
+        <p class="creative-details">Experimental Photography • 2024</p>
+      </div>
+    </div>
+
+    <div class="creative-card" data-category="portrait">
+      <img src="./images/DSC00015.jpg" alt="Portrait Photography">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Environmental Portrait</h3>
+        <p class="creative-details">Location Shoot • 2024</p>
+      </div>
+    </div>
+
+    <div class="creative-card" data-category="photo">
+      <img src="./images/DSC00122.jpg" alt="Street Photography">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Street Stories</h3>
+        <p class="creative-details">Urban Documentary • 2024</p>
+      </div>
+    </div>
+
+    <div class="creative-card" data-category="photo">
+      <img src="./images/DSC00102.jpg" alt="Architectural Photography">
+      <div class="creative-overlay">
+        <h3 class="creative-title">Urban Geometry</h3>
+        <p class="creative-details">Architecture Study • 2024</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const buttons = document.querySelectorAll('.filter-bar .filter-btn');
+      const cards = document.querySelectorAll('.creative-card');
+
+      function setFilter(filter) {
+        buttons.forEach(b => {
+          const active = (b.dataset.filter === filter);
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('hidden');
+          } else {
+            const cat = card.dataset.category || '';
+            if (cat === filter) card.classList.remove('hidden');
+            else card.classList.add('hidden');
+          }
+        });
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+      });
+
+      // Initialize with all items shown
+      setFilter('all');
+    })();
+  </script>
 
 
 

@@ -4,111 +4,274 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engineering</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <title>Josh Murzello | Engineering Projects</title>
+  
+  <!-- Core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+  
+  <!-- Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@00;1,700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fustat:wght@800&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Roboto:wght@00;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Cursor Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <!-- Initialize AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out',
+        once: true
+      });
+    });
+  </script>
+
   <style>
+    /* Color Variables */
+    :root {
+      --primary-dark: rgb(15, 11, 11);
+      --accent-purple: #8B5CF6;
+      --accent-blue: #3B82F6;
+      --accent-teal: #14B8A6;
+      --accent-pink: #EC4899;
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.8);
+      --gradient-1: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      --gradient-2: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+      --gradient-3: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+    }
+
+    /* Global Styles */
     body {
-      background-color: rgb(15, 11, 11);
+      background-color: var(--primary-dark);
       margin: 0;
       padding: 0;
+      font-family: 'Inter', sans-serif;
+      cursor: none;
+      color: var(--text-primary);
     }
 
+    /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid white;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-follower {
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
+
+    /* Header & Navigation */
     .header {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
+      background-color: rgba(15, 11, 11, 0.98);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
     }
 
     .nav-link {
-      font-family: 'Teko', sans-serif;
-      font-size: 20px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
       color: white;
+      transform: translateY(-1px);
     }
 
     .brand {
-      font-family: 'Teko', sans-serif;
-      font-size: 27px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: white;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: all 0.3s ease;
     }
 
-    .header ul {
-      margin: 0;
-      padding: 0;
+    .brand:hover {
+      color: #f0f0f0;
+      transform: translateY(-1px);
     }
 
-    h1 {
-      margin-top: 200px;
+    /* Engineering Section Styles */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
     }
 
-    .text-body-emphasis {
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      /* default heading style; individual letters will be white by default */
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    .hero-description {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    /* Project Cards - New Design */
+    .project-card-new {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      cursor: pointer;
+      height: 400px;
+    }
+
+    .project-card-new:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .project-image-new {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card-new:hover .project-image-new {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card-new:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-title-overlay {
+      font-family: 'Space Grotesk', sans-serif;
       color: white;
-      font-family: 'Londrina Outline', cursive;
-      font-size: 230px;
-      text-shadow: -1px 6px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
-      text-align: center;
-      letter-spacing: 10px;
-      margin-bottom: 0px;
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
     }
 
-    .lead {
-      color: white;
-      font-family: Noto Sans Japanese;
-      font-size: 35px;
-      margin-left: 100px;
-      
-    }
-    .last{
-      color: white;
-      font-family: Roboto, sans-serif;
-      font-size: 22px;
-     
+    .project-description-overlay {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      transform: translateY(20px);
+      transition: transform 0.3s ease 0.1s;
     }
 
-    .project_title {
-      color: white;
-      font-size: 100px;
-      font-family: Teko;
+    .project-card-new:hover .project-title-overlay,
+    .project-card-new:hover .project-description-overlay {
+      transform: translateY(0);
     }
-    .container {
-  max-width: 100%;
-  margin: 0 auto; /* Centers the container horizontally */
-}
 
-  
-button{
-    color: w;
-}
+    .btn-light {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      transform: translateY(20px);
+      transition: all 0.3s ease 0.2s;
+    }
 
-.container.col-xxl-8 {
-  padding-left: 0; /* Remove extra padding */
-  padding-right: 0; /* Remove extra padding */
-}
+    .project-card-new:hover .btn-light {
+      transform: translateY(0);
+    }
 
+    .btn-light:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    /* Tech Stack Styles */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-stack span {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .tech-stack span:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .mb-3 {
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 
@@ -140,183 +303,577 @@ button{
     </div>
   </div>
 
-  
-  <div class="px-4 pt- my-5 border-bottom" style="background-color:  rgb(15, 11, 11)">
-    <h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">Helluva Engineer</h1>
-    <div class="col-lg-6">
-      <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">
-        As an engineer at Georgia Tech, I've done my best to live up to the title of being a "Helluva Engineer". I enjoy tinkering my way through new technologies and products, and seeing how I can make my own spinoff with them. Take a look at some of the projects I've gotten my hands dirty with to build my skills.
-      </p>
-    </div>
-  </div>
 
-  <div class="container col-xxl-8 px-2 py-2" style="height: 700px; background-image: url('./images/A1picture.jpg'); background-size: cover; background-repeat: no-repeat; border: 3px solid rgb(112, 112, 112); border-radius: 10px; padding: 1px; margin-bottom: 75px;">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        
-        <div class="">
-        
-            <h1 class="fw-bold lh-1 mb-3" style="font-size: 60px; color: white; margin-left: 30px; margin-top: 100px;">3D Printing</h1>
-            <br>
-            <p class="last" style="margin-left: 50px; font-size: 30px;">
-                My 3D Printing Portfolio <br>
-                
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-left: 60px;">
-                <a href="3Dprint.html">
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">See More</button>
-                </a>
-            </div>
-        </div>
-    </div>
+  <!-- Hero Section for Engineering Page -->
+  <section class="hero-section hero-bg-img" style="position: relative; padding-top: 8rem; padding-bottom: 4rem; background: var(--primary-dark); overflow: hidden;">
+    <div class="hero-bg-overlay"></div>
+    <div class="container" style="max-width: 900px; margin: 0 auto; position: relative; z-index: 2;">
+      <h1 class="hero-title helluva-hover" style="font-family: 'Space Grotesk', sans-serif; font-size: 4rem; font-weight: 700; color: #fff; margin-bottom: 2rem; transition: background 0.5s, -webkit-text-fill-color 0.5s, color 0.5s; cursor: pointer;">Helluva Engineer</h1>
+  <style>
+    .hero-bg-img {
+      background: var(--primary-dark);
+    }
+      .hero-bg-img .hero-bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* add a dark gradient on top of the image to ensure text contrast */
+      background: linear-gradient(rgba(15,11,11,0.66), rgba(15,11,11,0.66)), url('./images/oo.png') center center/cover no-repeat;
+      z-index: 1;
+      filter: grayscale(30%) blur(1px) contrast(0.9);
+      pointer-events: none;
+      transition: opacity 0.5s, filter 0.4s;
+    }
+    @media (max-width: 900px) {
+      .hero-bg-img .hero-bg-overlay {
+        background-position: center 30%;
+      }
+    }
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-title.helluva-hover {
+      text-shadow: 0 6px 30px rgba(0,0,0,0.5), 0 1px 0 rgba(0,0,0,0.2);
+      /* ensure strong contrast on small screens */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-</div>
-  <div class="container col-xxl-8 px-2 py-2" style="height: 700px; background-image: url('./images/skateboard.jpg'); background-size: cover; background-repeat: no-repeat; border: 3px solid rgb(112, 112, 112); border-radius: 10px; padding: 1px;">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        
-        <div class="">
-        
-            <h1 class="fw-bold lh-1 mb-3" style="font-size: 60px; color: white; margin-left: 30px; margin-top: 100px;">Electric Skateboard</h1>
-            <br>
-            <p class="last" style="margin-left: 50px; font-size: 30px;">
-                Building an Electric Skateboard <br>
-                from scratch
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-left: 60px;">
-                <a href="eboard.html">
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">See More</button>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+    /* Per-letter hover color reveal */
+    .helluva-hover {
+      color: #fff; /* start white */
+      display: inline-block;
+      line-height: 1;
+      cursor: pointer;
+    }
 
-<br>
-<br>
-<br>
-  <div class="container col-xxl-8 px-2 py-2" style="height: 700px; background-image: url(); background-size: cover; background-repeat: no-repeat; border: 3px solid rgb(112, 112, 112); border-radius: 10px; padding: 1px;">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        
-        <div class="">
-        
-            <h1 class=" fw-bold lh-1 mb-3 margin-top: 0px" 
-            style="font-size: 60px; color: white; margin-left: 30px; margin-top: 100px;">Brain Controlled Interface</h1>
-            <br>
-            <p class="last" style="margin-left: 50px; font-size: 30px;">
-                Using an EEG to control <br>components via the brain
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-left: 60px;">
-              <a href="bci.html">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">See More</button>
-            </a>
-          </div>
-        </div>
-    </div>
-</div>hi c
-<br>
-<br>
-<br>
-  <div class="container col-xxl-8 px-2 py-2" style="height: 700px; background-image: url('./images/Untitled\ design\ \(2\).png'); background-size: cover; background-repeat: no-repeat; border: 3px solid rgb(112, 112, 112); border-radius: 10px; padding: 1px;">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        
-        <div class="">
-        
-            <h1 class=" fw-bold lh-1 mb-3 margin-top: 0px" 
-            style="font-size: 60px; color: white; margin-left: 30px; margin-top: 100px;">Barbenheimer <br>Robot</h1>
-            <br>
-            <p class="last" style="margin-left: 50px; font-size: 30px;">
-                ME 2110 Design Project
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-left: 60px;">
-              <a href="me2110.html">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">See More</button>
-            </a> </div>
-        </div>
-    </div>
-</div>
+    .helluva-hover .helluva-letter {
+      display: inline-block;
+      color: #fff;
+      transition: all 0.15s ease;
+      will-change: color;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-  
-<br>
-<br>
-<br>
-<div class="container col-xxl-8 px-2 py-2" style="height: 700px; background-image: url('./images/DSC00589.JPG'); background-size: cover; background-repeat: no-repeat; border: 3px solid rgb(112, 112, 112); border-radius: 10px; padding: 1px;">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        
-        <div class="">
-        
-            <h1 class=" fw-bold lh-1 mb-3 margin-top: 0px" 
-            style="font-size: 60px; color: white; margin-left: 30px; margin-top: 100px;">The Dink Rack</h1>
-            <br>
-            <p class="last" style="margin-left: 50px; font-size: 30px;">
-                A 3D Printed Pickleball <br>Accessory Ecosystem
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-left: 60px;">
-              <a href="dinkrack.html">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">See More</button>
-            </a>
-          </div>
-        </div>
-    </div>
-</div>
-<br>
-<br>
-<br>
-<div class="container col-xxl-8 px-2 py-2" style="height: 700px; background-image: url('./images/mars.png'); background-size: cover; background-repeat: no-repeat; border: 3px solid rgb(112, 112, 112); border-radius: 10px; padding: 1px;">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        
-        <div class="">
-        
-            <h1 class=" fw-bold lh-1 mb-3 margin-top: 0px" 
-            style="font-size: 60px; color: white; margin-left: 30px; margin-top: 100px;">MARS</h1>
-            <br>
-            <p class="last" style="margin-left: 50px; font-size: 30px;">
-                Structural <br>Accessory Ecosystem
-            </p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-left: 60px;">
-              <a href="mars.html">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">See More</button>
-            </a></div>
-        </div>
-    </div>
-</div>
-
-<footer class="py-5 border-top" style="margin-top: 30px">
-  <div class="container"style="margin-left: 100px;">
-    <div class="row">
-      <div class="col-6 col-md-2 mb-0">
-        <h5 style="color: white; font-family:teko;font-size: 60px;">Section</h5>
-        <ul class="nav flex-column footer-nav">
-          <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0" style="font-size: 30px;">Home</a></li>
-          <li class="nav-item mb-2"><a href="Engineering.html" class="nav-link p-0"style="font-size: 30px;">Engineering</a></li>
-          <li class="nav-item mb-2"><a href="Creatives.html" class="nav-link p-0"style="font-size: 30px;">Creatives</a></li>
-          <li class="nav-item mb-2"><a href="about.html" class="nav-link p-0"style="font-size: 30px;">About</a></li>
-          <li class="nav-item mb-2"><a href="blog.html" class="nav-link p-0"style="font-size: 30px;">Blog
-
-          </a></li>
-        </ul>
+    .helluva-hover .helluva-letter.active {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .hero-blurb {
+      backdrop-filter: blur(2px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+  </style>
+      <div class="hero-blurb" style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 2rem 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.10); margin-bottom: 2rem; text-align: center;">
+        <span id="blurb-short" style="font-size: 1.35rem; color: var(--text-secondary); font-family: 'Inter', sans-serif;">As an engineer at Georgia Tech...</span>
+        <button id="blurb-arrow" aria-label="Show more" style="background: none; border: none; color: var(--accent-blue); font-size: 1.5rem; margin-left: 0.5rem; cursor: pointer; vertical-align: middle; transition: transform 0.3s;">
+          <span id="arrow-icon" style="display: inline-block; transition: transform 0.3s;">&#8594;</span>
+        </button>
+        <span id="blurb-rest" style="display: none; font-size: 1.15rem; color: var(--text-secondary); font-family: 'Inter', sans-serif; margin-left: 0.5rem; vertical-align: middle;">I try to embody the spirit of a "Helluva Engineer"—constantly tinkering, learning, building, and of course failing. I love breaking things... and sometimes putting them back together. But most of all, I love learning the workings behind things. Take a look at my portfolio to see some of the stuff I managed to not break.</span>
       </div>
+    </div>
+  </section>
 
-      
-      
-      <!-- Rest of your footer content -->
-   
+  <!-- Work & Projects — unified bubble grid with filters -->
+  <section id="work" class="work-section" data-aos="fade-up">
+    <div class="section-header">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 3rem; color: var(--text-primary);">Work & Projects</h2>
+      <div class="section-line" data-aos="width"></div>
+    </div>
 
-
-      <div class="col-md-5 offset-md-1 mb-0" style="max-width: 30%; margin-left: 900px;">
-        <form>
-          <h2 style="color: white; font-family: teko; font-size: 75px;">Let's Connect!</h2>
-          <p style="color: white; font-family: teko;font-size: 30px;">Reach out if you have any questions or just want to chat!</p>
-          <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Personal Website Connect"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-        </form>
+    <div class="filter-bar" style="text-align:center; margin: 1.5rem 0 2rem;">
+      <div class="control-group">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="internship">Internships</button>
+        <button class="filter-btn" data-filter="project">Projects</button>
+        <button class="filter-btn" data-filter="research">Research</button>
       </div>
     </div>
 
-    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4" style="max-width: 10%;">
-      
-      
-      </ul>
+    <div class="bubble-grid" style="position: relative; margin: 2rem auto;">
+
+      <!-- Internships -->
+      <a href="tesla.html" class="bubble-card" data-category="internship" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="background: linear-gradient(135deg, #e82127, #aa1a1f); display:flex; align-items:center; justify-content:center;">
+          <img src="./images/tesla-svgrepo-com.svg" alt="Tesla" style="width:120px; height:120px; object-fit:contain; margin: 2rem;">
+        </div>
+        <div class="bubble-body" style="text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">Tesla</h3>
+          <div class="tech-stack">
+            <span>Innovation</span>
+            <span>Electric Vehicles</span>
+            <span>Future Tech</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="lg.html" class="bubble-card" data-category="internship" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="background:var(--gradient-1); display:flex; align-items:center; justify-content:center;">
+          <img src="./images/LG-Logo.png" alt="LG" style="width:120px; height:120px; object-fit:contain; margin: 2rem;">
+        </div>
+        <div class="bubble-body" style="text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">LG Electronics</h3>
+          <div class="tech-stack">
+            <span>PCB Design</span>
+            <span>R32 Sensors</span>
+            <span>Testing</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="price.html" class="bubble-card" data-category="internship" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="background:var(--gradient-2); display:flex; align-items:center; justify-content:center;">
+          <i class="fas fa-industry" style="font-size:90px; color:white; margin: 2rem;"></i>
+        </div>
+        <div class="bubble-body" style="text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">Price Industries</h3>
+          <div class="tech-stack">
+            <span>Automation</span>
+            <span>Manufacturing</span>
+            <span>Optimization</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Research -->
+      <article class="bubble-card" data-category="research" tabindex="0" role="button">
+        <div class="bubble-media" style="background:var(--gradient-3); display:flex; align-items:center; justify-content:center;">
+          <i class="fas fa-flask" style="font-size:90px; color:white; margin: 2rem;"></i>
+        </div>
+        <div class="bubble-body" style="text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">Research</h3>
+          <div class="tech-stack">
+            <span>Space Tech</span>
+            <span>Materials</span>
+            <span>Research</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projects -->
+      <a href="3dprint.html" class="bubble-card" data-category="project" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="padding:0; display:flex; align-items:center; justify-content:center; height:45%; overflow:hidden;">
+          <img src="./images/A1picture.jpg" alt="3D Printing" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="bubble-body" style="padding:1rem; text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">3D Printing</h3>
+          <div class="tech-stack">
+            <span>3D Modeling</span>
+            <span>Product Design</span>
+            <span>CAD</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="eboard.html" class="bubble-card" data-category="project" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="padding:0; display:flex; align-items:center; justify-content:center; height:45%; overflow:hidden;">
+          <img src="./images/skateboard.jpg" alt="Electric Skateboard" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="bubble-body" style="padding:1rem; text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">Electric Skateboard</h3>
+          <div class="tech-stack">
+            <span>Electronics</span>
+            <span>Hardware</span>
+            <span>Design</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="bci.html" class="bubble-card" data-category="project" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="padding:0; display:flex; align-items:center; justify-content:center; height:45%; overflow:hidden;">
+          <img src="./images/IMG_0754.JPG" alt="BCI" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="bubble-body" style="padding:1rem; text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">Brain Controlled Interface</h3>
+          <div class="tech-stack">
+            <span>Machine Learning</span>
+            <span>Python</span>
+            <span>BCI</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="me2110.html" class="bubble-card" data-category="project" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="padding:0; display:flex; align-items:center; justify-content:center; height:45%; overflow:hidden;">
+          <img src="./images/Untitled design (2).png" alt="Barbenheimer Robot" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="bubble-body" style="padding:1rem; text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">Barbenheimer Robot</h3>
+          <div class="tech-stack">
+            <span>Robotics</span>
+            <span>CAD</span>
+            <span>Design</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="dinkrack.html" class="bubble-card" data-category="project" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="padding:0; display:flex; align-items:center; justify-content:center; height:45%; overflow:hidden;">
+          <img src="./images/DSC00589.JPG" alt="The Dink Rack" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="bubble-body" style="padding:1rem; text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">The Dink Rack</h3>
+          <div class="tech-stack">
+            <span>Product Design</span>
+            <span>3D Printing</span>
+            <span>Innovation</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="mars.html" class="bubble-card" data-category="project" tabindex="0" role="button" style="text-decoration: none;">
+        <div class="bubble-media" style="padding:0; display:flex; align-items:center; justify-content:center; height:45%; overflow:hidden;">
+          <img src="./images/mars.png" alt="MARS" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="bubble-body" style="padding:1rem; text-align:left;">
+          <h3 style="margin:0 0 0.5rem; font-size:1.1rem;">MARS</h3>
+          <div class="tech-stack">
+            <span>Research</span>
+            <span>Space Tech</span>
+            <span>Design</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <style>
+      /* Control groups styles */
+      .control-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .control-label {
+        font-family: 'Space Grotesk', sans-serif;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+
+      /* Bubble card styles */
+      .bubble-card {
+        background: rgba(255,255,255,0.03);
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+        cursor: pointer;
+        width: 200px;
+        height: 200px;
+        position: relative;
+      }
+
+      .bubble-media {
+        height: 60% !important;
+      }
+
+      .bubble-body {
+        height: 40%;
+        padding: 1rem;
+        background: linear-gradient(to top, rgba(15, 11, 11, 1) 80%, rgba(15, 11, 11, 0.9) 100%);
+      }
+
+      .bubble-card:hover { 
+        transform: translateY(-6px); 
+      }
+
+      .bubble-card .bubble-media {
+        height: 80% !important;
+        position: relative;
+      }
+
+      .bubble-card .bubble-media img { 
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .bubble-card .bubble-body {
+        background: linear-gradient(to top, rgba(15, 11, 11, 1) 60%, rgba(15, 11, 11, 0.8) 80%, rgba(15, 11, 11, 0.4) 100%);
+        padding: 1.5rem 1rem 1rem 1rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(5px);
+        transition: transform 0.3s ease;
+      }
+
+      .bubble-card:hover .bubble-body {
+        transform: translateY(0);
+      }
+
+      .bubble-card .tech-stack { 
+        margin-top: 0.5rem; 
+        display: flex; 
+        gap: 0.4rem; 
+        flex-wrap: wrap;
+      }
+
+      .filter-bar .filter-btn {
+        background: rgba(255,255,255,0.04);
+        color: var(--text-primary);
+        border: none;
+        padding: 0.5rem 0.85rem;
+        margin: 0 0.35rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .filter-bar .filter-btn.active {
+        background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+        -webkit-background-clip: text;
+        background-clip: padding-box;
+        color: white;
+        box-shadow: 0 6px 18px rgba(59,130,246,0.12);
+      }
+
+      .bubble-card.hidden { 
+        display: none !important; 
+      }
+
+      /* Grid Layout */
+      .bubble-grid {
+        width: 98%;
+        max-width: 2000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.75rem;
+        justify-content: center;
+        transition: all 0.5s ease-out;
+        padding: 2rem 1rem;
+      }
+
+      .bubble-grid .bubble-card {
+        transition: transform 0.3s ease;
+        min-height: 280px;
+        width: 100%;
+      }
+
+      .bubble-media {
+        height: 60% !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .bubble-body {
+        height: 40%;
+        padding: 1.25rem !important;
+      }
+
+      .tech-stack {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+        margin-top: 0.75rem;
+      }
+
+      .tech-stack span {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.5rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: rgba(255,255,255,0.06);
+      }
+
+      @media (max-width: 1600px) {
+        .bubble-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .bubble-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+
+    <script>
+      (function(){
+        const buttons = document.querySelectorAll('.filter-bar .filter-btn');
+        const cards = document.querySelectorAll('.bubble-grid .bubble-card');
+
+        function setFilter(filter) {
+          buttons.forEach(b => {
+            const active = (b.dataset.filter === filter);
+            b.classList.toggle('active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          cards.forEach(card => {
+            if (filter === 'all') {
+              card.classList.remove('hidden');
+            } else {
+              const cat = card.dataset.category || '';
+              if (cat === filter) card.classList.remove('hidden'); else card.classList.add('hidden');
+            }
+          });
+        }
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+        });
+
+        // Initialize with all items shown
+        setFilter('all');
+      })();
+    </script>
+
+  </section>
+
+<footer class="py-5 border-top">
+  <div class="container footer-container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center connect-section">
+        <h2 class="connect-title">Let's Connect!</h2>
+        <p class="connect-description">Have a project in mind or just want to chat? I'd love to hear from you!</p>
+        <div class="connect-form">
+          <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+            loading="lazy" width="100%" height="320" frameborder="0" marginheight="0" marginwidth="0" 
+            title="Personal Website Connect" class="tally-form"></iframe>
+          <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p class="copyright">© 2025 Josh Murzello. All rights reserved.</p>
     </div>
   </div>
+  <style>
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+    .connect-section {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+    .connect-section:hover {
+      transform: translateY(-5px);
+    }
+    .connect-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .connect-description {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .connect-form {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .tally-form {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .copyright {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
 </footer>
+  <script>
+    // Helluva Engineer per-letter hover reveal
+    (function(){
+      const helluva = document.querySelector('.helluva-hover');
+      if (!helluva) return;
+
+      // Split text into spans (preserve spaces)
+      if (!helluva.dataset.split) {
+        const txt = helluva.textContent || '';
+        helluva.innerHTML = '';
+        for (const ch of txt) {
+          const span = document.createElement('span');
+          span.className = 'helluva-letter';
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          helluva.appendChild(span);
+        }
+        helluva.dataset.split = '1';
+      }
+
+      const letters = Array.from(helluva.querySelectorAll('.helluva-letter'));
+
+      // When the mouse moves over the title, highlight the letter under the cursor
+      helluva.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        letters.forEach(span => {
+          const r = span.getBoundingClientRect();
+          if (x >= r.left && x <= r.right) {
+            span.classList.add('active');
+          } else {
+            span.classList.remove('active');
+          }
+        });
+      });
+
+      // Clear on leave
+      helluva.addEventListener('mouseleave', () => {
+        letters.forEach(s => s.classList.remove('active'));
+      });
+    })();
+
+    // Blurb reveal effect
+    const blurbArrow = document.getElementById('blurb-arrow');
+    const blurbRest = document.getElementById('blurb-rest');
+    const arrowIcon = document.getElementById('arrow-icon');
+    let blurbOpen = false;
+    if (blurbArrow && blurbRest && arrowIcon) {
+      blurbArrow.addEventListener('click', function() {
+        blurbOpen = !blurbOpen;
+        if (blurbOpen) {
+          blurbRest.style.display = 'inline';
+          blurbRest.style.opacity = 0;
+          setTimeout(() => {
+            blurbRest.style.transition = 'opacity 0.5s';
+            blurbRest.style.opacity = 1;
+          }, 10);
+          arrowIcon.style.transform = 'rotate(90deg)';
+        } else {
+          blurbRest.style.transition = 'opacity 0.5s';
+          blurbRest.style.opacity = 0;
+          setTimeout(() => {
+            blurbRest.style.display = 'none';
+          }, 500);
+          arrowIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+  </script>
 <div style="margin-left: 90%;">
   <a class="icon-link" href="https://www.instagram.com/joshmurzello/">
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
@@ -328,7 +885,7 @@ button{
           <g fill="#bfbdbd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M21,3h-18v18h18zM9,17h-2.523v-7h2.523zM7.694,8.717c-0.771,0 -1.286,-0.514 -1.286,-1.2c0,-0.686 0.514,-1.2 1.371,-1.2c0.771,0 1.286,0.514 1.286,1.2c0,0.686 -0.514,1.2 -1.371,1.2zM18,17h-2.442v-3.826c0,-1.058 -0.651,-1.302 -0.895,-1.302c-0.244,0 -1.058,0.163 -1.058,1.302c0,0.163 0,3.826 0,3.826h-2.523v-7h2.523v0.977c0.325,-0.57 0.976,-0.977 2.197,-0.977c1.221,0 2.198,0.977 2.198,3.174z"></path></g></g>
           </svg>
         </a>
-        <a class="icon-link" href="https://youtube.com/@joshmurzello5831?si=irq-l1uKqgjWwAG3">
+        <a class="icon-link" href="https://www.youtube.com/@joshmurzello">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
             <g fill="#bfbdbd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M44.89844,14.5c-0.39844,-2.19922 -2.29687,-3.80078 -4.5,-4.30078c-3.29687,-0.69922 -9.39844,-1.19922 -16,-1.19922c-6.59766,0 -12.79687,0.5 -16.09766,1.19922c-2.19922,0.5 -4.10156,2 -4.5,4.30078c-0.40234,2.5 -0.80078,6 -0.80078,10.5c0,4.5 0.39844,8 0.89844,10.5c0.40234,2.19922 2.30078,3.80078 4.5,4.30078c3.5,0.69922 9.5,1.19922 16.10156,1.19922c6.60156,0 12.60156,-0.5 16.10156,-1.19922c2.19922,-0.5 4.09766,-2 4.5,-4.30078c0.39844,-2.5 0.89844,-6.10156 1,-10.5c-0.20312,-4.5 -0.70312,-8 -1.20312,-10.5zM19,32v-14l12.19922,7z"></path></g></g>
             </svg>
