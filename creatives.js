@@ -16,9 +16,13 @@ const PROJECTS = [
       { label: "Behind the Scenes (placeholder)", url: "#" }
     ],
     media: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/vXWEqWA96l0?si=6SeovOf7xar-Cbvd&start=1",
+        title: "City After Hours YouTube showcase"
+      },
       { type: "image", src: "./images/DSC00011.jpg", alt: "Wide shot of urban waterworks" },
-      { type: "image", src: "./images/DSC00038.jpg", alt: "Downtown at blue hour" },
-      { type: "placeholder", label: "Video embed placeholder: paste your YouTube/Vimeo URL" }
+      { type: "image", src: "./images/DSC00038.jpg", alt: "Downtown at blue hour" }
     ]
   },
   {
