@@ -4,111 +4,629 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engineering</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <title>Josh Murzello | Logbook</title>
+
+  <!-- Core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@00;1,700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fustat:wght@800&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Roboto:wght@00;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
+    :root {
+      --primary-dark: rgb(15, 11, 11);
+      --accent-purple: #8B5CF6;
+      --accent-blue: #3B82F6;
+      --accent-teal: #14B8A6;
+      --accent-pink: #EC4899;
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.8);
+    }
+
     body {
-      background-color: rgb(15, 11, 11);
+      background-color: var(--primary-dark);
+      color: var(--text-primary);
       margin: 0;
-      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
     .header {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
+      background: linear-gradient(120deg, rgba(15, 11, 11, 0.92), rgba(15, 11, 11, 0.78));
+      backdrop-filter: blur(12px);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: padding 0.3s ease, box-shadow 0.3s ease;
+      overflow: visible;
     }
 
-    .container {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
+    .header::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -18px;
+      width: 100%;
+      height: 18px;
+      background: linear-gradient(180deg, rgba(15, 11, 11, 0.6), rgba(15, 11, 11, 0));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
 
-    .nav-link {
-      font-family: 'Teko', sans-serif;
-      font-size: 20px;
-      color: white;
+    .header.scrolled {
+      padding: 0.6rem 0;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .header.scrolled::after {
+      opacity: 1;
     }
 
     .brand {
-      font-family: 'Teko', sans-serif;
-      font-size: 27px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .brand:hover {
+      color: #f0f0f0;
+      transform: translateY(-1px);
+    }
+
+    .nav-link {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
       color: white;
     }
 
-    .header ul {
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .blog-hero {
+      padding: 9rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(139, 92, 246, 0.18), transparent 55%),
+        radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.18), transparent 55%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      text-align: left;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.35rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 5vw, 4.2rem);
+      margin: 1rem 0;
+      line-height: 1.05;
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-actions .primary {
+      background: white;
+      color: var(--primary-dark);
+      border-radius: 999px;
+      padding: 0.85rem 1.8rem;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-actions .primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-actions .ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      color: white;
+      padding: 0.85rem 1.8rem;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .hero-actions .ghost:hover {
+      border-color: transparent;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .category-filter {
+      margin: 2rem 0 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .category-filter button {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      padding: 0.65rem 1.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .category-filter button.active,
+    .category-filter button:hover {
+      border-color: transparent;
+      background: var(--accent-blue);
+      color: white;
+      box-shadow: 0 18px 45px rgba(59, 130, 246, 0.3);
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 3rem;
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.18), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .featured-card:hover::after {
+      opacity: 1;
+    }
+
+    .featured-meta {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .featured-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .featured-card p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+    }
+
+    .featured-card .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .featured-card .cta:hover {
+      color: var(--accent-teal);
+    }
+
+    .featured-media {
+      border-radius: 20px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      min-height: 260px;
+      position: relative;
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
+    }
+
+    .featured-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 11, 11, 0) 30%, rgba(15, 11, 11, 0.85) 100%);
+    }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.8rem;
+    }
+
+    .post-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .post-meta {
+      font-size: 0.8rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .post-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
       margin: 0;
-      padding: 0;
     }
 
-    h1 {
-      margin-top: 200px;
+    .post-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+      flex: 1;
     }
 
-    .text-body-emphasis {
+    .post-tags {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tags span {
+      font-size: 0.75rem;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .post-card .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
       color: white;
-      font-family: 'Londrina Outline', cursive;
-      font-size: 230px;
-      text-shadow: -1px 6px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .post-card .cta:hover {
+      color: var(--accent-purple);
+    }
+
+    .timeline-section {
+      margin: 5rem 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.2rem;
+    }
+
+    .timeline-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(236, 72, 153, 0.18), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .timeline-card:hover::before {
+      opacity: 1;
+    }
+
+    .timeline-card .timestamp {
+      font-size: 0.8rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-card h5 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-card p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .timeline-card .cta {
+      font-size: 0.85rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.3s ease;
+    }
+
+    .timeline-card .cta:hover {
+      color: var(--accent-teal);
+    }
+
+    .cta-panel {
+      margin: 6rem 0 4rem;
+      padding: 3rem;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(20, 184, 166, 0.1));
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .cta-panel h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.1rem;
+      margin: 0;
+    }
+
+    .cta-panel p {
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0 0 1rem 0;
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    .cta-panel a {
+      background: white;
+      color: var(--primary-dark);
+      border-radius: 999px;
+      padding: 0.85rem 1.8rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-panel a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(255, 255, 255, 0.15);
+    }
+
+    footer {
+      padding: 4rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .connect-section {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .connect-section:hover {
+      transform: translateY(-5px);
+    }
+
+    .connect-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .connect-description {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+    }
+
+    .connect-form {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .social-strip {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .icon-link {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.7rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .icon-link:hover {
+      transform: translateY(-3px);
+      color: white;
+    }
+
+    .copyright {
+      color: #808080;
       text-align: center;
-      letter-spacing: 10px;
-      margin-bottom: 0px;
+      font-size: 0.95rem;
+      margin-top: 2rem;
     }
 
-    .lead {
-      color: white;
-      font-family: Noto Sans Japanese;
-      font-size: 35px;
-      margin-left: 100px;
-      
+    @media (max-width: 1200px) {
+      .featured-card {
+        grid-template-columns: 1fr;
+        padding: 2.5rem;
+      }
+
+      .post-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .timeline-section {
+        grid-template-columns: 1fr;
+      }
     }
-    .last{
-      color: white;
-      font-family: Roboto, sans-serif;
-      font-size: 22px;
-     
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      .post-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions a {
+        width: 100%;
+        text-align: center;
+      }
     }
 
-    .project_title {
-      color: white;
-      font-size: 100px;
-      font-family: Teko;
+    @media (max-width: 576px) {
+      .featured-card {
+        padding: 2rem;
+      }
+
+      .category-filter button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .connect-section {
+        padding: 2.3rem;
+      }
     }
-    .container {
-  max-width: 100%;
-  margin: 0 auto; /* Centers the container horizontally */
-}
-
-  
-button{
-    color: w;
-}
-
-.container.col-xxl-8 {
-  padding-left: 0; /* Remove extra padding */
-  padding-right: 0; /* Remove extra padding */
-}
-
   </style>
 </head>
 
@@ -133,87 +651,307 @@ button{
             <a href="about.html" class="nav-link">About</a>
           </li>
           <li>
-            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
 
-  
-  <div class="px-4 pt- my-5 border-bottom" style="background-color:  rgb(15, 11, 11)">
-    <h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">My Thoughts</h1>
-    <div class="col-lg-6">
-      <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">
-        A deep dive into my brain...the good, the bad, and the ugly.</p>
-    </div>
-  </div>
-  <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">
-    Coming soon, stay tuned!</p>
-
-    <footer class="py-5 border-top" >
-      <div class="container"style="margin-left: 100px;">
-        <div class="row">
-          <div class="col-6 col-md-2 mb-0">
-            <h5 style="color: white; font-family:teko;font-size: 60px;">Section</h5>
-            <ul class="nav flex-column footer-nav">
-              <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0" style="font-size: 30px;">Home</a></li>
-              <li class="nav-item mb-2"><a href="Engineering.html" class="nav-link p-0"style="font-size: 30px;">Engineering</a></li>
-              <li class="nav-item mb-2"><a href="Creatives.html" class="nav-link p-0"style="font-size: 30px;">Creatives</a></li>
-              <li class="nav-item mb-2"><a href="about.html" class="nav-link p-0"style="font-size: 30px;">About</a></li>
-              <li class="nav-item mb-2"><a href="blog.html" class="nav-link p-0"style="font-size: 30px;">Blog
-
-              </a></li>
-            </ul>
+  <main>
+    <section class="blog-hero">
+      <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+          <span class="hero-eyebrow">Logbook</span>
+          <h1 class="hero-title">Snapshots from the workshop, the field, and everywhere in between.</h1>
+          <p class="hero-description">
+            Build notes, travel stories, and reflections documented as I iterate, explore, and learn. This space is the running log –
+            a mix of engineering breakdowns, creative experiments, and the occasional life update.
+          </p>
+          <div class="hero-actions">
+            <a href="#posts" class="primary">Browse Latest Entries</a>
+            <a href="#timeline" class="ghost">View Project Timeline</a>
           </div>
-    
-          
-          
-          <!-- Rest of your footer content -->
-       
-    
-    
-          <div class="col-md-5 offset-md-1 mb-0" style="max-width: 30%; margin-left: 900px;">
-            <form>
-              <h2 style="color: white; font-family: teko; font-size: 75px;">Let's Connect!</h2>
-              <p style="color: white; font-family: teko;font-size: 30px;">Reach out if you have any questions or just want to chat!</p>
-              <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Personal Website Connect"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-            </form>
-          </div>
-        </div>
-    
-        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4" style="max-width: 10%;">
-          
-          
-          </ul>
         </div>
       </div>
-    </footer>
-    <div style="margin-left: 90%;">
-      <a class="icon-link" href="https://www.instagram.com/joshmurzello/">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-          <g fill="#bfbdbd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M16,3c-7.16752,0 -13,5.83248 -13,13v18c0,7.16752 5.83248,13 13,13h18c7.16752,0 13,-5.83248 13,-13v-18c0,-7.16752 -5.83248,-13 -13,-13zM16,5h18c6.08648,0 11,4.91352 11,11v18c0,6.08648 -4.91352,11 -11,11h-18c-6.08648,0 -11,-4.91352 -11,-11v-18c0,-6.08648 4.91352,-11 11,-11zM37,11c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM25,14c-6.06329,0 -11,4.93671 -11,11c0,6.06329 4.93671,11 11,11c6.06329,0 11,-4.93671 11,-11c0,-6.06329 -4.93671,-11 -11,-11zM25,16c4.98241,0 9,4.01759 9,9c0,4.98241 -4.01759,9 -9,9c-4.98241,0 -9,-4.01759 -9,-9c0,-4.98241 4.01759,-9 9,-9z"></path></g></g>
-          </svg>
-          </a>
-          <a class="icon-link" href="https://www.linkedin.com/in/josh-murzello/">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-              <g fill="#bfbdbd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M21,3h-18v18h18zM9,17h-2.523v-7h2.523zM7.694,8.717c-0.771,0 -1.286,-0.514 -1.286,-1.2c0,-0.686 0.514,-1.2 1.371,-1.2c0.771,0 1.286,0.514 1.286,1.2c0,0.686 -0.514,1.2 -1.371,1.2zM18,17h-2.442v-3.826c0,-1.058 -0.651,-1.302 -0.895,-1.302c-0.244,0 -1.058,0.163 -1.058,1.302c0,0.163 0,3.826 0,3.826h-2.523v-7h2.523v0.977c0.325,-0.57 0.976,-0.977 2.197,-0.977c1.221,0 2.198,0.977 2.198,3.174z"></path></g></g>
-              </svg>
-            </a>
-            <a class="icon-link" href="https://youtube.com/@joshmurzello5831?si=irq-l1uKqgjWwAG3">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-                <g fill="#bfbdbd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M44.89844,14.5c-0.39844,-2.19922 -2.29687,-3.80078 -4.5,-4.30078c-3.29687,-0.69922 -9.39844,-1.19922 -16,-1.19922c-6.59766,0 -12.79687,0.5 -16.09766,1.19922c-2.19922,0.5 -4.10156,2 -4.5,4.30078c-0.40234,2.5 -0.80078,6 -0.80078,10.5c0,4.5 0.39844,8 0.89844,10.5c0.40234,2.19922 2.30078,3.80078 4.5,4.30078c3.5,0.69922 9.5,1.19922 16.10156,1.19922c6.60156,0 12.60156,-0.5 16.10156,-1.19922c2.19922,-0.5 4.09766,-2 4.5,-4.30078c0.39844,-2.5 0.89844,-6.10156 1,-10.5c-0.20312,-4.5 -0.70312,-8 -1.20312,-10.5zM19,32v-14l12.19922,7z"></path></g></g>
-                </svg>
-            </a>
-            
-            <a class="icon-link" href="https://vsco.co/joshmurzello/gallery">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
-                <g fill="#bfbdbd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M24.98438,2.98633c-0.10368,0.00168 -0.20647,0.01947 -0.30469,0.05273c-1.69592,0.02505 -3.36289,0.20693 -4.94141,0.60156c-0.68464,0.1667 -1.36131,0.37734 -2.0332,0.62305c-0.16098,0.01814 -0.31513,0.07511 -0.44922,0.16602c-0.85895,0.31408 -1.69256,0.6779 -2.48438,1.09766c-1.29977,0.67507 -2.51717,1.5133 -3.65625,2.44531c-0.15249,0.06194 -0.28734,0.16056 -0.39258,0.28711c-0.10642,0.08898 -0.21282,0.17777 -0.31641,0.27344c-1.31866,1.17215 -2.50176,2.50066 -3.51758,3.9668c-0.29892,0.42979 -0.5728,0.87747 -0.83594,1.32813c-0.10536,0.11857 -0.18101,0.26049 -0.2207,0.41406c-1.15477,2.04309 -1.98801,4.29483 -2.42773,6.67383c-0.06729,0.14072 -0.10073,0.29522 -0.09766,0.45117c-0.05819,0.3248 -0.11398,0.65215 -0.15039,0.99805c-0.10362,0.86526 -0.15625,1.74129 -0.15625,2.63477c0,0.89348 0.05263,1.76951 0.15625,2.63477c0.03641,0.3459 0.0922,0.67325 0.15039,0.99805c-0.00277,0.15529 0.03066,0.30909 0.09766,0.44922c0.43931,2.37794 1.27007,4.62944 2.42383,6.67188c0.04026,0.15532 0.11729,0.29868 0.22461,0.41797c0.26342,0.45113 0.53666,0.89987 0.83594,1.33008c1.0169,1.46748 2.2002,2.78494 3.51367,3.96289c0.10326,0.09546 0.21037,0.18271 0.31641,0.27148l0.00195,0.00195c0.10588,0.1285 0.24216,0.22853 0.39649,0.29102h0.00195c1.13815,0.93086 2.35385,1.76896 3.65234,2.44336c0.79181,0.41976 1.62543,0.78357 2.48438,1.09766c0.13351,0.09061 0.28697,0.14757 0.44727,0.16602c0.67247,0.24601 1.34991,0.4562 2.03516,0.62305c1.57852,0.39463 3.24549,0.57651 4.94141,0.60156c0.20776,0.07024 0.43286,0.07024 0.64062,0c1.69592,-0.02505 3.36289,-0.20693 4.94141,-0.60156c0.68464,-0.1667 1.36131,-0.37734 2.0332,-0.62305c0.16098,-0.01814 0.31513,-0.07511 0.44922,-0.16602c0.85894,-0.31408 1.69256,-0.6779 2.48438,-1.09766c1.29977,-0.67507 2.51717,-1.5133 3.65625,-2.44531c0.15249,-0.06194 0.28734,-0.16056 0.39258,-0.28711c0.1075,-0.08988 0.21569,-0.17867 0.32031,-0.27539c1.31347,-1.17795 2.49677,-2.49541 3.51367,-3.96289v-0.00195c0.29892,-0.42979 0.5728,-0.87747 0.83594,-1.32812c0.10536,-0.11857 0.18101,-0.26049 0.2207,-0.41406c1.15477,-2.04309 1.98801,-4.29483 2.42773,-6.67383c0.06729,-0.14072 0.10073,-0.29522 0.09766,-0.45117c0.0581,-0.3248 0.11398,-0.65215 0.15039,-0.99805c0.10362,-0.86526 0.15625,-1.74129 0.15625,-2.63477c0,-0.89348 -0.05263,-1.76951 -0.15625,-2.63477c-0.03641,-0.3459 -0.0922,-0.67325 -0.15039,-0.99805c0.00277,-0.15529 -0.03066,-0.30909 -0.09766,-0.44922c-0.43931,-2.37794 -1.27007,-4.62944 -2.42383,-6.67187c-0.04026,-0.15532 -0.11729,-0.29868 -0.22461,-0.41797c-0.26314,-0.45066 -0.53702,-0.89834 -0.83594,-1.32812v-0.00195c-1.01563,-1.46561 -2.19928,-2.79302 -3.51758,-3.96484c-0.10222,-0.0944 -0.20754,-0.18166 -0.3125,-0.26953c-0.00065,-0.00065 -0.0013,-0.0013 -0.00195,-0.00195c-0.10588,-0.1285 -0.24216,-0.22853 -0.39648,-0.29102c-0.00065,0 -0.0013,0 -0.00195,0c-1.13805,-0.93086 -2.35385,-1.76896 -3.65234,-2.44336c-0.79181,-0.41976 -1.62543,-0.78357 -2.48437,-1.09766c-0.13351,-0.09061 -0.28697,-0.14757 -0.44727,-0.16602c-0.67247,-0.24601 -1.34991,-0.4562 -2.03516,-0.62305c-1.57852,-0.39463 -3.24549,-0.57651 -4.94141,-0.60156c-0.10815,-0.03663 -0.22177,-0.05446 -0.33594,-0.05273zM17.49023,4.32617c-0.0069,0.00242 -0.01259,0.00734 -0.01953,0.00977c-0.0031,0.0012 -0.00657,0.00075 -0.00977,0.00195zM32.50977,4.32617l0.0293,0.01172c-0.0031,-0.0012 -0.00657,-0.00075 -0.00977,-0.00195c-0.0069,-0.00243 -0.01258,-0.00734 -0.01953,-0.00977zM24,5.12109v3.99805c-0.95922,0.06068 -1.92086,0.11942 -2.82617,0.33984c-0.00065,0 -0.0013,0 -0.00195,0c-0.23122,0.05671 -0.45674,0.14237 -0.68555,0.20898l-1.36719,-3.75195c0.36423,-0.11205 0.71451,-0.24079 1.09766,-0.33398c0.00196,-0.00065 0.00391,-0.0013 0.00586,-0.00195c1.20114,-0.3003 2.48837,-0.39339 3.77734,-0.45898zM26,5.12109c1.28897,0.06559 2.57617,0.15869 3.77734,0.45898c0.00195,0.00066 0.0039,0.00131 0.00586,0.00195c0.38314,0.0932 0.73343,0.22194 1.09766,0.33398l-1.36719,3.75195c-0.22881,-0.06662 -0.45433,-0.15227 -0.68555,-0.20898c-0.00065,0 -0.0013,0 -0.00195,0c-0.9053,-0.22042 -1.86695,-0.27917 -2.82617,-0.33984zM17.24609,6.61328l1.36523,3.75586c-0.3502,0.15296 -0.70698,0.28291 -1.04687,0.4668l-0.00195,0.00195c-0.53649,0.28247 -1.01512,0.67639 -1.52148,1.01953c-0.2043,0.02691 -0.3953,0.11627 -0.54687,0.25586l-2.51562,-2.99609c0.87278,-0.66069 1.75441,-1.31799 2.72266,-1.82031c0.00261,-0.00129 0.00521,-0.00259 0.00781,-0.00391c0.50002,-0.26507 1.02115,-0.46262 1.53711,-0.67969zM32.75391,6.61328c0.51596,0.21707 1.03708,0.41461 1.53711,0.67969c0.0026,0.00131 0.0052,0.00262 0.00781,0.00391c0.96825,0.50232 1.84987,1.15962 2.72266,1.82031l-2.51562,2.99609c-0.15183,-0.13888 -0.3428,-0.22754 -0.54687,-0.25391c-0.50664,-0.34338 -0.98468,-0.73885 -1.52148,-1.02148c-0.34063,-0.18438 -0.69784,-0.31544 -1.04883,-0.46875zM11.42578,10.37695l2.58008,3.07422c-0.79211,0.75528 -1.55207,1.55135 -2.17969,2.46094c-0.05526,0.07937 -0.09746,0.16227 -0.15039,0.24219l-3.4668,-2.00195c0.10892,-0.16921 0.20859,-0.34832 0.32227,-0.51172c0,-0.00065 0,-0.0013 0,-0.00195c0.8349,-1.20501 1.83121,-2.2723 2.89453,-3.26172zM38.57422,10.37695c1.06332,0.98941 2.05963,2.05671 2.89453,3.26172c0,0.00065 0,0.0013 0,0.00195c0.11367,0.1634 0.21335,0.3425 0.32227,0.51172l-3.4668,2.00195c-0.05293,-0.07992 -0.09513,-0.16282 -0.15039,-0.24219l-0.00391,-0.00391c-0.62688,-0.90788 -1.385,-1.70302 -2.17578,-2.45703zM24,11.11914v3.93164c-1.45941,0.14596 -2.82351,0.61471 -4.03125,1.32227l-2.32422,-3.19727c0.29171,-0.18035 0.54561,-0.40929 0.85156,-0.57031c0.00327,-0.00193 0.00652,-0.00389 0.00977,-0.00586c0.50761,-0.27531 1.05218,-0.50756 1.60742,-0.71484c0.07596,-0.01933 0.14938,-0.04752 0.21875,-0.08399c0.4206,-0.15435 0.85297,-0.28672 1.31641,-0.40039l-0.00195,0.00195c0.75403,-0.18358 1.5568,-0.22575 2.35352,-0.2832zM26,11.11914c0.79672,0.05745 1.59946,0.09961 2.35352,0.2832l-0.00195,-0.00195c0.46406,0.11383 0.89723,0.24575 1.31836,0.40039c0.07052,0.03743 0.14527,0.06628 0.22266,0.08594c0.55319,0.20678 1.09573,0.43854 1.60156,0.71289c0.00324,0.00197 0.0065,0.00393 0.00977,0.00586c0.30595,0.16103 0.55985,0.38996 0.85156,0.57031l-2.32422,3.19727c-1.20774,-0.70755 -2.57184,-1.17631 -4.03125,-1.32227zM15.99219,14.30273l2.36133,3.25c-1.05934,0.94666 -1.9205,2.10971 -2.50195,3.42578l-3.79883,-1.23828c0.22538,-0.56977 0.47315,-1.12387 0.77539,-1.64258c0.04635,-0.06359 0.08502,-0.13242 0.11523,-0.20508c0.16931,-0.29106 0.3412,-0.57277 0.52734,-0.83984c0.00065,-0.0013 0.0013,-0.0026 0.00195,-0.00391c0.64329,-0.93231 1.40095,-1.78348 2.24219,-2.53125c0.00131,-0.0013 0.00261,-0.0026 0.00391,-0.00391c0.06173,-0.05556 0.09698,-0.0847 0.14063,-0.12109c0.0013,-0.00065 0.00261,-0.0013 0.00391,-0.00195c0.04519,-0.0259 0.08829,-0.05528 0.12891,-0.08789zM34.00781,14.30273c0.0395,0.0311 0.08128,0.05917 0.125,0.08399c0.04501,0.03724 0.08346,0.06848 0.14844,0.12695c0.0013,0.00131 0.0026,0.00261 0.00391,0.00391c0.84124,0.74777 1.5989,1.59894 2.24219,2.53125c0.00065,0.0013 0.0013,0.00261 0.00195,0.00391c0.18645,0.26752 0.35777,0.55021 0.52734,0.8418c0.03055,0.07411 0.06989,0.14427 0.11719,0.20898c0.00065,0.00065 0.0013,0.0013 0.00195,0.00195c0.29851,0.51313 0.54655,1.06497 0.77734,1.63281l-3.80469,1.24023c-0.58145,-1.31607 -1.44261,-2.47912 -2.50195,-3.42578zM7.25,15.90625l3.4668,2c-0.2312,0.46645 -0.48759,0.9224 -0.66797,1.41016v0.00195c-0.05237,0.13404 -0.07029,0.28419 -0.11914,0.41992c-0.16366,0.20911 -0.23744,0.47472 -0.20508,0.73828c-0.07765,0.2548 -0.15264,0.51061 -0.2168,0.77148l-3.94531,-0.69531c0.36858,-1.63428 0.93688,-3.1904 1.6875,-4.64648zM42.75,15.90625c0.75062,1.45609 1.31892,3.01221 1.6875,4.64648l-3.94141,0.69531c-0.06418,-0.26623 -0.1403,-0.52821 -0.21875,-0.78906c0.02629,-0.25126 -0.04349,-0.50316 -0.19531,-0.70508c-0.05053,-0.14202 -0.06621,-0.29705 -0.12109,-0.4375c-0.18567,-0.48587 -0.44132,-0.94484 -0.67383,-1.41211zM24.88281,17.00586c0.08043,0.00981 0.16176,0.00981 0.24219,0c1.62609,0.02496 3.13279,0.52729 4.38281,1.37891c0.09905,0.11807 0.22405,0.21165 0.36523,0.27344c1.20706,0.92762 2.13609,2.19067 2.65625,3.6543c0.01315,0.15878 0.06404,0.31213 0.14844,0.44727c0.20612,0.71121 0.32227,1.46106 0.32227,2.24023c0,0.77785 -0.11682,1.52618 -0.32227,2.23633c-0.08499,0.13629 -0.13591,0.29104 -0.14844,0.45117c-0.51953,1.46187 -1.44739,2.72308 -2.65234,3.65039c-0.143,0.06239 -0.26941,0.15737 -0.36914,0.27734c-1.25203,0.85299 -2.76153,1.35546 -4.39062,1.37891c-0.08043,-0.00981 -0.16176,-0.00981 -0.24219,0c-3.42973,-0.05264 -6.31628,-2.24515 -7.4043,-5.30664c-0.01315,-0.15878 -0.06404,-0.31213 -0.14844,-0.44727c-0.20612,-0.71121 -0.32227,-1.46106 -0.32227,-2.24023c0,-0.77785 0.11682,-1.52618 0.32227,-2.23633c0.08499,-0.13629 0.13591,-0.29104 0.14844,-0.45117c1.08885,-3.06383 3.97895,-5.25723 7.41211,-5.30664zM38.54297,21.64844c0.06781,0.27483 0.17623,0.53346 0.22656,0.81641c0.00539,0.07758 0.01981,0.15427 0.04297,0.22852c0.03108,0.20976 0.0625,0.41409 0.08398,0.60742c-0.00001,0.0026 -0.00001,0.00521 0,0.00781c0.06568,0.55416 0.10352,1.12512 0.10352,1.69141c0,0.56628 -0.03777,1.13723 -0.10352,1.69141c-0.00001,0.0026 -0.00001,0.00521 0,0.00781c-0.02162,0.19456 -0.05268,0.40007 -0.08398,0.61133c-0.02272,0.07235 -0.03713,0.14705 -0.04297,0.22266c-0.0504,0.28359 -0.1586,0.54292 -0.22656,0.81836l-3.77539,-1.22852c0.14907,-0.68519 0.23242,-1.39407 0.23242,-2.12305c0,-0.72898 -0.08336,-1.43785 -0.23242,-2.12305zM11.46094,21.65039l3.77148,1.22656c-0.14907,0.68519 -0.23242,1.39407 -0.23242,2.12305c0,0.72898 0.08336,1.43785 0.23242,2.12305l-3.77148,1.22656c-0.06905,-0.27437 -0.18032,-0.53541 -0.23047,-0.81641c-0.00554,-0.07692 -0.01996,-0.15295 -0.04297,-0.22656c-0.03107,-0.20976 -0.0625,-0.41408 -0.08398,-0.60742c0.00001,-0.0026 0.00001,-0.00521 0,-0.00781c-0.06575,-0.55419 -0.10352,-1.12512 -0.10352,-1.69141c0,-0.56628 0.03777,-1.13723 0.10352,-1.69141c0.00001,-0.0026 0.00001,-0.00521 0,-0.00781c0.02162,-0.19456 0.05268,-0.40007 0.08398,-0.61133c0.02257,-0.07172 0.03699,-0.14575 0.04297,-0.2207c0.05022,-0.28164 0.16126,-0.54339 0.23047,-0.81836zM5.1543,22.51172l3.95508,0.69727c-0.06478,0.58433 -0.10937,1.18365 -0.10937,1.79102c0,0.60736 0.0446,1.20669 0.10938,1.79102l-3.95508,0.69727c-0.00231,-0.02068 -0.00759,-0.04182 -0.00977,-0.0625c-0.00061,-0.00521 -0.00126,-0.01042 -0.00195,-0.01562c-0.09515,-0.78975 -0.14258,-1.58892 -0.14258,-2.41016c0,-0.82124 0.04743,-1.62041 0.14258,-2.41016c0.00069,-0.0052 0.00134,-0.01041 0.00195,-0.01562c0.00218,-0.02068 0.00745,-0.04182 0.00977,-0.0625zM44.8457,22.51172c0.0023,0.02068 0.00757,0.04182 0.00977,0.0625c0.00061,0.00521 0.00126,0.01042 0.00195,0.01563c0.09507,0.78975 0.14258,1.58892 0.14258,2.41016c0,0.82124 -0.04743,1.62041 -0.14258,2.41016c-0.00069,0.0052 -0.00134,0.01041 -0.00195,0.01563c-0.0022,0.02068 -0.00747,0.04182 -0.00977,0.0625l-3.95508,-0.69727c0.06478,-0.58433 0.10938,-1.18365 0.10938,-1.79102c0,-0.60736 -0.0446,-1.20669 -0.10937,-1.79102zM9.50781,28.75195c0.06431,0.26149 0.13893,0.51805 0.2168,0.77344c-0.03183,0.26291 0.04192,0.52772 0.20508,0.73633c0.04885,0.13573 0.06678,0.28588 0.11914,0.41992v0.00195c0.18038,0.48776 0.43677,0.9437 0.66797,1.41016l-3.4668,2c-0.75062,-1.45614 -1.31892,-3.01221 -1.6875,-4.64648zM40.49609,28.75195l3.94141,0.69531c-0.36858,1.63428 -0.93688,3.1904 -1.6875,4.64648l-3.46289,-1.99805c0.23251,-0.46727 0.48817,-0.92624 0.67383,-1.41211c0.05511,-0.14103 0.07037,-0.29684 0.12109,-0.43945c0.1523,-0.20243 0.22211,-0.45512 0.19531,-0.70703c0.07802,-0.25968 0.15486,-0.52014 0.21875,-0.78516zM15.85156,29.02148c0.58145,1.31607 1.44261,2.47912 2.50195,3.42578l-2.36133,3.25c-0.0395,-0.0311 -0.08128,-0.05917 -0.125,-0.08398c-0.04501,-0.03724 -0.08346,-0.06847 -0.14844,-0.12695c-0.0013,-0.00131 -0.0026,-0.00261 -0.00391,-0.00391c-0.84124,-0.74777 -1.5989,-1.59894 -2.24219,-2.53125c-0.00065,-0.0013 -0.0013,-0.00261 -0.00195,-0.00391c-0.18645,-0.26752 -0.35777,-0.55021 -0.52734,-0.8418c-0.03055,-0.07411 -0.06989,-0.14427 -0.11719,-0.20898c0,-0.00065 0,-0.0013 0,-0.00195c-0.30058,-0.51669 -0.54903,-1.06747 -0.77344,-1.63477zM34.14844,29.02148l3.80469,1.24023c-0.23168,0.57003 -0.48129,1.12379 -0.78125,1.63867c-0.04648,0.0642 -0.08516,0.1337 -0.11523,0.20703c-0.16931,0.29106 -0.3412,0.57277 -0.52734,0.83984c-0.00065,0.0013 -0.0013,0.0026 -0.00195,0.00391c-0.64329,0.93231 -1.40095,1.78348 -2.24219,2.53125c-0.00131,0.0013 -0.00261,0.0026 -0.00391,0.00391c-0.06173,0.05556 -0.09698,0.0847 -0.14062,0.12109c-0.001,0.00083 -0.00291,0.00105 -0.00391,0.00195c-0.04519,0.0259 -0.08829,0.05528 -0.12891,0.08789l-2.36133,-3.25c1.05934,-0.94666 1.9205,-2.10971 2.50195,-3.42578zM19.96875,33.62695c1.20774,0.70755 2.57184,1.17631 4.03125,1.32227v3.93164c-0.79672,-0.05745 -1.59946,-0.09961 -2.35352,-0.2832l0.00195,0.00195c-0.46406,-0.11383 -0.89723,-0.24575 -1.31836,-0.40039c-0.07052,-0.03743 -0.14527,-0.06628 -0.22266,-0.08594c-0.55324,-0.20683 -1.09573,-0.43854 -1.60156,-0.71289c-0.00324,-0.00197 -0.0065,-0.00393 -0.00977,-0.00586c-0.30595,-0.16103 -0.55985,-0.38996 -0.85156,-0.57031zM30.03125,33.62695l2.32422,3.19727c-0.29171,0.18035 -0.54561,0.40929 -0.85156,0.57031c-0.00327,0.00193 -0.00652,0.00389 -0.00977,0.00586c-0.50761,0.27531 -1.05218,0.50756 -1.60742,0.71484c-0.07596,0.01933 -0.14938,0.04752 -0.21875,0.08398c-0.4206,0.15435 -0.85298,0.28672 -1.31641,0.40039l0.00195,-0.00195c-0.75403,0.18359 -1.5568,0.22575 -2.35352,0.2832v-3.93164c1.45941,-0.14596 2.82351,-0.61471 4.03125,-1.32227zM11.67578,33.8457c0.05393,0.08143 0.09794,0.16524 0.1543,0.24609c0.62687,0.90782 1.385,1.70302 2.17578,2.45703l-2.58008,3.07422c-1.06575,-0.99752 -2.06148,-2.05937 -2.89453,-3.26172c0,-0.00065 0,-0.0013 0,-0.00195c-0.11367,-0.16336 -0.21335,-0.34251 -0.32227,-0.51172zM38.32422,33.8457l3.4668,2.00195c-0.10892,0.16921 -0.2086,0.34832 -0.32227,0.51172c0,0.00065 0,0.0013 0,0.00195c-0.83305,1.20235 -1.82878,2.2642 -2.89453,3.26172l-2.58008,-3.07422c0.79078,-0.75401 1.54891,-1.54921 2.17578,-2.45703l0.00391,-0.00391c0.05526,-0.07937 0.09746,-0.16227 0.15039,-0.24219zM15.49414,37.88672c0.15158,0.13959 0.34258,0.22895 0.54687,0.25586c0.50637,0.34314 0.98499,0.73707 1.52148,1.01953l0.00195,0.00195c0.33989,0.18389 0.69668,0.31383 1.04688,0.4668l-1.36523,3.75586c-0.51596,-0.21707 -1.03709,-0.41461 -1.53711,-0.67969c-0.0026,-0.00131 -0.0052,-0.00262 -0.00781,-0.00391c-0.96831,-0.50238 -1.84987,-1.15962 -2.72266,-1.82031zM34.50586,37.88867l2.51563,2.99414c-0.87279,0.66069 -1.75441,1.31799 -2.72266,1.82031c-0.00261,0.00129 -0.00521,0.00259 -0.00781,0.00391c-0.50003,0.26507 -1.02115,0.46262 -1.53711,0.67969l-1.36523,-3.75586c0.3502,-0.15296 0.70698,-0.28291 1.04688,-0.4668l0.00195,-0.00195c0.53649,-0.28247 1.01512,-0.67639 1.52148,-1.01953c0.20407,-0.02636 0.39504,-0.11503 0.54688,-0.25391zM20.48633,40.33203c0.22881,0.06662 0.45433,0.15227 0.68555,0.20898c0.00065,0 0.0013,0 0.00195,0c0.90531,0.22042 1.86695,0.27917 2.82617,0.33984v3.99805c-1.28897,-0.06559 -2.57617,-0.15869 -3.77734,-0.45898c-0.00195,-0.00066 -0.0039,-0.00131 -0.00586,-0.00195c-0.38314,-0.0932 -0.73343,-0.22194 -1.09766,-0.33398zM29.51367,40.33203l1.36719,3.75195c-0.36423,0.11205 -0.71451,0.24079 -1.09766,0.33398c-0.00196,0.00064 -0.00391,0.0013 -0.00586,0.00195c-1.20114,0.3002 -2.48837,0.39339 -3.77734,0.45898v-3.99805c0.95922,-0.06068 1.92086,-0.11942 2.82617,-0.33984c0.00065,0 0.0013,0 0.00195,0c0.23122,-0.05671 0.45674,-0.14237 0.68555,-0.20898zM17.46094,45.66211c0.0031,0.0012 0.00657,0.0007 0.00977,0.00195c0.0069,0.0024 0.01258,0.00727 0.01953,0.00977zM32.53906,45.66211l-0.0293,0.01172c0.007,-0.0024 0.01259,-0.00727 0.01953,-0.00977c0.0031,-0.0011 0.00667,-0.00082 0.00977,-0.00195z"></path></g></g>
-                </svg>
-            </a>
+    </section>
+
+    <section id="posts" class="container">
+      <div class="category-filter" data-aos="fade-up">
+        <button type="button" class="active" data-filter="all">All Entries</button>
+        <button type="button" data-filter="engineering">Engineering</button>
+        <button type="button" data-filter="travel">Travel</button>
+        <button type="button" data-filter="creative">Creative</button>
+        <button type="button" data-filter="learning">Learning</button>
+      </div>
+
+      <article class="featured-card" data-aos="fade-up" data-aos-delay="80" data-category="engineering">
+        <div>
+          <div class="featured-meta">
+            <span>Featured</span>
+            <span>Engineering</span>
+            <span>Jan • 2024</span>
           </div>
-    <p style="color: gray;">© 2024 Josh Murzello. All rights reserved.</p>
-  
+          <h3>Rebuilding the electric skateboard drivetrain from the ground up.</h3>
+          <p>
+            A deep dive into redesigning my original electric skateboard, focusing on torque balancing, custom-machined mounts,
+            and integrating a modular battery enclosure. Complete teardown, insights, and what I would change on version three.
+          </p>
+          <a href="#" class="cta">
+            Read the build notes
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="featured-media" style="background-image: url('./images/DSC00011.jpg');" aria-hidden="true"></div>
+      </article>
+
+      <div class="post-grid">
+        <article class="post-card" data-category="travel" data-aos="fade-up" data-aos-delay="40">
+          <div class="post-meta">
+            <span>Jan • 2024</span>
+            <span>Travel Log</span>
+          </div>
+          <h4>Three days exploring Seoul's maker scene.</h4>
+          <p>
+            From underground electronics markets to open studios, Seoul's creative energy is unreal. Notes on conversations,
+            gear finds, and how the city recharged my approach to design.
+          </p>
+          <div class="post-tags">
+            <span>Culture</span>
+            <span>Field Notes</span>
+          </div>
+          <a href="#" class="cta">
+            Open entry
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="post-card" data-category="engineering" data-aos="fade-up" data-aos-delay="80">
+          <div class="post-meta">
+            <span>Dec • 2023</span>
+            <span>Engineering</span>
+          </div>
+          <h4>Rapid prototyping a modular sensor rig.</h4>
+          <p>
+            Documenting the sprint build of a modular sensor platform for HVAC testing: PCB layout sketches, firmware milestones,
+            and lessons in collaboration.
+          </p>
+          <div class="post-tags">
+            <span>Prototype</span>
+            <span>Hardware</span>
+          </div>
+          <a href="#" class="cta">
+            View log
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="post-card" data-category="creative" data-aos="fade-up" data-aos-delay="120">
+          <div class="post-meta">
+            <span>Nov • 2023</span>
+            <span>Creative</span>
+          </div>
+          <h4>Cinematic portrait workflow in low light.</h4>
+          <p>
+            A breakdown of my recent Philly shoot — gear choices, lighting strategies, and how editing in DaVinci transformed
+            the vibe of the final piece.
+          </p>
+          <div class="post-tags">
+            <span>Photography</span>
+            <span>Process</span>
+          </div>
+          <a href="#" class="cta">
+            Read notes
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="post-card" data-category="learning" data-aos="fade-up" data-aos-delay="160">
+          <div class="post-meta">
+            <span>Oct • 2023</span>
+            <span>Learning</span>
+          </div>
+          <h4>Weekly synthesis: what I'm reading & shipping.</h4>
+          <p>
+            A running list of resources fueling current projects — from HCI papers to 3D printing experiments and favorite
+            design interviews.
+          </p>
+          <div class="post-tags">
+            <span>Reading</span>
+            <span>Reflections</span>
+          </div>
+          <a href="#" class="cta">
+            Peek inside
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="post-card" data-category="engineering" data-aos="fade-up" data-aos-delay="200">
+          <div class="post-meta">
+            <span>Sep • 2023</span>
+            <span>Engineering</span>
+          </div>
+          <h4>Field testing the BCI motion prototype.</h4>
+          <p>
+            Behind-the-scenes from the latest brain-computer interface trial — calibration wins, signal challenges, and
+            next steps toward a polished demo.
+          </p>
+          <div class="post-tags">
+            <span>Research</span>
+            <span>BCI</span>
+          </div>
+          <a href="#" class="cta">
+            Explore recap
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="post-card" data-category="travel" data-aos="fade-up" data-aos-delay="240">
+          <div class="post-meta">
+            <span>Aug • 2023</span>
+            <span>Travel</span>
+          </div>
+          <h4>Colorado altitude training & trail notes.</h4>
+          <p>
+            Documenting the physical reset that kept burnout in check — trail maps, recovery tips, and a few unexpected
+            conversations that sparked new ideas.
+          </p>
+          <div class="post-tags">
+            <span>Adventure</span>
+            <span>Mindset</span>
+          </div>
+          <a href="#" class="cta">
+            Read entry
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline" class="container timeline-section">
+      <article class="timeline-card" data-aos="fade-up" data-aos-delay="50">
+        <div class="timestamp">Coming Soon • February Drop</div>
+        <h5>Designing a modular travel rig for hybrid shoots.</h5>
+        <p>
+          Setting up a flexible kit that can shift from engineering documentation to cinematic storytelling in minutes.
+          Gearing up with 3D printed mounts and lightweight lighting options.
+        </p>
+        <a href="#" class="cta">
+          Follow progress
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </article>
+
+      <article class="timeline-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="timestamp">Backlog • In Draft</div>
+        <h5>What pickleball tournaments taught me about team energy.</h5>
+        <p>
+          Translating court chemistry to project leadership — lessons in rhythm, communication, and creating momentum
+          across disciplines.
+        </p>
+        <a href="#" class="cta">
+          Notify me
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </article>
+    </section>
+
+    <section class="container cta-panel" data-aos="fade-up">
+      <h3>Have a topic you want me to unpack next?</h3>
+      <p>
+        Whether it's a breakdown of a recent project, a studio session, or a travel log, send me a note.
+        I'm always down to dive deeper or explore new ideas with you.
+      </p>
+      <a href="https://tally.so/r/wa0BAv" target="_blank" rel="noopener">Suggest an entry</a>
+    </section>
+  </main>
+
+  <footer class="py-5 border-top">
+    <div class="container footer-container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div class="connect-section" data-aos="fade-up">
+            <h2 class="connect-title">Let's Connect!</h2>
+            <p class="connect-description">
+              Have a project in mind or just want to chat? I'd love to hear from you.
+            </p>
+            <div class="connect-form">
+              <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                loading="lazy" width="100%" height="320" frameborder="0" marginheight="0" marginwidth="0"
+                title="Personal Website Connect" class="tally-form"></iframe>
+              <script>
+                var d = document,
+                  w = "https://tally.so/widgets/embed.js",
+                  v = function () {
+                    "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function (e) { e.src = e.dataset.tallySrc }))
+                  };
+                if ("undefined" != typeof Tally) v();
+                else if (d.querySelector('script[src="' + w + '"]') == null) {
+                  var s = d.createElement("script");
+                  s.src = w, s.onload = v, s.onerror = v, d.body.appendChild(s);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="social-strip">
+        <a class="icon-link instagram" href="https://www.instagram.com/joshmurzellostudios/" target="_blank" rel="noopener">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a class="icon-link linkedin" href="https://www.linkedin.com/in/josh-murzello/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a class="icon-link youtube" href="https://www.youtube.com/@joshmurzello" target="_blank" rel="noopener">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a class="icon-link" href="https://vsco.co/joshmurzello/gallery" target="_blank" rel="noopener">
+          <i class="fas fa-camera-retro"></i>
+        </a>
+      </div>
+      <p class="copyright">© 2024 Josh Murzello. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-out',
+          once: true
+        });
+      }
+
+      const header = document.querySelector('.header');
+      const toggleHeaderState = () => {
+        if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      };
+      toggleHeaderState();
+      window.addEventListener('scroll', toggleHeaderState);
+
+      const filterButtons = document.querySelectorAll('.category-filter button');
+      const posts = document.querySelectorAll('.post-card, .featured-card');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.filter;
+          filterButtons.forEach(b => b.classList.toggle('active', b === btn));
+
+          posts.forEach(post => {
+            if (target === 'all') {
+              post.classList.remove('d-none');
+            } else {
+              const category = post.dataset.category || '';
+              post.classList.toggle('d-none', category !== target);
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

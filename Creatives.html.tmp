@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creatives | Josh Murzello</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --primary-dark: rgb(15,11,11);
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.8);
+      --accent-blue: #3B82F6;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:var(--primary-dark);
+      color:var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .header{background-color: rgba(15,11,11,0.98);backdrop-filter: blur(8px);position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1rem 0}
+    .container-inner{max-width:1400px;margin:0 auto;padding:0 2rem}
+    .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-primary);text-decoration:none}
+    .nav-link{font-family:'Space Grotesk',sans-serif;color:var(--text-secondary);padding:0.5rem 1rem}
+
+    main{padding-top:110px}
+
+    .hero-section{padding:4rem 0 2rem;text-align:center}
+    .hero-title{font-family:'Space Grotesk',sans-serif;font-size:48px;margin-bottom:0.5rem}
+    .hero-description{color:var(--text-secondary);max-width:900px;margin:0 auto}
+
+    .filter-bar{padding:20px 0;text-align:center}
+    .filter-btn{background:transparent;border:1px solid rgba(191,189,189,0.12);color:var(--text-secondary);padding:8px 14px;margin:0 6px;border-radius:6px}
+    .filter-btn.active{background:rgba(191,189,189,0.06);color:var(--text-primary)}
+
+    .creatives-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1400px;margin:0 auto;padding:20px}
+    .creative-card{position:relative;overflow:hidden;border-radius:10px;background:rgba(255,255,255,0.02)}
+    .creative-card img{width:100%;height:320px;object-fit:cover;display:block}
+    .creative-overlay{position:absolute;left:0;right:0;bottom:0;padding:12px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);color:white}
+
+    /* Highlights carousel tweaks */
+    .highlights-section h2{font-family:'Space Grotesk',sans-serif;color:var(--text-primary);letter-spacing:1px}
+    .carousel-caption{background:rgba(15,11,11,0.5);padding:12px;border-radius:8px}
+
+    footer{margin-top:3rem}
+
+    @media (max-width:1200px){.creatives-grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:800px){.creatives-grid{grid-template-columns:repeat(2,1fr)}.creative-card img{height:260px}}
+    @media (max-width:480px){.creatives-grid{grid-template-columns:1fr}.creative-card img{height:200px}.hero-title{font-size:36px}}
+
+    /* small utility to visually hide items */
+    .hidden{display:none!important}
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container-inner d-flex align-items-center justify-content-between">
+      <a href="/" class="brand">JOSH MURZELLO</a>
+      <nav>
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="Engineering.html">Engineering</a></li>
+          <li class="nav-item"><a class="nav-link" href="Creatives.html">Creatives</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container text-center">
+        <h1 class="hero-title">Visual Stories</h1>
+        <p class="hero-description">Through photography, videography, and design, I capture moments and create experiences that leave lasting impressions. Explore my creative journey across different mediums and styles.</p>
+      </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights-section py-5">
+      <div class="container">
+        <h2 class="text-center mb-4" style="font-size:3rem">Highlights</h2>
+        <div id="highlightsCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3500">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#highlightsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#highlightsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#highlightsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner rounded-4 shadow-lg">
+            <div class="carousel-item active">
+              <img src="./images/Greenville.jpg" class="d-block w-100" alt="Highlight 1" style="object-fit:cover;height:480px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Greenville Cityscape</h5>
+                <p>South Carolina • 2023</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./images/phillu good closeup.jpg" class="d-block w-100" alt="Highlight 2" style="object-fit:cover;height:480px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>City Lights</h5>
+                <p>Philadelphia Portrait • 2024</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./images/DSC00038.jpg" class="d-block w-100" alt="Highlight 3" style="object-fit:cover;height:480px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Abstract Light</h5>
+                <p>Experimental Photography • 2024</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#highlightsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#highlightsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="filter-bar">
+      <div class="control-group">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="photo">Photography</button>
+        <button class="filter-btn" data-filter="video">Videography</button>
+        <button class="filter-btn" data-filter="portrait">Portraits</button>
+      </div>
+    </section>
+
+    <section class="creatives-grid">
+      <div class="creative-card" data-category="photo">
+        <img src="./images/Greenville.jpg" alt="Greenville Cityscape">
+        <div class="creative-overlay"><h3 class="creative-title">Urban Exploration</h3><p class="creative-details">Greenville, South Carolina • 2023</p></div>
+      </div>
+
+      <div class="creative-card" data-category="portrait">
+        <img src="./images/phillu good closeup.jpg" alt="Portrait in Philadelphia">
+        <div class="creative-overlay"><h3 class="creative-title">City Lights</h3><p class="creative-details">Philadelphia Portrait • 2024</p></div>
+      </div>
+
+      <div class="creative-card" data-category="portrait">
+        <img src="./images/DSC00008.jpg" alt="Portrait Study">
+        <div class="creative-overlay"><h3 class="creative-title">Natural Light Portrait</h3><p class="creative-details">Studio Session • 2024</p></div>
+      </div>
+
+      <div class="creative-card" data-category="photo">
+        <img src="./images/DSC00011.jpg" alt="Urban Photography">
+        <div class="creative-overlay"><h3 class="creative-title">Urban Perspectives</h3><p class="creative-details">Greenville • 2023</p></div>
+      </div>
+
+      <div class="creative-card" data-category="photo">
+        <img src="./images/DSC00038.jpg" alt="Creative Photography">
+        <div class="creative-overlay"><h3 class="creative-title">Abstract Light</h3><p class="creative-details">Experimental Photography • 2024</p></div>
+      </div>
+
+      <div class="creative-card" data-category="portrait">
+        <img src="./images/DSC00015.jpg" alt="Portrait Photography">
+        <div class="creative-overlay"><h3 class="creative-title">Environmental Portrait</h3><p class="creative-details">Location Shoot • 2024</p></div>
+      </div>
+
+      <div class="creative-card" data-category="photo">
+        <img src="./images/DSC00122.jpg" alt="Street Photography">
+        <div class="creative-overlay"><h3 class="creative-title">Street Stories</h3><p class="creative-details">Urban Documentary • 2024</p></div>
+      </div>
+
+      <div class="creative-card" data-category="photo">
+        <img src="./images/DSC00102.jpg" alt="Architectural Photography">
+        <div class="creative-overlay"><h3 class="creative-title">Urban Geometry</h3><p class="creative-details">Architecture Study • 2024</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-5 border-top">
+    <div class="container-inner">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-0">
+          <h5 style="color:white;font-family:'Space Grotesk',sans-serif;font-size:40px">Section</h5>
+          <ul class="nav flex-column footer-nav">
+            <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0">Home</a></li>
+            <li class="nav-item mb-2"><a href="Engineering.html" class="nav-link p-0">Engineering</a></li>
+            <li class="nav-item mb-2"><a href="Creatives.html" class="nav-link p-0">Creatives</a></li>
+            <li class="nav-item mb-2"><a href="about.html" class="nav-link p-0">About</a></li>
+            <li class="nav-item mb-2"><a href="blog.html" class="nav-link p-0">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-5 offset-md-1 mb-0" style="max-width:30%;margin-left:900px;">
+          <form>
+            <h2 style="color:white;font-family:'Space Grotesk',sans-serif;font-size:36px">Let's Connect!</h2>
+            <p style="color:white;font-family:'Inter',sans-serif;font-size:16px">Reach out if you have any questions or just want to chat!</p>
+            <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Personal Website Connect"></iframe>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div style="margin-left:90%;">
+      <a class="icon-link" href="https://www.instagram.com/joshmurzello/">[IG]</a>
+      <a class="icon-link" href="https://www.linkedin.com/in/josh-murzello/">[LI]</a>
+      <a class="icon-link" href="https://youtube.com/@joshmurzello5831?si=irq-l1uKqgjWwAG3">[YT]</a>
+      <a class="icon-link" href="https://vsco.co/joshmurzello/gallery">[VSCO]</a>
+    </div>
+    <p style="color:gray;text-align:center">© 2025 Josh Murzello. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:800,once:true});
+
+    (function(){
+      const buttons = document.querySelectorAll('.filter-bar .filter-btn');
+      const cards = document.querySelectorAll('.creative-card');
+
+      function setFilter(filter){
+        buttons.forEach(b => { const active = (b.dataset.filter === filter); b.classList.toggle('active', active); b.setAttribute('aria-pressed', active ? 'true' : 'false'); });
+        cards.forEach(card => { if(filter === 'all') card.classList.remove('hidden'); else { const cat = card.dataset.category || ''; if(cat === filter) card.classList.remove('hidden'); else card.classList.add('hidden'); }});
+      }
+
+      buttons.forEach(btn => btn.addEventListener('click', () => setFilter(btn.dataset.filter)));
+      setFilter('all');
+    })();
+  </script>
+</body>
+</html>
