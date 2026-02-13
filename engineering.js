@@ -17,8 +17,7 @@ const PROJECTS = [
     year: "2025",
     summary: "Battery manufacturing support for Model 3/Y from cell to pack out.",
     impact: "Designed fixtures, PLC systems, and automated stations during high-volume production ramp.",
-    image: "./images/tesla-svgrepo-com.svg",
-    imageMode: "contain",
+    image: "./images/tesla friends.jpg",
     link: "tesla.html",
     tags: ["Automation", "Wirebonding", "PLC", "Battery Pack"]
   },
@@ -41,7 +40,7 @@ const PROJECTS = [
     year: "2023",
     summary: "Manufacturing floor optimization and asset automation work.",
     impact: "Improved throughput paths and supported machine setup for more reliable production cycles.",
-    image: "./images/IMG_0752.JPG",
+    image: "./images/price.jpeg",
     link: "price.html",
     tags: ["Manufacturing", "Optimization", "Process Engineering"]
   },
@@ -85,9 +84,20 @@ const PROJECTS = [
     year: "2026",
     summary: "Custom modular storage system for camera gear and accessories.",
     impact: "Project page coming soon.",
-    image: "./images/camerame.png",
+    image: "./images/Add a heading.png",
     link: "camera-storage.html",
     tags: ["3D Printing", "Storage", "Product Design"]
+  },
+  {
+    id: "plant-shelf",
+    title: "3D Printed Plant Shelf",
+    category: "project",
+    year: "2026",
+    summary: "Wall-friendly modular plant shelf designed for quick printability and clean assembly.",
+    impact: "Project page now includes a complete layout for description, build process, and CAD file links.",
+    image: "./images/spiral holder with items.png",
+    link: "plant-shelf.html",
+    tags: ["3D Printing", "CAD", "Home Product"]
   },
   {
     id: "pomodoro",

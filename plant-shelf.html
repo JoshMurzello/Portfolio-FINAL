@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Printed Plant Shelf | Josh Murzello</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #141419;
+      --line: #2f2f3a;
+      --text: #f5f5f5;
+      --muted: #b8b8c2;
+      --accent: #8b5cf6;
+      --accent-2: #3b82f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .shell {
+      width: min(980px, calc(100vw - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 1.25rem;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      color: #fff;
+      outline: none;
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+    }
+
+    .subtitle {
+      margin: 0 0 2rem;
+      color: var(--muted);
+    }
+
+    .section-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-card h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .section-card p,
+    .section-card li {
+      color: var(--muted);
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .cad-links {
+      display: grid;
+      gap: 0.6rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .cad-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #d4dfff;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 0.6rem 0.75rem;
+      width: fit-content;
+    }
+
+    .cad-links a:hover,
+    .cad-links a:focus-visible {
+      border-color: rgba(139, 92, 246, 0.7);
+      background: rgba(139, 92, 246, 0.14);
+      outline: none;
+    }
+
+    @media (max-width: 760px) {
+      .cols {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="back-link" href="Engineering.html">← Back to Engineering</a>
+    <h1>3D Printed Plant Shelf</h1>
+    <p class="subtitle">Project layout page ready for details and files.</p>
+
+    <section class="section-card" aria-labelledby="brief-description">
+      <h2 id="brief-description">Brief Description</h2>
+      <p>
+        A lightweight, minimalist wall plant shelf designed to add greenery without committing to permanent hardware.
+        The shelf mounts using three thumb tack pins, so installation is fast, tool-free, and leaves tiny holes that
+        are easy to patch later. The geometry is optimized for a clean "floating" look while keeping the load path
+        simple and stable, ideal for small planters, propagation jars, or lightweight decor.
+      </p>
+    </section>
+
+    <section class="section-card" aria-labelledby="build-process">
+      <h2 id="build-process">Build Process</h2>
+      <div class="cols">
+        <article>
+          <h3>Materials</h3>
+          <ul>
+            <li>Filament: PLA (standard PLA is totally fine). ~150-300g total depending on size and wall thickness.</li>
+            <li>Mounting hardware: 3 thumb tack pins (standard metal push pins / thumb tacks).</li>
+            <li>Optional: small felt/rubber pads to prevent pot slip and protect the print surface.</li>
+            <li>Optional: fine sandpaper (220-400 grit) for edge cleanup or smoother fit.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Assembly</h3>
+          <ul>
+            <li>Print orientation: Print the shelf with the front/top face oriented for best visible surface quality (minimize supports on visible faces).</li>
+            <li>Supports: Only if required for your specific overhangs, avoid supports on the "show" surfaces when possible.</li>
+            <li>Post-processing: Remove supports, clean up edges, and test the shelf on a flat surface to confirm it sits true.</li>
+            <li>Mounting: Hold the shelf in position, level it, and press in three thumb tack pins through the mount points until snug (don't crush the plastic).</li>
+            <li>Final check: Give the shelf a gentle wiggle test, then load it gradually with a lightweight pot/jar and confirm it stays stable.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card" aria-labelledby="cad-files">
+      <h2 id="cad-files">CAD Files</h2>
+      <ul class="cad-links">
+        <li><a href="#" aria-disabled="true">Shelf Main Body (.step)</a></li>
+        <li><a href="#" aria-disabled="true">Mounting Bracket (.step)</a></li>
+        <li><a href="#" aria-disabled="true">Fusion 360 Source (.f3d)</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

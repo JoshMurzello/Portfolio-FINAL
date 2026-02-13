@@ -84,6 +84,9 @@
     }
 
     .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
@@ -91,6 +94,14 @@
       text-decoration: none;
       letter-spacing: -0.5px;
       transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .brand-logo {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .brand:hover {
@@ -757,6 +768,7 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
         <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
+          <img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">
           JOSH MURZELLO
         </a>
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -1038,7 +1050,7 @@
           <i class="fas fa-camera-retro"></i>
         </a>
       </div>
-      <p class="copyright">© 2024 Josh Murzello. All rights reserved.</p>
+      <p class="copyright">© 2026 Josh Murzello. All rights reserved.</p>
     </div>
   </footer>
 

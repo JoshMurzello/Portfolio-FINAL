@@ -79,12 +79,23 @@ body {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--text);
   text-decoration: none;
   font-family: "Space Grotesk", sans-serif;
   font-size: var(--type-sm);
   letter-spacing: 0.06em;
   font-weight: 700;
+}
+
+.brand-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .site-nav {

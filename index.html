@@ -80,14 +80,17 @@
 
     /* Header & Navigation */
     .header {
-      background: linear-gradient(120deg, rgba(15, 11, 11, 0.92), rgba(15, 11, 11, 0.78));
-      backdrop-filter: blur(12px);
+      background:
+        linear-gradient(125deg, rgba(18, 23, 34, 0.92), rgba(11, 14, 22, 0.82) 52%, rgba(24, 28, 39, 0.86)),
+        radial-gradient(110% 70% at 80% -35%, rgba(59, 130, 246, 0.2), transparent 68%);
+      backdrop-filter: blur(14px) saturate(1.2);
+      -webkit-backdrop-filter: blur(14px) saturate(1.2);
       position: fixed;
       width: 100%;
       z-index: 1000;
       padding: 1rem 0;
-      transition: padding 0.3s ease, box-shadow 0.3s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       overflow: visible;
     }
 
@@ -98,15 +101,18 @@
       bottom: -18px;
       width: 100%;
       height: 18px;
-      background: linear-gradient(180deg, rgba(15, 11, 11, 0.6), rgba(15, 11, 11, 0));
+      background: linear-gradient(180deg, rgba(11, 14, 22, 0.64), rgba(11, 14, 22, 0));
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
 
     .header.scrolled {
-      padding: 0.5rem 0;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      padding: 0.58rem 0;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
+      background:
+        linear-gradient(125deg, rgba(15, 20, 30, 0.96), rgba(10, 13, 20, 0.9) 52%, rgba(20, 24, 34, 0.92)),
+        radial-gradient(95% 70% at 80% -35%, rgba(59, 130, 246, 0.25), transparent 70%);
     }
 
     .header.scrolled::after {
@@ -120,13 +126,24 @@
     }
 
     .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
-      color: white;
+      color: #fbfcff;
       text-decoration: none;
       letter-spacing: -0.5px;
       transition: all 0.3s ease;
+    }
+
+    .brand-logo {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .brand:hover {
@@ -138,7 +155,7 @@
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1rem;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.88);
       text-decoration: none;
       padding: 0.5rem 1rem;
       transition: all 0.3s ease;
@@ -166,13 +183,13 @@
     }
     /* Hero Section */
     .hero-section {
-      min-height: 100vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
       padding: 6rem 0;
       position: relative;
       overflow: hidden;
-      margin-bottom: 4rem;
+      margin-bottom: 1.25rem;
     }
     
     .hero-section .scribble-overlay {
@@ -360,8 +377,9 @@
   <body>
     <div class="px-3 py-1 header">
         <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start header-inner">
             <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
+              <img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">
               JOSH MURZELLO
             </a>
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -455,7 +473,14 @@
                2) Duplicate one exp-panel article in exp-stage and match id="exp-panel-<data-exp>".
                3) Update company, role, date, bullets, chips, and optional link.
           -->
-          <button class="exp-node is-active" type="button" role="tab" aria-selected="true" aria-controls="exp-panel-tesla" data-exp="tesla">
+          <button class="exp-node is-active" type="button" role="tab" aria-selected="true" aria-controls="exp-panel-spacex" data-exp="spacex">
+            <span class="exp-dot" aria-hidden="true"></span>
+            <span class="exp-company">SpaceX</span>
+            <span class="exp-role">Engineering Intern (Upcoming)</span>
+            <span class="exp-date">2026</span>
+          </button>
+
+          <button class="exp-node" type="button" role="tab" aria-selected="false" aria-controls="exp-panel-tesla" data-exp="tesla">
             <span class="exp-dot" aria-hidden="true"></span>
             <span class="exp-company">Tesla</span>
             <span class="exp-role">Engineering Intern</span>
@@ -484,8 +509,31 @@
           </button>
         </div>
 
-        <div class="exp-stage" aria-live="polite">
-          <article id="exp-panel-tesla" class="exp-panel is-active" role="tabpanel">
+        <div class="exp-carousel" aria-live="polite">
+          <button class="exp-nav exp-prev" type="button" aria-label="Previous experience">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <div class="exp-stage">
+            <div class="exp-stage-track">
+              <article id="exp-panel-spacex" class="exp-panel is-active" role="tabpanel" aria-hidden="false">
+            <h3>SpaceX</h3>
+            <p class="exp-panel-role">Engineering Intern (Upcoming)</p>
+            <p class="exp-panel-date">2026</p>
+            <ul class="exp-impact-list">
+              <li>Upcoming internship focused on high-velocity engineering execution.</li>
+              <li>Preparing through manufacturing systems, controls, and rapid iteration workflows.</li>
+              <li>Full project notes and outcomes will be documented once the work begins.</li>
+            </ul>
+            <div class="exp-chip-row">
+              <span>Aerospace</span>
+              <span>Manufacturing Systems</span>
+              <span>Coming Soon</span>
+            </div>
+            <a class="exp-panel-link" href="spacex.html">Open Case Study</a>
+          </article>
+
+              <article id="exp-panel-tesla" class="exp-panel" role="tabpanel" aria-hidden="true">
             <h3>Tesla</h3>
             <p class="exp-panel-role">Engineering Intern</p>
             <p class="exp-panel-date">2025</p>
@@ -502,7 +550,7 @@
             <a class="exp-panel-link" href="tesla.html">Open Case Study</a>
           </article>
 
-          <article id="exp-panel-lg" class="exp-panel" role="tabpanel" hidden>
+              <article id="exp-panel-lg" class="exp-panel" role="tabpanel" aria-hidden="true">
             <h3>LG Electronics</h3>
             <p class="exp-panel-role">Engineering Intern</p>
             <p class="exp-panel-date">2024</p>
@@ -519,7 +567,7 @@
             <a class="exp-panel-link" href="lg.html">Open Case Study</a>
           </article>
 
-          <article id="exp-panel-price" class="exp-panel" role="tabpanel" hidden>
+              <article id="exp-panel-price" class="exp-panel" role="tabpanel" aria-hidden="true">
             <h3>Price Industries</h3>
             <p class="exp-panel-role">Manufacturing Engineering Intern</p>
             <p class="exp-panel-date">2023</p>
@@ -536,7 +584,7 @@
             <a class="exp-panel-link" href="price.html">Open Case Study</a>
           </article>
 
-          <article id="exp-panel-research" class="exp-panel" role="tabpanel" hidden>
+              <article id="exp-panel-research" class="exp-panel" role="tabpanel" aria-hidden="true">
             <h3>Undergraduate Research</h3>
             <p class="exp-panel-role">Researcher</p>
             <p class="exp-panel-date">2023-2024</p>
@@ -551,7 +599,13 @@
               <span>Space Tech</span>
             </div>
             <a class="exp-panel-link" href="mars.html">View Related Work</a>
-          </article>
+              </article>
+            </div>
+          </div>
+
+          <button class="exp-nav exp-next" type="button" aria-label="Next experience">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
 
@@ -573,7 +627,7 @@
       </div>
 
       <div class="passion-grid">
-        <div class="passion-card" data-aos="fade-up">
+        <div class="passion-card" data-aos="fade-up" data-card-link="Creatives.html" role="link" tabindex="0" aria-label="Open videography and photography projects">
           <div class="passion-content">
             <div class="passion-icon" style="background: var(--gradient-2)">
               <i class="fas fa-camera"></i>
@@ -592,7 +646,7 @@
           </div>
         </div>
 
-        <div class="passion-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="passion-card" data-aos="fade-up" data-aos-delay="100" data-card-link="Engineering.html" role="link" tabindex="0" aria-label="Open engineering projects">
           <div class="passion-content">
             <div class="passion-icon" style="background: var(--gradient-1)">
               <i class="fas fa-tools"></i>
@@ -605,7 +659,7 @@
             </a>
           </div>
           <div class="passion-hover">
-            <img src="./images/project-preview.jpg" alt="Project Preview">
+            <img src="./images/engineer.png" alt="" aria-hidden="true">
           </div>
         </div>
       </div>
@@ -621,10 +675,14 @@
     </section>
 
     <style>
-      /* Experience Section Styles */
+      .header-inner {
+        margin-left: 64px;
+      }
+
+      /* Section scaffolding */
       .section-header {
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
       }
 
       .section-header h2 {
@@ -646,21 +704,29 @@
         width: 100px;
       }
 
-      .experience-section, .passions-section {
-        padding: 8rem 2rem;
+      .experience-section,
+      .passions-section {
         max-width: 1200px;
         margin: 0 auto;
-        margin-top: 2rem;
+        padding: 6rem 2rem;
       }
 
-      /* Experience Journey Styles */
+      .experience-section {
+        padding-top: 3.75rem;
+      }
+
+      .passions-section {
+        padding-top: 5rem;
+      }
+
+      /* Experience carousel */
       .exp-journey {
         position: relative;
       }
 
       .exp-intro {
         max-width: 760px;
-        margin: 0 auto 2.2rem;
+        margin: 0 auto 2rem;
         text-align: center;
       }
 
@@ -672,115 +738,165 @@
 
       .exp-layout {
         display: grid;
-        grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
-        gap: 2rem;
+        gap: 1.4rem;
         align-items: start;
       }
 
       .exp-track {
-        position: relative;
-        display: grid;
-        gap: 0.8rem;
-        padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+        display: flex;
+        gap: 0.75rem;
+        padding: 0.2rem 0.2rem 0.4rem;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .exp-track-line,
       .exp-track-fill {
-        position: absolute;
-        left: 0.65rem;
-        top: 0.9rem;
-        bottom: 0.9rem;
-        width: 2px;
-        border-radius: 999px;
-      }
-
-      .exp-track-line {
-        background: rgba(255, 255, 255, 0.12);
-      }
-
-      .exp-track-fill {
-        background: var(--gradient-1);
-        transform-origin: top;
-        transform: scaleY(0.16);
-        transition: transform 0.5s ease;
-      }
-
-      .exp-journey.in-view .exp-track-fill {
-        transform: scaleY(1);
+        display: none;
       }
 
       .exp-node {
         position: relative;
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
+        border-radius: 999px;
         color: var(--text-primary);
-        text-align: left;
-        padding: 0.95rem 0.95rem 0.95rem 1.1rem;
-        display: grid;
-        gap: 0.2rem;
+        text-align: center;
+        padding: 0.72rem 1rem;
+        display: inline-grid;
+        gap: 0.1rem;
         cursor: pointer;
-        transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+        transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+        min-width: 178px;
+        opacity: 0.8;
       }
 
       .exp-node:hover,
       .exp-node:focus-visible {
-        transform: translateX(5px);
+        transform: translateY(-2px);
         border-color: rgba(255, 255, 255, 0.3);
-        background: rgba(255, 255, 255, 0.06);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
         outline: none;
       }
 
       .exp-node.is-active {
-        border-color: rgba(139, 92, 246, 0.7);
-        background: linear-gradient(120deg, rgba(139, 92, 246, 0.12), rgba(59, 130, 246, 0.07));
+        border-color: rgba(139, 92, 246, 0.75);
+        background: linear-gradient(120deg, rgba(139, 92, 246, 0.18), rgba(59, 130, 246, 0.08));
+        opacity: 1;
       }
 
       .exp-dot {
-        position: absolute;
-        left: -1.22rem;
-        top: 50%;
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.45);
-        box-shadow: 0 0 0 4px rgba(15, 11, 11, 0.9);
-        transition: background 0.25s ease;
-      }
-
-      .exp-node.is-active .exp-dot {
-        background: #8B5CF6;
+        display: none;
       }
 
       .exp-company {
         font-family: 'Space Grotesk', sans-serif;
         font-weight: 600;
-        font-size: 1.06rem;
+        font-size: 0.97rem;
       }
 
       .exp-role,
       .exp-date {
-        font-size: 0.88rem;
+        font-size: 0.8rem;
         color: var(--text-secondary);
       }
 
+      .exp-carousel {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 0.65rem;
+        align-items: center;
+      }
+
+      .exp-nav {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .exp-nav:hover,
+      .exp-nav:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.42);
+        background: rgba(255, 255, 255, 0.12);
+        outline: none;
+      }
+
       .exp-stage {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 1.5rem 1.7rem;
-        min-height: 360px;
+        overflow: visible;
+        border-radius: 18px;
+      }
+
+      .exp-stage-track {
+        position: relative;
+        min-height: 408px;
       }
 
       .exp-panel {
-        animation: expFade 0.26s ease;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: min(740px, 82%);
+        min-height: 395px;
+        padding: 1.7rem 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        background: linear-gradient(156deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03) 48%, rgba(139, 92, 246, 0.11));
+        box-shadow: 0 20px 32px rgba(0, 0, 0, 0.2);
+        transform: translateX(-50%) scale(0.86);
+        opacity: 0;
+        filter: blur(2px) saturate(0.75);
+        transition: transform 0.58s cubic-bezier(.22, .61, .36, 1), opacity 0.45s ease, filter 0.45s ease;
+        pointer-events: none;
       }
 
-      @keyframes expFade {
-        from { opacity: 0; transform: translateY(6px); }
-        to { opacity: 1; transform: translateY(0); }
+      .exp-panel.is-active {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        filter: blur(0) saturate(1);
+        background: linear-gradient(150deg, rgba(17, 17, 28, 0.96), rgba(20, 20, 35, 0.94) 52%, rgba(28, 23, 49, 0.94));
+        border-color: rgba(139, 92, 246, 0.48);
+        box-shadow: 0 28px 44px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(139, 92, 246, 0.14);
+        z-index: 5;
+        pointer-events: auto;
+      }
+
+      .exp-panel.is-prev {
+        transform: translateX(calc(-50% - 44%)) translateY(12px) scale(0.9);
+        opacity: 0.45;
+        filter: blur(2.3px) saturate(0.72);
+        z-index: 3;
+        pointer-events: auto;
+      }
+
+      .exp-panel.is-next {
+        transform: translateX(calc(-50% + 44%)) translateY(12px) scale(0.9);
+        opacity: 0.45;
+        filter: blur(2.3px) saturate(0.72);
+        z-index: 3;
+        pointer-events: auto;
+      }
+
+      .exp-panel.is-far-left {
+        transform: translateX(calc(-50% - 70%)) translateY(18px) scale(0.84);
+        opacity: 0.12;
+        filter: blur(3.4px) saturate(0.65);
+        z-index: 1;
+      }
+
+      .exp-panel.is-far-right {
+        transform: translateX(calc(-50% + 70%)) translateY(18px) scale(0.84);
+        opacity: 0.12;
+        filter: blur(3.4px) saturate(0.65);
+        z-index: 1;
       }
 
       .exp-panel h3 {
@@ -807,7 +923,7 @@
         margin: 0;
         padding-left: 1.15rem;
         display: grid;
-        gap: 0.6rem;
+        gap: 0.58rem;
       }
 
       .exp-impact-list li {
@@ -853,45 +969,84 @@
         outline: none;
       }
 
-      @media (max-width: 980px) {
-        .exp-layout {
-          grid-template-columns: 1fr;
-        }
-
-        .exp-stage {
-          min-height: 0;
-        }
+      .exp-journey.reduced-motion .exp-panel {
+        transition: none;
       }
 
-      /* Passions Section Styles */
+      /* Passions Section */
       .passion-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
-        margin-top: 2rem;
       }
 
       .passion-card {
         position: relative;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 12px;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 2rem;
         overflow: hidden;
-        transition: transform 0.3s ease;
+        transition: transform 0.34s ease, box-shadow 0.34s ease, border-color 0.34s ease;
+        cursor: pointer;
       }
 
-      .passion-card:hover {
-        transform: translateY(-5px);
+      .passion-card::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(580px circle at var(--mx, 20%) var(--my, 10%), rgba(59, 130, 246, 0.23), transparent 52%);
+        opacity: 0.45;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .passion-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid transparent;
+        background: linear-gradient(120deg, rgba(59, 130, 246, 0.35), rgba(139, 92, 246, 0.35)) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0.25;
+        pointer-events: none;
+      }
+
+      .passion-card:hover,
+      .passion-card:focus-visible {
+        transform: translateY(-7px);
+        border-color: rgba(255, 255, 255, 0.22);
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24), 0 0 28px rgba(59, 130, 246, 0.18);
+        outline: none;
+      }
+
+      .passion-card:hover::before,
+      .passion-card:focus-visible::before {
+        opacity: 0.82;
+      }
+
+      .passion-content {
+        position: relative;
+        z-index: 2;
       }
 
       .passion-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.4rem;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+        transition: transform 0.3s ease;
+      }
+
+      .passion-card:hover .passion-icon {
+        transform: translateY(-2px) scale(1.06);
       }
 
       .passion-icon i {
@@ -902,47 +1057,70 @@
       .passion-content h3 {
         font-family: 'Space Grotesk', sans-serif;
         font-size: 1.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.9rem;
         color: var(--text-primary);
+      }
+
+      .passion-content p {
+        color: var(--text-secondary);
       }
 
       .passion-link {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        color: var(--accent-blue);
+        gap: 0.55rem;
+        color: #84b6ff;
         text-decoration: none;
-        margin-top: 1rem;
-        transition: gap 0.3s ease;
+        margin-top: 0.85rem;
+        font-weight: 500;
+        position: relative;
+        transition: gap 0.26s ease, color 0.26s ease;
       }
 
-      .passion-link:hover {
-        gap: 1rem;
+      .passion-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(59, 130, 246, 0.9), rgba(139, 92, 246, 0.8));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .passion-card:hover .passion-link,
+      .passion-card:focus-visible .passion-link {
+        gap: 0.92rem;
+        color: #bfdbff;
+      }
+
+      .passion-card:hover .passion-link::after,
+      .passion-card:focus-visible .passion-link::after {
+        transform: scaleX(1);
       }
 
       .passion-hover {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        opacity: 0;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(6, 9, 15, 0.15), rgba(4, 6, 12, 0.7));
+        opacity: 0.15;
         transition: opacity 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        pointer-events: none;
       }
 
-      .passion-card:hover .passion-hover {
-        opacity: 1;
+      .passion-card:hover .passion-hover,
+      .passion-card:focus-visible .passion-hover {
+        opacity: 0.62;
       }
 
       .passion-hover img,
       .passion-hover video {
-        max-width: 100%;
-        max-height: 100%;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        filter: grayscale(18%) saturate(1.2);
       }
 
       /* See More Button Styles */
@@ -980,23 +1158,97 @@
       .see-more-button:hover .button-arrow {
         transform: translateX(4px);
       }
+
+      @media (max-width: 1100px) {
+        .header-inner {
+          margin-left: 0;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .exp-layout {
+          grid-template-columns: 1fr;
+          gap: 0.9rem;
+        }
+
+        .exp-track {
+          overflow-x: auto;
+          justify-content: flex-start;
+          padding: 0.2rem 0.1rem 0.6rem;
+          gap: 0.65rem;
+          scrollbar-width: thin;
+          flex-wrap: nowrap;
+        }
+
+        .exp-node {
+          min-width: 188px;
+        }
+
+        .exp-carousel {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        .exp-nav {
+          display: none;
+        }
+
+        .exp-stage-track {
+          min-height: 0;
+        }
+
+        .exp-panel {
+          position: static;
+          width: 100%;
+          min-height: 0;
+          transform: none !important;
+          opacity: 1;
+          filter: none;
+          display: none;
+          border-radius: 16px;
+          padding: 1.4rem 1.25rem;
+        }
+
+        .exp-panel.is-active {
+          display: block;
+        }
+      }
     </style>
     <footer class="py-5 border-top">
       <div class="container footer-container">
         <div class="row justify-content-center">
-          <div class="col-md-6 text-center connect-section">
+          <div class="col-md-8 col-lg-7 text-center connect-section">
             <h2 class="connect-title">Let's Connect!</h2>
             <p class="connect-description">Have a project in mind or just want to chat? I'd love to hear from you!</p>
-            <div class="connect-form">
-              <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                loading="lazy" width="100%" height="320" frameborder="0" marginheight="0" marginwidth="0" 
-                title="Personal Website Connect" class="tally-form"></iframe>
-              <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-            </div>
+            <form class="connect-form inhouse-contact-form" novalidate>
+              <div class="form-grid">
+                <label class="contact-field">
+                  <span>Name</span>
+                  <input type="text" name="name" autocomplete="name" required placeholder="Your name">
+                </label>
+                <label class="contact-field">
+                  <span>Email</span>
+                  <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+                </label>
+              </div>
+              <label class="contact-field">
+                <span>Subject</span>
+                <input type="text" name="subject" required placeholder="Project inquiry">
+              </label>
+              <label class="contact-field">
+                <span>Message</span>
+                <textarea name="message" rows="5" required placeholder="What's on your mind..."></textarea>
+              </label>
+              <input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <div class="contact-actions">
+                <button type="submit" class="connect-submit">Send Message</button>
+              </div>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
         </div>
         <div class="footer-bottom text-center">
-          <p class="copyright">© 2025 Josh Murzello. All rights reserved.</p>
+          <p class="copyright">© 2026 Josh Murzello. All rights reserved.</p>
         </div>
       </div>
       <style>
@@ -1043,10 +1295,116 @@
           padding: 1.5rem;
           border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .tally-form {
-          border-radius: 8px;
-          transition: all 0.3s ease;
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.9rem;
+        }
+
+        .contact-field {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          text-align: left;
+          margin-bottom: 0.95rem;
+          gap: 0.42rem;
+        }
+
+        .contact-field span {
+          color: rgba(255, 255, 255, 0.86);
+          font-size: 0.86rem;
+          letter-spacing: 0.02em;
+          font-weight: 600;
+        }
+
+        .contact-field input,
+        .contact-field textarea {
+          width: 100%;
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          background: rgba(10, 10, 15, 0.68);
+          color: #fff;
+          padding: 0.76rem 0.85rem;
+          font-size: 0.95rem;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+          color: rgba(255, 255, 255, 0.45);
+        }
+
+        .contact-field input:focus,
+        .contact-field textarea:focus {
+          outline: none;
+          border-color: rgba(139, 92, 246, 0.75);
+          box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.24);
+          background: rgba(12, 12, 18, 0.86);
+        }
+
+        .contact-field textarea {
+          resize: vertical;
+          min-height: 120px;
+        }
+
+        .contact-honeypot {
+          position: absolute;
+          left: -10000px;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .contact-actions {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-top: 0.4rem;
+        }
+
+        .connect-submit {
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(59, 130, 246, 0.95));
+          color: #fff;
+          border-radius: 999px;
+          padding: 0.7rem 1.2rem;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .connect-submit:hover,
+        .connect-submit:focus-visible {
+          transform: translateY(-1px);
+          box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+          outline: none;
+        }
+
+        .contact-meta {
+          margin: 0;
+          font-size: 0.84rem;
+          color: rgba(255, 255, 255, 0.62);
+        }
+
+        .contact-status {
+          margin: 0.85rem 0 0;
+          min-height: 1.2em;
+          color: rgba(255, 255, 255, 0.82);
+          font-size: 0.9rem;
+          text-align: left;
+        }
+
+        .contact-status.error {
+          color: #fda4af;
+        }
+
+        @media (max-width: 760px) {
+          .form-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+          }
         }
         
         .copyright {
@@ -1079,7 +1437,7 @@
                 </svg>
             </a>
           </div>
-    <p style="color: gray;">© 2024 Josh Murzello. All rights reserved.</p>
+    <p style="color: gray;">© 2026 Josh Murzello. All rights reserved.</p>
     
     <!-- Custom cursor elements -->
     <div class="cursor"></div>
@@ -1180,12 +1538,69 @@
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+          const targetSelector = this.getAttribute('href');
+          if (!targetSelector || targetSelector === '#') return;
+          const target = document.querySelector(targetSelector);
+          if (!target) return;
           e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
+          target.scrollIntoView({
             behavior: 'smooth'
           });
         });
       });
+
+      // In-house contact form (mailto-based, no third-party form service)
+      (function initInhouseContactForm() {
+        const form = document.querySelector('.inhouse-contact-form');
+        if (!form) return;
+
+        const status = form.querySelector('.contact-status');
+        const CONTACT_EMAIL = 'murzello.josh@gmail.com';
+
+        const setStatus = (message, isError = false) => {
+          if (!status) return;
+          status.textContent = message;
+          status.classList.toggle('error', Boolean(isError));
+        };
+
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const honeypot = form.querySelector('input[name="website"]');
+          if (honeypot && honeypot.value.trim()) return;
+
+          const formData = new FormData(form);
+          const name = String(formData.get('name') || '').trim();
+          const email = String(formData.get('email') || '').trim();
+          const subject = String(formData.get('subject') || '').trim();
+          const message = String(formData.get('message') || '').trim();
+
+          if (!name || !email || !subject || !message) {
+            setStatus('Please fill out all fields before sending.', true);
+            return;
+          }
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            setStatus('Please provide a valid email address.', true);
+            return;
+          }
+
+          if (!CONTACT_EMAIL) {
+            setStatus('Contact email is not configured yet. Set CONTACT_EMAIL in index.html.', true);
+            return;
+          }
+
+          const mailSubject = encodeURIComponent(subject);
+          const mailBody = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+          );
+
+          window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+          setStatus('Opening your email app...');
+          form.reset();
+        });
+      })();
 
       // Experience journey interactions (isolated to Experience section)
       (function initExperienceJourney() {
@@ -1194,52 +1609,153 @@
 
         const nodes = Array.from(section.querySelectorAll('.exp-node'));
         const panels = Array.from(section.querySelectorAll('.exp-panel'));
+        const track = section.querySelector('.exp-stage-track');
+        const prevButton = section.querySelector('.exp-prev');
+        const nextButton = section.querySelector('.exp-next');
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const activate = (id) => {
-          nodes.forEach((node) => {
-            const active = node.dataset.exp === id;
+        if (!nodes.length || !panels.length || !track) return;
+        if (reduceMotion) section.classList.add('reduced-motion');
+
+        let currentIndex = Math.max(nodes.findIndex((node) => node.classList.contains('is-active')), 0);
+        let autoplayId = null;
+        let isHovering = false;
+
+        const activateByIndex = (index, userInitiated = false) => {
+          currentIndex = (index + nodes.length) % nodes.length;
+
+          nodes.forEach((node, idx) => {
+            const active = idx === currentIndex;
             node.classList.toggle('is-active', active);
             node.setAttribute('aria-selected', active ? 'true' : 'false');
+            node.tabIndex = active ? 0 : -1;
           });
 
-          panels.forEach((panel) => {
-            const active = panel.id === `exp-panel-${id}`;
-            panel.classList.toggle('is-active', active);
-            panel.hidden = !active;
+          panels.forEach((panel, idx) => {
+            const rawOffset = idx - currentIndex;
+            const wrapOffset = ((rawOffset + nodes.length + Math.floor(nodes.length / 2)) % nodes.length) - Math.floor(nodes.length / 2);
+            const offset = nodes.length % 2 === 0 && wrapOffset === -Math.floor(nodes.length / 2) ? Math.floor(nodes.length / 2) : wrapOffset;
+            const active = offset === 0;
+
+            panel.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-left', 'is-far-right');
+            if (offset === 0) panel.classList.add('is-active');
+            if (offset === -1) panel.classList.add('is-prev');
+            if (offset === 1) panel.classList.add('is-next');
+            if (offset < -1) panel.classList.add('is-far-left');
+            if (offset > 1) panel.classList.add('is-far-right');
+
+            panel.setAttribute('aria-hidden', active ? 'false' : 'true');
           });
+
+          if (userInitiated) restartAutoplay();
+        };
+
+        const goToNode = (node) => {
+          const idx = nodes.indexOf(node);
+          if (idx >= 0) activateByIndex(idx, true);
+        };
+
+        const stopAutoplay = () => {
+          if (!autoplayId) return;
+          window.clearInterval(autoplayId);
+          autoplayId = null;
+        };
+
+        const startAutoplay = () => {
+          if (reduceMotion || nodes.length < 2) return;
+          stopAutoplay();
+          autoplayId = window.setInterval(() => {
+            if (isHovering) return;
+            activateByIndex(currentIndex + 1, false);
+          }, 5200);
+        };
+
+        const restartAutoplay = () => {
+          if (reduceMotion) return;
+          startAutoplay();
         };
 
         nodes.forEach((node, index) => {
-          node.addEventListener('click', () => activate(node.dataset.exp));
+          node.addEventListener('click', () => goToNode(node));
           node.addEventListener('keydown', (e) => {
             let next = null;
-            if (e.key === 'ArrowDown') next = nodes[index + 1] || nodes[0];
-            if (e.key === 'ArrowUp') next = nodes[index - 1] || nodes[nodes.length - 1];
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = nodes[index + 1] || nodes[0];
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = nodes[index - 1] || nodes[nodes.length - 1];
             if (e.key === 'Home') next = nodes[0];
             if (e.key === 'End') next = nodes[nodes.length - 1];
             if (!next) return;
             e.preventDefault();
             next.focus();
-            activate(next.dataset.exp);
+            goToNode(next);
           });
         });
 
-        if (reduceMotion || typeof IntersectionObserver === 'undefined') {
-          section.classList.add('in-view');
-          return;
+        panels.forEach((panel, index) => {
+          panel.addEventListener('click', (event) => {
+            if (panel.classList.contains('is-active')) return;
+            if (event.target.closest('a, button')) return;
+            activateByIndex(index, true);
+          });
+        });
+
+        if (prevButton) {
+          prevButton.addEventListener('click', () => activateByIndex(currentIndex - 1, true));
+        }
+        if (nextButton) {
+          nextButton.addEventListener('click', () => activateByIndex(currentIndex + 1, true));
         }
 
-        const sectionObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              section.classList.add('in-view');
-              sectionObserver.disconnect();
-            }
-          });
-        }, { threshold: 0.35 });
+        section.addEventListener('mouseenter', () => {
+          isHovering = true;
+        });
+        section.addEventListener('mouseleave', () => {
+          isHovering = false;
+        });
 
-        sectionObserver.observe(section);
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            stopAutoplay();
+          } else {
+            startAutoplay();
+          }
+        });
+
+        activateByIndex(currentIndex, false);
+        startAutoplay();
+      })();
+
+      // Passion card enhancements
+      (function initPassionCards() {
+        const cards = Array.from(document.querySelectorAll('.passion-card[data-card-link]'));
+        if (!cards.length) return;
+
+        cards.forEach((card) => {
+          const url = card.dataset.cardLink;
+          if (!url) return;
+
+          const navigate = () => {
+            window.location.href = url;
+          };
+
+          card.addEventListener('click', (event) => {
+            if (event.target.closest('a, button')) return;
+            navigate();
+          });
+
+          card.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            navigate();
+          });
+
+          card.addEventListener('mousemove', (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mx', `${x}%`);
+            card.style.setProperty('--my', `${y}%`);
+          });
+        });
       })();
     </script>
 </body>
