@@ -1,16 +1,16 @@
 const PROJECTS = [
   {
     id: "city-after-hours",
-    title: "City After Hours",
+    title: "Engineering Through My Lens",
     year: "2025",
-    role: "Director, Editor",
-    tools: ["Sony A7", "Premiere Pro", "DaVinci Resolve"],
+    role: "Videographer, Editor, Builder",
+    tools: ["Sony a6700"],
     categories: ["video", "experiments"],
     featured: true,
-    thumbnail: "./images/DSC00011.jpg",
-    thumbAlt: "Night city lights with reflective water",
-    summary: "A moody short film focused on movement, reflections, and rhythm in urban spaces.",
-    story: "Built as a one-night sprint: capture fast, edit clean, and keep every shot intentional. The result balances cinematic pacing with documentary energy.",
+    thumbnail: "./images/camerame.png",
+    thumbAlt: "Camera setup used to document engineering builds",
+    summary: "Cinematic build documentation from prototype sketches to final assembly, designed to make engineering feel human and high-energy.",
+    story: "This series documents real build sessions: fabrication, wiring, assembly, and iteration. The visual approach mixes tight detail shots and process storytelling so every project feels like both an engineering log and a short film.",
     links: [
       { label: "Watch Cut (placeholder)", url: "#" },
       { label: "Behind the Scenes (placeholder)", url: "#" }
@@ -19,10 +19,15 @@ const PROJECTS = [
       {
         type: "embed",
         src: "https://www.youtube.com/embed/vXWEqWA96l0?si=6SeovOf7xar-Cbvd&start=1",
-        title: "City After Hours YouTube showcase"
+        title: "Engineering Through My Lens YouTube showcase"
       },
-      { type: "image", src: "./images/DSC00011.jpg", alt: "Wide shot of urban waterworks" },
-      { type: "image", src: "./images/DSC00038.jpg", alt: "Downtown at blue hour" }
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/m1027_95uUI?si=JAz2yA0cgrTjqTUx",
+        title: "Engineering Through My Lens secondary YouTube showcase"
+      },
+      { type: "image", src: "./images/camerame.png", alt: "Camera and creator setup for engineering documentation" },
+      { type: "image", src: "./images/Make this (1).png", alt: "Engineering build photo from camera roll" }
     ]
   },
   {
@@ -179,7 +184,6 @@ const modalRefs = {
   summary: document.getElementById("modal-summary"),
   role: document.getElementById("modal-role"),
   tools: document.getElementById("modal-tools"),
-  year: document.getElementById("modal-year"),
   story: document.getElementById("modal-story"),
   media: document.getElementById("modal-media"),
   links: document.getElementById("modal-links")
@@ -369,7 +373,6 @@ function openModal(projectId) {
   modalRefs.summary.textContent = project.summary;
   modalRefs.role.textContent = project.role;
   modalRefs.tools.textContent = project.tools.join(", ");
-  modalRefs.year.textContent = project.year;
   modalRefs.story.textContent = project.story;
 
   renderModalMedia(project);
