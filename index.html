@@ -80,17 +80,15 @@
 
     /* Header & Navigation */
     .header {
-      background:
-        linear-gradient(125deg, rgba(18, 23, 34, 0.92), rgba(11, 14, 22, 0.82) 52%, rgba(24, 28, 39, 0.86)),
-        radial-gradient(110% 70% at 80% -35%, rgba(59, 130, 246, 0.2), transparent 68%);
-      backdrop-filter: blur(14px) saturate(1.2);
-      -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      background: linear-gradient(180deg, rgba(7, 10, 15, 0.66), rgba(7, 10, 15, 0.2));
+      backdrop-filter: blur(6px) saturate(1.05);
+      -webkit-backdrop-filter: blur(6px) saturate(1.05);
       position: fixed;
       width: 100%;
       z-index: 1000;
       padding: 1rem 0;
       transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       overflow: visible;
     }
 
@@ -110,9 +108,7 @@
     .header.scrolled {
       padding: 0.58rem 0;
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
-      background:
-        linear-gradient(125deg, rgba(15, 20, 30, 0.96), rgba(10, 13, 20, 0.9) 52%, rgba(20, 24, 34, 0.92)),
-        radial-gradient(95% 70% at 80% -35%, rgba(59, 130, 246, 0.25), transparent 70%);
+      background: linear-gradient(180deg, rgba(8, 11, 16, 0.94), rgba(8, 11, 16, 0.82));
     }
 
     .header.scrolled::after {
@@ -183,27 +179,18 @@
     }
     /* Hero Section */
     .hero-section {
-      min-height: 88vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 6rem 0;
+      padding: 8rem 0 5rem;
       position: relative;
       overflow: hidden;
       margin-bottom: 1.25rem;
+      isolation: isolate;
     }
     
     .hero-section .scribble-overlay {
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q25,45 50,50 T100,50 T150,50 T200,50' stroke='rgb(15, 11, 11)' stroke-width='3' fill='none' stroke-linecap='round' stroke-dasharray='5,10' transform='scale(5,3)'/%3E%3C/svg%3E");
-      background-size: cover;
-      opacity: 0.1;
-      z-index: -1;
-      animation: scribbleFloat 20s linear infinite;
-      pointer-events: none;
+      display: none;
     }
     
     @keyframes scribbleFloat {
@@ -218,10 +205,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('./images/philly good.jpg') no-repeat center;
+      background: url('./images/philly good.jpg') no-repeat center 34%;
       background-size: cover;
-      opacity: 0.15;
-      filter: grayscale(100%);
+      opacity: 1;
+      transform: scale(1.03);
+      filter: brightness(0.72) saturate(1.04) contrast(1.04);
       z-index: -2;
       pointer-events: none;
     }
@@ -229,18 +217,17 @@
     .hero-section::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 40%;
-      background: linear-gradient(to bottom, transparent, var(--primary-dark));
+      height: 100%;
+      background: linear-gradient(180deg, rgba(6, 8, 12, 0.38) 0%, rgba(7, 9, 14, 0.58) 40%, rgba(8, 9, 13, 0.86) 100%);
       z-index: -1;
-      mix-blend-mode: multiply;
       pointer-events: none;
     }
 
     .hero-content {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 2rem;
     }
@@ -257,30 +244,32 @@
       font-size: 1.5rem;
       color: rgba(255, 255, 255, 0.8);
       margin-bottom: 1rem;
+      display: block;
     }
 
     .hero-title .name {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 5rem;
+      font-size: clamp(3rem, 8vw, 5.8rem);
       font-weight: 700;
       line-height: 1.1;
-      letter-spacing: -2px;
+      letter-spacing: -1.5px;
       color: white;
       cursor: pointer;
-      display: inline-block;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
       transition: all 0.3s ease;
-      background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue), var(--accent-teal));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: white;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
       text-decoration: none;
     }
 
+    .hero-title .name-word {
+      display: inline-block;
+    }
+
     .hero-title .name:hover {
-      transform: scale(1.05);
-      -webkit-text-fill-color: transparent;
-      animation: gradient 3s linear infinite;
+      transform: translateY(-1px);
     }
 
     @keyframes gradient {
@@ -297,7 +286,7 @@
 
     .hero-description {
       font-size: 1.5rem;
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.9);
       line-height: 1.6;
       margin-bottom: 3rem;
       max-width: 600px;
@@ -370,6 +359,45 @@
     color: white !important;
 }
 
+    @media (max-width: 760px) {
+      .hero-section {
+        min-height: 92vh;
+        padding: 6.6rem 0 3.5rem;
+      }
+
+      .hero-content {
+        padding: 0 1.2rem;
+      }
+
+      .hero-title {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-title .greeting {
+        font-size: 1.15rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-title .name {
+        gap: 0.5rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-cta {
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+
+      .cta-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
     
   </style>
 </head>
@@ -408,7 +436,9 @@
       <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
         <h1 class="hero-title">
           <span class="greeting">Hey, I'm</span>
-          <a href="about.html" class="name">Josh Murzello</a>
+          <a href="about.html" class="name">
+            <span class="name-word">Josh Murzello</span>
+          </a>
         </h1>
         <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
           An engineer, creator, and explorer crafting innovative solutions and sharing experiences.
