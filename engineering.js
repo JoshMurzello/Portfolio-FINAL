@@ -78,6 +78,17 @@ const PROJECTS = [
     tags: ["CAD", "Rapid Prototyping", "Product Design"]
   },
   {
+    id: "stl-animator",
+    title: "STL Animator Tool",
+    category: "project",
+    year: "2026",
+    summary: "Browser-based tool for loading STL files and generating turntable, dolly, hero, split, and explode animation clips.",
+    impact: "Runs fully client-side for static hosting, with upload-first workflow and in-browser recording export.",
+    image: "./images/ME2110cadmodel.png",
+    link: "tools/stl-animator/",
+    tags: ["Three.js", "WebGL", "STL", "Animation Tool"]
+  },
+  {
     id: "camera-storage",
     title: "3D Printed Camera Storage",
     category: "project",
@@ -307,6 +318,7 @@ function initFilters() {
 }
 
 function initHeaderMenu() {
+  const header = document.getElementById('site-header');
   const nav = document.getElementById('site-nav');
   const toggle = document.querySelector('.menu-toggle');
   if (!toggle || !nav) return;
@@ -316,6 +328,14 @@ function initHeaderMenu() {
     nav.dataset.open = open ? 'false' : 'true';
     toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
   });
+
+  const updateHeaderState = () => {
+    if (!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  };
+
+  updateHeaderState();
+  window.addEventListener('scroll', updateHeaderState, { passive: true });
 }
 
 function initReveal() {

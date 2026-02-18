@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STL Animator V1</title>
+    <script type="module" crossorigin src="./assets/index-CqMulOwq.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CNuucNPa.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="viewer-canvas"></canvas>
+
+      <div id="overlay" class="overlay" role="region" aria-label="Animator controls">
+        <div class="app-title">STL Animator V1</div>
+        <div class="topbar">
+          <section class="group" aria-label="File controls">
+            <div class="group-title">File</div>
+            <div class="group-controls">
+              <button data-action="upload" title="Upload STL or GLB">Upload Model</button>
+              <button data-action="reload" title="Reset scene and start over">Reload</button>
+            </div>
+          </section>
+
+          <section class="group" aria-label="Assembly controls">
+            <div class="group-title">Assembly</div>
+            <div class="group-controls group-controls-wrap">
+              <button id="assembly-toggle-btn" data-action="assemblyToggle" title="Toggle placement grid and assembly controls">Assembly Grid: Off</button>
+              <button data-action="assemblyAutoArrange" title="Auto arrange loaded models into a grid">Auto Arrange</button>
+            </div>
+            <div id="assembly-controls" class="options-row hidden-option">
+              <label>
+                Model
+                <select id="assembly-model-select" title="Select model to position"></select>
+              </label>
+              <label>
+                X
+                <input id="assembly-pos-x" class="angle-input" type="number" step="0.1" value="0" />
+              </label>
+              <label>
+                Y
+                <input id="assembly-pos-y" class="angle-input" type="number" step="0.1" value="0" />
+              </label>
+              <label>
+                Z
+                <input id="assembly-pos-z" class="angle-input" type="number" step="0.1" value="0" />
+              </label>
+              <button data-action="assemblyApply" title="Apply position to selected model">Apply Position</button>
+            </div>
+          </section>
+
+          <section class="group" aria-label="View controls">
+            <div class="group-title">View</div>
+            <div class="group-controls group-controls-wrap">
+              <button data-action="reset" title="Reset camera and model pose">Reset View</button>
+              <button data-action="themeToggle" id="theme-toggle-btn" title="Toggle light/dark theme">Theme: Dark</button>
+              <button data-action="sidebarHide" title="Hide sidebar">Hide Panel</button>
+              <button data-action="minimize" title="Minimize controls (M)">Minimize</button>
+            </div>
+            <div class="options-row">
+              <label>
+                Model Color
+                <input id="model-color" type="color" value="#cfd5dd" title="Pick a color for full model override" />
+              </label>
+              <label>
+                Glare
+                <input id="glare-level" type="range" min="0" max="2" step="0.05" value="1" title="Adjust reflection/highlight intensity" />
+                <span id="glare-level-value">1.00x</span>
+              </label>
+              <button data-action="applyColor" title="Apply selected color to entire model">Apply Color</button>
+              <button data-action="clearColor" title="Restore original model materials">Reset Color</button>
+            </div>
+          </section>
+
+          <section class="group" aria-label="Orientation controls">
+            <div class="group-title">Orientation</div>
+            <div class="group-controls group-controls-wrap">
+              <button id="orientation-edit-btn" data-action="orientationToggle" title="Toggle orientation edit mode">Adjust Orientation</button>
+              <button data-action="orientationLock" title="Lock current orientation baseline">Lock Orientation</button>
+              <button data-action="orientationReset" title="Restore locked orientation baseline">Reset Orientation</button>
+              <button data-action="setUpY" title="Set model up axis to +Y">Up +Y</button>
+              <button data-action="setUpZ" title="Set model up axis to +Z">Up +Z</button>
+            </div>
+            <div class="orientation-controls" id="orientation-controls" aria-label="Orientation sliders">
+              <div class="orientation-axis-row">
+                <label for="orient-x">Rot X</label>
+                <input id="orient-x" type="range" min="-360" max="360" step="1" value="0" />
+                <input id="orient-x-number" class="angle-input" type="number" min="-9999" max="9999" step="1" value="0" />
+                <button data-action="rotateX90" title="Rotate model +90° around X">+90° X</button>
+              </div>
+              <div class="orientation-axis-row">
+                <label for="orient-y">Rot Y</label>
+                <input id="orient-y" type="range" min="-360" max="360" step="1" value="0" />
+                <input id="orient-y-number" class="angle-input" type="number" min="-9999" max="9999" step="1" value="0" />
+                <button data-action="rotateY90" title="Rotate model +90° around Y">+90° Y</button>
+              </div>
+              <div class="orientation-axis-row">
+                <label for="orient-z">Rot Z</label>
+                <input id="orient-z" type="range" min="-360" max="360" step="1" value="0" />
+                <input id="orient-z-number" class="angle-input" type="number" min="-9999" max="9999" step="1" value="0" />
+                <button data-action="rotateZ90" title="Rotate model +90° around Z">+90° Z</button>
+              </div>
+            </div>
+            <div id="orientation-status" class="sub-status">Orientation: Locked</div>
+          </section>
+
+          <section class="group" aria-label="Animation controls">
+            <div class="group-title">Animation</div>
+            <div class="group-controls group-controls-wrap">
+              <button data-action="turntable">Turntable</button>
+              <button data-action="dollyIn">Dolly In</button>
+              <button data-action="dollyOut">Dolly Out</button>
+              <button data-action="hero">Hero Move</button>
+              <button data-action="setPointA" title="Capture camera point A">Set Point A</button>
+              <button data-action="setPointB" title="Capture camera point B">Set Point B</button>
+              <button data-action="pathAB" title="Animate camera from A to B">A → B Move</button>
+              <button data-action="explode" id="explode-btn" title="Explode requires multiple models or parts export">Explode</button>
+              <button data-action="split" id="split-btn" title="Split into capped chunks">Split</button>
+            </div>
+            <div class="options-row">
+              <label>
+                Duration
+                <select id="duration-mode" title="Animation duration preset">
+                  <option value="3">3s</option>
+                  <option value="5" selected>5s</option>
+                  <option value="10">10s</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </label>
+              <label id="duration-custom-wrap" class="hidden-option">
+                Custom
+                <input id="duration-custom" type="range" min="2" max="20" step="0.5" value="8" />
+                <span id="duration-custom-value">8.0s</span>
+              </label>
+              <label>
+                Easing
+                <select id="easing-select" title="Animation easing">
+                  <option value="linear">linear</option>
+                  <option value="easeInOutCubic">easeInOutCubic</option>
+                  <option value="easeInOutSine" selected>easeInOutSine</option>
+                </select>
+              </label>
+              <label>
+                Turntable Axis
+                <select id="turntable-axis" title="Axis used for turntable orbit">
+                  <option value="lockedUp" selected>Locked Up</option>
+                  <option value="worldY">World Y</option>
+                  <option value="worldX">World X</option>
+                  <option value="worldZ">World Z</option>
+                  <option value="modelY">Model Y</option>
+                  <option value="modelX">Model X</option>
+                  <option value="modelZ">Model Z</option>
+                </select>
+              </label>
+              <label>
+                Speed
+                <input id="playback-speed" type="range" min="0.25" max="2" step="0.05" value="1" />
+                <span id="playback-speed-value">1.00x</span>
+              </label>
+            </div>
+            <div class="queue-row">
+              <label>
+                Queue
+                <select id="queue-preset-select" title="Choose preset to add to queue">
+                  <option value="turntable">Turntable</option>
+                  <option value="dollyIn">Dolly In</option>
+                  <option value="dollyOut">Dolly Out</option>
+                  <option value="hero">Hero Move</option>
+                  <option value="pathAB">A → B Move</option>
+                  <option value="explode">Explode</option>
+                  <option value="split">Split</option>
+                </select>
+              </label>
+              <button data-action="queueAdd" title="Add selected preset to queue">Add</button>
+              <button data-action="queueRun" title="Run queued sequence">Run Queue</button>
+              <button data-action="queueClear" title="Clear queued sequence">Clear</button>
+            </div>
+            <div id="queue-display" class="sub-status">Queue: empty</div>
+          </section>
+
+          <section class="group" aria-label="Record controls">
+            <div class="group-title">Record</div>
+            <div class="group-controls">
+              <button data-action="record5">Record 5s</button>
+              <button data-action="record10">Record 10s</button>
+              <button data-action="pauseResume" title="Pause/Resume (Space)">Pause/Resume</button>
+              <button data-action="stop" title="Stop animation/recording (S)">Stop</button>
+            </div>
+            <div class="options-row">
+              <label>
+                FPS
+                <select id="fps-select" title="Recording frame rate"></select>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <div id="status" class="status" aria-live="polite">Upload a model to get started.</div>
+        <div class="brand-slot">
+          <span class="brand-name">Made by Josh Murzello</span>
+          <div class="brand-links">
+            <a class="brand-link" href="https://youtube.com/@joshmurzello?si=kCIRtxo5vnvk2--i" target="_blank" rel="noreferrer" title="YouTube" aria-label="YouTube">
+              <img class="brand-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" />
+            </a>
+            <a class="brand-link" href="https://www.instagram.com/murzellostudios/" target="_blank" rel="noreferrer" title="Instagram" aria-label="Instagram">
+              <img class="brand-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" />
+            </a>
+            <a class="brand-link" href="https://www.tiktok.com/@murzellostudios" target="_blank" rel="noreferrer" title="TikTok" aria-label="TikTok">
+              <img class="brand-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" alt="TikTok" />
+            </a>
+            <a class="brand-link" href="https://www.linkedin.com/in/josh-murzello" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
+              <img class="brand-icon" src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div id="compact-strip" class="compact-strip" aria-live="polite">
+        <button data-action="pauseResume" title="Pause/Resume (Space)">Pause/Resume</button>
+        <button data-action="stop" title="Stop (S)">Stop</button>
+        <div id="compact-progress" class="compact-progress">Idle</div>
+        <div id="record-dot" class="record-dot" hidden>REC</div>
+      </div>
+
+      <div id="orientation-gizmo-wrap" class="gizmo-wrap" hidden>
+        <canvas id="orientation-gizmo" width="120" height="120" aria-label="Orientation gizmo"></canvas>
+        <div id="gizmo-up-label" class="gizmo-label">Up: +Y</div>
+      </div>
+
+      <div id="model-action-bubble" class="model-bubble hidden-option" role="dialog" aria-label="Model actions">
+        <div class="bubble-header">
+          <div class="bubble-header-copy">
+            <div class="bubble-kicker">Selected Model</div>
+            <div class="bubble-title" id="model-bubble-title">Model</div>
+          </div>
+          <div class="bubble-badge">Ready</div>
+        </div>
+        <div class="bubble-section-label">Material</div>
+        <div class="bubble-row bubble-row-color">
+          <label class="bubble-color-label" for="model-bubble-color">
+            Tint
+            <input id="model-bubble-color" type="color" value="#cfd5dd" />
+          </label>
+          <button class="bubble-btn bubble-btn-accent" data-action="bubbleApplyColor" title="Apply color to selected model">Apply Color</button>
+        </div>
+        <div class="bubble-section-label">Actions</div>
+        <div class="bubble-row bubble-row-actions">
+          <button class="bubble-btn bubble-btn-primary" data-action="bubbleMove" title="Move selected model with gizmo">Move Model</button>
+          <button class="bubble-btn bubble-btn-danger" data-action="bubbleDelete" title="Delete selected model">Delete</button>
+        </div>
+        <button class="bubble-btn bubble-btn-muted bubble-btn-close" data-action="bubbleClose" title="Close model actions">Close</button>
+      </div>
+
+      <div id="move-bubble" class="model-bubble move-bubble hidden-option" role="dialog" aria-label="Move controls">
+        <div class="bubble-header">
+          <div class="bubble-header-copy">
+            <div class="bubble-kicker">Transform</div>
+            <div class="bubble-title">Move Axes</div>
+          </div>
+          <div class="bubble-badge">Drag</div>
+        </div>
+        <div class="bubble-row bubble-row-actions">
+          <button class="bubble-btn bubble-btn-primary" data-action="moveAxisAll" title="Enable X/Y/Z handles">XYZ</button>
+          <button class="bubble-btn bubble-btn-axis-x" data-action="moveAxisX" title="Enable X handle">X</button>
+          <button class="bubble-btn bubble-btn-axis-y" data-action="moveAxisY" title="Enable Y handle">Y</button>
+          <button class="bubble-btn bubble-btn-axis-z" data-action="moveAxisZ" title="Enable Z handle">Z</button>
+        </div>
+        <button class="bubble-btn bubble-btn-muted bubble-btn-close" data-action="moveDone" title="Finish moving">Done</button>
+      </div>
+
+      <button id="sidebar-peek" class="sidebar-peek hidden-option" data-action="sidebarShow" title="Show sidebar" aria-label="Show sidebar">▶</button>
+
+      <input id="upload-input" type="file" accept=".stl,.glb,.gltf" multiple class="hidden-input" />
+    </div>
+  </body>
+</html>
