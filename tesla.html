@@ -1,105 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesla Internship | Josh Murzello</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: rgb(15, 11, 11);
-            color: white;
-            font-family: 'Inter', sans-serif;
-        }
-        .nav-link {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 20px;
-            color: white;
-        }
-        .brand {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 27px;
-            color: white;
-        }
-        .header {
-            background: linear-gradient(120deg, rgba(15, 11, 11, 0.92), rgba(15, 11, 11, 0.78));
-            backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: padding 0.3s ease, box-shadow 0.3s ease;
-            overflow: visible;
-        }
-        .header::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -18px;
-            width: 100%;
-            height: 18px;
-            background: linear-gradient(180deg, rgba(15, 11, 11, 0.6), rgba(15, 11, 11, 0));
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .header.scrolled {
-            padding: 0.6rem 0;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-        }
-        .header.scrolled::after {
-            opacity: 1;
-        }
-        body {
-            padding-top: 90px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesla Internship | Josh Murzello</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="site-header.css">
 </head>
-<body>
-    <div class="px-3 py-1 header">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
-                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
-                    JOSH MURZELLO
-                </a>
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <li>
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li>
-                        <a href="Engineering.html" class="nav-link">Engineering</a>
-                    </li>
-                    <li>
-                        <a href="Creatives.html" class="nav-link">Creatives</a>
-                    </li>
-                    <li>
-                        <a href="about.html" class="nav-link">About</a>
-                    </li>
-                    <li>
-                        <a href="blog.html" class="nav-link">Blog</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<body class="exp-body tesla-page">
+  <header class="px-3 py-2 header">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
+        <a href="index.html" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none brand">JOSH MURZELLO</a>
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" aria-label="Primary navigation">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="Engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="Creatives.html" class="nav-link">Creatives</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </div>
     </div>
+  </header>
 
-    <div class="container mt-5">
-        <h1 class="display-4 fw-bold" style="font-family: 'Space Grotesk', sans-serif;">Tesla Internship</h1>
-    </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const header = document.querySelector('.header');
-        if (!header) return;
-        const toggleState = () => {
-          if (window.scrollY > 50) header.classList.add('scrolled');
-          else header.classList.remove('scrolled');
-        };
-        toggleState();
-        window.addEventListener('scroll', toggleState);
-      });
-    </script>
+  <main class="exp-shell">
+    <section class="exp-hero" aria-labelledby="company-title">
+      <p class="exp-eyebrow">Experience</p>
+      <h1 id="company-title">Tesla</h1>
+      <p class="exp-meta">Manufacturing Engineering Intern | Reno, NV | May 2025 - Present</p>
+      <p class="exp-overview">I focused on automation for production ramp and optimization, developing and testing jigs and fixtures across multiple stations, and increasing or maintaining yield during a record-volume production period.</p>
+    </section>
+
+    <section class="exp-section" aria-labelledby="what-i-did">
+      <h2 id="what-i-did">What I Did</h2>
+      <div class="body-stack">
+        <article class="body-card">At Tesla, I designed and deployed production-ready hardware and measurement systems that improved quality, throughput, and first-pass yield on battery manufacturing equipment. I built a 4-sensor laser displacement fixture in SolidWorks and integrated the measurement + feedback loop into a Siemens PLC to automate terminal-seat height verification to <span class="metric-inline">±0.10 mm</span>. This reduced manual height checks by <span class="metric-inline">34%</span> and is projected to cut rework by <span class="metric-inline">16%</span> for out-of-threshold seats.</article>
+        <article class="body-card">I also led root-cause analysis and validation work on the wire bonding station supporting Model 3/Y modifications, identifying the failure modes behind inconsistent bonding. I executed DOE, cycle-time investigations, and validation studies to isolate contributors including bond tool misalignment, GBS sequences, and wire draw rates. After calibration and corrective actions, the station was brought back within <span class="metric-inline">±0.05 mm</span> alignment tolerance and first-pass yield reached <span class="metric-inline">100%</span> within three weeks of SOP.</article>
+        <article class="body-card">In parallel, I released GD&amp;T-controlled drawings for a HiPot manual station and partnered with vendors to machine precision extrusions and sensor rail components. I drove DFM reviews and tolerance stack-ups to achieve <span class="metric-inline">≤0.10 mm</span> repeatability in sensor placement, reducing fixture rework lead time by roughly <span class="metric-inline">30%</span> and improving line readiness. I also owned the hardware test plan for a new BMB installation fixture, defining acceptance criteria, running gage R&amp;R and MSA, iterating prototypes, and validating performance through first-principles analysis (thermal expansion, vibration, and sensor linearity) under real production conditions to ensure the design could transition from prototype to deployment without sacrificing cycle time or yield.</article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="skills-tools">
+      <h2 id="skills-tools">Skills &amp; Tools</h2>
+      <div class="pill-wrap" role="list" aria-label="Skills and tools">
+        <span class="pill" role="listitem">SolidWorks</span>
+        <span class="pill" role="listitem">Siemens PLC</span>
+        <span class="pill" role="listitem">GD&amp;T</span>
+        <span class="pill" role="listitem">DFM</span>
+        <span class="pill" role="listitem">Tolerance Stack-up</span>
+        <span class="pill" role="listitem">DOE</span>
+        <span class="pill" role="listitem">Validation</span>
+        <span class="pill" role="listitem">Gage R&amp;R</span>
+        <span class="pill" role="listitem">MSA</span>
+        <span class="pill" role="listitem">First Principles</span>
+        <span class="pill" role="listitem">Thermal Expansion</span>
+        <span class="pill" role="listitem">Vibration</span>
+        <span class="pill" role="listitem">Sensors/Metrology</span>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="process">
+      <h2 id="process">Process</h2>
+      <div class="process-grid" role="list" aria-label="Discover design validate deploy process">
+        <article class="process-card" role="listitem">
+          <p class="step">Step 1</p>
+          <h3>Discover</h3>
+          <p>I identified ramp constraints, station-level loss points, and yield risks during high-volume production periods.</p>
+        </article>
+        <article class="process-card" role="listitem">
+          <p class="step">Step 2</p>
+          <h3>Design</h3>
+          <p>I built automation solutions and developed jigs and fixtures for seat-height verification, installation, and station readiness.</p>
+        </article>
+        <article class="process-card" role="listitem">
+          <p class="step">Step 3</p>
+          <h3>Validate</h3>
+          <p>I executed DOE, cycle-time investigations, gage R&amp;R, MSA, and first-principles checks under real production conditions.</p>
+        </article>
+        <article class="process-card" role="listitem">
+          <p class="step">Step 4</p>
+          <h3>Deploy</h3>
+          <p>I deployed production-ready hardware and process updates to support ramp optimization while protecting yield at scale.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="artifacts">
+      <h2 id="artifacts">Artifacts</h2>
+      <div class="artifact-grid">
+        <article class="artifact-card" aria-label="Fixture CAD">
+          <div class="artifact-box">Placeholder</div>
+          <h3>Fixture CAD</h3>
+        </article>
+        <article class="artifact-card" aria-label="Validation Plan">
+          <div class="artifact-box">Placeholder</div>
+          <h3>Validation Plan</h3>
+        </article>
+        <article class="artifact-card" aria-label="FEA Snapshot">
+          <div class="artifact-box">Placeholder</div>
+          <h3>FEA Snapshot</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="takeaways">
+      <h2 id="takeaways">Key Takeaways</h2>
+      <ul class="takeaway-list">
+        <li class="takeaway-item">I learned how to build automation that stays robust during aggressive production ramp conditions.</li>
+        <li class="takeaway-item">I strengthened fixture and jig development workflows that connect design intent to repeatable station performance.</li>
+        <li class="takeaway-item">I improved at protecting and improving yield while scaling volume and tightening cycle-time expectations.</li>
+      </ul>
+    </section>
+
+    <nav class="exp-pager" aria-label="Next and previous experiences">
+      <a href="price.html">&lt;- Previous: Price Industries</a>
+      <a href="lg.html" class="next">Next: LG Electronics -&gt;</a>
+    </nav>
+  </main>
+  <script src="site-header.js" defer></script>
 </body>
 </html>

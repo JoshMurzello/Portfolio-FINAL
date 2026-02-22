@@ -400,6 +400,7 @@
 
     
   </style>
+  <link rel="stylesheet" href="site-header.css">
 </head>
 
   <body>
@@ -1523,14 +1524,16 @@
       }
 
       // Header scroll effect
-      const header = document.querySelector('.header');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
+      const header = document.getElementById('site-header');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      }
 
       // Link hover effects
       if (customCursorEnabled) {
@@ -1799,5 +1802,6 @@
         });
       })();
     </script>
+  <script src="site-header.js" defer></script>
 </body>
 </html>

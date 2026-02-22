@@ -92,7 +92,7 @@ const PROJECTS = [
     id: "camera-storage",
     title: "3D Printed Camera Storage",
     category: "project",
-    year: "2026",
+    year: "2025",
     summary: "Custom modular storage system for camera gear and accessories.",
     impact: "Project page coming soon.",
     image: "./images/Add a heading.png",
@@ -178,6 +178,15 @@ const PROJECTS = [
   }
 ];
 
+function compareProjectsByYearDesc(a, b) {
+  const yearA = Number(a.year) || 0;
+  const yearB = Number(b.year) || 0;
+  if (yearB !== yearA) return yearB - yearA;
+  return a.title.localeCompare(b.title);
+}
+
+const SORTED_PROJECTS = [...PROJECTS].sort(compareProjectsByYearDesc);
+
 const filters = [...document.querySelectorAll('.filter-chip')];
 const filterGlide = document.querySelector('.filter-glide');
 const projectList = document.getElementById('project-list');
@@ -194,7 +203,7 @@ const spotlightRefs = {
 };
 
 let activeFilter = 'all';
-let selectedId = PROJECTS[0]?.id;
+let selectedId = SORTED_PROJECTS[0]?.id;
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -206,8 +215,9 @@ function categoryLabel(cat) {
 }
 
 function getVisibleProjects() {
-  if (activeFilter === 'all') return PROJECTS;
-  return PROJECTS.filter((item) => item.category === activeFilter);
+  return activeFilter === 'all'
+    ? [...SORTED_PROJECTS]
+    : SORTED_PROJECTS.filter((item) => item.category === activeFilter);
 }
 
 function updateSpotlight(project) {

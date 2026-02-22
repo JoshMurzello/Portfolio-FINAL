@@ -1,60 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Industries Internship | Josh Murzello</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: rgb(15, 11, 11);
-            color: white;
-            font-family: 'Inter', sans-serif;
-        }
-        .nav-link {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 20px;
-            color: white;
-        }
-        .brand {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 27px;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price Industries Internship | Josh Murzello</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="site-header.css">
 </head>
-<body>
-    <div class="px-3 py-1 header">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
-                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
-                    JOSH MURZELLO
-                </a>
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <li>
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li>
-                        <a href="Engineering.html" class="nav-link">Engineering</a>
-                    </li>
-                    <li>
-                        <a href="Creatives.html" class="nav-link">Creatives</a>
-                    </li>
-                    <li>
-                        <a href="about.html" class="nav-link">About</a>
-                    </li>
-                    <li>
-                        <a href="blog.html" class="nav-link">Blog</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<body class="exp-body">
+  <header class="px-3 py-2 header">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
+        <a href="index.html" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none brand">JOSH MURZELLO</a>
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" aria-label="Primary navigation">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="Engineering.html" class="nav-link">Engineering</a></li>
+          <li><a href="Creatives.html" class="nav-link">Creatives</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </div>
     </div>
+  </header>
 
-    <div class="container mt-5">
-        <h1 class="display-4 fw-bold" style="font-family: 'Space Grotesk', sans-serif;">Price Industries Internship</h1>
-    </div>
+  <main class="exp-shell">
+    <section class="exp-hero" aria-labelledby="company-title">
+      <p class="exp-eyebrow">Experience</p>
+      <h1 id="company-title">Price Industries</h1>
+      <p class="exp-meta">Manufacturing Engineering Intern | Atlanta, GA | May 2023 - Aug 2023</p>
+      <p class="exp-overview">I supported robotic assembly optimization by combining simulation, SPC data, and practical fixture design to improve cycle time and process reliability on the manufacturing floor.</p>
+    </section>
+
+    <section class="exp-section" aria-labelledby="impact-highlights">
+      <h2 id="impact-highlights">Impact Highlights</h2>
+      <div class="metrics-grid" role="list" aria-label="Impact metrics">
+        <article class="metric" role="listitem"><span>21 minutes cycle time reduction</span></article>
+        <article class="metric" role="listitem"><span>±0.3 mm assembly tolerance maintained</span></article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="what-i-did">
+      <h2 id="what-i-did">What I Did</h2>
+      <div class="body-stack">
+        <article class="body-card">At Price Industries, I supported manufacturing engineering efforts for robotic assembly by combining modeling, data, and practical tooling to improve cycle time and reliability on the floor. I built MATLAB simulation models to optimize robotic work cell cycle times, incorporating statistical process control (SPC) data to pinpoint bottlenecks and guide improvements. These changes reduced total assembly time by 21 minutes.</article>
+        <article class="body-card">To improve consistency in robotic stations, I designed and built a testing jig using first-principles engineering to ensure parts were presented with correct orientation and stability for vision-system recognition. The jig was designed to maintain assembly tolerances within ±0.3 mm while improving repeatability and reducing station-level variability. This balanced real-world manufacturing constraints with robust automation design so the cell could run faster and more reliably.</article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="skills-tools">
+      <h2 id="skills-tools">Skills &amp; Tools</h2>
+      <div class="pill-wrap" role="list" aria-label="Skills and tools">
+        <span class="pill" role="listitem">MATLAB</span>
+        <span class="pill" role="listitem">Simulation Modeling</span>
+        <span class="pill" role="listitem">Robotics Work Cells</span>
+        <span class="pill" role="listitem">SPC</span>
+        <span class="pill" role="listitem">Bottleneck Analysis</span>
+        <span class="pill" role="listitem">Vision Systems</span>
+        <span class="pill" role="listitem">Jig/Fixture Design</span>
+        <span class="pill" role="listitem">First Principles</span>
+        <span class="pill" role="listitem">Manufacturing Engineering</span>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="process">
+      <h2 id="process">Process</h2>
+      <div class="process-grid" role="list" aria-label="Discover design validate deploy process">
+        <article class="process-card" role="listitem">
+          <p class="step">Step 1</p>
+          <h3>Discover</h3>
+          <p>I used SPC trends and floor observations to identify bottlenecks and station-level variability.</p>
+        </article>
+        <article class="process-card" role="listitem">
+          <p class="step">Step 2</p>
+          <h3>Design</h3>
+          <p>I built MATLAB cycle-time simulations and designed fixtures for reliable part orientation and handling.</p>
+        </article>
+        <article class="process-card" role="listitem">
+          <p class="step">Step 3</p>
+          <h3>Validate</h3>
+          <p>I verified tolerance control and repeatability, confirming ±0.3 mm alignment capability at the station level.</p>
+        </article>
+        <article class="process-card" role="listitem">
+          <p class="step">Step 4</p>
+          <h3>Deploy</h3>
+          <p>I rolled model- and tooling-driven improvements into production to reduce cycle time and improve reliability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="artifacts">
+      <h2 id="artifacts">Artifacts</h2>
+      <div class="artifact-grid">
+        <article class="artifact-card" aria-label="MATLAB Model">
+          <div class="artifact-box">Placeholder</div>
+          <h3>MATLAB Model</h3>
+        </article>
+        <article class="artifact-card" aria-label="Testing Jig">
+          <div class="artifact-box">Placeholder</div>
+          <h3>Testing Jig</h3>
+        </article>
+        <article class="artifact-card" aria-label="SPC Bottleneck Chart">
+          <div class="artifact-box">Placeholder</div>
+          <h3>SPC Bottleneck Chart</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="exp-section" aria-labelledby="takeaways">
+      <h2 id="takeaways">Key Takeaways</h2>
+      <ul class="takeaway-list">
+        <li class="takeaway-item">I strengthened how I combine simulation and process data to drive practical cycle-time reduction.</li>
+        <li class="takeaway-item">I improved fixture design decisions that directly affect robotic vision reliability and repeatability.</li>
+        <li class="takeaway-item">I gained stronger judgment balancing first-principles engineering with manufacturing-floor constraints.</li>
+      </ul>
+    </section>
+
+    <nav class="exp-pager" aria-label="Next and previous experiences">
+      <a href="lg.html">&lt;- Previous: LG Electronics</a>
+      <a href="tesla.html" class="next">Next: Tesla -&gt;</a>
+    </nav>
+  </main>
+  <script src="site-header.js" defer></script>
 </body>
 </html>
