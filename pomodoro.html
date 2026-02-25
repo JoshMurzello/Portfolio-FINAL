@@ -3,15 +3,363 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pomodoro Device | Josh Murzello</title>
+  <title>I built my own Focus Dial | Josh Murzello</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
+  <style>
+    :root {
+      --bg: #0c111a;
+      --panel: #141c27;
+      --line: #273244;
+      --text: #e9edf5;
+      --muted: #aeb8c8;
+      --accent: #7fd1ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 700px at 85% -10%, #1c2a42 0%, rgba(28, 42, 66, 0) 60%),
+        radial-gradient(900px 500px at -10% 15%, #10243a 0%, rgba(16, 36, 58, 0) 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5.5rem 1.25rem 4rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding: 1.3rem;
+      background: rgba(20, 28, 39, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      backdrop-filter: blur(3px);
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      margin: 0 0 0.75rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0.9rem 0 0.45rem;
+      font-size: 1rem;
+      color: #d9e8ff;
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+      color: var(--text);
+    }
+
+    .subtitle {
+      margin: 0 0 1rem;
+      font-weight: 600;
+      color: #d7e2f3;
+    }
+
+    .placeholder {
+      margin-top: 0.9rem;
+      border: 1px dashed #4f637f;
+      border-radius: 10px;
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      text-align: center;
+      padding: 0.9rem;
+      font-size: 0.95rem;
+      background: rgba(10, 16, 24, 0.45);
+    }
+
+    ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--text);
+    }
+
+    li {
+      margin-bottom: 0.45rem;
+    }
+
+    .split {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .chip {
+      display: inline-block;
+      margin-right: 0.4rem;
+      margin-bottom: 0.45rem;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid #3b4f69;
+      border-radius: 999px;
+      color: #c7dcf8;
+      font-size: 0.84rem;
+      background: rgba(22, 36, 55, 0.68);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #c6dbf6;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      border-bottom-color: #c6dbf6;
+      outline: none;
+    }
+
+    .video-block {
+      margin-bottom: 1.25rem;
+      padding: 1rem;
+      background: rgba(20, 28, 39, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .video-block h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      color: #d7e9ff;
+      text-decoration: none;
+      border-bottom: 1px solid #44607f;
+    }
+
+    .video-link:hover,
+    .video-link:focus-visible {
+      color: #ffffff;
+      border-bottom-color: #d7e9ff;
+      outline: none;
+    }
+
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid #30445e;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0b121b;
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
 </head>
-<body style="margin:0;background:#0b0b0d;color:#f5f5f4;font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh;">
-  <main style="text-align:center;padding:2rem;">
-    <h1 style="margin:0 0 0.6rem;">Pomodoro Device</h1>
-    <p style="margin:0;opacity:0.8;">Content coming soon.</p>
+<body>
+  <main class="page">
+    <a class="back-link" href="Engineering.html">&#8592; Back to Engineering</a>
+
+    <section class="video-block" aria-labelledby="video-heading">
+      <h2 id="video-heading">Project Video</h2>
+      <a
+        class="video-link"
+        href="https://www.youtube.com/watch?v=vXWEqWA96l0"
+        target="_blank"
+        rel="noopener"
+      >
+        Watch: Engineering Through My Lens (First Video)
+      </a>
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/vXWEqWA96l0?si=6SeovOf7xar-Cbvd&start=1"
+          title="Engineering Through My Lens YouTube showcase"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <section aria-labelledby="hero-heading">
+      <h2 id="hero-heading">Hero Section</h2>
+      <h1>I built my own Focus Dial</h1>
+      <p class="subtitle">A Physical Productivity Device That Forces You to Commit</p>
+      <p>
+        The Focus Dial is a custom-built physical Pomodoro timer that eliminates phone-based distractions by requiring a
+        deliberate physical interaction to begin and end a work session.
+      </p>
+      <p>
+        The device combines mechanical input, embedded firmware, and visual feedback to create a more intentional focus workflow.
+      </p>
+      <div class="placeholder">[Insert product hero image here]</div>
+    </section>
+
+    <section aria-labelledby="problem-heading">
+      <h2 id="problem-heading">Problem Statement</h2>
+      <p>
+        Most digital timers fail at the moment they are needed most: they run on the same phone that also contains messages,
+        social feeds, and context-switching triggers. Productivity apps add interface complexity but still rely on a distracting platform.
+      </p>
+      <p>
+        Focus tools should remove digital noise and reduce decision friction. A physical timer shifts behavior by making commitment tangible,
+        which improves session start consistency and reduces mid-session interruption.
+      </p>
+    </section>
+
+    <section aria-labelledby="goals-heading">
+      <h2 id="goals-heading">Design Goals</h2>
+      <ul>
+        <li>Fully physical interaction (no touchscreen)</li>
+        <li>Minimal UI, intuitive operation</li>
+        <li>Visual representation of remaining time</li>
+        <li>Seamless integration with iPhone Do Not Disturb</li>
+        <li>Compact, desk-friendly form factor</li>
+        <li>Designed for future manufacturability</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="hardware-heading">
+      <h2 id="hardware-heading">Hardware Architecture</h2>
+      <p>
+        The Focus Dial hardware stack is centered on an <strong>Arduino Nano 33 IoT</strong>, selected for compact size, stable I/O,
+        and integrated Bluetooth capability.
+      </p>
+      <div class="split">
+        <div>
+          <h3>Inputs</h3>
+          <ul>
+            <li>Rotary encoder (5-pin) for setting session duration</li>
+            <li>Physical push button for mode control and session confirmation</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Outputs</h3>
+          <ul>
+            <li>OLED display for time value and system-state feedback</li>
+            <li>NeoPixel LED ring for radial visual countdown mapping</li>
+            <li>Bluetooth communication for iOS Shortcut trigger events</li>
+          </ul>
+        </div>
+      </div>
+      <p>
+        The rotary encoder provides dynamic time selection with detent-based increments, allowing rapid adjustment without nested menus.
+        During runtime, the LED ring maps remaining time as a shrinking arc, giving an immediate peripheral cue of session progress.
+      </p>
+      <div class="placeholder">[Insert internal electronics photo here]</div>
+    </section>
+
+    <section aria-labelledby="firmware-heading">
+      <h2 id="firmware-heading">Firmware &amp; Logic</h2>
+      <p>
+        Firmware was structured around a deterministic state machine with clear transitions between idle, setup, active focus, warning,
+        and completion states. The encoder is read through a dedicated library with interrupt-assisted edge capture to improve responsiveness
+        during concurrent display and LED updates.
+      </p>
+      <p>
+        Time tracking uses millisecond-based scheduling to avoid drift, while OLED render states separate static labels from frequently changing
+        timing values to reduce redraw overhead.
+      </p>
+      <p>
+        LED behavior is intentionally color-coded for quick interpretation:
+      </p>
+      <span class="chip">Green = active focus</span>
+      <span class="chip">Yellow = nearing completion</span>
+      <span class="chip">Red = session complete</span>
+      <p>
+        Bluetooth event packets are transmitted at session start and stop to trigger an iPhone Shortcut that activates Do Not Disturb,
+        enabling a synchronized physical-to-digital focus handshake without app interaction during work cycles.
+      </p>
+    </section>
+
+    <section aria-labelledby="mechanical-heading">
+      <h2 id="mechanical-heading">Mechanical &amp; Industrial Design</h2>
+      <p>
+        The enclosure was custom-modeled in Fusion 360 and dimensioned directly from component footprints and wiring volume. Mechanical layout
+        decisions prioritized ergonomic button reach, rotary encoder shaft alignment tolerance, and even LED diffusion through the top face.
+      </p>
+      <p>
+        Internal mounting bosses were integrated for repeatable board positioning and serviceability during rework. Prototypes were iterated through
+        multiple 3D printed revisions, moving from rapid PLA concept shells to tighter-fit prints for final geometry validation and assembly checks.
+      </p>
+      <div class="placeholder">[Insert CAD render here]</div>
+    </section>
+
+    <section aria-labelledby="challenges-heading">
+      <h2 id="challenges-heading">Key Engineering Challenges</h2>
+      <ul>
+        <li>Stabilizing encoder input by tuning debounce handling and filtering false transitions.</li>
+        <li>Managing LED current draw while maintaining brightness consistency and microcontroller stability.</li>
+        <li>Improving Bluetooth trigger reliability across repeated iPhone shortcut sessions.</li>
+        <li>Preserving UI clarity on a small OLED with limited character and layout space.</li>
+        <li>Packaging all electronics into a compact enclosure without sacrificing assembly access.</li>
+      </ul>
+      <p>
+        Each issue was resolved through iterative bench testing, targeted firmware refinements, and enclosure modifications that balanced electrical,
+        software, and mechanical constraints as a single system.
+      </p>
+    </section>
+
+    <section aria-labelledby="learned-heading">
+      <h2 id="learned-heading">What I Learned</h2>
+      <p>
+        This project strengthened my ability to integrate embedded hardware and firmware into a cohesive product behavior. It also reinforced
+        human-centered design principles: the best technical solution is not only functional, but also legible and low-friction for the user.
+      </p>
+      <p>
+        I gained practical experience coordinating hardware-software synchronization and planning architecture that can support future iteration
+        without full redesign.
+      </p>
+    </section>
+
+    <section aria-labelledby="future-heading">
+      <h2 id="future-heading">Future Improvements</h2>
+      <ul>
+        <li>Custom PCB instead of breadboard wiring</li>
+        <li>Rechargeable battery system</li>
+        <li>Injection-mold-ready enclosure design</li>
+        <li>Expanded timer presets</li>
+        <li>Companion mobile app</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="closing-heading">
+      <h2 id="closing-heading">Closing Section</h2>
+      <p>
+        The Focus Dial represents my interest in building physical systems that improve human behavior through intentional design.
+      </p>
+      <p>
+        It sits at the intersection of mechanical design, embedded systems, and product thinking, and it serves as the foundation for
+        future hardware products.
+      </p>
+    </section>
   </main>
+
   <script src="site-header.js" defer></script>
 </body>
 </html>

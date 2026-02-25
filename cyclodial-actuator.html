@@ -3,15 +3,316 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyclodial Actuator | Josh Murzello</title>
+  <title>Cycloidal Actuator | Josh Murzello</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
+  <style>
+    :root {
+      --bg: #0c1017;
+      --panel: #141b26;
+      --line: #2a3547;
+      --text: #e8edf6;
+      --muted: #aeb8c8;
+      --accent: #95c6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1100px 650px at 88% -12%, #1a2943 0%, rgba(26, 41, 67, 0) 62%),
+        radial-gradient(850px 520px at -12% 22%, #10243b 0%, rgba(16, 36, 59, 0) 58%),
+        var(--bg);
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 5.5rem 1.25rem 4rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #cfe0f7;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      border-bottom-color: #cfe0f7;
+      outline: none;
+    }
+
+    section {
+      margin-bottom: 2.3rem;
+      padding: 1.3rem;
+      background: rgba(20, 27, 38, 0.75);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      backdrop-filter: blur(3px);
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      margin: 0 0 0.8rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.18rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    h3 {
+      margin: 0.9rem 0 0.4rem;
+      font-size: 1rem;
+      color: #d8e7ff;
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+    }
+
+    .subtitle {
+      margin: 0 0 1rem;
+      font-weight: 600;
+      color: #d4deed;
+    }
+
+    ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.15rem;
+    }
+
+    li {
+      margin-bottom: 0.45rem;
+    }
+
+    .split {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .formula {
+      margin: 0.8rem 0;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid #3b4d64;
+      border-radius: 10px;
+      background: rgba(14, 22, 33, 0.6);
+      font-family: "Space Grotesk", sans-serif;
+      color: #d7e8ff;
+      letter-spacing: 0.01em;
+    }
+
+    .placeholder {
+      margin-top: 0.9rem;
+      border: 1px dashed #4f637f;
+      border-radius: 10px;
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      text-align: center;
+      padding: 0.9rem;
+      background: rgba(10, 16, 24, 0.45);
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
-<body style="margin:0;background:#0b0b0d;color:#f5f5f4;font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh;">
-  <main style="text-align:center;padding:2rem;">
-    <h1 style="margin:0 0 0.6rem;">Cyclodial Actuator</h1>
-    <p style="margin:0;opacity:0.8;">Content coming soon.</p>
+<body>
+  <main class="page">
+    <a class="back-link" href="Engineering.html">&#8592; Back to Engineering</a>
+
+    <section aria-labelledby="hero-heading">
+      <h2 id="hero-heading">Hero Section</h2>
+      <h1>Cycloidal Actuator</h1>
+      <p class="subtitle">Designing a Compact, High-Reduction Drive System for Robotics</p>
+      <p>
+        This project explores the design and prototyping of a 3D-printed cycloidal actuator intended for robotic joint applications.
+      </p>
+      <p>
+        The goal was to create a compact, high-torque, low-backlash transmission system capable of significant reduction ratios while
+        maintaining structural rigidity and manufacturability.
+      </p>
+      <div class="placeholder">[Insert hero render or assembled actuator image here]</div>
+    </section>
+
+    <section aria-labelledby="why-heading">
+      <h2 id="why-heading">Why Cycloidal Drives?</h2>
+      <p>
+        Robotic joints in humanoid systems and industrial manipulators require high torque density in constrained package volume.
+        Conventional spur and planetary stages are practical, but backlash accumulation and tooth contact behavior can limit precision
+        for dynamic motion control.
+      </p>
+      <p>
+        Harmonic drives offer strong precision characteristics, but they are often costly and mechanically complex for early-stage student
+        prototyping. Cycloidal drives present an effective alternative with high reduction in compact space, high shock load capacity,
+        reduced backlash potential, and fewer failure-prone teeth under repeated load cycling.
+      </p>
+    </section>
+
+    <section aria-labelledby="objectives-heading">
+      <h2 id="objectives-heading">Design Objectives</h2>
+      <ul>
+        <li>Achieve ~15:1 reduction ratio (16 rollers / 15 lobes configuration)</li>
+        <li>Compact form factor (desktop-scale prototype)</li>
+        <li>Compatible with NEMA 17 stepper motor (initial version)</li>
+        <li>Designed for upgrade to NEMA 23 in future iteration</li>
+        <li>Incorporate real steel roller pins + bearings</li>
+        <li>Fully parametric CAD model for ratio adjustments</li>
+        <li>Optimized for 3D printing tolerances</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="math-heading">
+      <h2 id="math-heading">The Reduction Mathematics</h2>
+      <p>
+        Cycloidal reduction behavior is governed by the relationship between the number of outer ring rollers and the number of cycloidal lobes
+        on the disk profile. A one-count difference between these features generates a large relative speed reduction.
+      </p>
+      <p class="formula">Reduction = (Number of Rollers - Number of Lobes)</p>
+      <p>
+        In this prototype, 16 rollers engage a 15-lobe disk, producing a 15:1 reduction characteristic. The eccentric input shaft introduces
+        an offset orbit that drives the cycloidal disk through a controlled wobble motion; this kinematic profile is then converted to a reduced-speed,
+        amplified-torque output through drive pin coupling.
+      </p>
+    </section>
+
+    <section aria-labelledby="architecture-heading">
+      <h2 id="architecture-heading">Mechanical Architecture</h2>
+      <div class="split">
+        <div>
+          <h3>Core Components</h3>
+          <ul>
+            <li>Input shaft with eccentric offset</li>
+            <li>Cycloidal disk (parametrically generated)</li>
+            <li>Fixed ring of roller pins</li>
+            <li>Output shaft with drive pins</li>
+            <li>Internal needle / radial bearings</li>
+            <li>Housing structure</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Power Flow</h3>
+          <p>
+            Motor input rotates the eccentric shaft at high speed and low torque. The eccentricity drives orbital motion of the cycloidal
+            disk against the fixed roller ring. Output pins capture the relative disk motion and transfer reduced rotational speed with
+            increased torque to the actuator output shaft.
+          </p>
+        </div>
+      </div>
+      <div class="placeholder">[Insert exploded view render here]</div>
+    </section>
+
+    <section aria-labelledby="motor-heading">
+      <h2 id="motor-heading">Motor Selection &amp; Control</h2>
+      <p>
+        Development started with a NEMA 17 stepper to accelerate prototyping and reduce integration risk during early mechanical validation.
+        The architecture is intentionally sized with an upgrade path to NEMA 23 when higher continuous torque becomes necessary.
+      </p>
+      <p>
+        Driver tradeoffs were evaluated between TMC2209-class drivers (smoother motion, quieter stepping, finer current control) and TB6600-class
+        drivers (higher current headroom and robust external driver packaging). Selection depends on torque demand, thermal budget, and desired motion quality.
+      </p>
+      <p class="formula">V = IR + Ke\omega</p>
+      <p>
+        This relationship frames actuator behavior: as speed increases, back EMF term <em>Ke\omega</em> reduces effective current margin,
+        while stall torque is highest near zero speed where back EMF is minimal.
+      </p>
+    </section>
+
+    <section aria-labelledby="cad-heading">
+      <h2 id="cad-heading">Parametric CAD Development</h2>
+      <p>
+        The actuator was developed in Fusion 360 using a custom parametric workflow with script-assisted geometry generation for cycloidal curves.
+        The model allows rapid variation of key drivetrain dimensions without rebuilding the assembly from scratch.
+      </p>
+      <ul>
+        <li>Number of lobes</li>
+        <li>Eccentricity</li>
+        <li>Roller diameter</li>
+        <li>Bearing outer diameter</li>
+        <li>Disk thickness</li>
+        <li>Tolerance compensation for FDM printing</li>
+      </ul>
+      <p>
+        Iteration followed a print-fit-adjust loop: generate geometry, print critical interfaces, measure fit and backlash, then update
+        parameters to converge on manufacturable tolerances.
+      </p>
+      <div class="placeholder">[Insert CAD sketch image here]</div>
+    </section>
+
+    <section aria-labelledby="challenges-heading">
+      <h2 id="challenges-heading">Key Engineering Challenges</h2>
+      <ul>
+        <li>Bearing press-fit tolerances, especially around 13 mm OD interfaces.</li>
+        <li>Balancing roller hole sizing against friction and rotational smoothness.</li>
+        <li>Maintaining eccentric shaft concentric alignment through assembly stack-up.</li>
+        <li>Reducing backlash while preserving low-friction operation.</li>
+        <li>Maintaining structural rigidity under load and transient shock.</li>
+        <li>Managing FDM print anisotropy and layer-direction strength limits.</li>
+      </ul>
+      <p>
+        These constraints were treated as coupled failure-mode risks rather than isolated issues, guiding both geometry updates and material/print-orientation decisions.
+      </p>
+    </section>
+
+    <section aria-labelledby="testing-heading">
+      <h2 id="testing-heading">Testing &amp; Performance Observations</h2>
+      <p>
+        Current prototype testing is qualitative and focused on motion behavior. Rotation smoothness improved across revisions as bearing fit and roller clearances
+        were tuned. The output stage shows clear torque amplification compared to direct motor drive, with remaining backlash primarily linked to printed interface tolerances.
+      </p>
+      <p>
+        Efficiency and vibration are being tracked through iterative runs; noise increases at higher motor speeds, indicating opportunities for tighter balance and improved
+        pin/bearing alignment in future builds. Quantitative torque and backlash characterization is planned in the next validation phase.
+      </p>
+    </section>
+
+    <section aria-labelledby="future-heading">
+      <h2 id="future-heading">Future Iterations</h2>
+      <ul>
+        <li>CNC-machined metal housing</li>
+        <li>Hardened steel rollers</li>
+        <li>Custom output shaft spline</li>
+        <li>Integrated encoder for closed-loop control</li>
+        <li>Higher reduction ratio versions (30:1, 50:1)</li>
+        <li>Application in robotic arm joint or quadruped prototype</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="demonstrates-heading">
+      <h2 id="demonstrates-heading">What This Project Demonstrates</h2>
+      <p>
+        This project demonstrates a deep understanding of mechanical power transmission and how reduction-drive theory converts into physical actuator architecture.
+      </p>
+      <p>
+        It shows the ability to move from equations to parametric CAD, while considering manufacturability, tolerance control, and integration of motors, bearings,
+        and structural components as a complete system.
+      </p>
+      <p>
+        The result aligns directly with robotics and automation development, where compact, reliable, and scalable actuation is a core engineering requirement.
+      </p>
+    </section>
   </main>
+
   <script src="site-header.js" defer></script>
 </body>
 </html>

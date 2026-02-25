@@ -112,22 +112,22 @@ const PROJECTS = [
   },
   {
     id: "pomodoro",
-    title: "Pomodoro Device",
+    title: "I built my own Focus Dial",
     category: "project",
     year: "2026",
-    summary: "A physical focus timer device blending productivity and industrial design.",
-    impact: "Project page coming soon.",
+    summary: "A physical Pomodoro device engineered to reduce digital distraction through tactile interaction.",
+    impact: "Case study now includes hardware architecture, firmware logic, and enclosure design workflow.",
     image: "./images/IMG_0757.JPG",
     link: "pomodoro.html",
     tags: ["Electronics", "Product", "Embedded"]
   },
   {
     id: "cyclodial-actuator",
-    title: "Cyclodial Actuator",
+    title: "Cycloidal Actuator",
     category: "project",
     year: "2026",
-    summary: "Compact actuator concept for high torque and controlled motion profiles.",
-    impact: "Project page coming soon.",
+    summary: "High-torque compact reduction drive prototype for robotic actuation systems.",
+    impact: "Case study now includes reduction math, architecture, motor tradeoffs, and prototyping insights.",
     image: "./images/IMG_0761.JPG",
     link: "cyclodial-actuator.html",
     tags: ["Mechanisms", "Actuation", "CAD"]
@@ -179,6 +179,11 @@ const PROJECTS = [
 ];
 
 function compareProjectsByYearDesc(a, b) {
+  const categoryRank = (item) => (item.category === 'internship' ? 0 : 1);
+  const rankA = categoryRank(a);
+  const rankB = categoryRank(b);
+  if (rankA !== rankB) return rankA - rankB;
+
   const yearA = Number(a.year) || 0;
   const yearB = Number(b.year) || 0;
   if (yearB !== yearA) return yearB - yearA;
