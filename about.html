@@ -660,6 +660,104 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .contact-field {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: left;
+      margin-bottom: 0.95rem;
+      gap: 0.42rem;
+    }
+
+    .contact-field span {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.86rem;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+    }
+
+    .contact-field input,
+    .contact-field textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(10, 10, 15, 0.68);
+      color: #fff;
+      padding: 0.76rem 0.85rem;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .contact-field input::placeholder,
+    .contact-field textarea::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .contact-field input:focus,
+    .contact-field textarea:focus {
+      outline: none;
+      border-color: rgba(139, 92, 246, 0.75);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.24);
+      background: rgba(12, 12, 18, 0.86);
+    }
+
+    .contact-field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-honeypot {
+      position: absolute;
+      left: -10000px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+
+    .connect-submit {
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(59, 130, 246, 0.95));
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.7rem 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .connect-submit:hover,
+    .connect-submit:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+      outline: none;
+    }
+
+    .contact-status {
+      margin: 0.85rem 0 0;
+      min-height: 1.2em;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .contact-status.error {
+      color: #fda4af;
+    }
+
     .social-strip {
       display: flex;
       justify-content: center;
@@ -758,6 +856,11 @@
       }
       .connect-section {
         padding: 2.3rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
     }
   </style>
@@ -1017,23 +1120,31 @@
             <p class="connect-description">
               Have a project in mind or just want to chat? I'd love to hear from you.
             </p>
-            <div class="connect-form">
-              <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                loading="lazy" width="100%" height="320" frameborder="0" marginheight="0" marginwidth="0"
-                title="Personal Website Connect" class="tally-form"></iframe>
-              <script>
-                var d = document,
-                  w = "https://tally.so/widgets/embed.js",
-                  v = function () {
-                    "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function (e) { e.src = e.dataset.tallySrc }))
-                  };
-                if ("undefined" != typeof Tally) v();
-                else if (d.querySelector('script[src="' + w + '"]') == null) {
-                  var s = d.createElement("script");
-                  s.src = w, s.onload = v, s.onerror = v, d.body.appendChild(s);
-                }
-              </script>
-            </div>
+            <form class="connect-form inhouse-contact-form" novalidate>
+              <div class="form-grid">
+                <label class="contact-field">
+                  <span>Name</span>
+                  <input type="text" name="name" autocomplete="name" required placeholder="Your name">
+                </label>
+                <label class="contact-field">
+                  <span>Email</span>
+                  <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+                </label>
+              </div>
+              <label class="contact-field">
+                <span>Subject</span>
+                <input type="text" name="subject" required placeholder="Project inquiry">
+              </label>
+              <label class="contact-field">
+                <span>Message</span>
+                <textarea name="message" rows="5" required placeholder="What's on your mind..."></textarea>
+              </label>
+              <input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <div class="contact-actions">
+                <button type="submit" class="connect-submit">Send Message</button>
+              </div>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
         </div>
       </div>
@@ -1120,6 +1231,54 @@
         });
       }
     });
+  </script>
+  <script>
+    (function initInhouseContactForm() {
+      const form = document.querySelector('.inhouse-contact-form');
+      if (!form) return;
+
+      const status = form.querySelector('.contact-status');
+      const CONTACT_EMAIL = 'murzello.josh@gmail.com';
+
+      const setStatus = (message, isError = false) => {
+        if (!status) return;
+        status.textContent = message;
+        status.classList.toggle('error', Boolean(isError));
+      };
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const honeypot = form.querySelector('input[name="website"]');
+        if (honeypot && honeypot.value.trim()) return;
+
+        const formData = new FormData(form);
+        const name = String(formData.get('name') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const subject = String(formData.get('subject') || '').trim();
+        const message = String(formData.get('message') || '').trim();
+
+        if (!name || !email || !subject || !message) {
+          setStatus('Please fill out all fields before sending.', true);
+          return;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          setStatus('Please provide a valid email address.', true);
+          return;
+        }
+
+        const mailSubject = encodeURIComponent(subject);
+        const mailBody = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+        setStatus('Opening your email app...');
+        form.reset();
+      });
+    })();
   </script>
   <script src="site-header.js" defer></script>
 </body>

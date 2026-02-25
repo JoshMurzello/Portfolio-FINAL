@@ -134,11 +134,31 @@
     <div class="shell footer-shell reveal">
       <h2>Let’s build something ambitious.</h2>
       <p>Have a project, team, or challenge where engineering and storytelling intersect? Let’s connect.</p>
-      <div class="connect-form">
-        <iframe data-tally-src="https://tally.so/embed/wa0BAv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-          loading="lazy" width="100%" height="320" frameborder="0" marginheight="0" marginwidth="0"
-          title="Personal Website Connect"></iframe>
-      </div>
+      <form class="connect-form inhouse-contact-form" novalidate>
+        <div class="form-grid">
+          <label class="contact-field">
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" required placeholder="Your name">
+          </label>
+          <label class="contact-field">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+          </label>
+        </div>
+        <label class="contact-field">
+          <span>Subject</span>
+          <input type="text" name="subject" required placeholder="Project inquiry">
+        </label>
+        <label class="contact-field">
+          <span>Message</span>
+          <textarea name="message" rows="5" required placeholder="What's on your mind..."></textarea>
+        </label>
+        <input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="contact-actions">
+          <button type="submit" class="connect-submit">Send Message</button>
+        </div>
+        <p class="contact-status" role="status" aria-live="polite"></p>
+      </form>
       <div class="footer-links">
         <a href="https://www.instagram.com/joshmurzello/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.linkedin.com/in/josh-murzello/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -150,14 +170,52 @@
   </footer>
 
   <script>
-    var d = document, w = "https://tally.so/widgets/embed.js", v = function () {
-      "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) { e.src = e.dataset.tallySrc; });
-    };
-    if ("undefined" != typeof Tally) v();
-    else if (d.querySelector('script[src="' + w + '"]') == null) {
-      var s = d.createElement("script");
-      s.src = w; s.onload = v; s.onerror = v; d.body.appendChild(s);
-    }
+    (function initInhouseContactForm() {
+      const form = document.querySelector('.inhouse-contact-form');
+      if (!form) return;
+
+      const status = form.querySelector('.contact-status');
+      const CONTACT_EMAIL = 'murzello.josh@gmail.com';
+
+      const setStatus = (message, isError = false) => {
+        if (!status) return;
+        status.textContent = message;
+        status.classList.toggle('error', Boolean(isError));
+      };
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const honeypot = form.querySelector('input[name="website"]');
+        if (honeypot && honeypot.value.trim()) return;
+
+        const formData = new FormData(form);
+        const name = String(formData.get('name') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const subject = String(formData.get('subject') || '').trim();
+        const message = String(formData.get('message') || '').trim();
+
+        if (!name || !email || !subject || !message) {
+          setStatus('Please fill out all fields before sending.', true);
+          return;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          setStatus('Please provide a valid email address.', true);
+          return;
+        }
+
+        const mailSubject = encodeURIComponent(subject);
+        const mailBody = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+        setStatus('Opening your email app...');
+        form.reset();
+      });
+    })();
   </script>
   <script src="engineering.js" defer></script>
   <script src="site-header.js" defer></script>
