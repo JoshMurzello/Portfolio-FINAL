@@ -81,6 +81,7 @@ const PROJECTS = [
     id: "stl-animator",
     title: "STL Animator Tool",
     category: "project",
+    filters: ["project", "ai-tool"],
     year: "2026",
     summary: "Browser-based tool for loading STL files and generating turntable, dolly, hero, split, and explode animation clips.",
     impact: "Runs fully client-side for static hosting, with upload-first workflow and in-browser recording export.",
@@ -215,14 +216,18 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 function categoryLabel(cat) {
   if (cat === 'internship') return 'Internship';
   if (cat === 'project') return 'Project';
+  if (cat === 'ai-tool') return 'AI Tool';
   if (cat === 'research') return 'Research';
   return 'Work';
 }
 
+function matchesFilter(item, filter) {
+  if (filter === 'all') return true;
+  return (item.filters || [item.category]).includes(filter);
+}
+
 function getVisibleProjects() {
-  return activeFilter === 'all'
-    ? [...SORTED_PROJECTS]
-    : SORTED_PROJECTS.filter((item) => item.category === activeFilter);
+  return SORTED_PROJECTS.filter((item) => matchesFilter(item, activeFilter));
 }
 
 function updateSpotlight(project) {
