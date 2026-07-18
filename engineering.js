@@ -9,6 +9,13 @@ const PROJECTS = [
     image: "./images/optimized/tesla-friends-1400.jpg",
     link: "tesla.html",
     proof: "Fixtures, PLC integration, validation plans, GD&T drawings",
+    flow: ["Constraint", "Fixture + PLC", "Yield"],
+    artifacts: {
+      cad: { title: "Fixture architecture", copy: "Measurement fixtures, rail components, tolerance stack-ups, and station-ready hardware packaged for production use." },
+      build: { title: "Factory integration", copy: "Sensor placement, PLC feedback, vendor-machined components, and deployment constraints handled under ramp pressure." },
+      test: { title: "Validation matrix", copy: "DOE, gage R&R, MSA, acceptance criteria, and alignment tolerance checks used to protect station readiness." },
+      result: { title: "Production impact", copy: "Manual checks reduced, rework risk lowered, alignment brought into tolerance, and first-pass yield stabilized." }
+    },
     tags: ["Automation", "Wirebonding", "PLC", "Battery Pack"]
   },
   {
@@ -22,6 +29,13 @@ const PROJECTS = [
     imageMode: "contain",
     link: "lg.html",
     proof: "FEA studies, DFM revisions, defect-rate reduction",
+    flow: ["Defect", "FEA + DFM", "Reliability"],
+    artifacts: {
+      cad: { title: "Housing geometry", copy: "GD&T-controlled sensor housing work focused on preserving critical tolerances while reducing assembly friction." },
+      build: { title: "PCBA support", copy: "Mounting structures and reinforcement options shaped around real assembly and vibration constraints." },
+      test: { title: "Stress analysis", copy: "FEA and manufacturing feedback loops used to identify weak points and guide design revisions." },
+      result: { title: "Defect reduction", copy: "Assembly errors and recurring PCBA defects reduced through targeted DFM and root-cause work." }
+    },
     tags: ["PCB", "Testing", "HVAC", "R32"]
   },
   {
@@ -34,6 +48,13 @@ const PROJECTS = [
     image: "./images/price.jpeg",
     link: "price.html",
     proof: "Floor observations, throughput analysis, process updates",
+    flow: ["Floor data", "Process map", "Throughput"],
+    artifacts: {
+      cad: { title: "Layout thinking", copy: "Production paths and station constraints mapped to understand where material, people, and machine timing created drag." },
+      build: { title: "Shop-floor changes", copy: "Practical updates focused on setup reliability, machine usage, and repeatable production cycles." },
+      test: { title: "Throughput checks", copy: "Observed cycle behavior and process bottlenecks translated into improvement opportunities." },
+      result: { title: "Cleaner flow", copy: "Better production paths and more reliable setup behavior supported stronger shop-floor execution." }
+    },
     tags: ["Manufacturing", "Optimization", "Process Engineering"]
   },
   {
@@ -46,6 +67,13 @@ const PROJECTS = [
     image: "./images/IMG_0754.JPG",
     link: "bci.html",
     proof: "EEG acquisition, signal thresholds, Arduino control loop",
+    flow: ["EEG", "Thresholds", "Motion"],
+    artifacts: {
+      cad: { title: "Interface map", copy: "Control states defined around noisy EEG behavior instead of assuming perfect brain-signal precision." },
+      build: { title: "Hardware stack", copy: "Consumer headset, Python processing, serial handoff, and Arduino output assembled into one live loop." },
+      test: { title: "Signal tuning", copy: "Thresholds, false triggers, calibration behavior, and user fatigue shaped the usable interaction model." },
+      result: { title: "Tangible control", copy: "The system proved a mental-state input could trigger a physical response in a testable prototype." }
+    },
     tags: ["BCI", "Machine Learning", "Python", "Signal Processing"]
   },
   {
@@ -58,6 +86,13 @@ const PROJECTS = [
     image: "./images/optimized/engineer-cover-1800.jpg",
     link: "sentry-rover.html",
     proof: "Perception architecture, STM32 handoff, rover behavior states",
+    flow: ["Camera + ToF", "Pi + STM32", "Rover"],
+    artifacts: {
+      cad: { title: "System architecture", copy: "Camera tracking, ToF ranging, embedded control, drivetrain response, and launcher behavior connected as one system." },
+      build: { title: "Robot integration", copy: "Raspberry Pi handled perception while STM32 handled low-level physical response and timing." },
+      test: { title: "Behavior states", copy: "Tracking, centering, following, holding distance, stopping, and launcher timing each became explicit test states." },
+      result: { title: "Closed loop response", copy: "The rover reacted to a person with visual tracking, range context, and a conditional mechanical output." }
+    },
     tags: ["Raspberry Pi", "Pi Camera 3", "STM32", "ToF Sensor", "Computer Vision"]
   },
   {
@@ -70,6 +105,13 @@ const PROJECTS = [
     image: "./images/A1picture.jpg",
     link: "3Dprint.html",
     proof: "CAD iteration, print testing, product photography, MakerWorld-ready assets",
+    flow: ["Friction", "CAD + Print", "Use"],
+    artifacts: {
+      cad: { title: "Fast CAD loop", copy: "Every object starts from a real everyday constraint and moves quickly from model to print." },
+      build: { title: "Printed iteration", copy: "Form, print orientation, supports, visible surfaces, and fit are tested in physical plastic early." },
+      test: { title: "Use-case fit", copy: "Parts are judged by repeat use, not novelty: does it solve the problem and look intentional?" },
+      result: { title: "Product-ready object", copy: "The strongest prints become photographed, documented, and ready for a public drop or MakerWorld listing." }
+    },
     tags: ["CAD", "Rapid Prototyping", "Product Design"]
   },
   {
@@ -83,6 +125,13 @@ const PROJECTS = [
     image: "./images/ME2110cadmodel.png",
     link: "tools/stl-animator/",
     proof: "Three.js viewer, client-side recording, static-hosted tool workflow",
+    flow: ["STL", "WebGL scene", "Clip"],
+    artifacts: {
+      cad: { title: "Mesh intake", copy: "The tool loads local STL files into a browser scene without requiring backend processing." },
+      build: { title: "Animation presets", copy: "Turntable, dolly, hero, split, and explode behaviors make static CAD feel presentable fast." },
+      test: { title: "Client-side export", copy: "Recording and export workflows are tested against static hosting constraints and browser APIs." },
+      result: { title: "Creator utility", copy: "CAD models become shareable motion clips without leaving the portfolio environment." }
+    },
     tags: ["Three.js", "WebGL", "STL", "Animation Tool"]
   }
 ];
@@ -113,11 +162,20 @@ const spotlightRefs = {
   summary: document.getElementById('spotlight-summary'),
   impact: document.getElementById('spotlight-impact'),
   tags: document.getElementById('spotlight-tags'),
-  link: document.getElementById('spotlight-link')
+  link: document.getElementById('spotlight-link'),
+  artifactKicker: document.getElementById('artifact-kicker'),
+  artifactTitle: document.getElementById('artifact-title'),
+  artifactCopy: document.getElementById('artifact-copy'),
+  systemNodes: [
+    document.getElementById('system-node-a'),
+    document.getElementById('system-node-b'),
+    document.getElementById('system-node-c')
+  ]
 };
 
 let activeFilter = 'all';
 let selectedId = SORTED_PROJECTS[0]?.id;
+let activeArtifact = 'cad';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -155,6 +213,24 @@ function updateSpotlight(project) {
     const span = document.createElement('span');
     span.textContent = tag;
     spotlightRefs.tags.appendChild(span);
+  });
+  updateArtifactPanel(project);
+  updateSystemDiagram(project);
+}
+
+function updateArtifactPanel(project) {
+  const artifact = project.artifacts?.[activeArtifact] || project.artifacts?.cad;
+  if (!artifact) return;
+  spotlightRefs.artifactKicker.textContent = activeArtifact;
+  spotlightRefs.artifactTitle.textContent = artifact.title;
+  spotlightRefs.artifactCopy.textContent = artifact.copy;
+}
+
+function updateSystemDiagram(project) {
+  const flow = project.flow || [];
+  spotlightRefs.systemNodes.forEach((node, index) => {
+    if (!node) return;
+    node.textContent = flow[index] || '';
   });
 }
 
@@ -245,6 +321,24 @@ function initFilters() {
   window.addEventListener('resize', updateFilterGlide);
 }
 
+function initArtifactTabs() {
+  const tabs = [...document.querySelectorAll('.artifact-tab')];
+  if (!tabs.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      activeArtifact = tab.dataset.artifactTab || 'cad';
+      tabs.forEach((candidate) => {
+        const selected = candidate === tab;
+        candidate.classList.toggle('is-active', selected);
+        candidate.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+      const project = SORTED_PROJECTS.find((item) => item.id === selectedId);
+      if (project) updateArtifactPanel(project);
+    });
+  });
+}
+
 function initReveal() {
   const nodes = document.querySelectorAll('.reveal');
   if (reduceMotion || typeof IntersectionObserver === 'undefined') {
@@ -284,6 +378,7 @@ function initTilt() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initFilters();
+  initArtifactTabs();
   initReveal();
   initTilt();
   applyFilter('all');

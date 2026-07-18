@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="site-header.css">
-  <link rel="stylesheet" href="portfolio-page.css">
+  <link rel="stylesheet" href="portfolio-page.css?v=20260718-2">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -45,12 +45,21 @@
       <div class="hero-backdrop" style="background-image:url('./images/optimized/philly-good-1800.jpg');"></div>
       <div class="hero-gradient"></div>
       <div class="hero-noise"></div>
+      <div class="hero-blueprint" aria-hidden="true">
+        <span class="blueprint-line line-x"></span>
+        <span class="blueprint-line line-y"></span>
+        <span class="blueprint-ring ring-a"></span>
+        <span class="blueprint-ring ring-b"></span>
+        <span class="hero-measure measure-a">+/- 0.10 mm</span>
+        <span class="hero-measure measure-b">build - test - refine</span>
+        <span class="cursor-field"></span>
+      </div>
       <div class="page-shell hero-content">
         <p class="eyebrow reveal">Mechanical Engineering • Manufacturing • Robotics</p>
         <h1 class="reveal">I turn hardware ideas into tested systems people can understand.</h1>
         <p class="hero-copy reveal">
           I’m Josh Murzello, a Georgia Tech mechanical engineering student with experience across EV manufacturing,
-          HVAC R&amp;D, production systems, robotics, 3D printing, and technical storytelling.
+          HVAC R&amp;D, production systems, <span class="rotating-word" data-words="robotics,3D printing,controls,CAD tools,technical storytelling">robotics</span>.
         </p>
         <div class="hero-actions reveal">
           <a class="button" href="Engineering.html">Explore engineering</a>
@@ -110,6 +119,24 @@
             </div>
           </a>
         </div>
+      </div>
+    </section>
+
+    <section class="page-section build-wall-section">
+      <div class="page-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Build Wall</p>
+          <h2>Proof you can scan before you read.</h2>
+          <p class="section-copy">A living wall of factory work, CAD, prototypes, product shots, and creative documentation. New photos can drop into this system without changing the layout.</p>
+        </div>
+        <div class="build-wall-controls reveal" aria-label="Filter build wall">
+          <button type="button" class="build-filter is-active" data-build-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="build-filter" data-build-filter="hardware" aria-pressed="false">Hardware</button>
+          <button type="button" class="build-filter" data-build-filter="cad" aria-pressed="false">CAD</button>
+          <button type="button" class="build-filter" data-build-filter="product" aria-pressed="false">Product</button>
+          <button type="button" class="build-filter" data-build-filter="creative" aria-pressed="false">Creative</button>
+        </div>
+        <div id="build-wall" class="build-wall reveal" aria-live="polite"></div>
       </div>
     </section>
 
@@ -234,7 +261,7 @@
     </div>
   </footer>
 
-  <script src="portfolio-page.js" defer></script>
+  <script src="portfolio-page.js?v=20260718-2" defer></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>

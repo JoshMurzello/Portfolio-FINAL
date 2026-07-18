@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="engineering.css">
+  <link rel="stylesheet" href="engineering.css?v=20260718-2">
   <link rel="stylesheet" href="site-header.css">
 </head>
 <body>
@@ -95,6 +95,24 @@
             <p id="spotlight-summary"></p>
             <p id="spotlight-impact" class="spotlight-impact"></p>
             <div id="spotlight-tags" class="tag-list" aria-label="Technologies used"></div>
+            <div class="artifact-tabs" role="tablist" aria-label="Project artifact preview">
+              <button type="button" class="artifact-tab is-active" data-artifact-tab="cad" aria-selected="true">CAD</button>
+              <button type="button" class="artifact-tab" data-artifact-tab="build" aria-selected="false">Build</button>
+              <button type="button" class="artifact-tab" data-artifact-tab="test" aria-selected="false">Test</button>
+              <button type="button" class="artifact-tab" data-artifact-tab="result" aria-selected="false">Result</button>
+            </div>
+            <div class="artifact-panel" aria-live="polite">
+              <p id="artifact-kicker" class="artifact-kicker"></p>
+              <h4 id="artifact-title"></h4>
+              <p id="artifact-copy"></p>
+            </div>
+            <div class="system-diagram" aria-label="Project system flow">
+              <div class="system-node" id="system-node-a"></div>
+              <span class="system-link" aria-hidden="true"></span>
+              <div class="system-node" id="system-node-b"></div>
+              <span class="system-link" aria-hidden="true"></span>
+              <div class="system-node" id="system-node-c"></div>
+            </div>
             <a id="spotlight-link" class="spotlight-link" href="tesla.html">View Project</a>
           </div>
         </article>
@@ -229,7 +247,7 @@
       });
     })();
   </script>
-  <script src="engineering.js?v=20260522-1" defer></script>
+  <script src="engineering.js?v=20260718-2" defer></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>
