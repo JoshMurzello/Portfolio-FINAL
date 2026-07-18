@@ -1,1286 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Josh Murzello | About</title>
-
-  <!-- Core CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+  <title>About Josh Murzello | Engineering, Creativity, Community</title>
+  <meta name="description" content="Learn about Josh Murzello, a Georgia Tech mechanical engineering student connecting hardware, software, visual storytelling, leadership, and community.">
+  <link rel="canonical" href="https://www.joshmurzello.com/about.html">
+  <meta property="og:title" content="About Josh Murzello | Engineering, Creativity, Community">
+  <meta property="og:description" content="Learn about Josh Murzello, a Georgia Tech mechanical engineering student connecting hardware, software, visual storytelling, leadership, and community.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joshmurzello.com/about.html">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/IMG_5660.JPG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Josh Murzello | Engineering, Creativity, Community">
+  <meta name="twitter:description" content="Learn about Josh Murzello, a Georgia Tech mechanical engineering student connecting hardware, software, visual storytelling, leadership, and community.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/IMG_5660.JPG">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
-  <!-- Animations -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --primary-dark: rgb(15, 11, 11);
-      --accent-purple: #8B5CF6;
-      --accent-blue: #3B82F6;
-      --accent-teal: #14B8A6;
-      --accent-pink: #EC4899;
-      --text-primary: #FFFFFF;
-      --text-secondary: rgba(255, 255, 255, 0.8);
-      --card-glass: rgba(255, 255, 255, 0.04);
-    }
-
-    body {
-      background-color: var(--primary-dark);
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      color: var(--text-primary);
-    }
-
-    .container {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Header */
-    .header {
-      background: linear-gradient(120deg, rgba(15, 11, 11, 0.92), rgba(15, 11, 11, 0.78));
-      backdrop-filter: blur(12px);
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      padding: 1rem 0;
-      transition: padding 0.3s ease, box-shadow 0.3s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      overflow: visible;
-    }
-
-    .header::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -18px;
-      width: 100%;
-      height: 18px;
-      background: linear-gradient(180deg, rgba(15, 11, 11, 0.6), rgba(15, 11, 11, 0));
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .header.scrolled {
-      padding: 0.7rem 0;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .header.scrolled::after {
-      opacity: 1;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .brand-logo {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .brand:hover {
-      color: #f0f0f0;
-      transform: translateY(-1px);
-    }
-
-    .nav-link {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.75);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: white;
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .nav-link:hover {
-      color: white;
-    }
-
-    .nav-link:hover::after,
-    .nav-link.active::after {
-      width: 80%;
-    }
-
-    /* Hero */
-    .about-hero {
-      padding: 9rem 0 6rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.18), transparent 55%),
-        radial-gradient(circle at 80% 30%, rgba(20, 184, 166, 0.18), transparent 55%);
-      z-index: -1;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 3.5rem;
-      align-items: center;
-    }
-
-    .hero-copy .eyebrow {
-      font-family: 'Space Grotesk', sans-serif;
-      letter-spacing: 0.35rem;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.85rem;
-    }
-
-    .hero-copy h1 {
-      margin: 1.2rem 0;
-      font-size: clamp(2.8rem, 4.8vw, 4rem);
-      font-family: 'Space Grotesk', sans-serif;
-      line-height: 1.1;
-    }
-
-    .hero-copy p {
-      color: var(--text-secondary);
-      font-size: 1.15rem;
-      line-height: 1.8;
-      max-width: 580px;
-      margin-bottom: 2rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero-actions .primary {
-      background: white;
-      color: var(--primary-dark);
-      border-radius: 999px;
-      padding: 0.9rem 1.8rem;
-      font-weight: 600;
-      font-family: 'Space Grotesk', sans-serif;
-      text-decoration: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hero-actions .primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 35px rgba(255, 255, 255, 0.15);
-    }
-
-    .hero-actions .ghost {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 999px;
-      color: white;
-      padding: 0.9rem 1.8rem;
-      font-weight: 600;
-      font-family: 'Space Grotesk', sans-serif;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .hero-actions .ghost:hover {
-      border-color: transparent;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    .hero-tags span {
-      font-size: 0.85rem;
-      letter-spacing: 0.1rem;
-      text-transform: uppercase;
-      padding: 0.45rem 1rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .hero-portrait {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-
-    .portrait-frame {
-      position: relative;
-      max-width: 420px;
-      border-radius: 26px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
-    }
-
-    .portrait-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15, 11, 11, 0) 30%, rgba(15, 11, 11, 0.75) 100%);
-    }
-
-    .portrait-frame img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .portrait-note {
-      position: absolute;
-      bottom: -40px;
-      right: 10%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 1rem 1.4rem;
-      backdrop-filter: blur(12px);
-      font-size: 0.9rem;
-      letter-spacing: 0.08rem;
-      text-transform: uppercase;
-    }
-
-    /* Stats */
-    .stats-section {
-      padding: 3rem 0 4rem;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.8rem;
-    }
-
-    .stat-card {
-      padding: 2.2rem;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.18), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .stat-card:hover::after {
-      opacity: 1;
-    }
-
-    .stat-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.8rem;
-      margin-bottom: 0.6rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat-label {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Story Tabs */
-    .story-section {
-      padding: 4rem 0 6rem;
-    }
-
-    .section-heading {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 3rem;
-    }
-
-    .section-heading .title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      margin-bottom: 1rem;
-    }
-
-    .section-heading .subtitle {
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .story-toggle {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-
-    .story-toggle button {
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.05);
-      color: rgba(255, 255, 255, 0.75);
-      border-radius: 999px;
-      padding: 0.75rem 1.8rem;
-      font-size: 0.95rem;
-      letter-spacing: 0.12rem;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-
-    .story-toggle button.active,
-    .story-toggle button:hover {
-      border-color: transparent;
-      background: var(--accent-blue);
-      color: white;
-      box-shadow: 0 18px 45px rgba(59, 130, 246, 0.3);
-    }
-
-    .story-panels {
-      position: relative;
-    }
-
-    .story-panel {
-      display: none;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 24px;
-      padding: 3rem;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .story-panel.active {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .story-panel .panel-copy h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .story-panel .panel-copy p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.4rem;
-    }
-
-    .story-panel .panel-list {
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .story-panel .panel-list li {
-      list-style: none;
-      padding: 0.75rem 1rem;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .story-panel .panel-media {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      min-height: 320px;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
-    }
-
-    .story-panel .panel-media::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15, 11, 11, 0) 30%, rgba(15, 11, 11, 0.88) 100%);
-    }
-
-    /* Journey */
-    .journey-section {
-      padding: 4rem 0 6rem;
-    }
-
-    .journey-timeline {
-      position: relative;
-      padding-left: 1.5rem;
-      border-left: 2px solid rgba(255, 255, 255, 0.08);
-      display: grid;
-      gap: 2.5rem;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 1.5rem;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      top: 0.35rem;
-      left: -2.1rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent-pink);
-      box-shadow: 0 0 0 6px rgba(236, 72, 153, 0.2);
-    }
-
-    .timeline-label {
-      display: inline-flex;
-      font-size: 0.8rem;
-      letter-spacing: 0.12rem;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 0.6rem;
-    }
-
-    .timeline-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.45rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-body {
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* Interests */
-    .interests-section {
-      padding: 4rem 0 6rem;
-    }
-
-    .interest-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.6rem;
-    }
-
-    .interest-card {
-      position: relative;
-      padding: 2.2rem;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(255, 255, 255, 0.03);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-    }
-
-    .interest-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
-    }
-
-    .interest-card h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .interest-card p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Explore */
-    .explore-section {
-      padding: 4rem 0 6rem;
-    }
-
-    .explore-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2.2rem;
-      align-items: stretch;
-    }
-
-    .explore-card {
-      padding: 2.6rem;
-      border-radius: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(59, 130, 246, 0.08));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .explore-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.8rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .explore-card p {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.65;
-      margin-bottom: 1.5rem;
-    }
-
-    .explore-list {
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .explore-list li {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .explore-list li i {
-      color: var(--accent-teal);
-    }
-
-    .explore-media {
-      position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      background-size: cover;
-      background-position: center;
-      min-height: 340px;
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.35);
-    }
-
-    .explore-media::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15, 11, 11, 0) 30%, rgba(15, 11, 11, 0.88) 100%);
-      pointer-events: none;
-    }
-
-    /* Connect */
-    footer {
-      padding: 4rem 0 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-    }
-
-    .connect-section {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 16px;
-      padding: 3rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: transform 0.3s ease;
-    }
-
-    .connect-section:hover {
-      transform: translateY(-5px);
-    }
-
-    .connect-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .connect-description {
-      color: var(--text-secondary);
-      font-size: 1.15rem;
-      margin-bottom: 2rem;
-    }
-
-    .connect-form {
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-
-    .contact-field {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      text-align: left;
-      margin-bottom: 0.95rem;
-      gap: 0.42rem;
-    }
-
-    .contact-field span {
-      color: rgba(255, 255, 255, 0.86);
-      font-size: 0.86rem;
-      letter-spacing: 0.02em;
-      font-weight: 600;
-    }
-
-    .contact-field input,
-    .contact-field textarea {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(10, 10, 15, 0.68);
-      color: #fff;
-      padding: 0.76rem 0.85rem;
-      font-size: 0.95rem;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .contact-field input::placeholder,
-    .contact-field textarea::placeholder {
-      color: rgba(255, 255, 255, 0.45);
-    }
-
-    .contact-field input:focus,
-    .contact-field textarea:focus {
-      outline: none;
-      border-color: rgba(139, 92, 246, 0.75);
-      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.24);
-      background: rgba(12, 12, 18, 0.86);
-    }
-
-    .contact-field textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .contact-honeypot {
-      position: absolute;
-      left: -10000px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .contact-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 0.4rem;
-    }
-
-    .connect-submit {
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(59, 130, 246, 0.95));
-      color: #fff;
-      border-radius: 999px;
-      padding: 0.7rem 1.2rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .connect-submit:hover,
-    .connect-submit:focus-visible {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
-      outline: none;
-    }
-
-    .contact-status {
-      margin: 0.85rem 0 0;
-      min-height: 1.2em;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 0.9rem;
-      text-align: left;
-    }
-
-    .contact-status.error {
-      color: #fda4af;
-    }
-
-    .social-strip {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .icon-link {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.7rem;
-      transition: transform 0.3s ease, color 0.3s ease;
-      text-decoration: none;
-    }
-
-    .icon-link:hover {
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    .copyright {
-      color: #808080;
-      text-align: center;
-      font-size: 0.95rem;
-      margin-top: 2rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-      .hero-grid {
-        gap: 2.5rem;
-      }
-      .story-panel.active {
-        grid-template-columns: 1fr;
-      }
-      .story-panel .panel-media {
-        min-height: 260px;
-      }
-      .interest-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .explore-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .portrait-note {
-        bottom: -30px;
-      }
-      .stat-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .story-panel {
-        padding: 2.4rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 1.25rem;
-      }
-      .stat-grid,
-      .interest-grid {
-        grid-template-columns: 1fr;
-      }
-      .story-panel {
-        padding: 2rem;
-      }
-      .hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .hero-actions .primary,
-      .hero-actions .ghost {
-        width: 100%;
-        text-align: center;
-      }
-      .journey-timeline {
-        padding-left: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .portrait-frame {
-        max-width: 320px;
-      }
-      .story-toggle {
-        gap: 0.6rem;
-      }
-      .story-toggle button {
-        width: 100%;
-        text-align: center;
-      }
-      .connect-section {
-        padding: 2.3rem;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-    }
-  </style>
   <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="portfolio-page.css">
 </head>
-
 <body>
-  <div class="px-3 py-1 header">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
-        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
-          <img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">
-          JOSH MURZELLO
-        </a>
-        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-          <li>
-            <a href="index.html" class="nav-link">Home</a>
-          </li>
-          <li>
-            <a href="Engineering.html" class="nav-link">Engineering</a>
-          </li>
-          <li>
-            <a href="Creatives.html" class="nav-link">Creatives</a>
-          </li>
-          <li>
-            <a href="about.html" class="nav-link active">About</a>
-          </li>
-          <li>
-            <a href="blog.html" class="nav-link">Blog</a>
-          </li>
-        </ul>
-      </div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="shell nav-shell">
+      <a href="index.html" class="brand"><img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">JOSH MURZELLO</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="Engineering.html">Engineering</a>
+        <a href="Creatives.html">Creatives</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="blog.html">Blog</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <main>
-    <section class="about-hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-copy" data-aos="fade-right">
-            <span class="eyebrow">About</span>
-            <h1>Engineer, storyteller, and curious mind navigating what's next.</h1>
-            <p>
-              I'm Josh Murzello — raised in Suwanee, Georgia, now a senior at Georgia Tech pursuing mechanical engineering
-              with a computer science minor. Whether I'm prototyping new ideas (breaking things) or working on a youtube video,
-              I'm obsessed with learning by building and sharing the process along the way.
-            </p>
-            <div class="hero-actions">
-              <a href="Engineering.html" class="primary">View Engineering Work</a>
-              <a href="#journey" class="ghost">Explore My Journey</a>
-            </div>
-            <div class="hero-tags">
-              <span>Mechanical Engineer</span>
-              <span>Creative Director</span>
-              <span>Community Builder</span>
-              <span>GT Student Ambassador</span>
-            </div>
-          </div>
-          <div class="hero-portrait" data-aos="fade-left">
-            <div class="portrait-frame">
-              <img src="./images/IMG_5660.JPG" alt="Portrait of Josh Murzello">
-            </div>
-            <div class="portrait-note">
-              Currently @ Georgia Tech
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats-section">
-      <div class="container">
-        <div class="stat-grid">
-          <article class="stat-card" data-aos="fade-up" data-aos-delay="50">
-            <div class="stat-value">10+</div>
-            <div class="stat-label">Hands-on projects shipped across hardware, software, and product design.</div>
-          </article>
-          <article class="stat-card" data-aos="fade-up" data-aos-delay="120">
-            <div class="stat-value">4</div>
-            <div class="stat-label">Organizations led — from student ambassadors to nationally ranked dance teams.</div>
-          </article>
-          <article class="stat-card" data-aos="fade-up" data-aos-delay="190">
-            <div class="stat-value">∞</div>
-            <div class="stat-label">Questions asked, adventures chased, and lessons collected along the way.</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="story-section" id="story">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="title">The mix of engineering, creativity, and community.</h2>
-          <p class="subtitle">
-            Every chapter at Georgia Tech has been about blending disciplines — pairing rigorous engineering with design,
-            storytelling, and people-first leadership. Toggle through the focus areas that shape how I work.
+  <main id="main-content" class="page-main">
+    <section class="page-section">
+      <div class="page-shell split-panel">
+        <div class="card reveal">
+          <p class="eyebrow">About</p>
+          <h1 class="hero-title" style="font-size:clamp(2.6rem,2rem + 2vw,4.5rem);">Engineer, storyteller, and curious operator with one foot in the lab and one behind the camera.</h1>
+          <p class="section-copy">
+            I’m Josh Murzello, raised in Suwanee, Georgia and currently at Georgia Tech studying mechanical engineering with a computer science minor.
+            The throughline in my work is simple: I learn fastest by building, testing, and sharing what survives.
           </p>
+          <div class="chip-row" aria-label="Key roles">
+            <span class="chip">Mechanical Engineer</span>
+            <span class="chip">Creative Director</span>
+            <span class="chip">Georgia Tech Student</span>
+            <span class="chip">Community Builder</span>
+          </div>
+          <div class="button-row">
+            <a class="button" href="Engineering.html">Engineering work</a>
+            <a class="button-secondary" href="Creatives.html">Creative work</a>
+          </div>
         </div>
-
-        <div class="story-toggle" role="tablist" aria-label="About focus areas">
-          <button type="button" class="active" data-target="engineering" role="tab" aria-selected="true">Engineering</button>
-          <button type="button" data-target="creativity" role="tab" aria-selected="false">Creativity</button>
-          <button type="button" data-target="community" role="tab" aria-selected="false">Community</button>
-        </div>
-
-        <div class="story-panels">
-          <article class="story-panel active" data-panel="engineering" role="tabpanel">
-            <div class="panel-copy">
-              <h3>Engineering that starts with curiosity.</h3>
-              <p>
-                From building an electric skateboard from scratch to experimenting with brain-computer interfaces,
-                I chase projects that demand both analytical thinking and messy prototyping. I learn fastest when I'm
-                pushing components across a workbench and iterating in the real world.
-              </p>
-              <ul class="panel-list">
-                <li>Mechanical Engineering major, Computer Science minor @ Georgia Tech</li>
-                <li>Research into EEG-driven input systems and human-computer interaction</li>
-                <li>Internship experience spanning EV hardware, HVAC innovation, and manufacturing</li>
-              </ul>
-            </div>
-            <div class="panel-media" style="background-image: url('./images/engineer.png');" aria-hidden="true"></div>
-          </article>
-
-          <article class="story-panel" data-panel="creativity" role="tabpanel">
-            <div class="panel-copy">
-              <h3>Visual storytelling as a second language.</h3>
-              <p>
-                Photography and film started as a hobby and quickly became a studio. I document the energy of cities,
-                capture portraits with character, and publish edits that feel like micro films. Every creative project feeds
-                back into how I see engineering problems — both are about shaping experiences.
-              </p>
-              <ul class="panel-list">
-                <li>Built a growing visual portfolio shooting lifestyle, portrait, and travel stories</li>
-                <li>Lead Murzello Studios, collaborating with local talent on branded shoots</li>
-                <li>Mixing design, typography, and motion into digital experiences (like this site)</li>
-              </ul>
-            </div>
-            <div class="panel-media" style="background-image: url('./images/IMG_0848.png');" aria-hidden="true"></div>
-          </article>
-
-          <article class="story-panel" data-panel="community" role="tabpanel">
-            <div class="panel-copy">
-              <h3>Community keeps everything grounded.</h3>
-              <p>
-                The best projects happen with people. At Tech, that means guiding campus tours as a Student Ambassador,
-                captaining a nationally competitive Bollywood fusion dance team, and saying yes to new experiences —
-                from pickleball tournaments to spontaneous road trips.
-              </p>
-              <ul class="panel-list">
-                <li>GT Student Ambassador: connecting students, alumni, and future Yellow Jackets</li>
-                <li>Captain of a nationally ranked Bollywood fusion dance team</li>
-                <li>Always down for the next big energy moment — travel, food, skydiving, you name it</li>
-              </ul>
-            </div>
-            <div class="panel-media" style="background-image: url('./images/IMG_0754.JPG');" aria-hidden="true"></div>
-          </article>
-        </div>
+        <div class="visual-panel reveal" style="background-image:url('./images/IMG_5660.JPG'); min-height:520px;"></div>
       </div>
     </section>
 
-    <section class="journey-section" id="journey">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="title">Journey snapshots.</h2>
-          <p class="subtitle">A quick scroll through the moments and milestones that shaped how I work, create, and lead.</p>
-        </div>
-
-        <div class="journey-timeline" data-aos="fade-up" data-aos-delay="80">
-          <div class="timeline-item">
-            <span class="timeline-label">Foundation</span>
-            <div class="timeline-title">Georgia roots & endless tinkering</div>
-            <div class="timeline-body">
-              Grew up in Suwanee, GA taking things apart, building new ones, and staying outside until the lights came on.
-              That curiosity (and a few broken devices) set the tone for engineering life.
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <span class="timeline-label">Campus life</span>
-            <div class="timeline-title">Georgia Tech immersion</div>
-            <div class="timeline-body">
-              Mechanical engineering by day, creative studio by night. Along the way I discovered the thrill of
-              mixing hard tech with storytelling, and the power of communities that push you forward.
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <span class="timeline-label">Hands-on</span>
-            <div class="timeline-title">Projects that stretch disciplines</div>
-            <div class="timeline-body">
-              Electric skateboard builds, BCI prototypes, EV engineering internships, and more. Each project sharpened the
-              feedback loop between idea, build, and share.
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <span class="timeline-label">What’s next</span>
-            <div class="timeline-title">Keep exploring, keep shipping</div>
-            <div class="timeline-body">
-              Looking ahead to roles where engineering, design, and storytelling overlap — while exploring the world, meeting
-              new collaborators, and building unforgettable experiences.
-            </div>
-          </div>
-        </div>
+    <section class="page-shell">
+      <div class="metrics">
+        <article class="metric-card reveal">
+          <strong>Georgia Tech</strong>
+          <span>Mechanical engineering major with a computer science minor, shaped by projects that cross hardware and software.</span>
+        </article>
+        <article class="metric-card reveal">
+          <strong>Leadership</strong>
+          <span>Student ambassador, team captain, and someone who likes turning group energy into momentum.</span>
+        </article>
+        <article class="metric-card reveal">
+          <strong>Curiosity</strong>
+          <span>I’m at my best when I’m learning something new fast and turning it into a thing people can touch or feel.</span>
+        </article>
       </div>
     </section>
 
-    <section class="interests-section">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="title">Outside of the lab and lens.</h2>
-          <p class="subtitle">These are the spaces that recharge me and inspire the next ideas.</p>
+    <section class="page-section">
+      <div class="page-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">What Shapes The Work</p>
+          <h2>Three lanes, one operating system.</h2>
+          <p class="section-copy">Engineering, creativity, and community aren’t side quests. They feed each other.</p>
         </div>
-
-        <div class="interest-grid">
-          <article class="interest-card" data-aos="fade-up" data-aos-delay="40">
-            <h4>Movement + Competition</h4>
-            <p>Pickleball matches, late night dance rehearsals, spontaneous hikes — I chase anything that demands energy and team chemistry.</p>
-          </article>
-          <article class="interest-card" data-aos="fade-up" data-aos-delay="100">
-            <h4>Travel + Culture</h4>
-            <p>New cities, unfamiliar foods, and the stories people tell along the way. Travel keeps my creative and engineering instincts honest.</p>
-          </article>
-          <article class="interest-card" data-aos="fade-up" data-aos-delay="160">
-            <h4>Sandbox Projects</h4>
-            <p>Weekend prototyping, cinematic edits for friends, experimental product ideas — a sandbox for testing what's possible.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="explore-section">
-      <div class="container">
-        <div class="explore-grid">
-          <div class="explore-card" data-aos="fade-right">
-            <h3>Currently exploring.</h3>
-            <p>I'm focusing on opportunities that let me blend engineering rigor with creative direction. If you're building
-              something that needs both, let's talk.</p>
-            <ul class="explore-list">
-              <li><i class="fas fa-microchip"></i> Brain-computer interface experimentation & signal processing</li>
-              <li><i class="fas fa-camera"></i> Expanding Murzello Studios into full-scale brand storytelling</li>
-              <li><i class="fas fa-compass"></i> Documenting travels through photo essays and short-form film</li>
+        <div data-tab-group class="reveal">
+          <div class="story-tabs" role="tablist" aria-label="About focus areas">
+            <button type="button" class="is-active" data-tab-target="engineering" aria-selected="true">Engineering</button>
+            <button type="button" data-tab-target="creativity" aria-selected="false">Creativity</button>
+            <button type="button" data-tab-target="community" aria-selected="false">Community</button>
+          </div>
+          <div class="tab-panel is-active card" data-tab-panel="engineering" style="margin-top:1rem;">
+            <h3>Engineering that starts with real friction.</h3>
+            <p>I like projects where the problem is concrete and the solution has to earn its place: a manufacturing fixture, a mobility build, a robot, a physical interface, a better tool.</p>
+            <ul class="detail-list">
+              <li>Internship experience across EV manufacturing, HVAC R&amp;D, and production optimization.</li>
+              <li>Projects spanning BCI experiments, robotics, product design, and fabrication-driven iteration.</li>
+              <li>A bias toward prototypes that answer the important question fast.</li>
             </ul>
           </div>
-          <div class="explore-media" data-aos="fade-left" aria-hidden="true" style="background-image: url('./images/Greenville.jpg');"></div>
+          <div class="tab-panel card" data-tab-panel="creativity" style="margin-top:1rem;">
+            <h3>Creative work that sharpens the engineering eye.</h3>
+            <p>Photo and video work trained me to care about pacing, composition, attention, and emotional clarity. That changes how I design products and pages.</p>
+            <ul class="detail-list">
+              <li>Murzello Studios grew from hobby work into a real visual system and portfolio.</li>
+              <li>I’m drawn to edits and images that make technical work feel cinematic without faking it.</li>
+              <li>Storytelling is not decoration; it changes whether people stay with the work.</li>
+            </ul>
+          </div>
+          <div class="tab-panel card" data-tab-panel="community" style="margin-top:1rem;">
+            <h3>People keep the work honest.</h3>
+            <p>The strongest ideas get better when they’re shared, challenged, and built with others.</p>
+            <ul class="detail-list">
+              <li>Student ambassador work taught me how to represent a place and connect with people quickly.</li>
+              <li>Team leadership sharpened how I communicate, adapt, and keep momentum when things get messy.</li>
+              <li>Travel, movement, competition, and new environments tend to reset my perspective in useful ways.</li>
+            </ul>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Journey</p>
+          <h2>The short version of how I got here.</h2>
+        </div>
+        <div class="card reveal">
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-label">Early</span>
+              <div>
+                <h3>Suwanee, Georgia</h3>
+                <p class="timeline-copy">A lot of taking things apart, making things that barely worked, and getting hooked on the idea that problems could be built through.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <span class="timeline-label">College</span>
+              <div>
+                <h3>Georgia Tech</h3>
+                <p class="timeline-copy">The place where hardware, code, design, leadership, and storytelling all started colliding in a useful way.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <span class="timeline-label">Work</span>
+              <div>
+                <h3>Internships and shipped projects</h3>
+                <p class="timeline-copy">Factory floors, test labs, rapid prototyping, creator tooling, and independent builds that taught me what actually survives outside the idea stage.</p>
+              </div>
+            </article>
+            <article class="timeline-item">
+              <span class="timeline-label">Next</span>
+              <div>
+                <h3>More overlap, not less</h3>
+                <p class="timeline-copy">I’m looking for opportunities where engineering depth and creative clarity both matter, because that intersection is where I do my best work.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-shell grid-3">
+        <article class="card reveal">
+          <h3>Outside the lab</h3>
+          <p>Travel, dance, sports, and anything with live energy. Movement tends to generate ideas I would not get sitting still.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Current focus</h3>
+          <p>Manufacturing systems, product builds, creator tooling, and documenting the process well enough that the work carries beyond the build table.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Best-fit projects</h3>
+          <p>Teams that need someone comfortable with ambiguity, prototypes, hard constraints, and making technical work legible to other humans.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="page-shell contact-shell panel reveal">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title">If that overlap sounds useful, reach out.</h2>
+        <p class="section-copy">Internships, product work, creator collaborations, or anything else ambitious and real.</p>
+        <form class="contact-form inhouse-contact-form" data-contact-email="murzello.josh@gmail.com" novalidate>
+          <div class="form-grid">
+            <label class="contact-field">
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required placeholder="Your name">
+            </label>
+            <label class="contact-field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+            </label>
+          </div>
+          <label class="contact-field">
+            <span>Subject</span>
+            <input type="text" name="subject" required placeholder="What are you working on?">
+          </label>
+          <label class="contact-field">
+            <span>Message</span>
+            <textarea name="message" rows="5" required placeholder="Tell me a little about the project."></textarea>
+          </label>
+          <input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="button contact-submit" type="submit">Send message</button>
+          <p class="direct-email">Prefer direct email? <a href="mailto:murzello.josh@gmail.com">murzello.josh@gmail.com</a></p>
+          <p class="contact-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer class="py-5 border-top">
-    <div class="container footer-container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
-          <div class="connect-section" data-aos="fade-up">
-            <h2 class="connect-title">Let's Connect!</h2>
-            <p class="connect-description">
-              Have a project in mind or just want to chat? I'd love to hear from you.
-            </p>
-            <form class="connect-form inhouse-contact-form" novalidate>
-              <div class="form-grid">
-                <label class="contact-field">
-                  <span>Name</span>
-                  <input type="text" name="name" autocomplete="name" required placeholder="Your name">
-                </label>
-                <label class="contact-field">
-                  <span>Email</span>
-                  <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
-                </label>
-              </div>
-              <label class="contact-field">
-                <span>Subject</span>
-                <input type="text" name="subject" required placeholder="Project inquiry">
-              </label>
-              <label class="contact-field">
-                <span>Message</span>
-                <textarea name="message" rows="5" required placeholder="What's on your mind..."></textarea>
-              </label>
-              <input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <div class="contact-actions">
-                <button type="submit" class="connect-submit">Send Message</button>
-              </div>
-              <p class="contact-status" role="status" aria-live="polite"></p>
-            </form>
-          </div>
-        </div>
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <p>© 2026 Josh Murzello</p>
+      <div class="footer-links">
+        <a href="Engineering.html">Engineering</a>
+        <a href="Creatives.html">Creatives</a>
+        <a href="blog.html">Blog</a>
       </div>
-      <div class="social-strip">
-        <a class="icon-link instagram" href="https://www.instagram.com/joshmurzellostudios/" target="_blank" rel="noopener">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a class="icon-link linkedin" href="https://www.linkedin.com/in/josh-murzello/" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a class="icon-link youtube" href="https://www.youtube.com/@joshmurzello" target="_blank" rel="noopener">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a class="icon-link" href="https://vsco.co/joshmurzello/gallery" target="_blank" rel="noopener">
-          <i class="fas fa-camera-retro"></i>
-        </a>
-      </div>
-      <p class="copyright">© 2026 Josh Murzello. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof AOS !== 'undefined') {
-        AOS.init({
-          duration: 800,
-          easing: 'ease-out',
-          once: true
-        });
-      }
-
-      const header = document.getElementById('site-header');
-      if (header) {
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 50) header.classList.add('scrolled');
-          else header.classList.remove('scrolled');
-        });
-      }
-
-      const toggleButtons = document.querySelectorAll('.story-toggle button');
-      const panels = document.querySelectorAll('.story-panel');
-
-      toggleButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = btn.getAttribute('data-target');
-          toggleButtons.forEach(b => {
-            b.classList.toggle('active', b === btn);
-            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-          });
-          panels.forEach(panel => {
-            panel.classList.toggle('active', panel.getAttribute('data-panel') === target);
-          });
-        });
-      });
-
-      // Temporary cursor debug helper: append ?cursorDebug=1 to URL
-      if (window.location.search.includes('cursorDebug=1')) {
-        let lastCursorNoneElement = null;
-        document.addEventListener('mousemove', (e) => {
-          const el = document.elementFromPoint(e.clientX, e.clientY);
-          if (!el) return;
-          const styles = window.getComputedStyle(el);
-          console.log('[cursor-debug] elementFromPoint', el, {
-            cursor: styles.cursor,
-            pointerEvents: styles.pointerEvents,
-            zIndex: styles.zIndex,
-            position: styles.position
-          });
-
-          if (styles.cursor === 'none' && el !== lastCursorNoneElement) {
-            console.warn('[cursor-debug] cursor:none on element', el);
-            lastCursorNoneElement = el;
-          } else if (styles.cursor !== 'none') {
-            lastCursorNoneElement = null;
-          }
-
-          const bodyCursor = window.getComputedStyle(document.body).cursor;
-          const htmlCursor = window.getComputedStyle(document.documentElement).cursor;
-          if (bodyCursor === 'none' || htmlCursor === 'none') {
-            console.warn('[cursor-debug] page-level cursor:none', { bodyCursor, htmlCursor });
-          }
-        });
-      }
-    });
-  </script>
-  <script>
-    (function initInhouseContactForm() {
-      const form = document.querySelector('.inhouse-contact-form');
-      if (!form) return;
-
-      const status = form.querySelector('.contact-status');
-      const CONTACT_EMAIL = 'murzello.josh@gmail.com';
-
-      const setStatus = (message, isError = false) => {
-        if (!status) return;
-        status.textContent = message;
-        status.classList.toggle('error', Boolean(isError));
-      };
-
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const honeypot = form.querySelector('input[name="website"]');
-        if (honeypot && honeypot.value.trim()) return;
-
-        const formData = new FormData(form);
-        const name = String(formData.get('name') || '').trim();
-        const email = String(formData.get('email') || '').trim();
-        const subject = String(formData.get('subject') || '').trim();
-        const message = String(formData.get('message') || '').trim();
-
-        if (!name || !email || !subject || !message) {
-          setStatus('Please fill out all fields before sending.', true);
-          return;
-        }
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-          setStatus('Please provide a valid email address.', true);
-          return;
-        }
-
-        const mailSubject = encodeURIComponent(subject);
-        const mailBody = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-        );
-
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
-        setStatus('Opening your email app...');
-        form.reset();
-      });
-    })();
-  </script>
+  <script src="portfolio-page.js" defer></script>
   <script src="site-header.js" defer></script>
 </body>
-
 </html>

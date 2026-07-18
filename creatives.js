@@ -12,8 +12,8 @@ const PROJECTS = [
     summary: "Cinematic build documentation from prototype sketches to final assembly, designed to make engineering feel human and high-energy.",
     story: "This series documents real build sessions: fabrication, wiring, assembly, and iteration. The visual approach mixes tight detail shots and process storytelling so every project feels like both an engineering log and a short film.",
     links: [
-      { label: "Watch Cut (placeholder)", url: "#" },
-      { label: "Behind the Scenes (placeholder)", url: "#" }
+      { label: "Watch on YouTube", url: "https://www.youtube.com/@joshmurzello" },
+      { label: "View Creative Hub", url: "Creatives.html" }
     ],
     media: [
       {
@@ -42,7 +42,7 @@ const PROJECTS = [
     thumbAlt: "Portrait close-up with warm cinematic color grade",
     summary: "Portrait sessions where expression and color grading are treated as one system.",
     story: "This project pushed me to art-direct location, wardrobe, and grade as one composition. Every frame is designed for emotional clarity first.",
-    links: [{ label: "Full Set (placeholder)", url: "#" }],
+    links: [{ label: "Studio Instagram", url: "https://www.instagram.com/joshmurzellostudios/" }],
     media: [
       { type: "image", src: "./images/phillu good closeup.jpg", alt: "Portrait close-up" },
       { type: "image", src: "./images/DSC00008.jpg", alt: "Natural light portrait" },
@@ -61,10 +61,9 @@ const PROJECTS = [
     thumbAlt: "Studio visual identity moodboard",
     summary: "A visual system for Murzello Studios: tone, type, motion, and templates.",
     story: "This is where creative ops meets style. The objective was consistency without losing personality across social cuts, thumbnails, and campaign posts.",
-    links: [{ label: "Brand Deck (placeholder)", url: "#" }],
+    links: [],
     media: [
-      { type: "image", src: "./images/IMG_0848.png", alt: "Identity reference board" },
-      { type: "placeholder", label: "Motion styleframes placeholder" }
+      { type: "image", src: "./images/IMG_0848.png", alt: "Identity reference board" }
     ]
   },
   {
@@ -79,11 +78,10 @@ const PROJECTS = [
     thumbAlt: "3D printed object displayed with dramatic lighting",
     summary: "Product form studies where mechanical constraints become visual language.",
     story: "I approached this like a concept album: each printed iteration tells a chapter about utility, silhouette, and tactility.",
-    links: [{ label: "Process Notes (placeholder)", url: "#" }],
+    links: [{ label: "MakerWorld Profile", url: "https://makerworld.com/en/@jmurzello" }],
     media: [
       { type: "image", src: "./images/A1picture.jpg", alt: "3D print prototype" },
-      { type: "image", src: "./images/toothbrush holder.png", alt: "Prototype variation" },
-      { type: "placeholder", label: "Turntable video placeholder" }
+      { type: "image", src: "./images/toothbrush holder.png", alt: "Prototype variation" }
     ]
   },
   {
@@ -98,7 +96,7 @@ const PROJECTS = [
     thumbAlt: "Greenville skyline during golden hour",
     summary: "A warm-toned travel series focused on architecture and motion.",
     story: "Shot over one weekend with a simple brief: no staged scenes, only honest city rhythm.",
-    links: [{ label: "Gallery (placeholder)", url: "#" }],
+    links: [{ label: "VSCO Gallery", url: "https://vsco.co/joshmurzello/gallery" }],
     media: [
       { type: "image", src: "./images/Greenville.jpg", alt: "Greenville skyline" },
       { type: "image", src: "./images/DSC00122.jpg", alt: "Street perspective" }
@@ -116,46 +114,10 @@ const PROJECTS = [
     thumbAlt: "Band portrait in performance setting",
     summary: "Cover, social, and promo visual assets for live music rollout.",
     story: "The visual objective was gritty but polished. We used high-contrast grading and constrained color accents.",
-    links: [{ label: "Campaign Assets (placeholder)", url: "#" }],
+    links: [],
     media: [
       { type: "image", src: "./images/DSC00102.jpg", alt: "Band group shot" },
       { type: "image", src: "./images/DSC00038.jpg", alt: "Performance-adjacent atmosphere" }
-    ]
-  },
-  {
-    id: "build-log-cuts",
-    title: "Build Log Cuts",
-    year: "2025",
-    role: "Shooter, Editor",
-    tools: ["Premiere Pro", "After Effects"],
-    categories: ["video", "3d"],
-    featured: false,
-    thumbnail: "./images/skateboard.jpg",
-    thumbAlt: "Engineering build clip keyframe",
-    summary: "Short-form cuts documenting builds from sketch to final prototype.",
-    story: "I designed a repeatable edit system: hooks at 2 seconds, tactile closeups, and process overlays for clarity.",
-    links: [{ label: "Reel (placeholder)", url: "#" }],
-    media: [
-      { type: "image", src: "./images/skateboard.jpg", alt: "Build process hero frame" },
-      { type: "placeholder", label: "Short-form reel embed placeholder" }
-    ]
-  },
-  {
-    id: "signal-visual-study",
-    title: "Signal Visual Study",
-    year: "2026",
-    role: "Experiment Lead",
-    tools: ["TouchDesigner", "Python", "After Effects"],
-    categories: ["experiments", "design"],
-    featured: false,
-    thumbnail: "./images/mars.png",
-    thumbAlt: "Abstract signal visual experimentation",
-    summary: "Generative visual experiments inspired by bio-signal patterns.",
-    story: "A bridge between engineering and art direction: translating noisy data into visual rhythm.",
-    links: [{ label: "Prototype Notes (placeholder)", url: "#" }],
-    media: [
-      { type: "image", src: "./images/mars.png", alt: "Generative visual reference" },
-      { type: "placeholder", label: "Interactive demo placeholder" }
     ]
   }
 ];
@@ -167,7 +129,7 @@ HOW TO ADD A NEW PROJECT
 3. Add categories from: "video", "photo", "design", "3d", "experiments".
 4. Set featured: true to show in Featured Works (max recommended: 6).
 5. Update thumbnail and media paths (use local /images/... files).
-6. Add links (or keep placeholder # links while drafting).
+6. Add only real links; use an empty array if nothing public should appear yet.
 7. Save and refresh: cards + modal are generated automatically.
 */
 
@@ -213,7 +175,7 @@ function createWorkCard(project, large = false) {
 
   button.innerHTML = `
     <div class="media">
-      <img src="${project.thumbnail}" alt="${project.thumbAlt}">
+      <img src="${project.thumbnail}" alt="${project.thumbAlt}" loading="lazy" decoding="async">
     </div>
     <div class="card-body">
       <h3>${project.title}</h3>
@@ -331,6 +293,8 @@ function renderModalMedia(project) {
       const img = document.createElement("img");
       img.src = asset.src;
       img.alt = asset.alt || "Project media";
+      img.loading = "lazy";
+      img.decoding = "async";
       figure.appendChild(img);
     } else if (asset.type === "embed") {
       const iframe = document.createElement("iframe");
@@ -340,11 +304,6 @@ function renderModalMedia(project) {
       iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       iframe.allowFullscreen = true;
       figure.appendChild(iframe);
-    } else {
-      const box = document.createElement("div");
-      box.className = "media-placeholder";
-      box.textContent = asset.label || "Media placeholder";
-      figure.appendChild(box);
     }
 
     modalRefs.media.appendChild(figure);
@@ -353,6 +312,11 @@ function renderModalMedia(project) {
 
 function renderModalLinks(project) {
   modalRefs.links.innerHTML = "";
+  if (!project.links.length) {
+    modalRefs.links.hidden = true;
+    return;
+  }
+  modalRefs.links.hidden = false;
   project.links.forEach((entry) => {
     const link = document.createElement("a");
     link.href = entry.url;
@@ -435,28 +399,6 @@ function initModal() {
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
 }
 
-function initHeaderAndMenu() {
-  const header = document.getElementById("site-header");
-  const nav = document.getElementById("site-nav");
-  const menuBtn = document.querySelector(".menu-toggle");
-
-  const updateHeader = () => {
-    if (!header) return;
-    header.style.borderColor = window.scrollY > 40 ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.08)";
-  };
-
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
-
-  if (menuBtn && nav) {
-    menuBtn.addEventListener("click", () => {
-      const open = nav.dataset.open === "true";
-      nav.dataset.open = open ? "false" : "true";
-      menuBtn.setAttribute("aria-expanded", open ? "false" : "true");
-    });
-  }
-}
-
 function initReveals() {
   const revealItems = document.querySelectorAll(".reveal");
   if (!revealItems.length) return;
@@ -521,7 +463,6 @@ function init() {
   renderFeatured();
   renderGallery("all");
   initModal();
-  initHeaderAndMenu();
   initFilters();
   initHeroParallax();
   initReveals();

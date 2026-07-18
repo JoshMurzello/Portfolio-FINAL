@@ -341,6 +341,7 @@ section {
   position: relative;
   display: inline-grid;
   grid-auto-flow: column;
+  grid-auto-columns: max-content;
   gap: 0.35rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -348,6 +349,8 @@ section {
   padding: 0.35rem;
   max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
 }
 
 .filter-glide {
@@ -377,6 +380,7 @@ section {
   font-weight: 700;
   cursor: pointer;
   transition: color 180ms ease;
+  white-space: nowrap;
 }
 
 .filter-chip.is-active,

@@ -1,207 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engineering</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/style.css">
+  <title>3D Printing Product Series | Josh Murzello</title>
+  <meta name="description" content="Josh Murzello's 3D printing product series covering useful printed objects, CAD iteration, prototype testing, printability, and maker distribution.">
+  <link rel="canonical" href="https://www.joshmurzello.com/3Dprint.html">
+  <meta property="og:title" content="3D Printing Product Series | Josh Murzello">
+  <meta property="og:description" content="Josh Murzello's 3D printing product series covering useful printed objects, CAD iteration, prototype testing, printability, and maker distribution.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joshmurzello.com/3Dprint.html">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/A1picture.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3D Printing Product Series | Josh Murzello">
+  <meta name="twitter:description" content="Josh Murzello's 3D printing product series covering useful printed objects, CAD iteration, prototype testing, printability, and maker distribution.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/A1picture.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <style>
-    body {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
-    }
-
-    .header {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      background-color: rgb(15, 11, 11);
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-link {
-      font-family: 'Teko', sans-serif;
-      font-size: 20px;
-      color: white;
-    }
-
-    .brand {
-      font-family: 'Teko', sans-serif;
-      font-size: 27px;
-      color: white;
-    }
-
-    .header ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      margin-top: 200px;
-    }
-
-    .text-body-emphasis {
-      color: white;
-      font-family: 'Londrina Outline', cursive;
-      font-size: 230px;
-      text-shadow: -1px 6px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
-      text-align: center;
-      letter-spacing: 10px;
-      margin-bottom: 0px;
-    }
-
-    .lead {
-      color: white;
-      font-family: Noto Sans Japanese;
-      font-size: 35px;
-      margin-left: 100px;
-    }
-
-    .last {
-      color: white;
-      font-family: Roboto, sans-serif;
-      font-size: 22px;
-    }
-
-    .project_title {
-      color: white;
-      font-size: 100px;
-      font-family: Teko;
-    }
-
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Gallery Section */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .gallery-item {
-      background-color: #f4f4f4;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .gallery-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .gallery-item h3 {
-      margin-top: 15px;
-      font-size: 24px;
-      font-family: 'Teko', sans-serif;
-      color: rgb(15, 11, 11);
-    }
-
-    .gallery-item p {
-      margin: 10px 0;
-      font-size: 16px;
-      color: #333;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="portfolio-page.css">
 </head>
-
 <body>
-  <div class="px-3 py-1 header">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="margin-left: 100px;">
-        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none brand">
-          JOSH MURZELLO
-        </a>
-        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-          <li>
-            <a href="index.html" class="nav-link">Home</a>
-          </li>
-          <li>
-            <a href="Engineering.html" class="nav-link">Engineering</a>
-          </li>
-          <li>
-            <a href="Creatives.html" class="nav-link">Creatives</a>
-          </li>
-          <li>
-            <a href="about.html" class="nav-link">About</a>
-          </li>
-          <li>
-            <a href="blog.html" class="nav-link">Blog</a>
-          </li>
-        </ul>
+  <header class="site-header" id="site-header">
+    <div class="shell nav-shell">
+      <a href="index.html" class="brand"><img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">JOSH MURZELLO</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="Engineering.html" aria-current="page">Engineering</a>
+        <a href="Creatives.html">Creatives</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article-layout">
+    <a class="back-link" href="Engineering.html">Back to engineering</a>
+    <p class="eyebrow">Project Series • Product Design • Rapid Prototyping</p>
+    <h1 class="hero-title" style="font-size:clamp(2.6rem,2rem + 2vw,4.2rem);">3D Printing Product Series</h1>
+    <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
+      A running collection of functional prints designed to solve small everyday problems with clean geometry, quick iteration, and real usability.
+    </p>
+    <div class="button-row" style="margin-top:1.25rem;">
+      <a class="button-secondary" href="https://makerworld.com/en/@jmurzello" target="_blank" rel="noopener">Open MakerWorld profile</a>
+    </div>
+
+    <section class="page-section tight">
+      <div class="grid-2">
+        <article class="feature-card panel">
+          <div class="feature-media" style="background-image:url('./images/toothbrush with brush.png');"></div>
+          <div class="feature-body">
+            <h3>Toothbrush Holder</h3>
+            <p>A compact bathroom organizer that leans into utility without feeling generic.</p>
+          </div>
+        </article>
+        <article class="feature-card panel">
+          <div class="feature-media" style="background-image:url('./images/spiral holder with items.png');"></div>
+          <div class="feature-body">
+            <h3>Spiral Storage Container</h3>
+            <p>A playful but practical form study for desktop or shelf storage.</p>
+          </div>
+        </article>
+        <article class="feature-card panel">
+          <div class="feature-media" style="background-image:url('./images/guitar holder with guitar.png');"></div>
+          <div class="feature-body">
+            <h3>Guitar Holder</h3>
+            <p>A wall-ready holster built around fit, support, and a cleaner footprint than off-the-shelf hardware.</p>
+          </div>
+        </article>
+        <article class="feature-card panel">
+          <div class="feature-media" style="background-image:url('./images/phone shower holder w phone better.png');"></div>
+          <div class="feature-body">
+            <h3>Phone Shower Holder</h3>
+            <p>A niche but honest product: protect the phone, amplify the sound, and make the routine feel designed.</p>
+          </div>
+        </article>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="px-4 pt- my-5 border-bottom" style="background-color:  rgb(15, 11, 11)">
-    <h1 class="display-4 fw-bold text-body-emphasis" style="font-family: Teko; color: white;">3D Print Portfolio</h1>
-    <div class="col-lg-6">
-      <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">A gallery through my 3D Prints
-        <br>
-        <a href="https://makerworld.com/en/@jmurzello">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-3" style="color: white; border-color: white;">Design Link</button>
-        </a>
-      </p>
-    </div>
-  </div>
+    <article class="article-body">
+      <h2>Why this series matters</h2>
+      <p>I treat 3D printing as a fast product lab. The interesting part is not only the print itself. It is the loop between problem, geometry, first version, feedback, and the next version that gets sharper. These objects come from noticing friction in ordinary life and deciding it should be fixed with something specific instead of a generic workaround.</p>
 
-  <!-- Gallery Section -->
-  <div class="gallery">
-    <div class="gallery-item">
-      <img src="images/toothbrush with brush.png" alt="3D Print 1">
-      <h3>Toothbrush Holder</h3>
-      <p>Toothbrush holder with fun message</p>
-    </div>
+      <h2>What the workflow looks like</h2>
+      <ul>
+        <li>Find a real use case with clear constraints.</li>
+        <li>Model the first version quickly in CAD.</li>
+        <li>Print early, evaluate fit and failure modes, then adjust.</li>
+        <li>Keep simplifying until the form feels obvious and the part earns repeat use.</li>
+      </ul>
 
-    <div class="gallery-item">
-      <img src="images/spiral holder with items.png" alt="3D Print 2">
-      <h3>Spiral design storage container</h3>
-      <p>Container for various items with spiral design</p>
-    </div>
-
-    <div class="gallery-item">
-      <img src="images/guitar holder with guitar.png" alt="3D Print 3">
-      <h3>Guitar Holder</h3>
-      <p>3D Printed guitar holster for fender stratocaster</p>
-    </div>
-
-    <div class="gallery-item">
-      <img src="images/phone shower holder w phone better.png" alt="3D Print 4">
-      <h3>Phone Shower Holder</h3>
-      <p>Holster for a phone to put in shower. Avoids water, and amplifies sound.</p>
-    </div>
-    <div class="gallery-item">
-        <img src="images/pickle with racket.png" alt="3D Print 3">
-        <h3>Pickleball Paddle Holster</h3>
-        <p>Pickleball paddle holsters to hang paddles up</p>
+      <h2>Proof artifacts</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Iteration photos</h3>
+          <p>Show first print, fit issue, revised geometry, and final product shot for the highest-signal objects.</p>
+        </article>
+        <article class="card">
+          <h3>Print specs</h3>
+          <p>List material, layer height, support strategy, orientation, print time, and the failure mode each setting avoids.</p>
+        </article>
+        <article class="card">
+          <h3>Distribution path</h3>
+          <p>Connect the finished product cards to MakerWorld, STL Drops, or a downloadable file once licensing and notes are ready.</p>
+        </article>
       </div>
-  
-      
-  </div>
 
+      <h2>What I’m optimizing for</h2>
+      <p>Good prints are not just printable. They are easy to understand, easy to live with, and honest about what 3D printing is best at: speed, customization, and tight problem fit. The series helped sharpen my product instincts around ergonomics, assembly, print orientation, visible surfaces, and how small details change whether an object feels intentional.</p>
+    </article>
+  </main>
+
+  <script src="portfolio-page.js" defer></script>
   <script src="site-header.js" defer></script>
 </body>
-
 </html>

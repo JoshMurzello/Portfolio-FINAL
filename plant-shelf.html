@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D Printed Plant Shelf | Josh Murzello</title>
+  <meta name="description" content="Engineering project page for Josh Murzello's 3D printed plant shelf, covering a lightweight tack-mounted shelf designed for small plants and decor.">
+  <link rel="canonical" href="https://www.joshmurzello.com/plant-shelf.html">
+  <meta property="og:title" content="3D Printed Plant Shelf | Josh Murzello">
+  <meta property="og:description" content="Engineering project page for Josh Murzello's 3D printed plant shelf, covering a lightweight tack-mounted shelf designed for small plants and decor.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joshmurzello.com/plant-shelf.html">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3D Printed Plant Shelf | Josh Murzello">
+  <meta name="twitter:description" content="Engineering project page for Josh Murzello's 3D printed plant shelf, covering a lightweight tack-mounted shelf designed for small plants and decor.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     :root {
@@ -90,7 +101,8 @@
       list-style: none;
     }
 
-    .cad-links a {
+    .cad-links a,
+    .cad-file-status {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
@@ -100,6 +112,11 @@
       border-radius: 10px;
       padding: 0.6rem 0.75rem;
       width: fit-content;
+    }
+
+    .cad-file-status {
+      color: var(--muted);
+      opacity: 0.78;
     }
 
     .cad-links a:hover,
@@ -161,9 +178,9 @@
     <section class="section-card" aria-labelledby="cad-files">
       <h2 id="cad-files">CAD Files</h2>
       <ul class="cad-links">
-        <li><a href="#" aria-disabled="true">Shelf Main Body (.step)</a></li>
-        <li><a href="#" aria-disabled="true">Mounting Bracket (.step)</a></li>
-        <li><a href="#" aria-disabled="true">Fusion 360 Source (.f3d)</a></li>
+        <li><span class="cad-file-status">Shelf Main Body (.step) - file packaging needed</span></li>
+        <li><span class="cad-file-status">Mounting Bracket (.step) - file packaging needed</span></li>
+        <li><span class="cad-file-status">Fusion 360 Source (.f3d) - file packaging needed</span></li>
       </ul>
     </section>
   </main>

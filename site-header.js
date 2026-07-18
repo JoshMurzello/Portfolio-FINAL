@@ -13,8 +13,34 @@
   }
 
   function detectCurrent(href, page) {
+    const pageName = page.toLowerCase();
     if (href === "index.html") return page === "index.html" || page === "";
-    return page.toLowerCase() === href.toLowerCase();
+    if (
+      href === "Engineering.html" &&
+      [
+        "tesla.html",
+        "lg.html",
+        "price.html",
+        "bci.html",
+        "sentry-rover.html",
+        "3dprint.html",
+        "camera-storage.html",
+        "self-balancing-robot.html",
+        "spacex.html",
+        "cyclodial-actuator.html",
+        "pomodoro.html",
+        "stl-drops.html",
+        "plant-shelf.html",
+        "dinkrack.html",
+        "eboard.html",
+        "mars.html",
+        "me2110.html"
+      ].includes(pageName)
+    ) {
+      return true;
+    }
+    if (href === "Creatives.html" && pageName === "creatives-clean.html") return true;
+    return pageName === href.toLowerCase();
   }
 
   function headerMarkup() {

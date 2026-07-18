@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision-Guided Sentry Rover | Josh Murzello</title>
+  <meta name="description" content="Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.">
+  <link rel="canonical" href="https://www.joshmurzello.com/sentry-rover.html">
+  <meta property="og:title" content="Vision-Guided Sentry Rover | Josh Murzello">
+  <meta property="og:description" content="Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joshmurzello.com/sentry-rover.html">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vision-Guided Sentry Rover | Josh Murzello">
+  <meta name="twitter:description" content="Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="portfolio-page.css">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="shell nav-shell">
+      <a href="index.html" class="brand"><img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">JOSH MURZELLO</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="Engineering.html" aria-current="page">Engineering</a>
+        <a href="Creatives.html">Creatives</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article-layout">
+    <a class="back-link" href="Engineering.html">Back to engineering</a>
+    <p class="eyebrow">Project • Robotics • Embedded Vision</p>
+    <h1 class="hero-title" style="font-size:clamp(2.6rem,2rem + 2vw,4.2rem);">Vision-Guided Sentry Rover</h1>
+    <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
+      A four-wheel robotics prototype that used a Raspberry Pi, Pi Camera 3, ToF distance sensing, and an STM32 control layer to track a person, keep them centered, hold a target distance, and trigger a foam-ball flywheel response.
+    </p>
+    <div class="article-hero-image" style="margin-top:2rem; background-image:linear-gradient(180deg, rgba(7,10,16,0.24), rgba(7,10,16,0.54)), url('./images/optimized/engineer-cover-1800.jpg');"></div>
+
+    <section class="page-section tight">
+      <div class="grid-3">
+        <article class="card">
+          <p class="eyebrow">Role</p>
+          <h3>System builder</h3>
+          <p>I integrated the perception stack, embedded controller, drivetrain behavior, and launch mechanism into one closed-loop prototype.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Stack</p>
+          <h3>Raspberry Pi, STM32, sensors</h3>
+          <p>The Pi handled camera input and high-level tracking while the STM32 powered low-level motor and actuator responses.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Goal</p>
+          <h3>Track and respond</h3>
+          <p>The rover needed to identify a person, maintain a useful following distance, center its target, and react when the target stopped moving.</p>
+        </article>
+      </div>
+    </section>
+
+    <article class="article-body">
+      <h2>Project overview</h2>
+      <p>This project was built around a small four-wheel car platform with an embedded perception and actuation stack. A Raspberry Pi paired with a Pi Camera 3 handled human tracking, while a time-of-flight sensor added distance awareness so the robot could keep the person within a defined range instead of only chasing a visual target.</p>
+
+      <p>The Pi sent processed tracking and distance information to an STM32, which translated those commands into the appropriate drivetrain response. The rover adjusted its motion to keep the human centered in frame and within a specific distance band. When the person was close enough and no longer moving, the system triggered a flywheel setup that fired foam balls toward the target.</p>
+
+      <h2>System architecture</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Perception</h3>
+          <p>The Raspberry Pi and Pi Camera 3 identified and tracked the human target, producing position information for centering behavior.</p>
+        </article>
+        <article class="card">
+          <h3>Ranging</h3>
+          <p>A ToF sensor supplied distance feedback so the rover could decide whether to advance, hold, or back off from the target.</p>
+        </article>
+        <article class="card">
+          <h3>Control</h3>
+          <p>The STM32 handled the physical response layer, including drivetrain commands and the foam-ball flywheel sequence.</p>
+        </article>
+      </div>
+
+      <h2>Proof artifacts</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Architecture diagram</h3>
+          <p>Show camera input, target position, ToF distance, Pi processing, STM32 command handoff, drivetrain output, and launcher state.</p>
+        </article>
+        <article class="card">
+          <h3>Behavior table</h3>
+          <p>Document the state machine for searching, centering, following, holding distance, stopping, and triggering the flywheel response.</p>
+        </article>
+        <article class="card">
+          <h3>Test clips</h3>
+          <p>Add short demo cuts for tracking, distance correction, target stop detection, and recovery after a launch sequence.</p>
+        </article>
+      </div>
+
+      <h2>What made it interesting</h2>
+      <p>The core challenge was making separate subsystems behave like one robot. Vision tracking alone was not enough because the car also needed range context, motion decisions, and a reliable handoff from the Raspberry Pi to the STM32. The project forced the software and hardware decisions to meet in real time: image position, measured distance, target motion, motor control, and launcher timing all had to line up.</p>
+
+      <p>The flywheel mechanism added a useful mechanical layer to the project. It turned the rover from a pure follower into a robot with a conditional response, which made the state machine more interesting and made timing, safety, and repeatability matter more.</p>
+
+      <h2>What I took away</h2>
+      <ul>
+        <li>Robot behavior improves when visual tracking is paired with independent distance sensing.</li>
+        <li>Splitting perception and actuation across a Raspberry Pi and STM32 creates a cleaner control architecture.</li>
+        <li>Mechanical outputs are most reliable when the software state machine accounts for timing and physical recovery between actions.</li>
+      </ul>
+    </article>
+  </main>
+
+  <script src="portfolio-page.js" defer></script>
+  <script src="site-header.js" defer></script>
+</body>
+</html>

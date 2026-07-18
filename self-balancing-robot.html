@@ -4,13 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self Balancing Robot | Josh Murzello</title>
+  <meta name="description" content="Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.">
+  <link rel="canonical" href="https://www.joshmurzello.com/self-balancing-robot.html">
+  <meta property="og:title" content="Self Balancing Robot | Josh Murzello">
+  <meta property="og:description" content="Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joshmurzello.com/self-balancing-robot.html">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Self Balancing Robot | Josh Murzello">
+  <meta name="twitter:description" content="Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="portfolio-page.css">
 </head>
-<body style="margin:0;background:#0b0b0d;color:#f5f5f4;font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh;">
-  <main style="text-align:center;padding:2rem;">
-    <h1 style="margin:0 0 0.6rem;">Self Balancing Robot</h1>
-    <p style="margin:0;opacity:0.8;">Content coming soon.</p>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <main id="main-content" class="article-layout">
+    <a class="back-link" href="Engineering.html">Back to engineering</a>
+    <p class="eyebrow">Project • Controls • Robotics</p>
+    <h1 class="hero-title" style="font-size:clamp(2.4rem,1.8rem + 2vw,4rem);">Self Balancing Robot</h1>
+    <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
+      A control-system prototype focused on keeping an unstable two-wheel platform upright using sensor feedback, motor response, and fast iteration.
+    </p>
+    <div class="article-hero-image" style="margin-top:2rem; background-image:linear-gradient(180deg, rgba(7,10,16,0.2), rgba(7,10,16,0.58)), url('./images/optimized/engineer-cover-1800.jpg');"></div>
+
+    <section class="page-section tight">
+      <div class="grid-3">
+        <article class="card">
+          <p class="eyebrow">Core Loop</p>
+          <h3>Sense, estimate, correct</h3>
+          <p>The project centers on reading tilt state, estimating the robot's orientation, and converting error into motor correction.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Learning Goal</p>
+          <h3>Controls under real friction</h3>
+          <p>The interesting work is tuning behavior around battery sag, drivetrain backlash, floor variation, and sensor noise.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Next Pass</p>
+          <h3>Document the tuning</h3>
+          <p>The next page upgrade should show the control diagram, PID changes, failure modes, and short balancing clips.</p>
+        </article>
+      </div>
+    </section>
+
+    <article class="article-body">
+      <h2>What this project proves</h2>
+      <p>Self-balancing robots are useful because they expose the full stack of a controls problem quickly. A small mechanical change can force a software retune, and a software assumption shows up immediately as oscillation, drift, or a fall.</p>
+      <ul>
+        <li>Mechanical layout affects controller stability just as much as the code.</li>
+        <li>Fast loop timing matters more than a visually polished enclosure in early testing.</li>
+        <li>Good demos need the failed tuning runs too, because that is where the engineering judgment is visible.</li>
+      </ul>
+    </article>
   </main>
   <script src="site-header.js" defer></script>
 </body>
