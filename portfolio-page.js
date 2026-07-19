@@ -252,10 +252,9 @@
 
     const items = buildWallItems.filter((item) => filter === "all" || item.category === filter);
     wall.innerHTML = items.map((item) => {
-      const sizeClass = item.size === "wide" ? " is-wide" : item.size === "tall" ? " is-tall" : "";
       return `
-        <a class="build-tile${sizeClass}" href="${item.href}">
-          <span class="build-tile-media" style="background-image:url('${item.image}');"></span>
+        <a class="build-tile" href="${item.href}">
+          <span class="build-tile-media" style="background-image:url('${item.image}');" aria-hidden="true"></span>
           <span class="build-tile-body">
             <span class="build-tile-label">${item.label}</span>
             <h3>${item.title}</h3>
