@@ -216,21 +216,21 @@
       }
       node.animate(
         [
-          { opacity: 1, transform: "translateY(0)" },
-          { opacity: 0, transform: "translateY(-0.4rem)" }
+          { opacity: 1 },
+          { opacity: 0 }
         ],
-        { duration: 160, easing: "ease-out" }
+        { duration: 180, easing: "ease-out" }
       ).onfinish = () => {
         node.textContent = words[index];
         node.animate(
           [
-            { opacity: 0, transform: "translateY(0.4rem)" },
-            { opacity: 1, transform: "translateY(0)" }
+            { opacity: 0 },
+            { opacity: 1 }
           ],
-          { duration: 180, easing: "ease-out" }
+          { duration: 220, easing: "ease-out" }
         );
       };
-    }, 2100);
+    }, 3600);
   }
 
   function initCardLight() {

@@ -151,8 +151,8 @@ a {
 .hero-gradient {
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(6, 8, 12, 0.24) 0%, rgba(7, 9, 14, 0.52) 42%, rgba(8, 9, 13, 0.88) 100%),
-    radial-gradient(circle at 22% 20%, rgba(118, 182, 255, 0.2), transparent 36%);
+    linear-gradient(180deg, rgba(6, 8, 12, 0.28) 0%, rgba(7, 9, 14, 0.58) 46%, rgba(8, 9, 13, 0.9) 100%),
+    radial-gradient(circle at 22% 20%, rgba(118, 182, 255, 0.11), transparent 38%);
 }
 
 .hero-noise {
@@ -167,20 +167,26 @@ a {
   --hero-y: 48%;
   z-index: 2;
   overflow: hidden;
-  opacity: 0.86;
+  opacity: 0.38;
   background:
-    linear-gradient(rgba(118, 182, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(118, 182, 255, 0.1) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(circle at 38% 46%, black 0%, black 38%, transparent 72%);
+    linear-gradient(rgba(209, 223, 243, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209, 223, 243, 0.065) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(circle at 39% 46%, black 0%, black 34%, transparent 76%);
 }
 
 .hero-blueprint::before {
   content: "";
   position: absolute;
-  inset: -30%;
-  background: conic-gradient(from 90deg at var(--hero-x) var(--hero-y), transparent 0 25%, rgba(51, 212, 255, 0.24), transparent 52%);
-  animation: hero-scan 10s linear infinite;
+  left: var(--hero-x);
+  top: var(--hero-y);
+  width: 22rem;
+  height: 22rem;
+  border: 1px solid rgba(209, 223, 243, 0.18);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(209, 223, 243, 0.1), transparent 62%);
+  transform: translate(-50%, -50%);
+  transition: left 180ms ease, top 180ms ease;
 }
 
 .hero-blueprint::after {
@@ -190,9 +196,9 @@ a {
   right: 0;
   top: var(--hero-y);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(51, 212, 255, 0.56), transparent);
-  box-shadow: 0 0 24px rgba(51, 212, 255, 0.35);
+  background: linear-gradient(90deg, transparent, rgba(209, 223, 243, 0.2), transparent);
   transform: translateY(-50%);
+  transition: top 180ms ease;
 }
 
 .blueprint-line,
@@ -208,8 +214,7 @@ a {
   right: 14%;
   top: 33%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(211, 155, 100, 0.72), transparent);
-  animation: measurement-drift 8s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(209, 223, 243, 0.22), transparent);
 }
 
 .line-y {
@@ -217,14 +222,12 @@ a {
   bottom: 12%;
   left: 72%;
   width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(118, 182, 255, 0.72), transparent);
-  animation: measurement-drift 9s ease-in-out infinite reverse;
+  background: linear-gradient(180deg, transparent, rgba(209, 223, 243, 0.22), transparent);
 }
 
 .blueprint-ring {
-  border: 1px solid rgba(118, 182, 255, 0.32);
+  border: 1px solid rgba(209, 223, 243, 0.16);
   border-radius: 999px;
-  box-shadow: inset 0 0 28px rgba(118, 182, 255, 0.08), 0 0 30px rgba(118, 182, 255, 0.08);
 }
 
 .ring-a {
@@ -232,7 +235,6 @@ a {
   height: 210px;
   left: 57%;
   top: 23%;
-  animation: ring-pulse 5.8s ease-in-out infinite;
 }
 
 .ring-b {
@@ -240,20 +242,18 @@ a {
   height: 118px;
   left: 19%;
   top: 44%;
-  animation: ring-pulse 4.8s ease-in-out infinite reverse;
 }
 
 .hero-measure {
-  color: rgba(226, 240, 255, 0.82);
+  color: rgba(226, 232, 240, 0.68);
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.82rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(9, 13, 20, 0.58);
-  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(9, 13, 20, 0.32);
   padding: 0.42rem 0.62rem;
-  border-radius: 999px;
+  border-radius: 6px;
 }
 
 .measure-a {
@@ -269,13 +269,12 @@ a {
 .cursor-field {
   left: var(--hero-x);
   top: var(--hero-y);
-  width: 260px;
-  height: 260px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(51, 212, 255, 0.18), rgba(118, 182, 255, 0.08) 38%, transparent 70%);
+  background: radial-gradient(circle, rgba(209, 223, 243, 0.11), rgba(209, 223, 243, 0.04) 38%, transparent 70%);
   transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
-  transition: left 120ms ease, top 120ms ease;
+  transition: left 180ms ease, top 180ms ease;
 }
 
 .hero-content {
@@ -306,9 +305,9 @@ a {
 .rotating-word {
   display: inline-flex;
   min-width: 9.5ch;
-  color: #f6d4ad;
+  color: #e8edf6;
   font-weight: 800;
-  text-shadow: 0 0 18px rgba(211, 155, 100, 0.4);
+  border-bottom: 1px solid rgba(232, 237, 246, 0.36);
 }
 
 .hero-actions,
@@ -460,7 +459,7 @@ a {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 50%), rgba(118, 182, 255, 0.16), transparent 32%);
+  background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 50%), rgba(226, 232, 240, 0.09), transparent 34%);
   opacity: 0;
   transition: opacity 180ms ease;
   pointer-events: none;
@@ -541,24 +540,26 @@ a {
 }
 
 .build-filter {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
   color: var(--pp-muted);
-  padding: 0.6rem 0.9rem;
+  padding: 0.55rem 0.82rem;
   font: inherit;
   font-size: var(--pp-type-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 750;
   cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
 .build-filter.is-active,
 .build-filter:hover,
 .build-filter:focus-visible {
-  color: #071018;
-  background: linear-gradient(135deg, #f2f7ff, #d8e8ff);
+  color: #f3f6fb;
+  border-color: rgba(226, 232, 240, 0.35);
+  background: rgba(255, 255, 255, 0.08);
   outline: none;
 }
 
@@ -570,19 +571,19 @@ a {
 }
 
 .build-tile {
-  --tile-min: 240px;
+  --tile-min: 230px;
   position: relative;
   grid-column: span 4;
   min-height: var(--tile-min);
   overflow: hidden;
-  border-radius: var(--pp-radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--pp-panel);
   color: inherit;
   text-decoration: none;
   isolation: isolate;
   transform: translateY(0);
-  transition: transform 220ms ease, border-color 220ms ease;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .build-tile.is-wide {
@@ -591,13 +592,14 @@ a {
 
 .build-tile.is-tall {
   grid-row: span 2;
-  min-height: 500px;
+  min-height: 470px;
 }
 
 .build-tile:hover,
 .build-tile:focus-visible {
-  transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.34);
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
   outline: none;
 }
 
@@ -606,14 +608,15 @@ a {
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: saturate(1.04) contrast(1.03);
+  filter: saturate(0.96) contrast(1.01);
   transform: scale(1.01);
-  transition: transform 520ms ease;
+  transition: transform 460ms ease, filter 460ms ease;
 }
 
 .build-tile:hover .build-tile-media,
 .build-tile:focus-visible .build-tile-media {
-  transform: scale(1.08);
+  filter: saturate(1.02) contrast(1.02);
+  transform: scale(1.035);
 }
 
 .build-tile::before {
@@ -621,23 +624,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(4, 7, 12, 0.08), rgba(4, 7, 12, 0.86));
-}
-
-.build-tile::after {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  z-index: 2;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: calc(var(--pp-radius-md) - 8px);
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-
-.build-tile:hover::after,
-.build-tile:focus-visible::after {
-  opacity: 1;
+  background: linear-gradient(180deg, rgba(4, 7, 12, 0.02), rgba(4, 7, 12, 0.78));
 }
 
 .build-tile-body {
@@ -650,42 +637,25 @@ a {
 
 .build-tile-label {
   display: inline-flex;
-  color: #081018;
-  background: rgba(242, 247, 255, 0.92);
-  border-radius: 999px;
-  padding: 0.3rem 0.62rem;
+  color: rgba(226, 232, 240, 0.74);
+  padding: 0;
   font-size: 0.7rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 850;
 }
 
 .build-tile h3 {
-  margin: 0.75rem 0 0;
+  margin: 0.55rem 0 0;
   font-family: "Space Grotesk", sans-serif;
-  line-height: 1;
-  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.85rem);
+  line-height: 1.05;
+  font-size: clamp(1.12rem, 1rem + 0.55vw, 1.55rem);
 }
 
 .build-tile p {
   margin: 0.5rem 0 0;
-  color: #d9e2f0;
+  color: rgba(226, 232, 240, 0.78);
   font-size: var(--pp-type-sm);
-}
-
-@keyframes hero-scan {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes measurement-drift {
-  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.68; }
-  50% { transform: translate3d(1.2rem, -0.35rem, 0); opacity: 1; }
-}
-
-@keyframes ring-pulse {
-  0%, 100% { transform: scale(0.96); opacity: 0.46; }
-  50% { transform: scale(1.04); opacity: 0.92; }
 }
 
 .story-tabs {
