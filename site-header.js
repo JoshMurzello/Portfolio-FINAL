@@ -4,7 +4,6 @@
     { href: "Engineering.html", label: "Engineering" },
     { href: "Creatives.html", label: "Creatives" },
     { href: "about.html", label: "About" },
-    { href: "blog.html", label: "Blog" },
   ];
 
   function currentFile() {

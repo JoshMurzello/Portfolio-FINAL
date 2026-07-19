@@ -26,16 +26,6 @@ const metadata = {
     description: "Learn about Josh Murzello, a Georgia Tech mechanical engineering student connecting hardware, software, visual storytelling, leadership, and community.",
     image: `${siteUrl}/images/IMG_5660.JPG`
   },
-  "blog.html": {
-    title: "Logbook | Josh Murzello",
-    description: "Josh Murzello's logbook for engineering notes, build essays, creative process, maker workflows, and lessons from projects in progress.",
-    image: `${siteUrl}/images/A1picture.jpg`
-  },
-  "blog-why-everyone-needs-a-3d-printer-2026.html": {
-    title: "Why Everyone Needs a 3D Printer in 2026 | Josh Murzello",
-    description: "An essay by Josh Murzello on why 3D printing changes how people solve everyday problems, prototype ideas, and move from consumer to creator.",
-    image: `${siteUrl}/images/A1picture.jpg`
-  },
   "tesla.html": {
     title: "Tesla Manufacturing Engineering Internship | Josh Murzello",
     description: "Case study of Josh Murzello's Tesla manufacturing engineering work across automation, fixtures, PLC integration, validation, and production yield.",

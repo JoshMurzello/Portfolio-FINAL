@@ -78,7 +78,6 @@
           <li class="nav-item"><a class="nav-link" href="Engineering.html">Engineering</a></li>
           <li class="nav-item"><a class="nav-link" href="Creatives.html">Creatives</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
         </ul>
       </nav>
     </div>
@@ -199,7 +198,6 @@
             <li class="nav-item mb-2"><a href="Engineering.html" class="nav-link p-0">Engineering</a></li>
             <li class="nav-item mb-2"><a href="Creatives.html" class="nav-link p-0">Creatives</a></li>
             <li class="nav-item mb-2"><a href="about.html" class="nav-link p-0">About</a></li>
-            <li class="nav-item mb-2"><a href="blog.html" class="nav-link p-0">Blog</a></li>
           </ul>
         </div>
 
