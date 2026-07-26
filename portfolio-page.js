@@ -1,74 +1,4 @@
 (function () {
-  const buildWallItems = [
-    {
-      title: "Battery Manufacturing",
-      label: "Factory",
-      category: "hardware",
-      image: "./images/optimized/tesla-friends-1400.jpg",
-      href: "tesla.html",
-      copy: "Production fixtures, validation loops, PLC-backed measurement, and yield-focused engineering.",
-      size: "wide"
-    },
-    {
-      title: "Vision Rover",
-      label: "Robotics",
-      category: "hardware",
-      image: "./images/optimized/engineer-cover-1800.jpg",
-      href: "sentry-rover.html",
-      copy: "Camera tracking, distance sensing, STM32 handoff, and state-based physical response.",
-      size: "tall"
-    },
-    {
-      title: "BCI Prototype",
-      label: "Signal",
-      category: "hardware",
-      image: "./images/IMG_0754.JPG",
-      href: "bci.html",
-      copy: "EEG acquisition, threshold tuning, and a physical control layer built from noisy input."
-    },
-    {
-      title: "STL Animator",
-      label: "Tool",
-      category: "cad",
-      image: "./images/ME2110cadmodel.png",
-      href: "tools/stl-animator/",
-      copy: "A browser tool for turning static CAD meshes into motion-ready clips."
-    },
-    {
-      title: "Printed Products",
-      label: "Product",
-      category: "product",
-      image: "./images/A1picture.jpg",
-      href: "3Dprint.html",
-      copy: "Useful everyday objects shaped through fast CAD, print, test, and photo cycles.",
-      size: "wide"
-    },
-    {
-      title: "Studio Lens",
-      label: "Creative",
-      category: "creative",
-      image: "./images/camerame.png",
-      href: "Creatives.html",
-      copy: "Visual documentation that makes the technical work easier to feel and remember."
-    },
-    {
-      title: "Portrait System",
-      label: "Creative",
-      category: "creative",
-      image: "./images/phillu good closeup.jpg",
-      href: "Creatives.html",
-      copy: "Color, expression, and composition treated as a repeatable visual system."
-    },
-    {
-      title: "Product Drop",
-      label: "Product",
-      category: "product",
-      image: "./images/toothbrush with brush.png",
-      href: "stl-drops.html",
-      copy: "A richer release pattern for turning free STL files into audience-building artifacts."
-    }
-  ];
-
   function initReveals() {
     const items = document.querySelectorAll(".reveal");
     if (!items.length) return;
@@ -246,44 +176,6 @@
     });
   }
 
-  function renderBuildWall(filter = "all") {
-    const wall = document.getElementById("build-wall");
-    if (!wall) return;
-
-    const items = buildWallItems.filter((item) => filter === "all" || item.category === filter);
-    wall.innerHTML = items.map((item) => {
-      return `
-        <a class="build-tile" href="${item.href}">
-          <span class="build-tile-media" style="background-image:url('${item.image}');" aria-hidden="true"></span>
-          <span class="build-tile-body">
-            <span class="build-tile-label">${item.label}</span>
-            <h3>${item.title}</h3>
-            <p>${item.copy}</p>
-          </span>
-        </a>
-      `;
-    }).join("");
-  }
-
-  function initBuildWall() {
-    const buttons = document.querySelectorAll(".build-filter");
-    if (!buttons.length) return;
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const filter = button.dataset.buildFilter || "all";
-        buttons.forEach((candidate) => {
-          const active = candidate === button;
-          candidate.classList.toggle("is-active", active);
-          candidate.setAttribute("aria-pressed", active ? "true" : "false");
-        });
-        renderBuildWall(filter);
-      });
-    });
-
-    renderBuildWall("all");
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     initReveals();
     initTabs();
@@ -292,6 +184,5 @@
     initHeroInteraction();
     initRotatingWords();
     initCardLight();
-    initBuildWall();
   });
 })();
