@@ -86,11 +86,11 @@ const PROJECTS = [
   },
   {
     id: "travel-essay-greenville",
-    title: "Greenville Essay",
+    title: "Greenville",
     year: "2024",
     role: "Photographer",
     tools: ["Sony A7", "Lightroom"],
-    categories: ["photo"],
+    categories: ["photo", "travel"],
     featured: false,
     thumbnail: "./images/Greenville.jpg",
     thumbAlt: "Greenville skyline during golden hour",
@@ -101,24 +101,6 @@ const PROJECTS = [
       { type: "image", src: "./images/Greenville.jpg", alt: "Greenville skyline" },
       { type: "image", src: "./images/DSC00122.jpg", alt: "Street perspective" }
     ]
-  },
-  {
-    id: "band-visual-pack",
-    title: "Band Visual Pack",
-    year: "2024",
-    role: "Photographer, Retoucher",
-    tools: ["Lightroom", "Photoshop"],
-    categories: ["photo", "design"],
-    featured: false,
-    thumbnail: "./images/DSC00102.jpg",
-    thumbAlt: "Band portrait in performance setting",
-    summary: "Cover, social, and promo visual assets for live music rollout.",
-    story: "The visual objective was gritty but polished. We used high-contrast grading and constrained color accents.",
-    links: [],
-    media: [
-      { type: "image", src: "./images/DSC00102.jpg", alt: "Band group shot" },
-      { type: "image", src: "./images/DSC00038.jpg", alt: "Performance-adjacent atmosphere" }
-    ]
   }
 ];
 
@@ -126,7 +108,7 @@ const PROJECTS = [
 HOW TO ADD A NEW PROJECT
 1. Duplicate one object inside PROJECTS above.
 2. Set a unique id (kebab-case), title, year, role, summary, and story.
-3. Add categories from: "video", "photo", "design", "3d", "experiments".
+3. Add categories from: "video", "photo", "travel", "design", "3d", "experiments".
 4. Set featured: true to show in Featured Works (max recommended: 6).
 5. Update thumbnail and media paths (use local /images/... files).
 6. Add only real links; use an empty array if nothing public should appear yet.

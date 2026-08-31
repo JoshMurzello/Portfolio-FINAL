@@ -20,10 +20,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="engineering.css?v=20260719-1">
+  <link rel="stylesheet" href="engineering.css?v=20260831-1">
   <link rel="stylesheet" href="site-header.css">
 </head>
-<body>
+<body data-accent="blue">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header" id="site-header">
@@ -55,16 +55,16 @@
     </section>
 
     <section class="metrics shell" aria-label="Engineering highlights">
-      <article class="metric-card reveal" data-tilt>
-        <p class="metric-value">15+</p>
+      <article class="metric-card reveal-block" data-tilt>
+        <p class="metric-value" data-count="15" data-suffix="+" aria-label="15 plus">15+</p>
         <p class="metric-label">Builds across mobility, robotics, and product design.</p>
       </article>
-      <article class="metric-card reveal" data-tilt>
-        <p class="metric-value">4</p>
+      <article class="metric-card reveal-block" data-tilt>
+        <p class="metric-value" data-count="4">4</p>
         <p class="metric-label">Industry internships spanning space systems, avionics, advanced manufacturing, and high-volume production ramping.</p>
       </article>
-      <article class="metric-card reveal" data-tilt>
-        <p class="metric-value">1200+</p>
+      <article class="metric-card reveal-block" data-tilt>
+        <p class="metric-value" data-count="1200" data-suffix="+" aria-label="1200 plus">1200+</p>
         <p class="metric-label">Hours of prototyping, testing, and iterative development.</p>
       </article>
     </section>
@@ -84,7 +84,7 @@
       </div>
 
       <div class="explorer-grid">
-        <article class="spotlight reveal" aria-live="polite">
+        <article class="spotlight reveal-block" aria-live="polite">
           <div class="spotlight-media-wrap">
             <img id="spotlight-image" src="" alt="" class="spotlight-image" decoding="async">
           </div>
@@ -116,7 +116,7 @@
           </div>
         </article>
 
-        <div id="project-list" class="project-list reveal" aria-label="Selectable engineering projects"></div>
+        <div id="project-list" class="project-list" aria-label="Selectable engineering projects"></div>
       </div>
     </section>
 
@@ -126,22 +126,22 @@
         <h2 id="pipeline-title">How I execute builds</h2>
       </div>
       <div class="pipeline-track">
-        <article class="pipeline-step reveal">
+        <article class="pipeline-step reveal-block">
           <span class="step-index">01</span>
           <h3>Frame the constraint</h3>
           <p>Define hard requirements, user context, and failure conditions first.</p>
         </article>
-        <article class="pipeline-step reveal">
+        <article class="pipeline-step reveal-block">
           <span class="step-index">02</span>
           <h3>Prototype fast</h3>
           <p>Test rough concepts in CAD, hardware, or code before polishing.</p>
         </article>
-        <article class="pipeline-step reveal">
+        <article class="pipeline-step reveal-block">
           <span class="step-index">03</span>
           <h3>Instrument & validate</h3>
           <p>Measure, log, and compare against expected behavior under real load.</p>
         </article>
-        <article class="pipeline-step reveal">
+        <article class="pipeline-step reveal-block">
           <span class="step-index">04</span>
           <h3>Refine for reliability</h3>
           <p>Close loops on manufacturability, maintainability, and performance.</p>
@@ -185,7 +185,7 @@
         <div class="contact-actions">
           <button type="submit" class="connect-submit">Send Message</button>
         </div>
-        <p class="direct-email">Prefer direct email? <a href="mailto:murzello.josh@gmail.com">murzello.josh@gmail.com</a></p>
+        <p class="direct-email">Prefer direct email? <a href="mailto:Josh.Marzello@gmail.com">Josh.Marzello@gmail.com</a></p>
         <p class="contact-status" role="status" aria-live="polite"></p>
       </form>
       <div class="footer-links">
@@ -204,7 +204,7 @@
       if (!form) return;
 
       const status = form.querySelector('.contact-status');
-      const CONTACT_EMAIL = 'murzello.josh@gmail.com';
+      const CONTACT_EMAIL = 'Josh.Marzello@gmail.com';
 
       const setStatus = (message, isError = false) => {
         if (!status) return;
@@ -246,7 +246,7 @@
       });
     })();
   </script>
-  <script src="engineering.js?v=20260719-1" defer></script>
+  <script src="engineering.js?v=20260831-1" defer></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>

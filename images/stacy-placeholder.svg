@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Stacy real estate automation placeholder</title>
+  <desc id="desc">Project details coming soon.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151723"/>
+      <stop offset="1" stop-color="#090a0f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="48%">
+      <stop offset="0" stop-color="#6f8fd8" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#6f8fd8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <g fill="none" stroke="#86a3e8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M420 455V300l180-120 180 120v155"/>
+    <path d="M490 455V335h220v120M600 335v120"/>
+    <circle cx="830" cy="265" r="45"/>
+    <path d="M830 195v-32M830 367v-32M760 265h-32M932 265h-32M780 215l-23-23M903 338l-23-23M880 215l23-23M757 338l23-23"/>
+  </g>
+  <text x="600" y="625" fill="#f5f2ec" font-family="Arial, sans-serif" font-size="50" font-weight="700" text-anchor="middle">STACY</text>
+  <text x="600" y="675" fill="#a7adb8" font-family="Arial, sans-serif" font-size="24" letter-spacing="4" text-anchor="middle">REAL ESTATE AUTOMATION • DETAILS COMING SOON</text>
+</svg>

@@ -1,5 +1,24 @@
 const PROJECTS = [
   {
+    id: "spacex",
+    title: "SpaceX Avionics Manufacturing",
+    category: "internship",
+    year: "2026",
+    summary: "Manufacturing engineering work supporting Starship avionics hardware through automation, vendor build readiness, inspection requirements, and traceable production processes.",
+    impact: "Connected fixture design, automation software, OCR-based inspection, supplier quality, and production documentation into repeatable avionics manufacturing workflows.",
+    image: "./images/optimized/spacex-cover-1800.jpg",
+    link: "spacex.html",
+    proof: "Automation, vendor build readiness, inspection requirements, and traceable production processes",
+    flow: ["Hardware", "Inspection + traceability", "Production"],
+    artifacts: {
+      cad: { title: "Fixture design", copy: "Fixture design supported repeatable avionics manufacturing workflows." },
+      build: { title: "Production readiness", copy: "Automation software and vendor build readiness connected hardware to repeatable production processes." },
+      test: { title: "Inspection requirements", copy: "OCR-based inspection and supplier quality requirements supported traceable hardware acceptance." },
+      result: { title: "Manufacturing impact", copy: "Production documentation connected the work into repeatable avionics manufacturing workflows." }
+    },
+    tags: ["Avionics", "Automation", "OCR Inspection", "Supplier Quality"]
+  },
+  {
     id: "tesla",
     title: "Tesla",
     category: "internship",
@@ -96,6 +115,21 @@ const PROJECTS = [
     tags: ["Raspberry Pi", "Pi Camera 3", "STM32", "ToF Sensor", "Computer Vision"]
   },
   {
+    id: "self-balancing-robot",
+    title: "Self Balancing Robot",
+    category: "project",
+    year: "",
+    summary: "Building a self balancing robot from ground up.",
+    impact: "Having it navigate maze, perform turns, imu tracking etc",
+    image: "./images/self-balancing-placeholder.svg",
+    imageMode: "contain",
+    link: "self-balancing-robot.html",
+    proof: "Maze navigation • Turns • IMU tracking",
+    flow: [],
+    artifacts: null,
+    tags: []
+  },
+  {
     id: "print",
     title: "3D Printing Product Series",
     category: "project",
@@ -133,6 +167,35 @@ const PROJECTS = [
       result: { title: "Creator utility", copy: "CAD models become shareable motion clips without leaving the portfolio environment." }
     },
     tags: ["Three.js", "WebGL", "STL", "Animation Tool"]
+  },
+  {
+    id: "electric-skateboard",
+    title: "Electric Skateboard",
+    category: "project",
+    year: "",
+    summary: "Building an Electric Skateboard from scratch",
+    impact: "Personal project I took on because I was tired of walking around campus and the buses were unpredictable.",
+    image: "./images/skateboard.jpg",
+    link: "eboard.html",
+    proof: "",
+    flow: [],
+    artifacts: null,
+    tags: []
+  },
+  {
+    id: "stacy",
+    title: "Stacy",
+    category: "ai-tool",
+    year: "",
+    summary: "Work with Stacy for real estate automation and vendor services.",
+    impact: "More information coming later.",
+    image: "./images/stacy-placeholder.svg",
+    imageMode: "contain",
+    link: null,
+    proof: "",
+    flow: [],
+    artifacts: null,
+    tags: []
   }
 ];
 
@@ -166,6 +229,9 @@ const spotlightRefs = {
   artifactKicker: document.getElementById('artifact-kicker'),
   artifactTitle: document.getElementById('artifact-title'),
   artifactCopy: document.getElementById('artifact-copy'),
+  artifactTabs: document.querySelector('.artifact-tabs'),
+  artifactPanel: document.querySelector('.artifact-panel'),
+  systemDiagram: document.querySelector('.system-diagram'),
   systemNodes: [
     document.getElementById('system-node-a'),
     document.getElementById('system-node-b'),
@@ -176,6 +242,7 @@ const spotlightRefs = {
 let activeFilter = 'all';
 let selectedId = SORTED_PROJECTS[0]?.id;
 let activeArtifact = 'cad';
+let revealObserver = null;
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -185,6 +252,10 @@ function categoryLabel(cat) {
   if (cat === 'ai-tool') return 'AI Tool';
   if (cat === 'research') return 'Research';
   return 'Work';
+}
+
+function projectMeta(project) {
+  return [categoryLabel(project.category), project.year].filter(Boolean).join(' • ');
 }
 
 function matchesFilter(item, filter) {
@@ -202,12 +273,18 @@ function updateSpotlight(project) {
   spotlightRefs.image.alt = project.title + ' cover image';
   spotlightRefs.image.style.objectFit = project.imageMode === 'contain' ? 'contain' : 'cover';
   spotlightRefs.image.style.background = project.imageMode === 'contain' ? '#0f0f14' : 'transparent';
-  spotlightRefs.category.textContent = categoryLabel(project.category) + ' • ' + project.year;
+  spotlightRefs.category.textContent = projectMeta(project);
   spotlightRefs.title.textContent = project.title;
   spotlightRefs.summary.textContent = project.summary;
   spotlightRefs.impact.textContent = project.impact;
-  spotlightRefs.link.href = project.link;
-  spotlightRefs.link.textContent = 'View ' + project.title;
+  spotlightRefs.link.hidden = !project.link;
+  if (project.link) {
+    spotlightRefs.link.href = project.link;
+    spotlightRefs.link.textContent = 'View ' + project.title;
+  } else {
+    spotlightRefs.link.removeAttribute('href');
+    spotlightRefs.link.textContent = '';
+  }
   spotlightRefs.tags.innerHTML = '';
   project.tags.forEach((tag) => {
     const span = document.createElement('span');
@@ -216,11 +293,36 @@ function updateSpotlight(project) {
   });
   updateArtifactPanel(project);
   updateSystemDiagram(project);
+
+  if (!reduceMotion) {
+    spotlightRefs.image.animate(
+      [
+        { opacity: 0.58, transform: 'scale(1.035)' },
+        { opacity: 1, transform: 'scale(1)' }
+      ],
+      { duration: 520, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+    );
+    document.querySelector('.spotlight-body')?.animate(
+      [
+        { opacity: 0.35, transform: 'translateY(12px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ],
+      { duration: 460, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+    );
+  }
 }
 
 function updateArtifactPanel(project) {
   const artifact = project.artifacts?.[activeArtifact] || project.artifacts?.cad;
-  if (!artifact) return;
+  const hasArtifacts = Boolean(artifact);
+  if (spotlightRefs.artifactTabs) spotlightRefs.artifactTabs.hidden = !hasArtifacts;
+  if (spotlightRefs.artifactPanel) spotlightRefs.artifactPanel.hidden = !hasArtifacts;
+  if (!artifact) {
+    spotlightRefs.artifactKicker.textContent = '';
+    spotlightRefs.artifactTitle.textContent = '';
+    spotlightRefs.artifactCopy.textContent = '';
+    return;
+  }
   spotlightRefs.artifactKicker.textContent = activeArtifact;
   spotlightRefs.artifactTitle.textContent = artifact.title;
   spotlightRefs.artifactCopy.textContent = artifact.copy;
@@ -228,6 +330,7 @@ function updateArtifactPanel(project) {
 
 function updateSystemDiagram(project) {
   const flow = project.flow || [];
+  if (spotlightRefs.systemDiagram) spotlightRefs.systemDiagram.hidden = flow.length === 0;
   spotlightRefs.systemNodes.forEach((node, index) => {
     if (!node) return;
     node.textContent = flow[index] || '';
@@ -237,7 +340,9 @@ function updateSystemDiagram(project) {
 function updateProjectButtonSelection() {
   const buttons = projectList.querySelectorAll('.project-button');
   buttons.forEach((btn) => {
-    btn.classList.toggle('is-selected', btn.dataset.id === selectedId);
+    const isSelected = btn.dataset.id === selectedId;
+    btn.classList.toggle('is-selected', isSelected);
+    btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
   });
 }
 
@@ -249,48 +354,52 @@ function renderProjectList() {
   }
 
   projectList.innerHTML = '';
-  visible.forEach((project) => {
-    const item = document.createElement('a');
-    item.className = 'project-button' + (project.id === selectedId ? ' is-selected' : '');
+  visible.forEach((project, index) => {
+    const item = document.createElement('button');
+    item.className = 'project-button reveal-block' + (project.id === selectedId ? ' is-selected' : '');
     item.dataset.id = project.id;
-    item.href = project.link;
+    item.type = 'button';
+    item.setAttribute('aria-pressed', project.id === selectedId ? 'true' : 'false');
     item.innerHTML = `
-      <span class="title">${project.title}</span>
-      <span class="meta">${categoryLabel(project.category)} • ${project.year}</span>
+      <span class="project-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+      <span class="project-button-copy">
+        <span class="title">${project.title}</span>
+        <span class="meta">${projectMeta(project)}</span>
+      </span>
     `;
-    item.addEventListener('mouseenter', () => {
+    const selectProject = () => {
       selectedId = project.id;
       updateProjectButtonSelection();
       updateSpotlight(project);
-    });
-    item.addEventListener('focus', () => {
-      selectedId = project.id;
-      updateProjectButtonSelection();
-      updateSpotlight(project);
-    });
+    };
+    item.addEventListener('mouseenter', selectProject);
+    item.addEventListener('focus', selectProject);
+    item.addEventListener('click', selectProject);
     projectList.appendChild(item);
   });
 
   updateSpotlight(visible.find((item) => item.id === selectedId));
+  observeRevealGroup([...projectList.children], 42);
 }
 
 function renderWall() {
   const visible = getVisibleProjects();
   wallGrid.innerHTML = '';
   visible.forEach((project) => {
-    const a = document.createElement('a');
-    a.className = 'wall-card';
-    a.href = project.link;
+    const a = document.createElement(project.link ? 'a' : 'article');
+    a.className = 'wall-card reveal-block';
+    if (project.link) a.href = project.link;
     a.innerHTML = `
       <img src="${project.image}" alt="${project.title} preview" loading="lazy" decoding="async" style="object-fit:${project.imageMode === 'contain' ? 'contain' : 'cover'}; background:${project.imageMode === 'contain' ? '#101117' : 'transparent'};">
       <div class="wall-card-body">
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
-        <p class="proof-line">${project.proof}</p>
+        ${project.proof ? `<p class="proof-line">${project.proof}</p>` : ''}
       </div>
     `;
     wallGrid.appendChild(a);
   });
+  observeRevealGroup([...wallGrid.children], 58);
 }
 
 function updateFilterGlide() {
@@ -339,23 +448,50 @@ function initArtifactTabs() {
   });
 }
 
-function initReveal() {
-  const nodes = document.querySelectorAll('.reveal');
-  if (reduceMotion || typeof IntersectionObserver === 'undefined') {
-    nodes.forEach((node) => node.classList.add('is-revealed'));
+function revealImmediately(nodes) {
+  nodes.forEach((node) => node.classList.add('is-revealed'));
+}
+
+function observeRevealGroup(nodes, staggerMs = 60) {
+  nodes.forEach((node, index) => {
+    node.style.setProperty('--reveal-delay', Math.min(index * staggerMs, 300) + 'ms');
+    node.classList.remove('is-revealed');
+  });
+
+  if (reduceMotion || !revealObserver) {
+    revealImmediately(nodes);
     return;
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  nodes.forEach((node) => revealObserver.observe(node));
+}
+
+function initReveal() {
+  const nodes = [...document.querySelectorAll('.reveal, .reveal-block')];
+  if (reduceMotion || typeof IntersectionObserver === 'undefined') {
+    revealImmediately(nodes);
+    return;
+  }
+
+  revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-revealed');
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.14 });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
-  nodes.forEach((node) => observer.observe(node));
+  const groups = [
+    [...document.querySelectorAll('.metrics .reveal-block')],
+    [...document.querySelectorAll('.explorer-grid .reveal-block')],
+    [...document.querySelectorAll('.pipeline-track .reveal-block')],
+    [...document.querySelectorAll('.wall-grid .reveal-block')]
+  ];
+  const grouped = new Set(groups.flat());
+
+  groups.forEach((group) => observeRevealGroup(group, 64));
+  nodes.filter((node) => !grouped.has(node)).forEach((node) => revealObserver.observe(node));
 }
 
 function initTilt() {
@@ -376,10 +512,59 @@ function initTilt() {
   });
 }
 
+function initCountUp() {
+  const values = [...document.querySelectorAll('[data-count]')];
+  if (!values.length) return;
+
+  const setFinalValue = (node) => {
+    node.textContent = `${node.dataset.count || '0'}${node.dataset.suffix || ''}`;
+  };
+
+  if (reduceMotion || typeof IntersectionObserver === 'undefined') {
+    values.forEach(setFinalValue);
+    return;
+  }
+
+  values.forEach((node) => {
+    node.textContent = `0${node.dataset.suffix || ''}`;
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const node = entry.target;
+      const target = Number(node.dataset.count) || 0;
+      const suffix = node.dataset.suffix || '';
+      const duration = target >= 1000 ? 1450 : 1050;
+      const start = performance.now();
+      node.classList.add('is-counting');
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        node.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+          return;
+        }
+        setFinalValue(node);
+        node.classList.remove('is-counting');
+      };
+
+      requestAnimationFrame(tick);
+      observer.unobserve(node);
+    });
+  }, { threshold: 0.55 });
+
+  values.forEach((node) => observer.observe(node));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initFilters();
   initArtifactTabs();
+  applyFilter('all');
   initReveal();
   initTilt();
-  applyFilter('all');
+  initCountUp();
 });

@@ -18,12 +18,13 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Syne:wght@500;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="creatives.css">
+  <link rel="stylesheet" href="creatives-motion.css?v=20260831-1">
   <link rel="stylesheet" href="site-header.css">
 </head>
-<body>
+<body class="creatives-motion-page">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header" id="site-header">
@@ -48,11 +49,75 @@
       </div>
       <div class="shell hero-shell reveal">
         <p class="kicker">Creative Portfolio</p>
-        <h1 id="hero-title">Visual systems for products, people, and builds.</h1>
+        <h1 id="hero-title">Creatives</h1>
         <p class="manifesto">
-          Photography, video, and design work shaped around clear deliverables: build documentation,
-          portrait sets, product visuals, social assets, and studio identity systems.
+          A big part of my life is also in the creatives field. From music, dance, photography &amp; videography,
+          I enjoy sharing, creating, and expressing my ideas. Check out some of the outlets I've used and created.
         </p>
+      </div>
+    </section>
+
+    <section class="velocity-gallery shell" id="velocity-gallery" aria-labelledby="velocity-title">
+      <div class="velocity-stage">
+        <div class="velocity-pin">
+          <div class="velocity-frame">
+            <div class="velocity-frame-bar" aria-hidden="true">
+              <span><i></i> Live archive</span>
+              <span>Scroll vertically / drag below</span>
+            </div>
+            <div class="velocity-scene" aria-label="Horizontal creative image gallery controlled by vertical scrolling">
+              <div class="velocity-copy">
+                <p class="velocity-kicker">Selected Visual Studies</p>
+                <h2 id="velocity-title">Creative Archive</h2>
+                <p class="velocity-count" aria-live="polite">01 / 08</p>
+              </div>
+
+              <div class="velocity-track">
+                <figure class="velocity-plane is-active" data-index="0">
+                  <img src="./images/phillu good closeup.jpg" alt="Warm cinematic portrait close-up">
+                  <figcaption>01 / Portrait</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="1">
+                  <img src="./images/DSC00015.jpg" alt="Portrait photographed near a waterfall">
+                  <figcaption>02 / Location</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="2">
+                  <img src="./images/DSC00008.jpg" alt="Natural-light portrait study">
+                  <figcaption>03 / Portrait</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="3">
+                  <img src="./images/Greenville.jpg" alt="Greenville skyline photographed at golden hour">
+                  <figcaption>04 / Greenville</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="4">
+                  <img src="./images/camerame.png" alt="Camera used for creative documentation">
+                  <figcaption>05 / Process</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="5">
+                  <img src="./images/A1picture.jpg" alt="3D printed product photographed with dramatic lighting">
+                  <figcaption>06 / Object</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="6">
+                  <img src="./images/IMG_0848.png" alt="Studio identity visual reference">
+                  <figcaption>07 / Identity</figcaption>
+                </figure>
+                <figure class="velocity-plane" data-index="7">
+                  <img src="./images/DSC00122.jpg" alt="Street and architectural photography">
+                  <figcaption>08 / Street</figcaption>
+                </figure>
+              </div>
+
+              <div class="velocity-controls" aria-label="Creative archive controls">
+                <button class="velocity-step velocity-prev" type="button" aria-label="Previous image">←</button>
+                <label class="velocity-scrubber-wrap">
+                  <span class="sr-only">Choose image position</span>
+                  <input class="velocity-scrubber" type="range" min="0" max="1000" value="0" step="1">
+                </label>
+                <button class="velocity-step velocity-next" type="button" aria-label="Next image">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -107,6 +172,7 @@
         <button class="filter-chip is-active" type="button" aria-pressed="true" data-filter="all">All</button>
         <button class="filter-chip" type="button" aria-pressed="false" data-filter="video">Video</button>
         <button class="filter-chip" type="button" aria-pressed="false" data-filter="photo">Photo</button>
+        <button class="filter-chip" type="button" aria-pressed="false" data-filter="travel">Travel</button>
         <button class="filter-chip" type="button" aria-pressed="false" data-filter="design">Design</button>
         <button class="filter-chip" type="button" aria-pressed="false" data-filter="3d">3D</button>
         <button class="filter-chip" type="button" aria-pressed="false" data-filter="experiments">Experiments</button>
@@ -159,7 +225,8 @@
     </article>
   </dialog>
 
-  <script src="creatives.js" defer></script>
+  <script src="creatives.js?v=20260831-2" defer></script>
+  <script src="creatives-motion.js?v=20260831-2" defer></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>
