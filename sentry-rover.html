@@ -3,121 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vision-Guided Sentry Rover | Josh Murzello</title>
-  <meta name="description" content="Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.">
+  <title>Autonomous Tracking Robot | Josh Murzello</title>
+  <meta name="description" content="Josh Murzello's autonomous tracking robot combines MobileNet-SSD person detection, Raspberry Pi 5, Pi Camera 3, ToF ranging, and STM32 motor control.">
   <link rel="canonical" href="https://www.joshmurzello.com/sentry-rover.html">
-  <meta property="og:title" content="Vision-Guided Sentry Rover | Josh Murzello">
-  <meta property="og:description" content="Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.">
+  <meta property="og:title" content="Autonomous Tracking Robot | Josh Murzello">
+  <meta property="og:description" content="A four-wheel robot built around MobileNet-SSD person detection, Raspberry Pi 5, time-of-flight distance sensing, PID control, and an STM32 motor-control layer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/sentry-rover.html">
-  <meta property="og:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/optimized/tracking-robot-finished.jpg">
+  <meta property="og:image:alt" content="The completed tracking robot with its foliage-covered enclosure">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vision-Guided Sentry Rover | Josh Murzello">
-  <meta name="twitter:description" content="Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta name="twitter:title" content="Autonomous Tracking Robot | Josh Murzello">
+  <meta name="twitter:description" content="MobileNet-SSD vision, Raspberry Pi 5, ToF distance feedback, and STM32 motor control in one autonomous tracking robot.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/optimized/tracking-robot-finished.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site-header.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="portfolio-page.css">
+  <link rel="stylesheet" href="tracking-robot.css?v=20260902-2">
+  <link rel="stylesheet" href="site-header.css">
 </head>
-<body>
-  <header class="site-header" id="site-header">
-    <div class="shell nav-shell">
-      <a href="index.html" class="brand"><img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">JOSH MURZELLO</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="Engineering.html" aria-current="page">Engineering</a>
-        <a href="Creatives.html">Creatives</a>
-        <a href="about.html">About</a>
+<body class="tracking-case unified-site-header">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="unified-header" id="site-header">
+    <div class="unified-header-shell">
+      <a href="index.html" class="unified-brand"><img src="favicon.svg" alt="" class="unified-brand-logo" aria-hidden="true">JOSH MURZELLO</a>
+      <button class="menu-toggle unified-menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
+      <nav id="site-nav" class="site-nav unified-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a><a href="Engineering.html" aria-current="page">Engineering</a><a href="Creatives.html">Creatives</a><a href="about.html">About</a>
       </nav>
     </div>
   </header>
 
-  <main class="article-layout">
-    <a class="back-link" href="Engineering.html">Back to engineering</a>
-    <p class="eyebrow">Project • Robotics • Embedded Vision</p>
-    <h1 class="hero-title" style="font-size:clamp(2.6rem,2rem + 2vw,4.2rem);">Vision-Guided Sentry Rover</h1>
-    <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
-      A four-wheel robotics prototype that used a Raspberry Pi, Pi Camera 3, ToF distance sensing, and an STM32 control layer to track a person, keep them centered, hold a target distance, and trigger a foam-ball flywheel response.
-    </p>
-    <div class="article-hero-image" style="margin-top:2rem; background-image:linear-gradient(180deg, rgba(7,10,16,0.24), rgba(7,10,16,0.54)), url('./images/optimized/engineer-cover-1800.jpg');"></div>
+  <main id="main-content" class="case-shell">
+    <a class="case-back" href="Engineering.html">← Engineering projects</a>
+    <section class="case-hero case-enter" aria-labelledby="case-title">
+      <div class="case-intro">
+        <p class="eyebrow">Robotics / Embedded vision</p>
+        <h1 id="case-title">Autonomous<br>tracking robot.</h1>
+        <p class="case-lead">A robot that could find a person, follow them, and keep its distance.</p>
+        <p>I built a four-wheel robot that paired camera-based human tracking with independent distance sensing. A Raspberry Pi 5 handled perception; an STM32 handled the motors.</p>
+        <div class="case-tags" aria-label="Project technologies"><span>MobileNet-SSD</span><span>Raspberry Pi 5</span><span>STM32</span><span>PID control</span></div>
+      </div>
+      <figure class="case-media case-hero-media">
+        <a href="images/optimized/tracking-robot-finished.jpg" target="_blank" rel="noopener" aria-label="Open the completed robot photo at full size">
+          <img src="images/optimized/tracking-robot-finished.jpg" width="704" height="378" alt="Completed four-wheel tracking robot with a foliage-covered enclosure" fetchpriority="high">
+        </a>
+        <figcaption><span>01 / Finished build</span><span>View photo ↗</span></figcaption>
+      </figure>
+    </section>
 
-    <section class="page-section tight">
-      <div class="grid-3">
-        <article class="card">
-          <p class="eyebrow">Role</p>
-          <h3>System builder</h3>
-          <p>I integrated the perception stack, embedded controller, drivetrain behavior, and launch mechanism into one closed-loop prototype.</p>
-        </article>
-        <article class="card">
-          <p class="eyebrow">Stack</p>
-          <h3>Raspberry Pi, STM32, sensors</h3>
-          <p>The Pi handled camera input and high-level tracking while the STM32 powered low-level motor and actuator responses.</p>
-        </article>
-        <article class="card">
-          <p class="eyebrow">Goal</p>
-          <h3>Track and respond</h3>
-          <p>The rover needed to identify a person, maintain a useful following distance, center its target, and react when the target stopped moving.</p>
-        </article>
+    <div class="case-facts" aria-label="System at a glance">
+      <div><span>Vision</span><strong>MobileNet-SSD</strong><small>Person detection</small></div>
+      <div><span>Compute</span><strong>Raspberry Pi 5</strong><small>Camera + range processing</small></div>
+      <div><span>Motion</span><strong>STM32</strong><small>Embedded motor control</small></div>
+      <div><span>Demo condition</span><strong>2 seconds</strong><small>Stationary-person dwell</small></div>
+    </div>
+
+    <nav class="case-jump" aria-label="On this page"><a href="#demo">Live demo</a><a href="#build">The build</a><a href="#architecture">Architecture</a><a href="#vision">Vision</a><a href="#controls">Controls</a><a href="#challenges">Challenges</a><a href="#slides">Project slides</a></nav>
+
+    <section id="demo" class="case-section case-demo" aria-labelledby="demo-heading">
+      <div class="case-section-head">
+        <p class="eyebrow">Live demo</p>
+        <h2 id="demo-heading">The robot in action.</h2>
+        <p>A video I made of the build in action.</p>
+        <a class="case-demo-link" href="https://www.youtube.com/watch?v=hJwOXDbev68" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+      </div>
+      <div class="case-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/hJwOXDbev68?playsinline=1&amp;rel=0" title="Autonomous tracking robot — video demo by Josh Murzello" width="960" height="540" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </section>
 
-    <article class="article-body">
-      <h2>Project overview</h2>
-      <p>This project was built around a small four-wheel car platform with an embedded perception and actuation stack. A Raspberry Pi paired with a Pi Camera 3 handled human tracking, while a time-of-flight sensor added distance awareness so the robot could keep the person within a defined range instead of only chasing a visual target.</p>
-
-      <p>The Pi sent processed tracking and distance information to an STM32, which translated those commands into the appropriate drivetrain response. The rover adjusted its motion to keep the human centered in frame and within a specific distance band. When the person was close enough and no longer moving, the system triggered a flywheel setup that fired foam balls toward the target.</p>
-
-      <h2>System architecture</h2>
-      <div class="grid-3">
-        <article class="card">
-          <h3>Perception</h3>
-          <p>The Raspberry Pi and Pi Camera 3 identified and tracked the human target, producing position information for centering behavior.</p>
-        </article>
-        <article class="card">
-          <h3>Ranging</h3>
-          <p>A ToF sensor supplied distance feedback so the rover could decide whether to advance, hold, or back off from the target.</p>
-        </article>
-        <article class="card">
-          <h3>Control</h3>
-          <p>The STM32 handled the physical response layer, including drivetrain commands and the foam-ball flywheel sequence.</p>
-        </article>
+    <section id="build" class="case-section" aria-labelledby="build-heading">
+      <div class="case-section-head"><p class="eyebrow">The build</p><h2 id="build-heading">Getting the whole robot to work together.</h2></div>
+      <div class="case-prose">
+        <p>The goal was to detect a person, keep them centered in the camera view, and maintain a set distance as they moved. I used the Pi Camera 3 for visual input and a time-of-flight sensor for distance feedback, then connected that information to the drivetrain through the STM32.</p>
+        <p>The demonstration also had a mechanical response: after the person stopped for two seconds, a flywheel mechanism launched foam balls. That made the project about more than following a bounding box—it also involved coordinating perception, movement, and a timed behavior.</p>
       </div>
-
-      <h2>Proof artifacts</h2>
-      <div class="grid-3">
-        <article class="card">
-          <h3>Architecture diagram</h3>
-          <p>Show camera input, target position, ToF distance, Pi processing, STM32 command handoff, drivetrain output, and launcher state.</p>
-        </article>
-        <article class="card">
-          <h3>Behavior table</h3>
-          <p>Document the state machine for searching, centering, following, holding distance, stopping, and triggering the flywheel response.</p>
-        </article>
-        <article class="card">
-          <h3>Test clips</h3>
-          <p>Add short demo cuts for tracking, distance correction, target stop detection, and recovery after a launch sequence.</p>
-        </article>
+      <div class="case-photo-pair">
+        <figure class="case-media">
+          <a href="images/optimized/tracking-robot-uncovered.jpg" target="_blank" rel="noopener" aria-label="Open the uncovered robot photo at full size"><img src="images/optimized/tracking-robot-uncovered.jpg" width="692" height="388" alt="Uncovered tracking robot showing the stacked chassis, electronics, front camera, and mechanism" loading="lazy"></a>
+          <figcaption>02 / Under the outer enclosure</figcaption>
+        </figure>
+        <figure class="case-media">
+          <a href="images/optimized/tracking-robot-bench.jpg" target="_blank" rel="noopener" aria-label="Open the early prototype photo at full size"><img src="images/optimized/tracking-robot-bench.jpg" width="648" height="478" alt="Early blue-chassis robot prototype with camera, distance sensor, battery, and electronics on a lab bench" loading="lazy"></a>
+          <figcaption>03 / Early hardware integration on the bench</figcaption>
+        </figure>
       </div>
+    </section>
 
-      <h2>What made it interesting</h2>
-      <p>The core challenge was making separate subsystems behave like one robot. Vision tracking alone was not enough because the car also needed range context, motion decisions, and a reliable handoff from the Raspberry Pi to the STM32. The project forced the software and hardware decisions to meet in real time: image position, measured distance, target motion, motor control, and launcher timing all had to line up.</p>
+    <section id="architecture" class="case-section" aria-labelledby="architecture-heading">
+      <div class="case-section-head"><p class="eyebrow">System architecture</p><h2 id="architecture-heading">Two processors. Different jobs.</h2></div>
+      <p class="case-prose">I separated the camera and sensor processing from the physical motor-control layer. The Pi interpreted what the robot was seeing; the STM32 operated the drivetrain and mechanism.</p>
+      <ol class="case-flow" aria-label="Sensor inputs flow to Raspberry Pi 5, through UART, then to STM32 motor control">
+        <li><span class="flow-index">01 / Inputs</span><h3>Camera + distance</h3><p>Pi Camera 3 over its ribbon connection.<br>VL53L1X ToF sensor over I²C.</p></li>
+        <li><span class="flow-index">02 / Perception</span><h3>Raspberry Pi 5</h3><p>Human detection, tracking information, and interpretation of range measurements.</p></li>
+        <li><span class="flow-index">03 / Handoff</span><h3>UART</h3><p>Target presence, horizontal error, distance, measurement quality, and command information.</p></li>
+        <li><span class="flow-index">04 / Physical response</span><h3>STM32</h3><p>Motor-control outputs through the driver boards, plus coordination of the demo mechanism.</p></li>
+      </ol>
+      <p class="case-note">The project presentation identifies TB6612FNG motor drivers in the STM32 subsystem. The diagrams below are the original presentation artifacts, not a verified wiring guide.</p>
+    </section>
 
-      <p>The flywheel mechanism added a useful mechanical layer to the project. It turned the rover from a pure follower into a robot with a conditional response, which made the state machine more interesting and made timing, safety, and repeatability matter more.</p>
+    <section id="vision" class="case-section case-vision" aria-labelledby="vision-heading">
+      <div>
+        <div class="case-section-head"><p class="eyebrow">Computer vision</p><h2 id="vision-heading">The neural network was MobileNet-SSD.</h2></div>
+        <div class="case-prose">
+          <p>My presentation lists <code>Detector.py → MobileNet-SSD</code>. This was the person-detection part of the system: camera frames went through the detector, and the detected person's bounding box supplied position information for tracking.</p>
+          <p><strong>MobileNet</strong> is a lightweight convolutional neural-network architecture designed for mobile and embedded vision. <strong>SSD</strong> stands for <em>Single Shot MultiBox Detector</em>; it predicts object categories and bounding boxes in one network pass. Together, they provide a compact object-detection approach.</p>
+          <p class="case-source">Background: <a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">original MobileNets paper ↗</a> · <a href="https://arxiv.org/abs/1512.02325" target="_blank" rel="noopener">original SSD paper ↗</a></p>
+        </div>
+      </div>
+      <figure class="case-media case-slide">
+        <a href="images/optimized/tracking-robot-program-slide.png" target="_blank" rel="noopener" aria-label="Open the program-function slide showing MobileNet-SSD and the person-detection demo"><img src="images/optimized/tracking-robot-program-slide.png" alt="Program Function presentation slide listing Detector.py with MobileNet-SSD, Tracker.py, Tof_sensor.py, and Main.py beside the bounding-box demo" loading="lazy"></a>
+        <figcaption>The original detector/module list and tracking preview. Open to inspect ↗</figcaption>
+      </figure>
+      <div class="case-module-list" aria-label="Python modules shown in the project presentation">
+        <div><code>Detector.py</code><span>MobileNet-SSD detection</span></div>
+        <div><code>Tracker.py</code><span>Tracking layer</span></div>
+        <div><code>Tof_sensor.py</code><span>Time-of-flight sensing</span></div>
+        <div><code>Main.py</code><span>Program coordination</span></div>
+      </div>
+    </section>
 
-      <h2>What I took away</h2>
-      <ul>
-        <li>Robot behavior improves when visual tracking is paired with independent distance sensing.</li>
-        <li>Splitting perception and actuation across a Raspberry Pi and STM32 creates a cleaner control architecture.</li>
-        <li>Mechanical outputs are most reliable when the software state machine accounts for timing and physical recovery between actions.</li>
-      </ul>
-    </article>
+    <section id="controls" class="case-section" aria-labelledby="controls-heading">
+      <div class="case-section-head"><p class="eyebrow">Feedback &amp; behavior</p><h2 id="controls-heading">Seeing a person was only the start.</h2></div>
+      <div class="case-control-grid">
+        <article><span class="flow-index">Visual feedback</span><h3>Center the person</h3><p>The horizontal offset of the detected person's bounding box from the center of the camera view supplied a centering error. As the person moved across the frame, that error supplied the information needed to correct the robot's heading.</p></article>
+        <article><span class="flow-index">Distance feedback</span><h3>Maintain separation</h3><p>The ToF sensor added a direct distance measurement. It let the robot maintain a following distance using range feedback, instead of treating the size of a person's image as a distance measurement.</p></article>
+        <article><span class="flow-index">Motor response</span><h3>PID control</h3><p>I used PID control to adjust motor response as the tracking error changed. The STM32 operated the motors while the Pi handled the camera and sensor processing. Getting turning corrections to behave well was part of joining those two layers.</p></article>
+      </div>
+      <aside class="case-dwell"><strong>2 s</strong><div><h3>A separate timed condition</h3><p>For the demo, I set a two-second stationary-person condition before the foam-ball flywheel response. This was a behavior condition layered onto the tracking and distance-control work.</p></div></aside>
+    </section>
+
+    <section id="challenges" class="case-section" aria-labelledby="challenges-heading">
+      <div class="case-section-head"><p class="eyebrow">What took work</p><h2 id="challenges-heading">The integration problems were the project.</h2></div>
+      <div class="case-challenges">
+        <article><span>01</span><div><h3>Power for the Pi</h3><p>The Pi 5 needed more current than expected during integration. I used external power for the Pi, making power distribution a separate problem from controlling the motors.</p></div></article>
+        <article><span>02</span><div><h3>UART pin configuration</h3><p>Only certain STM32 pins could be configured for the required UART connection. The communication link had to fit the board's available peripheral configuration.</p></div></article>
+        <article><span>03</span><div><h3>Detection within a compute budget</h3><p>Tracking needed to be accurate and robust without becoming too computationally demanding. Running the vision work on the Pi made that tradeoff part of the system design.</p></div></article>
+        <article><span>04</span><div><h3>Range alignment and stale readings</h3><p>The ToF sensor was not always aligned with the person seen by the camera. The presentation also records stale readings on poorly reflective surfaces—finding a person in an image did not automatically mean getting a useful range measurement.</p></div></article>
+      </div>
+    </section>
+
+    <section id="slides" class="case-section" aria-labelledby="slides-heading">
+      <div class="case-section-head"><p class="eyebrow">Project documentation</p><h2 id="slides-heading">From the original presentation.</h2><p>Expand a slide, then select it to view the full-size image.</p></div>
+      <details class="case-slide-detail"><summary>Raspberry Pi subsystem <span>Camera · I²C · UART</span></summary><a href="images/optimized/tracking-robot-pi-slide.png" target="_blank" rel="noopener" aria-label="Open the full Raspberry Pi subsystem slide"><img src="images/optimized/tracking-robot-pi-slide.png" alt="Original Raspberry Pi subsystem diagram showing Pi Camera 3 and TOF400C VL53L1X connected to Raspberry Pi 5 and a UART link to STM32" loading="lazy"></a></details>
+      <details class="case-slide-detail"><summary>STM32 subsystem <span>Drivers · Motors · Servo</span></summary><a href="images/optimized/tracking-robot-stm32-slide.png" target="_blank" rel="noopener" aria-label="Open the full STM32 subsystem slide"><img src="images/optimized/tracking-robot-stm32-slide.png" alt="Original STM32 subsystem presentation diagram showing UART input and motor-driver and servo outputs" loading="lazy"></a></details>
+      <details class="case-slide-detail"><summary>Technical challenges <span>Power · Communication · Sensing</span></summary><a href="images/optimized/tracking-robot-challenges-slide.png" target="_blank" rel="noopener" aria-label="Open the full technical-challenges slide"><img src="images/optimized/tracking-robot-challenges-slide.png" alt="Original technical-challenges slide describing power, UART configuration, human-tracking compute requirements, and ToF alignment alongside a robot CAD rendering" loading="lazy"></a></details>
+    </section>
+    <footer class="case-footer"><a href="Engineering.html">← Back to engineering</a><a href="mailto:Josh.Marzello@gmail.com">Josh.Marzello@gmail.com ↗</a></footer>
   </main>
-
-  <script src="portfolio-page.js" defer></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>

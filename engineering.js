@@ -97,14 +97,14 @@ const PROJECTS = [
   },
   {
     id: "sentry-rover",
-    title: "Vision-Guided Sentry Rover",
+    title: "Autonomous Tracking Robot",
     category: "project",
     year: "2024",
-    summary: "A Raspberry Pi and STM32 rover that tracks, centers, and follows a person using camera and distance sensing.",
-    impact: "Built the perception-to-actuation loop for human tracking, distance keeping, and a flywheel foam-ball response sequence.",
-    image: "./images/optimized/engineer-cover-1800.jpg",
+    summary: "A Raspberry Pi 5 and STM32 robot that uses MobileNet-SSD vision and ToF sensing to follow a person and maintain distance.",
+    impact: "Integrated person detection, distance feedback, PID motor control, and a two-second stationary condition for the foam-ball demo.",
+    image: "./images/optimized/tracking-robot-finished.jpg",
     link: "sentry-rover.html",
-    proof: "Perception architecture, STM32 handoff, rover behavior states",
+    proof: "MobileNet-SSD • Pi-to-STM32 UART • PID control • ToF ranging",
     flow: ["Camera + ToF", "Pi + STM32", "Rover"],
     artifacts: {
       cad: { title: "System architecture", copy: "Camera tracking, ToF ranging, embedded control, drivetrain response, and launcher behavior connected as one system." },
@@ -112,22 +112,43 @@ const PROJECTS = [
       test: { title: "Behavior states", copy: "Tracking, centering, following, holding distance, stopping, and launcher timing each became explicit test states." },
       result: { title: "Closed loop response", copy: "The rover reacted to a person with visual tracking, range context, and a conditional mechanical output." }
     },
-    tags: ["Raspberry Pi", "Pi Camera 3", "STM32", "ToF Sensor", "Computer Vision"]
+    tags: ["Raspberry Pi 5", "Pi Camera 3", "MobileNet-SSD", "STM32", "PID", "ToF Sensor"]
   },
   {
     id: "self-balancing-robot",
-    title: "Self Balancing Robot",
+    title: "Mechatronics Gauntlet Robot",
     category: "project",
-    year: "",
-    summary: "Building a self balancing robot from ground up.",
-    impact: "Having it navigate maze, perform turns, imu tracking etc",
-    image: "./images/optimized/self-balancing-robot-finished-1600.jpg",
-    imagePosition: "center 62%",
+    year: "2026",
+    summary: "Eight ME 4405 labs, from embedded C and sensor circuits to a robot navigating an obstacle gauntlet.",
+    impact: "STM32 firmware, motor calibration, PID distance control, maze scanning, and IMU orientation tracking.",
+    image: "./images/optimized/self-balancing-bench-still.jpg",
+    imagePosition: "center 58%",
     link: "self-balancing-robot.html",
-    proof: "Maze navigation • Turns • IMU tracking",
+    proof: "8 labs • STM32 • Sensing, control & navigation",
     flow: [],
     artifacts: null,
-    tags: []
+    tags: ["Embedded C", "STM32", "PWM", "Encoders", "PID", "I2C", "IMU"]
+  },
+  {
+    "id": "me2110",
+    "title": "ME 2110 Barbenheimer Bot",
+    "category": "project",
+    "year": "",
+    "summary": "My intro into fabricating an autonomous robot from scratch. Who said it was easy?",
+    "impact": "Our team placed 12th out of 68 teams, scored a 95-point round, and entered the 32-team elimination bracket ranked first.",
+    "image": "./images/ME2110cadmodel.png",
+    "imageMode": "contain",
+    "link": "me2110.html",
+    "proof": "Cascading lift • Four competition tasks • Original CAD and track diagrams",
+    "tags": [
+      "ME 2110",
+      "Arduino",
+      "Mechatronics",
+      "Cascading Lift",
+      "CAD"
+    ],
+    "flow": [],
+    "artifacts": null
   },
   {
     id: "cycloidal-actuator",
@@ -214,7 +235,7 @@ const PROJECTS = [
 ];
 
 function compareProjectsByYearDesc(a, b) {
-  const categoryRank = (item) => (item.category === 'internship' ? 0 : 1);
+  const categoryRank = (item) => (item.category === 'ai-tool' || item.filters?.includes('ai-tool') ? 2 : item.category === 'internship' ? 1 : 0);
   const rankA = categoryRank(a);
   const rankB = categoryRank(b);
   if (rankA !== rankB) return rankA - rankB;

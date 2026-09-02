@@ -47,9 +47,9 @@ const metadata = {
     image: `${siteUrl}/images/IMG_0754.JPG`
   },
   "sentry-rover.html": {
-    title: "Vision-Guided Sentry Rover | Josh Murzello",
-    description: "Engineering case study for Josh Murzello's Raspberry Pi and STM32 rover with camera tracking, time-of-flight ranging, closed-loop motion, and actuation.",
-    image: defaultImage
+    title: "Autonomous Tracking Robot | Josh Murzello",
+    description: "Josh Murzello's autonomous tracking robot combines MobileNet-SSD person detection, Raspberry Pi 5, Pi Camera 3, ToF ranging, and STM32 motor control.",
+    image: `${siteUrl}/images/optimized/tracking-robot-finished.jpg`
   },
   "3Dprint.html": {
     title: "3D Printing Product Series | Josh Murzello",
@@ -62,9 +62,14 @@ const metadata = {
     image: `${siteUrl}/images/camerame.png`
   },
   "self-balancing-robot.html": {
-    title: "Self Balancing Robot | Josh Murzello",
-    description: "Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.",
-    image: `${siteUrl}/images/optimized/self-balancing-robot-finished-1600.jpg`
+    title: "Mechatronics Gauntlet Robot | Josh Murzello",
+    description: "Josh Murzello's ME 4405 robot: eight labs spanning embedded C, STM32, analog sensing, PWM, encoders, PID, maze navigation, and IMU integration.",
+    image: `${siteUrl}/images/optimized/self-balancing-bench-still.jpg`
+  },
+  "me2110.html": {
+    title: "ME 2110 Barbenheimer Bot | Josh Murzello",
+    description: "Josh Murzello's ME 2110 Barbenheimer robot project: an autonomous competition build with a cascading lift, CAD model, track layout, and team results.",
+    image: `${siteUrl}/images/ME2110cadmodel.png`
   },
   "spacex.html": {
     title: "SpaceX Internship | Josh Murzello",
@@ -97,7 +102,6 @@ const fallbackDescriptions = {
   "dinkrack.html": "Archived engineering project page for Josh Murzello's Dink Rack product concept, preserved as part of the broader 3D printing and design portfolio.",
   "eboard.html": "Archived engineering project page for Josh Murzello's electric skateboard build, preserved as part of the broader mobility and hardware portfolio.",
   "mars.html": "Archived engineering project page for Josh Murzello's MARS research work, preserved as part of the broader hardware and research portfolio.",
-  "me2110.html": "Archived engineering project page for Josh Murzello's ME 2110 course project, preserved as part of the broader robotics and mechanical design portfolio.",
   "plant-shelf.html": "Engineering project page for Josh Murzello's 3D printed plant shelf, covering a lightweight tack-mounted shelf designed for small plants and decor.",
   "Creatives-clean.html": "Archived creative portfolio layout for Josh Murzello, preserved as an older visual portfolio draft with photography and studio presentation work."
 };
