@@ -18,7 +18,7 @@ window.ENGINEERING_PROJECTS = [
   },
   {
     "id": "sentry-rover",
-    "title": "Autonomous Tracking Robot",
+    "title": "Vision Tracking Robot",
     "category": "project",
     "year": "2024",
     "summary": "A Raspberry Pi 5 and STM32 robot that uses MobileNet-SSD vision and ToF sensing to follow a person and maintain distance.",

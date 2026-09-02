@@ -8,7 +8,7 @@
   if (!stage || !carousel || !viewport || !scrubber || !allProjects.length) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const refs = Object.fromEntries(['current', 'total', 'meta', 'task', 'impact', 'tags', 'link'].map((name) => [name, document.getElementById(`orbit-${name}`)]));
+  const refs = Object.fromEntries(['current', 'total', 'meta', 'task', 'impact', 'skills', 'tags', 'link'].map((name) => [name, document.getElementById(`orbit-${name}`)]));
   refs.title = document.getElementById('orbit-project-title');
   let projects = [...allProjects];
   let position = 0;
@@ -37,10 +37,12 @@
     refs.task.textContent = project.summary;
     refs.impact.textContent = project.impact;
     refs.tags.replaceChildren();
-    (project.tags || []).forEach((tag) => {
-      const span = document.createElement('span');
-      span.textContent = tag;
-      refs.tags.appendChild(span);
+    const skills = project.tags || [];
+    if (refs.skills) refs.skills.hidden = skills.length === 0;
+    skills.forEach((tag) => {
+      const item = document.createElement('li');
+      item.textContent = tag;
+      refs.tags.appendChild(item);
     });
     refs.link.hidden = !project.link;
     if (project.link) refs.link.href = project.link;

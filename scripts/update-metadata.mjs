@@ -47,8 +47,8 @@ const metadata = {
     image: `${siteUrl}/images/IMG_0754.JPG`
   },
   "sentry-rover.html": {
-    title: "Autonomous Tracking Robot | Josh Murzello",
-    description: "Josh Murzello's autonomous tracking robot combines MobileNet-SSD person detection, Raspberry Pi 5, Pi Camera 3, ToF ranging, and STM32 motor control.",
+    title: "Vision Tracking Robot | Josh Murzello",
+    description: "Josh Murzello's vision tracking robot combines MobileNet-SSD person detection, Raspberry Pi 5, Pi Camera 3, ToF ranging, and STM32 motor control.",
     image: `${siteUrl}/images/optimized/tracking-robot-finished.jpg`
   },
   "3Dprint.html": {

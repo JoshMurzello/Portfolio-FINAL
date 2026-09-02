@@ -48,7 +48,7 @@ function setup(reduce = false) {
   const viewport = new Element();
   const carousel = new Element();
   const scrubber = new Element('input');
-  const refs = Object.fromEntries(['current', 'total', 'meta', 'project-title', 'task', 'impact', 'tags', 'link'].map((name) => [`orbit-${name}`, new Element()]));
+  const refs = Object.fromEntries(['current', 'total', 'meta', 'project-title', 'task', 'impact', 'skills', 'tags', 'link'].map((name) => [`orbit-${name}`, new Element()]));
   const html = fs.readFileSync(new URL('../Engineering.html', import.meta.url), 'utf8');
   const buttons = [...html.matchAll(/data-filter="([^"]+)"/g)].map(([, filter]) => { const button = new Element('button'); button.dataset.filter = filter; return button; });
   let nextId = 1;
@@ -99,6 +99,36 @@ test('projects lead the carousel, SpaceX leads internships, and AI tools finish 
   assert.equal(app.refs['orbit-project-title'].textContent, 'SpaceX Avionics Manufacturing');
 });
 
+test('skills stay prominent, accurate, and disappear for projects without supplied tags', () => {
+  const app = setup();
+  const projects = app.window.ENGINEERING_PROJECTS;
+  const select = (id) => {
+    const index = projects.findIndex((project) => project.id === id);
+    app.scrubber.value = String(index); app.scrubber.emit('input'); app.flush();
+    return projects[index];
+  };
+  for (const id of ['sentry-rover', 'self-balancing-robot', 'me2110']) {
+    const project = select(id);
+    assert.equal(app.refs['orbit-skills'].hidden, false);
+    assert.deepEqual(app.refs['orbit-tags'].children.map((item) => item.textContent), Array.from(project.tags));
+    assert.ok(app.refs['orbit-tags'].children.every((item) => item.tagName === 'LI'));
+  }
+  select('stacy');
+  assert.equal(app.refs['orbit-skills'].hidden, true);
+  assert.equal(app.refs['orbit-tags'].children.length, 0);
+  select('sentry-rover');
+  assert.equal(app.refs['orbit-skills'].hidden, false);
+  const html = fs.readFileSync(new URL('../Engineering.html', import.meta.url), 'utf8');
+  assert.match(html, /role="group" aria-labelledby="orbit-skills-label"/);
+  assert.match(html, /<ul class="orbit-tags" id="orbit-tags">/);
+  assert.ok(html.indexOf('id="orbit-skills"') < html.indexOf('id="orbit-task"'));
+  const page = fs.readFileSync(new URL('../sentry-rover.html', import.meta.url), 'utf8');
+  assert.match(page, /<title>Vision Tracking Robot \| Josh Murzello<\/title>/);
+  assert.match(page, /<h1 id="case-title">Vision<br>tracking robot\.<\/h1>/);
+  assert.doesNotMatch(page, /autonomous(?:<br>|\s)+tracking robot/i);
+  assert.match(page, /youtube-nocookie.com\/embed\/hJwOXDbev68/);
+});
+
 test('all projects and their actual assets are included', () => {
   const app = setup();
   const projects = app.window.ENGINEERING_PROJECTS;
@@ -114,7 +144,7 @@ test('all projects and their actual assets are included', () => {
   assert.match(projects.find((project) => project.id === 'self-balancing-robot').image, /self-balancing-bench-still/);
   assert.match(projects.find((project) => project.id === 'cycloidal-actuator').image, /cycloidal-actuator-bench/);
   const trackingRobot = projects.find((project) => project.id === 'sentry-rover');
-  assert.equal(trackingRobot.title, 'Autonomous Tracking Robot');
+  assert.equal(trackingRobot.title, 'Vision Tracking Robot');
   assert.equal(trackingRobot.image, './images/optimized/tracking-robot-finished.jpg');
   assert.ok(trackingRobot.tags.includes('MobileNet-SSD'));
   assert.equal(trackingRobot.link, 'sentry-rover.html');
@@ -127,7 +157,7 @@ test('filters preserve internships, robots, and AI tools', () => {
   app.buttons.find((button) => button.dataset.filter === 'project').emit('click');
   assert.equal(app.carousel.children.length, 8);
   const labels = app.carousel.children.map((card) => card.attributes['aria-label']);
-  for (const title of ['Mechatronics Gauntlet Robot', 'Autonomous Tracking Robot', 'ME 2110 Barbenheimer Bot', 'Cycloidal Actuator', 'Electric Skateboard']) assert.ok(labels.some((label) => label.startsWith(title)));
+  for (const title of ['Mechatronics Gauntlet Robot', 'Vision Tracking Robot', 'ME 2110 Barbenheimer Bot', 'Cycloidal Actuator', 'Electric Skateboard']) assert.ok(labels.some((label) => label.startsWith(title)));
   app.buttons[3].emit('click');
   assert.equal(app.carousel.children.length, 2);
   assert.equal(app.scrubber.max, '1');
@@ -162,7 +192,7 @@ test('wheel and range select projects; boundaries and zoom are not trapped', () 
   assert.equal(app.viewport.emit('wheel', { deltaY: 500, ctrlKey: true }).defaultPrevented, false);
   assert.equal(app.viewport.emit('wheel', { deltaY: 560 }).defaultPrevented, true);
   app.flush();
-  assert.equal(app.refs['orbit-project-title'].textContent, 'Autonomous Tracking Robot');
+  assert.equal(app.refs['orbit-project-title'].textContent, 'Vision Tracking Robot');
   const cycloidalIndex = app.window.ENGINEERING_PROJECTS.findIndex((project) => project.id === 'cycloidal-actuator');
   app.scrubber.value = String(cycloidalIndex); app.scrubber.emit('input'); app.flush();
   assert.equal(app.refs['orbit-project-title'].textContent, 'Cycloidal Actuator');
@@ -193,7 +223,7 @@ test('a tap can open a project; a drag does not accidentally navigate', () => {
   app.carousel.children[1].emit('click');
   assert.equal(app.window.location.href, '');
   app.flush();
-  assert.equal(app.refs['orbit-project-title'].textContent, 'Autonomous Tracking Robot');
+  assert.equal(app.refs['orbit-project-title'].textContent, 'Vision Tracking Robot');
   assert.equal(app.viewport.hasPointerCapture(1), false);
   app.carousel.children[1].emit('click');
   assert.equal(app.window.location.href, 'sentry-rover.html');
