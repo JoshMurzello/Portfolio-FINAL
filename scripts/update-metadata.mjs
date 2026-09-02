@@ -64,7 +64,7 @@ const metadata = {
   "self-balancing-robot.html": {
     title: "Self Balancing Robot | Josh Murzello",
     description: "Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.",
-    image: defaultImage
+    image: `${siteUrl}/images/optimized/self-balancing-robot-finished-1600.jpg`
   },
   "spacex.html": {
     title: "SpaceX Internship | Josh Murzello",
@@ -74,7 +74,7 @@ const metadata = {
   "cyclodial-actuator.html": {
     title: "Cycloidal Actuator | Josh Murzello",
     description: "Engineering case study for Josh Murzello's 3D printed cycloidal actuator with reduction math, parametric CAD, motor selection, and tolerance iteration.",
-    image: `${siteUrl}/images/ME2110cadmodel.png`
+    image: `${siteUrl}/images/optimized/cycloidal-actuator-bench-1600.jpg`
   },
   "pomodoro.html": {
     title: "Focus Dial Pomodoro Device | Josh Murzello",

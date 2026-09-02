@@ -11,6 +11,8 @@ const metadataOptionalFiles = new Set(["Creatives-clean.html"]);
 const cssFiles = fs.readdirSync(root).filter((file) => file.endsWith(".css"));
 const jsFiles = [
   "engineering.js",
+  "engineering-projects.js",
+  "engineering-orbit.js",
   "creatives.js",
   "site-header.js",
   "portfolio-page.js"

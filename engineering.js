@@ -121,13 +121,27 @@ const PROJECTS = [
     year: "",
     summary: "Building a self balancing robot from ground up.",
     impact: "Having it navigate maze, perform turns, imu tracking etc",
-    image: "./images/self-balancing-placeholder.svg",
-    imageMode: "contain",
+    image: "./images/optimized/self-balancing-robot-finished-1600.jpg",
+    imagePosition: "center 62%",
     link: "self-balancing-robot.html",
     proof: "Maze navigation • Turns • IMU tracking",
     flow: [],
     artifacts: null,
     tags: []
+  },
+  {
+    id: "cycloidal-actuator",
+    title: "Cycloidal Actuator",
+    category: "project",
+    year: "2026",
+    summary: "Designing a compact, high-reduction drive system for robotics.",
+    impact: "A 3D-printed cycloidal actuator intended for robotic joint applications.",
+    image: "./images/optimized/cycloidal-actuator-bench-1600.jpg",
+    link: "cyclodial-actuator.html",
+    proof: "15:1 reduction • Parametric CAD • 3D-print tolerance iteration",
+    flow: [],
+    artifacts: null,
+    tags: ["Robotics", "Fusion 360", "Mechanical Design", "Rapid Prototyping"]
   },
   {
     id: "print",
@@ -272,6 +286,7 @@ function updateSpotlight(project) {
   spotlightRefs.image.src = project.image;
   spotlightRefs.image.alt = project.title + ' cover image';
   spotlightRefs.image.style.objectFit = project.imageMode === 'contain' ? 'contain' : 'cover';
+  spotlightRefs.image.style.objectPosition = project.imagePosition || 'center';
   spotlightRefs.image.style.background = project.imageMode === 'contain' ? '#0f0f14' : 'transparent';
   spotlightRefs.category.textContent = projectMeta(project);
   spotlightRefs.title.textContent = project.title;
@@ -390,7 +405,7 @@ function renderWall() {
     a.className = 'wall-card reveal-block';
     if (project.link) a.href = project.link;
     a.innerHTML = `
-      <img src="${project.image}" alt="${project.title} preview" loading="lazy" decoding="async" style="object-fit:${project.imageMode === 'contain' ? 'contain' : 'cover'}; background:${project.imageMode === 'contain' ? '#101117' : 'transparent'};">
+      <img src="${project.image}" alt="${project.title} preview" loading="lazy" decoding="async" style="object-fit:${project.imageMode === 'contain' ? 'contain' : 'cover'}; object-position:${project.imagePosition || 'center'}; background:${project.imageMode === 'contain' ? '#101117' : 'transparent'};">
       <div class="wall-card-body">
         <h3>${project.title}</h3>
         <p>${project.summary}</p>

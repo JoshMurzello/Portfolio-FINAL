@@ -18,19 +18,17 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="engineering.css?v=20260831-1">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="engineering-orbit.css?v=20260902-1">
   <link rel="stylesheet" href="site-header.css">
 </head>
-<body data-accent="blue">
+<body class="unified-site-header">
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <header class="site-header" id="site-header">
-    <div class="shell nav-shell">
-      <a href="index.html" class="brand"><img src="favicon.svg" alt="" class="brand-logo" aria-hidden="true">JOSH MURZELLO</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+  <header class="unified-header" id="site-header">
+    <div class="unified-header-shell">
+      <a href="index.html" class="unified-brand"><img src="favicon.svg" alt="" class="unified-brand-logo" aria-hidden="true">JOSH MURZELLO</a>
+      <button class="menu-toggle unified-menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
+      <nav id="site-nav" class="site-nav unified-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="Engineering.html" aria-current="page">Engineering</a>
         <a href="Creatives.html">Creatives</a>
@@ -39,214 +37,77 @@
     </div>
   </header>
 
-  <main id="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-image" aria-hidden="true"></div>
-      <div class="hero-noise" aria-hidden="true"></div>
-      <div class="shell hero-content reveal">
-        <p class="kicker">Engineering Portfolio</p>
-        <h1 id="hero-title">Built in the lab.<br>Shipped in the real world.</h1>
-        <p class="hero-copy">
-          From EV manufacturing to rapid prototyping and BCI experiments, this page tracks the projects,
-          internships, and systems work that define how I engineer.
-        </p>
-        <a class="hero-cta" href="#explorer">Explore Work</a>
+  <main id="main-content" tabindex="-1" class="orbit-stage" aria-labelledby="orbit-title">
+    <div class="orbit-glow" aria-hidden="true"></div>
+    <div class="orbit-floor" aria-hidden="true"></div>
+
+    <section class="orbit-copy" aria-live="polite">
+      <p class="orbit-kicker">Engineering projects</p>
+      <h1 id="orbit-title">Work in motion.</h1>
+      <div class="project-counter"><span id="orbit-current">01</span><i></i><span id="orbit-total">12</span></div>
+      <p class="project-meta" id="orbit-meta">Internship / 2026</p>
+      <h2 id="orbit-project-title">SpaceX Avionics Manufacturing</h2>
+      <div class="task-block">
+        <span>The task</span>
+        <p id="orbit-task">Manufacturing engineering work supporting Starship avionics hardware through automation, vendor build readiness, inspection requirements, and traceable production processes.</p>
       </div>
+      <p class="impact-label">What came out of it</p>
+      <p class="project-impact" id="orbit-impact">Connected fixture design, automation software, OCR-based inspection, supplier quality, and production documentation into repeatable avionics manufacturing workflows.</p>
+      <div class="orbit-tags" id="orbit-tags"></div>
+      <a class="orbit-link" id="orbit-link" href="spacex.html">Open full project <span>↗</span></a>
     </section>
 
-    <section class="metrics shell" aria-label="Engineering highlights">
-      <article class="metric-card reveal-block" data-tilt>
-        <p class="metric-value" data-count="15" data-suffix="+" aria-label="15 plus">15+</p>
-        <p class="metric-label">Builds across mobility, robotics, and product design.</p>
-      </article>
-      <article class="metric-card reveal-block" data-tilt>
-        <p class="metric-value" data-count="4">4</p>
-        <p class="metric-label">Industry internships spanning space systems, avionics, advanced manufacturing, and high-volume production ramping.</p>
-      </article>
-      <article class="metric-card reveal-block" data-tilt>
-        <p class="metric-value" data-count="1200" data-suffix="+" aria-label="1200 plus">1200+</p>
-        <p class="metric-label">Hours of prototyping, testing, and iterative development.</p>
-      </article>
+    <section class="orbit-viewport" aria-label="Interactive engineering project carousel" aria-roledescription="carousel" tabindex="0">
+      <div class="orbit-carousel" id="orbit-carousel"></div>
     </section>
 
-    <section class="explorer shell" id="explorer" aria-labelledby="explorer-title">
-      <div class="section-head reveal">
-        <p class="kicker">Interactive Explorer</p>
-        <h2 id="explorer-title">Pick a project, preview the full story</h2>
+    <div class="orbit-controls">
+      <div class="orbit-filters" aria-label="Filter engineering projects">
+        <button class="is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="internship" aria-pressed="false">Internships</button>
+        <button type="button" data-filter="project" aria-pressed="false">Projects</button>
+        <button type="button" data-filter="ai-tool" aria-pressed="false">AI tools</button>
       </div>
-
-      <div class="filter-rail reveal" aria-label="Filter engineering work">
-        <div class="filter-glide" aria-hidden="true"></div>
-        <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-        <button class="filter-chip" type="button" data-filter="internship" aria-pressed="false">Internships</button>
-        <button class="filter-chip" type="button" data-filter="project" aria-pressed="false">Projects</button>
-        <button class="filter-chip" type="button" data-filter="ai-tool" aria-pressed="false">AI Tools</button>
-      </div>
-
-      <div class="explorer-grid">
-        <article class="spotlight reveal-block" aria-live="polite">
-          <div class="spotlight-media-wrap">
-            <img id="spotlight-image" src="" alt="" class="spotlight-image" decoding="async">
-          </div>
-          <div class="spotlight-body">
-            <p id="spotlight-category" class="spotlight-category"></p>
-            <h3 id="spotlight-title"></h3>
-            <p id="spotlight-summary"></p>
-            <p id="spotlight-impact" class="spotlight-impact"></p>
-            <div id="spotlight-tags" class="tag-list" aria-label="Technologies used"></div>
-            <div class="artifact-tabs" role="tablist" aria-label="Project artifact preview">
-              <button type="button" class="artifact-tab is-active" data-artifact-tab="cad" aria-selected="true">CAD</button>
-              <button type="button" class="artifact-tab" data-artifact-tab="build" aria-selected="false">Build</button>
-              <button type="button" class="artifact-tab" data-artifact-tab="test" aria-selected="false">Test</button>
-              <button type="button" class="artifact-tab" data-artifact-tab="result" aria-selected="false">Result</button>
-            </div>
-            <div class="artifact-panel" aria-live="polite">
-              <p id="artifact-kicker" class="artifact-kicker"></p>
-              <h4 id="artifact-title"></h4>
-              <p id="artifact-copy"></p>
-            </div>
-            <div class="system-diagram" aria-label="Project system flow">
-              <div class="system-node" id="system-node-a"></div>
-              <span class="system-link" aria-hidden="true"></span>
-              <div class="system-node" id="system-node-b"></div>
-              <span class="system-link" aria-hidden="true"></span>
-              <div class="system-node" id="system-node-c"></div>
-            </div>
-            <a id="spotlight-link" class="spotlight-link" href="tesla.html">View Project</a>
-          </div>
-        </article>
-
-        <div id="project-list" class="project-list" aria-label="Selectable engineering projects"></div>
-      </div>
-    </section>
-
-    <section class="pipeline shell" aria-labelledby="pipeline-title">
-      <div class="section-head reveal">
-        <p class="kicker">Process</p>
-        <h2 id="pipeline-title">How I execute builds</h2>
-      </div>
-      <div class="pipeline-track">
-        <article class="pipeline-step reveal-block">
-          <span class="step-index">01</span>
-          <h3>Frame the constraint</h3>
-          <p>Define hard requirements, user context, and failure conditions first.</p>
-        </article>
-        <article class="pipeline-step reveal-block">
-          <span class="step-index">02</span>
-          <h3>Prototype fast</h3>
-          <p>Test rough concepts in CAD, hardware, or code before polishing.</p>
-        </article>
-        <article class="pipeline-step reveal-block">
-          <span class="step-index">03</span>
-          <h3>Instrument & validate</h3>
-          <p>Measure, log, and compare against expected behavior under real load.</p>
-        </article>
-        <article class="pipeline-step reveal-block">
-          <span class="step-index">04</span>
-          <h3>Refine for reliability</h3>
-          <p>Close loops on manufacturability, maintainability, and performance.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="wall shell" aria-labelledby="wall-title">
-      <div class="section-head reveal">
-        <p class="kicker">Portfolio Wall</p>
-        <h2 id="wall-title">Browse all engineering work</h2>
-      </div>
-      <div id="wall-grid" class="wall-grid" aria-live="polite"></div>
-    </section>
+      <label class="orbit-scrubber-wrap">
+        <span class="sr-only">Choose project</span>
+        <input class="orbit-scrubber" type="range" min="0" max="11" step="1" value="0">
+      </label>
+      <p class="orbit-hint">Scroll, drag, or use arrow keys</p>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell footer-shell reveal">
-      <h2>Let’s build something ambitious.</h2>
-      <p>Have a project, team, or challenge where engineering and storytelling intersect? Let’s connect.</p>
-      <form class="connect-form inhouse-contact-form" novalidate>
-        <div class="form-grid">
-          <label class="contact-field">
-            <span>Name</span>
-            <input type="text" name="name" autocomplete="name" required placeholder="Your name">
-          </label>
-          <label class="contact-field">
-            <span>Email</span>
-            <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
-          </label>
-        </div>
-        <label class="contact-field">
-          <span>Subject</span>
-          <input type="text" name="subject" required placeholder="Project inquiry">
-        </label>
-        <label class="contact-field">
-          <span>Message</span>
-          <textarea name="message" rows="5" required placeholder="What's on your mind..."></textarea>
-        </label>
-        <input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="contact-actions">
-          <button type="submit" class="connect-submit">Send Message</button>
-        </div>
-        <p class="direct-email">Prefer direct email? <a href="mailto:Josh.Marzello@gmail.com">Josh.Marzello@gmail.com</a></p>
-        <p class="contact-status" role="status" aria-live="polite"></p>
-      </form>
-      <div class="footer-links">
-        <a href="https://www.instagram.com/joshmurzello/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/josh-murzello/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://www.youtube.com/@joshmurzello" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://vsco.co/joshmurzello/gallery" target="_blank" rel="noopener" aria-label="VSCO"><i class="fas fa-camera-retro"></i></a>
-      </div>
-      <p class="copyright">© 2026 Josh Murzello</p>
+  <footer class="orbit-footer">
+    <div class="orbit-footer-contact">
+      <div><h2>Let’s build something ambitious.</h2><a href="mailto:Josh.Marzello@gmail.com">Josh.Marzello@gmail.com ↗</a></div>
+      <nav aria-label="Social links">
+        <a href="https://www.linkedin.com/in/josh-murzello/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.instagram.com/joshmurzello/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="https://www.youtube.com/@joshmurzello" target="_blank" rel="noopener">YouTube ↗</a>
+        <a href="https://vsco.co/joshmurzello/gallery" target="_blank" rel="noopener">VSCO ↗</a>
+      </nav>
     </div>
+    <details class="orbit-directory">
+      <summary>Browse all engineering work</summary>
+      <ul>
+        <li><a href="spacex.html">SpaceX Avionics Manufacturing</a></li>
+        <li><a href="tesla.html">Tesla</a></li>
+        <li><a href="lg.html">LG Electronics</a></li>
+        <li><a href="price.html">Price Industries</a></li>
+        <li><a href="bci.html">Brain Controlled Interface</a></li>
+        <li><a href="sentry-rover.html">Vision-Guided Sentry Rover</a></li>
+        <li><a href="self-balancing-robot.html">Self Balancing Robot</a></li>
+        <li><a href="cyclodial-actuator.html">Cycloidal Actuator</a></li>
+        <li><a href="3Dprint.html">3D Printing Product Series</a></li>
+        <li><a href="tools/stl-animator/">STL Animator Tool</a></li>
+        <li><a href="eboard.html">Electric Skateboard</a></li>
+        <li><span>Stacy</span></li>
+      </ul>
+    </details>
+    <noscript><p>The interactive carousel needs JavaScript. All project pages are available through “Browse all engineering work” above.</p></noscript>
+    <p class="orbit-copyright">© 2026 Josh Murzello</p>
   </footer>
-
-  <script>
-    (function initInhouseContactForm() {
-      const form = document.querySelector('.inhouse-contact-form');
-      if (!form) return;
-
-      const status = form.querySelector('.contact-status');
-      const CONTACT_EMAIL = 'Josh.Marzello@gmail.com';
-
-      const setStatus = (message, isError = false) => {
-        if (!status) return;
-        status.textContent = message;
-        status.classList.toggle('error', Boolean(isError));
-      };
-
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const honeypot = form.querySelector('input[name="website"]');
-        if (honeypot && honeypot.value.trim()) return;
-
-        const formData = new FormData(form);
-        const name = String(formData.get('name') || '').trim();
-        const email = String(formData.get('email') || '').trim();
-        const subject = String(formData.get('subject') || '').trim();
-        const message = String(formData.get('message') || '').trim();
-
-        if (!name || !email || !subject || !message) {
-          setStatus('Please fill out all fields before sending.', true);
-          return;
-        }
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-          setStatus('Please provide a valid email address.', true);
-          return;
-        }
-
-        const mailSubject = encodeURIComponent(subject);
-        const mailBody = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-        );
-
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
-        setStatus('Opening your email app...');
-        form.reset();
-      });
-    })();
-  </script>
-  <script src="engineering.js?v=20260831-1" defer></script>
+  <script src="engineering-projects.js?v=20260902-1"></script>
+  <script src="engineering-orbit.js?v=20260902-1"></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>

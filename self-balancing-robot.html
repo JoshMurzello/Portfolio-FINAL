@@ -10,17 +10,57 @@
   <meta property="og:description" content="Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/self-balancing-robot.html">
-  <meta property="og:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/optimized/self-balancing-robot-finished-1600.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Self Balancing Robot | Josh Murzello">
   <meta name="twitter:description" content="Compact case study for Josh Murzello's self-balancing robot prototype, covering control loops, sensor feedback, motor response, and hardware iteration.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/engineer%20cover.JPG">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/optimized/self-balancing-robot-finished-1600.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
   <link rel="stylesheet" href="portfolio-page.css">
+  <style>
+    .robot-gallery {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .robot-photo {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--pp-line);
+      border-radius: var(--pp-radius-md);
+      background: #0c1118;
+      box-shadow: var(--pp-shadow);
+    }
+
+    .robot-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .robot-photo--finished img { object-position: center 38%; }
+    .robot-photo--build img { object-position: center 52%; }
+
+    .robot-photo figcaption {
+      padding: 0.72rem 0.85rem;
+      border-top: 1px solid var(--pp-line);
+      color: var(--pp-muted);
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 680px) {
+      .robot-gallery { grid-template-columns: 1fr; }
+      .robot-photo img { aspect-ratio: 4 / 5; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -31,7 +71,16 @@
     <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
       A control-system prototype focused on keeping an unstable two-wheel platform upright using sensor feedback, motor response, and fast iteration.
     </p>
-    <div class="article-hero-image" style="margin-top:2rem; background-image:linear-gradient(180deg, rgba(7,10,16,0.2), rgba(7,10,16,0.58)), url('./images/optimized/engineer-cover-1800.jpg');"></div>
+    <section class="robot-gallery" aria-label="Self-balancing robot project photos">
+      <figure class="robot-photo robot-photo--finished">
+        <img src="images/optimized/self-balancing-robot-finished-1600.jpg" alt="Josh holding the completed self-balancing robot in the electronics lab">
+        <figcaption>Finished robot in the lab.</figcaption>
+      </figure>
+      <figure class="robot-photo robot-photo--build">
+        <img src="images/optimized/self-balancing-robot-build-1600.jpg" alt="Self-balancing robot chassis, wheels, electronics, and test equipment arranged on a lab workbench" loading="lazy">
+        <figcaption>Chassis, electronics, and test setup during the build.</figcaption>
+      </figure>
+    </section>
 
     <section class="page-section tight">
       <div class="grid-3">
