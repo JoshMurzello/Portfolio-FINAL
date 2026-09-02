@@ -1,0 +1,25 @@
+/* Content is visible by default. Only a running observer prepares a reveal. */
+.home-reveal.is-pending {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+/* Keyboard navigation must never land on an invisible link or form. */
+.home-reveal:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media print {
+  .home-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
