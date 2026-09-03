@@ -1,25 +1,52 @@
-/* Content is visible by default. Only a running observer prepares a reveal. */
-.home-reveal.is-pending {
-  opacity: 0;
-  transform: translateY(26px);
+/* Visible by default; scroll motion only opts in after a successful render. */
+.home-scroll-active .home-reveal {
+  opacity: var(--home-opacity, 1);
+  transform: translate3d(0, var(--home-y, 0px), 0) scale(var(--home-scale, 1));
+  transform-origin: 50% 100%;
 }
 
-/* Keyboard navigation must never land on an invisible link or form. */
-.home-reveal:focus-within {
-  opacity: 1 !important;
-  transform: none !important;
+.home-scroll-active .home-in-motion {
+  will-change: transform, opacity;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .home-reveal {
+/* Preserve each photo's existing frame and background position. Only the
+   image inside it moves, so the card body and surrounding layout stay put. */
+.home-media-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--pp-line);
+}
+
+.home-media-frame .feature-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-bottom: 0;
+}
+
+.home-scroll-active .home-media-frame .feature-media {
+  transform: translate3d(0, var(--home-image-y, 0%), 0) scale(var(--home-image-scale, 1));
+}
+
+.home-scroll-active .hero-backdrop {
+  transform: translate3d(0, var(--home-hero-y, 0%), 0) scale(var(--home-hero-scale, 1.02));
+}
+
+/* Keyboard navigation must never land on faded or displaced content. */
+.home-scroll-active .home-reveal:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .home-scroll-active .home-reveal,
+  .home-scroll-active .home-media-frame .feature-media,
+  .home-scroll-active .hero-backdrop {
     opacity: 1 !important;
     transform: none !important;
-  }
-}
-
-@media print {
-  .home-reveal {
-    opacity: 1 !important;
-    transform: none !important;
+    will-change: auto;
   }
 }
