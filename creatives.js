@@ -121,6 +121,7 @@ const chips = [...document.querySelectorAll(".filter-chip")];
 const filterGlide = document.querySelector(".filter-glide");
 const modal = document.getElementById("project-modal");
 let lastFocusedElement = null;
+let locationGallery = null;
 
 const modalRefs = {
   title: document.getElementById("modal-title"),
@@ -288,7 +289,14 @@ function toCategoryLabel(categories) {
 }
 
 function renderModalMedia(project) {
+  locationGallery?.destroy();
+  locationGallery = null;
   modalRefs.media.innerHTML = "";
+
+  if (project.photoJournal && window.createLocationGallery) {
+    locationGallery = window.createLocationGallery(modalRefs.media, project);
+    return;
+  }
 
   project.media.forEach((asset) => {
     const figure = document.createElement("figure");
@@ -374,12 +382,15 @@ function openModal(projectId) {
   modal.scrollTop = 0;
 
   const closeBtn = modal.querySelector(".modal-close");
-  if (closeBtn) closeBtn.focus();
+  const initialFocus = modal.querySelector(".location-stage") || closeBtn;
+  if (initialFocus) initialFocus.focus({ preventScroll: true });
 }
 
 function closeModal() {
   if (!modal.open) return;
   modal.close();
+  locationGallery?.destroy();
+  locationGallery = null;
   modalRefs.media.replaceChildren();
   document.body.style.overflow = "";
   if (lastFocusedElement instanceof HTMLElement) {
@@ -399,7 +410,7 @@ function initModal() {
       event.clientX > bounds.right ||
       event.clientY < bounds.top ||
       event.clientY > bounds.bottom;
-    if (outside) closeModal();
+    if (event.target === modal && outside) closeModal();
   });
 
   modal.addEventListener("cancel", (event) => {
@@ -409,9 +420,9 @@ function initModal() {
 
   modal.addEventListener("keydown", (event) => {
     if (event.key !== "Tab") return;
-    const focusable = modal.querySelectorAll(
+    const focusable = [...modal.querySelectorAll(
       "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
-    );
+    )].filter((element) => element.tabIndex >= 0 && !element.disabled && element.getClientRects().length && !element.closest('[aria-hidden="true"], [hidden]'));
     if (!focusable.length) return;
     const first = focusable[0];
     const last = focusable[focusable.length - 1];

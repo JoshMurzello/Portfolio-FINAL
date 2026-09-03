@@ -15,6 +15,7 @@ const jsFiles = [
   "engineering-orbit.js",
   "creatives.js",
   "travel-albums.js",
+  "location-gallery.js",
   "site-header.js",
   "portfolio-page.js"
 ].filter((file) => fs.existsSync(path.join(root, file)));
