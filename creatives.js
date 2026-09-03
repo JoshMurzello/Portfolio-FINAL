@@ -102,7 +102,7 @@ const PROJECTS = [
       { type: "image", src: "./images/DSC00122.jpg", alt: "Street perspective" }
     ]
   }
-];
+].concat(window.TRAVEL_ALBUMS || []);
 
 /*
 HOW TO ADD A NEW PROJECT
@@ -191,7 +191,7 @@ function renderFeatured() {
 }
 
 function renderGallery(filter = "all") {
-  const galleryProjects = PROJECTS.filter((project) => !project.featured);
+  const galleryProjects = PROJECTS.filter((project) => !project.featured && !project.photoJournal);
   galleryGrid.innerHTML = "";
 
   galleryProjects.forEach((project) => {
@@ -211,6 +211,28 @@ function renderGallery(filter = "all") {
     if (!wrapper.hidden) {
       requestAnimationFrame(() => wrapper.classList.add("is-visible"));
     }
+  });
+}
+
+function renderPhotoJournals() {
+  const grid = document.getElementById("photo-journal-grid");
+  if (!grid) return;
+  PROJECTS.filter((project) => project.photoJournal).forEach((project) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "photo-journal-card";
+    card.dataset.id = project.id;
+    card.setAttribute("aria-label", `Open ${project.title} photo journal, ${project.media.length} photos`);
+    card.innerHTML = `<div class="photo-journal-cover"><img src="${project.thumbnail}" alt="${project.thumbAlt}" loading="lazy" decoding="async"><span class="photo-journal-count">${String(project.media.length).padStart(2, "0")} frames</span></div><div class="photo-journal-body"><div><p>${project.year} / Photo journal</p><h3>${project.title}</h3></div><span class="photo-journal-arrow" aria-hidden="true">↗</span></div><p class="photo-journal-summary">${project.summary}</p>`;
+    const cover = project.media[0];
+    const image = card.querySelector("img");
+    const thumbWidth = Math.round(Math.min(640, 640 * cover.width / cover.height));
+    image.srcset = `${project.thumbnail} ${thumbWidth}w, ${cover.src} ${cover.width}w`;
+    image.sizes = "(max-width: 600px) calc(100vw - 40px), (max-width: 1240px) calc(50vw - 32px), 580px";
+    image.width = cover.width;
+    image.height = cover.height;
+    card.addEventListener("click", () => openModal(project.id));
+    grid.appendChild(card);
   });
 }
 
@@ -277,7 +299,24 @@ function renderModalMedia(project) {
       img.alt = asset.alt || "Project media";
       img.loading = "lazy";
       img.decoding = "async";
-      figure.appendChild(img);
+      if (asset.width && asset.height) {
+        img.width = asset.width;
+        img.height = asset.height;
+      }
+      if (project.photoJournal) {
+        const thumbWidth = Math.round(Math.min(640, 640 * asset.width / asset.height));
+        img.srcset = `${asset.src.replace(/\.webp$/, `-640.webp`)} ${thumbWidth}w, ${asset.src} ${asset.width}w`;
+        img.sizes = "(max-width: 600px) calc(100vw - 70px), 440px";
+        const link = document.createElement("a");
+        link.href = asset.src;
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.setAttribute("aria-label", `Open full-size photo: ${asset.alt}`);
+        link.appendChild(img);
+        figure.appendChild(link);
+      } else {
+        figure.appendChild(img);
+      }
     } else if (asset.type === "embed") {
       const iframe = document.createElement("iframe");
       iframe.src = asset.src;
@@ -288,6 +327,11 @@ function renderModalMedia(project) {
       figure.appendChild(iframe);
     }
 
+    if (asset.caption) {
+      const caption = document.createElement("figcaption");
+      caption.textContent = asset.caption;
+      figure.appendChild(caption);
+    }
     modalRefs.media.appendChild(figure);
   });
 }
@@ -313,6 +357,7 @@ function openModal(projectId) {
   const project = PROJECTS.find((item) => item.id === projectId);
   if (!project || !modal) return;
   lastFocusedElement = document.activeElement;
+  modal.classList.toggle("is-photo-album", Boolean(project.photoJournal));
 
   modalRefs.title.textContent = project.title;
   modalRefs.category.textContent = toCategoryLabel(project.categories);
@@ -326,6 +371,7 @@ function openModal(projectId) {
 
   document.body.style.overflow = "hidden";
   modal.showModal();
+  modal.scrollTop = 0;
 
   const closeBtn = modal.querySelector(".modal-close");
   if (closeBtn) closeBtn.focus();
@@ -334,6 +380,7 @@ function openModal(projectId) {
 function closeModal() {
   if (!modal.open) return;
   modal.close();
+  modalRefs.media.replaceChildren();
   document.body.style.overflow = "";
   if (lastFocusedElement instanceof HTMLElement) {
     lastFocusedElement.focus();
@@ -444,6 +491,7 @@ function initFilters() {
 function init() {
   renderFeatured();
   renderGallery("all");
+  renderPhotoJournals();
   initModal();
   initFilters();
   initHeroParallax();

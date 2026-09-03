@@ -10,17 +10,18 @@
   <meta property="og:description" content="Compact case study for Josh Murzello's 3D printed camera storage system, focused on modular organization, fast iteration, and desk-ready utility.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/camera-storage.html">
-  <meta property="og:image" content="https://www.joshmurzello.com/images/camerame.png">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/builds/camera-storage-overview.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="3D Printed Camera Storage | Josh Murzello">
   <meta name="twitter:description" content="Compact case study for Josh Murzello's 3D printed camera storage system, focused on modular organization, fast iteration, and desk-ready utility.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/camerame.png">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/builds/camera-storage-overview.webp">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
   <link rel="stylesheet" href="portfolio-page.css">
+  <link rel="stylesheet" href="project-media.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -31,7 +32,10 @@
     <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
       A compact storage system for keeping camera accessories visible, reachable, and protected without turning a desk into a parts bin.
     </p>
-    <div class="article-hero-image" style="margin-top:2rem; background-image:linear-gradient(180deg, rgba(7,10,16,0.22), rgba(7,10,16,0.55)), url('./images/camerame.png');"></div>
+    <figure class="build-media">
+      <a href="images/builds/camera-storage-overview.webp" target="_blank" rel="noopener"><img src="images/builds/camera-storage-overview.webp" width="1800" height="1200" alt="Overhead view of the completed white camera-storage modules holding a camera, batteries, filters, and lens caps" fetchpriority="high"></a>
+      <figcaption>The completed set, photographed with the camera kit in place: separate printed homes for the camera body, batteries, filters, and caps.</figcaption>
+    </figure>
 
     <section class="page-section tight">
       <div class="grid-3">
@@ -47,16 +51,44 @@
         </article>
         <article class="card">
           <p class="eyebrow">Status</p>
-          <h3>Useful shop artifact</h3>
-          <p>This page now documents the intent and direction while the next revision gets photographed with the full studio kit.</p>
+          <h3>Printed and in use</h3>
+          <p>The finished modules, CAD development, print sequence, and a camera fit check are documented below.</p>
         </article>
       </div>
     </section>
 
     <article class="article-body">
+      <h2>From a footprint to a home for each part</h2>
+      <p>The build archive follows the organizer from compartment geometry in CAD to a physical print and a fit check with the actual camera. The system separates gear by shape rather than relying on one large tray.</p>
+      <figure class="build-media">
+        <a href="images/builds/camera-storage-cad.webp" target="_blank" rel="noopener"><img src="images/builds/camera-storage-cad.webp" width="1600" height="900" alt="CAD view of a rectangular organizer divided into individual compartments with rounded outer corners" loading="lazy"></a>
+        <figcaption>Compartment walls and the rounded outer shell in CAD. This frame comes from the original build edit, not a newly reconstructed model.</figcaption>
+      </figure>
+      <ol class="build-steps">
+        <li><h3>Divide the footprint</h3><p>Give the different accessories dedicated compartments, with open tops that keep the contents visible.</p></li>
+        <li><h3>Print the geometry</h3><p>Turn the digital layout into a physical part so wall height, access, and the overall footprint can be checked on the desk.</p></li>
+        <li><h3>Check with the real kit</h3><p>Place and remove the camera from its holder. The fit-check clip records the actual interaction; it is not a dimensional tolerance measurement.</p></li>
+      </ol>
+      <h2>Build footage</h2>
+      <div class="build-media-grid">
+        <figure class="build-media">
+          <video controls playsinline muted preload="none" poster="images/builds/camera-storage-print.webp" width="1280" height="720" aria-label="Silent camera-holder printing timelapse" aria-describedby="camera-print-caption">
+            <source src="videos/optimized/camera-storage-print.mp4" type="video/mp4">
+            <a href="videos/optimized/camera-storage-print.mp4">Download the print timelapse</a>
+          </video>
+          <figcaption id="camera-print-caption">Print progression, condensed from the original still sequence into a 5.3-second silent timelapse. Playback is accelerated, not real-time print speed.</figcaption>
+        </figure>
+        <figure class="build-media">
+          <video controls playsinline muted preload="none" poster="images/builds/camera-storage-fit.webp" width="1280" height="720" aria-label="Eight-second silent camera-holder fit check" aria-describedby="camera-fit-caption">
+            <source src="videos/optimized/camera-storage-fit.mp4" type="video/mp4">
+            <a href="videos/optimized/camera-storage-fit.mp4">Download the fit-check clip</a>
+          </video>
+          <figcaption id="camera-fit-caption">An eight-second excerpt from the build edit showing the camera being handled in its printed holder. Audio omitted.</figcaption>
+        </figure>
+      </div>
       <h2>What I would improve next</h2>
       <ul>
-        <li>Add labeled slots for batteries, media, cable wraps, and lens caps.</li>
+        <li>Add labels to make it easier to reset each accessory to its dedicated slot.</li>
         <li>Use a grid footprint so trays can combine into a larger drawer or shelf system.</li>
         <li>Test felt, TPU, or rubber feet for better protection and desk grip.</li>
       </ul>

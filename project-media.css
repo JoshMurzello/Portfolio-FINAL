@@ -1,0 +1,15 @@
+/* Full-frame documentation media for the build case studies. */
+.build-media { margin: 1.5rem 0; overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: #080b10; }
+.build-media img, .build-media video { display: block; width: 100%; height: auto; max-width: 100%; }
+.build-media a { display: block; }
+.build-media a:focus-visible { outline: 3px solid #8aa8d8; outline-offset: -4px; }
+.build-media figcaption { padding: .85rem 1rem; color: #b7c0d1; font: 400 .82rem/1.65 Manrope, sans-serif; }
+.build-media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; align-items: start; }
+.build-media-grid .build-media { margin: .5rem 0; }
+.build-note { color: #b7c0d1; font-size: .85rem; line-height: 1.7; }
+.build-steps { counter-reset: step; display: grid; gap: 1rem; padding: 0; list-style: none; }
+.build-steps li { counter-increment: step; padding: 1rem 1.1rem; border-left: 2px solid #8aa8d8; background: rgba(255,255,255,.025); }
+.build-steps h3 { margin: 0 0 .35rem; }
+.build-steps h3::before { content: "0" counter(step) " / "; color: #8aa8d8; font-size: .78em; }
+.build-steps p { margin: 0; }
+@media (max-width: 620px) { .build-media-grid { grid-template-columns: 1fr; } }

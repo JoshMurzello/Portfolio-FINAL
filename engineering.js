@@ -171,9 +171,9 @@ const PROJECTS = [
     year: "2024",
     summary: "Designed and iterated practical consumer-focused printed products.",
     impact: "Shipped multiple iterations from concept sketches to final usable designs.",
-    image: "./images/A1picture.jpg",
+    image: "./images/builds/camera-storage-overview.webp",
     link: "3Dprint.html",
-    proof: "CAD iteration, print testing, product photography, MakerWorld-ready assets",
+    proof: "Product photos • CAD • Print timelapse • Camera fit check",
     flow: ["Friction", "CAD + Print", "Use"],
     artifacts: {
       cad: { title: "Fast CAD loop", copy: "Every object starts from a real everyday constraint and moves quickly from model to print." },

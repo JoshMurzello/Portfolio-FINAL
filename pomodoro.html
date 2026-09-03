@@ -10,16 +10,17 @@
   <meta property="og:description" content="Engineering case study for Josh Murzello's physical Focus Dial timer combining rotary input, embedded firmware, LED feedback, and distraction reduction.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/pomodoro.html">
-  <meta property="og:image" content="https://www.joshmurzello.com/images/IMG_0848.png">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/builds/focus-dial-desk.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Focus Dial Pomodoro Device | Josh Murzello">
   <meta name="twitter:description" content="Engineering case study for Josh Murzello's physical Focus Dial timer combining rotary input, embedded firmware, LED feedback, and distraction reduction.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/IMG_0848.png">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/builds/focus-dial-desk.webp">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="project-media.css">
   <style>
     :root {
       --bg: #0c111a;
@@ -196,29 +197,8 @@
   <main class="page">
     <a class="back-link" href="Engineering.html">&#8592; Back to Engineering</a>
 
-    <section class="video-block" aria-labelledby="video-heading">
-      <h2 id="video-heading">Project Video</h2>
-      <a
-        class="video-link"
-        href="https://www.youtube.com/watch?v=vXWEqWA96l0"
-        target="_blank"
-        rel="noopener"
-      >
-        Watch: Engineering Through My Lens (First Video)
-      </a>
-      <div class="video-embed">
-        <iframe
-          src="https://www.youtube.com/embed/vXWEqWA96l0?si=6SeovOf7xar-Cbvd&start=1"
-          title="Engineering Through My Lens YouTube showcase"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </section>
-
     <section aria-labelledby="hero-heading">
-      <h2 id="hero-heading">Hero Section</h2>
+      <h2 id="hero-heading">The physical prototype</h2>
       <h1>I built my own Focus Dial</h1>
       <p class="subtitle">A Physical Productivity Device That Forces You to Commit</p>
       <p>
@@ -228,7 +208,18 @@
       <p>
         The device combines mechanical input, embedded firmware, and visual feedback to create a more intentional focus workflow.
       </p>
-      <div class="artifact-callout">Hero artifact target: finished Focus Dial on a desk, showing the rotary encoder, display, and LED feedback as the main product proof.</div>
+      <figure class="build-media">
+        <a href="images/builds/focus-dial-desk.webp" target="_blank" rel="noopener"><img src="images/builds/focus-dial-desk.webp" width="1800" height="1200" alt="The cylindrical Focus Dial prototype on a desk, powered by a USB cable with its LED ring illuminated" fetchpriority="high"></a>
+        <figcaption>The physical Focus Dial on the desk, with the printed enclosure and illuminated LED ring visible.</figcaption>
+      </figure>
+    </section>
+
+    <section class="video-block" aria-labelledby="video-heading">
+      <h2 id="video-heading">Project Video</h2>
+      <a class="video-link" href="https://www.youtube.com/watch?v=vXWEqWA96l0" target="_blank" rel="noopener">Watch: Engineering Through My Lens (First Video)</a>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/vXWEqWA96l0?si=6SeovOf7xar-Cbvd&start=1" title="Engineering Through My Lens YouTube showcase" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
     </section>
 
     <section aria-labelledby="problem-heading">
@@ -282,7 +273,10 @@
         The rotary encoder provides dynamic time selection with detent-based increments, allowing rapid adjustment without nested menus.
         During runtime, the LED ring maps remaining time as a shrinking arc, giving an immediate peripheral cue of session progress.
       </p>
-      <div class="artifact-callout">Electronics artifact target: internal layout photo with Arduino Nano 33 IoT, encoder wiring, display, LED ring, and power routing labeled.</div>
+      <figure class="build-media">
+        <a href="images/builds/focus-dial-top.webp" target="_blank" rel="noopener"><img src="images/builds/focus-dial-top.webp" width="1800" height="1200" alt="Top-down view of the Focus Dial showing the rectangular display inside the circular LED ring and printed black enclosure" loading="lazy"></a>
+        <figcaption>Top-face packaging: a rectangular display nested inside the LED ring, surrounded by the printed enclosure. This view documents the visible assembly, not the internal wiring.</figcaption>
+      </figure>
     </section>
 
     <section aria-labelledby="firmware-heading">
@@ -306,6 +300,10 @@
         Bluetooth event packets are transmitted at session start and stop to trigger an iPhone Shortcut that activates Do Not Disturb,
         enabling a synchronized physical-to-digital focus handshake without app interaction during work cycles.
       </p>
+      <figure class="build-media">
+        <a href="images/builds/focus-dial-display.webp" target="_blank" rel="noopener"><img src="images/builds/focus-dial-display.webp" width="1800" height="1200" alt="Focus Dial display surrounded by a bright purple LED ring in a darkened room" loading="lazy"></a>
+        <figcaption>Display and ring illuminated during a bench session. The photo records a visible lighting state, not a validation of every firmware mode.</figcaption>
+      </figure>
     </section>
 
     <section aria-labelledby="mechanical-heading">
@@ -318,7 +316,6 @@
         Internal mounting bosses were integrated for repeatable board positioning and serviceability during rework. Prototypes were iterated through
         multiple 3D printed revisions, moving from rapid PLA concept shells to tighter-fit prints for final geometry validation and assembly checks.
       </p>
-      <div class="artifact-callout">CAD artifact target: enclosure render or section view showing board mounts, button reach, LED diffusion, and serviceability constraints.</div>
     </section>
 
     <section aria-labelledby="challenges-heading">
@@ -360,7 +357,7 @@
     </section>
 
     <section aria-labelledby="closing-heading">
-      <h2 id="closing-heading">Closing Section</h2>
+      <h2 id="closing-heading">Physical interaction, less distraction</h2>
       <p>
         The Focus Dial represents my interest in building physical systems that improve human behavior through intentional design.
       </p>
