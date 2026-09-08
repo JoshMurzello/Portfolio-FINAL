@@ -1,4 +1,4 @@
-// Selected from Josh's T7 photo archive. See docs/t7-media-update.md for provenance.
+// Selected from Josh's photo archives. See docs/t7-media-update.md and docs/india-media-update.md.
 window.TRAVEL_ALBUMS = [
   {
     id: "japan",
@@ -44,6 +44,31 @@ window.TRAVEL_ALBUMS = [
       { type: "image", src: "images/travel/vietnam-clocktower.webp", width: 1200, height: 1800, alt: "A brick clocktower above a broad plaza with palms and colorful vehicles", caption: "A tower against the afternoon sky." },
       { type: "image", src: "images/travel/vietnam-promenade.webp", width: 1200, height: 1800, alt: "Palm trees lining a paved seaside promenade under a cloudy sky", caption: "A path along the water." },
       { type: "image", src: "images/travel/vietnam-cable-cars.webp", width: 1200, height: 1800, alt: "Cable cars above pastel waterfront buildings and green hills", caption: "Small cabins, a wide horizon." }
+    ]
+  },
+  {
+    id: "india",
+    title: "India",
+    year: "Dec 2025 – Jan 2026",
+    role: "Photographer & filmmaker",
+    tools: ["Sony camera", "DaVinci Resolve"],
+    categories: ["photo", "travel", "video"],
+    photoJournal: true,
+    thumbnail: "images/travel/india-stone-arch-640.webp",
+    thumbAlt: "A stone arch framing a minaret in Delhi",
+    summary: "Winter light, carved stone, and a Delhi travel film.",
+    story: "Eight photographs from Delhi, Agra, and Jaipur during my December 2025–January 2026 trip. Towers framed by arches, marble in the haze, and cities seen from above—followed by the finished Delhi film.",
+    links: [],
+    film: { src: "videos/delhi-final.mp4", poster: "images/travel/delhi-film-poster.jpg", title: "Delhi, India — travel film", caption: "Delhi, India · final film · 1 min 33 sec. Press play for the full edit with audio." },
+    media: [
+      { type: "image", src: "images/travel/india-stone-arch.webp", width: 1200, height: 1800, alt: "A stone arch frames a tall minaret and visitors in Delhi", caption: "Delhi · a tower framed in stone." },
+      { type: "image", src: "images/travel/india-gate.webp", width: 1200, height: 1800, alt: "India Gate rising above visitors and a landscaped plaza", caption: "Delhi · the city at the foot of India Gate." },
+      { type: "image", src: "images/travel/india-evening.webp", width: 1200, height: 1800, alt: "Sunlit minaret rising beyond dark stone walls at dusk", caption: "Delhi · the last light on the tower." },
+      { type: "image", src: "images/travel/india-taj-mahal.webp", width: 1800, height: 1200, alt: "Taj Mahal and its minarets beyond a lawn in soft winter haze", caption: "Agra · marble in the winter haze." },
+      { type: "image", src: "images/travel/india-marble-arches.webp", width: 1800, height: 1200, alt: "Carved marble columns and scalloped arches opening toward a courtyard", caption: "Agra · carved stone and repeating arches." },
+      { type: "image", src: "images/travel/india-courtyard.webp", width: 1200, height: 1800, alt: "A shaded carved colonnade overlooking a red-stone courtyard", caption: "Agra · a quiet edge of the courtyard." },
+      { type: "image", src: "images/travel/india-jaipur-hills.webp", width: 1800, height: 1200, alt: "Fort walls overlooking a city and sunlit hills around Jaipur", caption: "Jaipur · the city from above." },
+      { type: "image", src: "images/travel/india-lake-palace.webp", width: 1800, height: 1200, alt: "A palace standing in a lake beneath hazy hills", caption: "Jaipur · a palace across the water." }
     ]
   },
   {

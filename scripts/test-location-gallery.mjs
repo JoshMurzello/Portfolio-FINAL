@@ -61,8 +61,8 @@ function setup(albumIndex = 0) {
     index: () => Number(gallery.dataset.index), tick: (ms = 500) => { time += ms; } };
 }
 
-test('all four albums retain their photos, captions, and responsive near-slide loading', () => {
-  for (let i = 0; i < 4; i++) {
+test('all five albums retain their photos, captions, and responsive near-slide loading', () => {
+  for (let i = 0; i < 5; i++) {
     const app = setup(i);
     assert.equal(app.stage.children.length, app.album.media.length);
     assert.equal(app.index(), 0);

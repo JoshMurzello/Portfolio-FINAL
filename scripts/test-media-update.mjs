@@ -9,10 +9,10 @@ const context = vm.createContext({window: {}});
 vm.runInContext(read('travel-albums.js'), context);
 const albums = context.window.TRAVEL_ALBUMS;
 
-test('four source-backed journals contain 21 distinct captioned photos', () => {
-  assert.deepEqual(Array.from(albums, (album) => [album.id, album.media.length]), [['japan', 8], ['vietnam', 6], ['california', 4], ['austin', 3]]);
+test('five source-backed journals contain 29 distinct captioned photos', () => {
+  assert.deepEqual(Array.from(albums, (album) => [album.id, album.media.length]), [['japan', 8], ['vietnam', 6], ['india', 8], ['california', 4], ['austin', 3]]);
   const sources = albums.flatMap((album) => album.media.map((asset) => asset.src));
-  assert.equal(new Set(sources).size, 21);
+  assert.equal(new Set(sources).size, 29);
   for (const album of albums) {
     assert.ok(album.photoJournal && album.categories.includes('travel'));
     assert.ok(fs.existsSync(new URL(album.thumbnail, root)));
@@ -23,6 +23,22 @@ test('four source-backed journals contain 21 distinct captioned photos', () => {
       assert.ok(fs.existsSync(new URL(asset.src.replace(/\.webp$/, '-640.webp'), root)));
     }
   }
+});
+
+test('India includes an opt-in full-length film separate from the photo carousel', () => {
+  const india = albums.find(album => album.id === 'india');
+  assert.equal(india.media.length, 8);
+  assert.ok(fs.existsSync(new URL(india.film.poster, root)));
+  const bytes = fs.readFileSync(new URL(india.film.src, root));
+  assert.ok(bytes.length > 1_000_000 && bytes.length < 50_000_000);
+  assert.ok(bytes.includes(Buffer.from('avc1')));
+  assert.ok(bytes.indexOf('moov') < bytes.indexOf('mdat'));
+  const js = read('creatives.js');
+  assert.match(js, /video.controls = true/);
+  assert.match(js, /video.preload = "none"/);
+  assert.match(js, /video.playsInline = true/);
+  assert.match(js, /video.pause\(\)/);
+  assert.doesNotMatch(js, /video.autoplay = true/);
 });
 
 test('journals are discoverable before the scroll archive and use full-frame responsive images', () => {

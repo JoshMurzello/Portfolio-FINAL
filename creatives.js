@@ -223,7 +223,7 @@ function renderPhotoJournals() {
     card.type = "button";
     card.className = "photo-journal-card";
     card.dataset.id = project.id;
-    card.setAttribute("aria-label", `Open ${project.title} photo journal, ${project.media.length} photos`);
+    card.setAttribute("aria-label", `Open ${project.title} photo journal, ${project.media.length} photos${project.film ? ' and a travel film' : ''}`);
     card.innerHTML = `<div class="photo-journal-cover"><img src="${project.thumbnail}" alt="${project.thumbAlt}" loading="lazy" decoding="async"><span class="photo-journal-count">${String(project.media.length).padStart(2, "0")} frames</span></div><div class="photo-journal-body"><div><p>${project.year} / Photo journal</p><h3>${project.title}</h3></div><span class="photo-journal-arrow" aria-hidden="true">↗</span></div><p class="photo-journal-summary">${project.summary}</p>`;
     const cover = project.media[0];
     const image = card.querySelector("img");
@@ -295,6 +295,28 @@ function renderModalMedia(project) {
 
   if (project.photoJournal && window.createLocationGallery) {
     locationGallery = window.createLocationGallery(modalRefs.media, project);
+    if (project.film) {
+      const figure = document.createElement("figure");
+      figure.className = "journal-film";
+      const heading = document.createElement("h3");
+      heading.textContent = project.film.title;
+      const video = document.createElement("video");
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "none";
+      video.poster = project.film.poster;
+      video.setAttribute("aria-label", project.film.title);
+      const source = document.createElement("source");
+      source.src = project.film.src;
+      source.type = "video/mp4";
+      video.appendChild(source);
+      const caption = document.createElement("figcaption");
+      caption.id = `film-caption-${project.id}`;
+      caption.textContent = project.film.caption;
+      video.setAttribute("aria-describedby", caption.id);
+      figure.append(heading, video, caption);
+      modalRefs.media.appendChild(figure);
+    }
     return;
   }
 
@@ -388,6 +410,7 @@ function openModal(projectId) {
 
 function closeModal() {
   if (!modal.open) return;
+  modalRefs.media.querySelectorAll("video").forEach((video) => video.pause());
   modal.close();
   locationGallery?.destroy();
   locationGallery = null;
