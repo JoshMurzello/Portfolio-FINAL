@@ -55,7 +55,7 @@
       form.dataset.bound = "true";
 
       const status = form.querySelector(".contact-status");
-      const contactEmail = form.getAttribute("data-contact-email") || "Josh.Marzello@gmail.com";
+      const contactEmail = form.getAttribute("data-contact-email") || "Josh.Murzello@gmail.com";
 
       const setStatus = (message, isError) => {
         if (!status) return;

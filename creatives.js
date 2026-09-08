@@ -96,7 +96,7 @@ const PROJECTS = [
     thumbAlt: "Greenville skyline during golden hour",
     summary: "A warm-toned travel series focused on architecture and motion.",
     story: "Shot over one weekend with a simple brief: no staged scenes, only honest city rhythm.",
-    links: [{ label: "VSCO Gallery", url: "https://vsco.co/joshmurzello/gallery" }],
+    links: [],
     media: [
       { type: "image", src: "./images/Greenville.jpg", alt: "Greenville skyline" },
       { type: "image", src: "./images/DSC00122.jpg", alt: "Street perspective" }

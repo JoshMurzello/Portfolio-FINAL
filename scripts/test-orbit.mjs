@@ -245,7 +245,7 @@ test('the live page has production navigation, metadata, and a script-free proje
   const html = fs.readFileSync(new URL('../Engineering.html', import.meta.url), 'utf8');
   assert.doesNotMatch(html, /noindex|Engineering Draft|engineering-.*preview|engineering-draft-data/);
   assert.match(html, /engineering-orbit.js/);
-  assert.match(html, /mailto:Josh.Marzello@gmail.com/);
+  assert.match(html, /mailto:Josh.Murzello@gmail.com/);
   for (const path of ['index.html', 'Creatives.html', 'about.html', 'self-balancing-robot.html', 'me2110.html', 'cyclodial-actuator.html', 'eboard.html']) assert.ok(html.includes(`href="${path}"`));
   assert.match(html, /<noscript>/);
 });

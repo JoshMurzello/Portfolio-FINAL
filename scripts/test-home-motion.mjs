@@ -264,7 +264,7 @@ test('homepage-only opt-in preserves content, native scrolling, image frames, an
   assert.match(html, /home-motion\.js\?v=20260903-1" defer/);
   assert.match(html, /home-motion\.css\?v=20260903-1/);
   assert.match(html, /<h1 class="reveal">Builder, filmer, and professional breaker of things\.<\/h1>/);
-  assert.match(html, /data-contact-email="Josh.Marzello@gmail.com"/);
+  assert.match(html, /data-contact-email="Josh.Murzello@gmail.com"/);
   for (const file of ['about.html', 'Engineering.html', 'Creatives.html', 'sentry-rover.html']) {
     assert.doesNotMatch(fs.readFileSync(new URL(file, root), 'utf8'), /home-motion|home-reveal/);
   }
