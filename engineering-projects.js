@@ -6,14 +6,15 @@ window.ENGINEERING_PROJECTS = [
     "title": "Brain Controlled Interface",
     "category": "project",
     "year": "2024",
-    "summary": "Prototype interface translating EEG signals into actionable digital control.",
-    "impact": "Built an end-to-end experimental stack from data collection through interpretation and control mapping.",
-    "image": "./images/IMG_0754.JPG",
+    "summary": "An EEG-driven RC car linking a MindWave headset, laptop, and Arduino-controlled servo.",
+    "impact": "Translated brainwave-derived control states into servo motion that physically operates the car’s original remote.",
+    "image": "./images/builds/bci-system-cover.webp",
+    "imageMode": "contain",
     "link": "bci.html",
     "proof": "EEG acquisition, signal thresholds, Arduino control loop",
     "tags": [
       "BCI",
-      "Machine Learning",
+      "Arduino",
       "Python",
       "Signal Processing"
     ]

@@ -123,6 +123,11 @@ button{
 
   </style>
   <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="project-media.css">
+  <style>
+    .skateboard-documentation { max-width: 960px; margin: 2rem auto; padding: 0 1.25rem; color: white; }
+    .skateboard-documentation img { max-height: 850px; object-fit: contain; }
+  </style>
 </head>
 
 <body>
@@ -163,8 +168,14 @@ button{
  
 
 
-  <p class="lead mb-4" style="color: white; font-family: Noto Sans Japanese;">
-    Archive note: the next upgrade for this page should add drivetrain specs, battery layout, enclosure photos, and ride-test video. Until then, the project remains listed as an early mobility build that shaped my interest in practical hardware.</p>
+  <section class="skateboard-documentation" aria-labelledby="assembly-title">
+    <h2 id="assembly-title">Inside the build</h2>
+    <p>An assembly-stage view of my electric skateboard with the enclosure removed, showing the component layout and wiring beneath the deck.</p>
+    <figure class="build-media">
+      <a href="images/builds/electric-skateboard-assembly.webp"><img src="images/builds/electric-skateboard-assembly.webp" width="1350" height="1800" alt="Underside of the electric skateboard during assembly, with exposed wiring, temporarily taped components, and enclosure cover beside the deck" loading="lazy" decoding="async"></a>
+      <figcaption>Work in progress: components temporarily held in position while laying out the electronics and wiring. The enclosure cover sits beside the board.</figcaption>
+    </figure>
+  </section>
   
   <script src="site-header.js" defer></script>
 </body>

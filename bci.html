@@ -10,17 +10,21 @@
   <meta property="og:description" content="Engineering case study for Josh Murzello's brain controlled interface prototype using EEG acquisition, signal handling, Arduino control, and live feedback.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/bci.html">
-  <meta property="og:image" content="https://www.joshmurzello.com/images/IMG_0754.JPG">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/builds/bci-system-cover.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Brain Controlled Interface | Josh Murzello">
   <meta name="twitter:description" content="Engineering case study for Josh Murzello's brain controlled interface prototype using EEG acquisition, signal handling, Arduino control, and live feedback.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/IMG_0754.JPG">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/builds/bci-system-cover.webp">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
   <link rel="stylesheet" href="portfolio-page.css">
+  <link rel="stylesheet" href="project-media.css">
+  <style>
+    .bci-cover img { max-height: 680px; object-fit: contain; }
+  </style>
 </head>
 <body>
   <header class="site-header" id="site-header">
@@ -41,9 +45,12 @@
     <p class="eyebrow">Project • Signal Processing • Human Computer Interaction</p>
     <h1 class="hero-title" style="font-size:clamp(2.6rem,2rem + 2vw,4.2rem);">Brain Controlled Interface</h1>
     <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">
-      A prototype system that reads EEG signals from a consumer headset, extracts useful patterns, and turns them into live control input for a physical system.
+      An EEG-driven RC car: a MindWave headset, a laptop, and an Arduino-controlled servo turn brainwave-derived control states into movement through the car’s original remote.
     </p>
-    <div class="article-hero-image" style="margin-top:2rem; background-image:linear-gradient(180deg, rgba(7,10,16,0.28), rgba(7,10,16,0.48)), url('./images/IMG_0754.JPG');"></div>
+    <figure class="build-media bci-cover">
+      <img src="images/builds/bci-system-cover.webp" width="1350" height="1800" alt="Complete RC-car control setup with MindWave headset, Arduino, breadboard, and a servo attached to the remote" fetchpriority="high" decoding="async">
+      <figcaption>The complete prototype: EEG headset, Arduino control electronics, servo-actuated remote, and RC car.</figcaption>
+    </figure>
 
     <section class="page-section tight">
       <div class="grid-3">
@@ -67,41 +74,32 @@
 
     <article class="article-body">
       <h2>Project overview</h2>
-      <p>The project started from a simple question: how much useful control can you pull out of an accessible EEG headset before noise, inconsistency, and user fatigue overwhelm the idea? I used the NeuroSky MindWave Mobile 2 as the acquisition layer and built the rest of the system around extracting attention and brainwave-derived signals that could be mapped into motion.</p>
+      <p>I built this prototype to connect EEG input to something tangible: driving an RC car. A NeuroSky MindWave headset sent EEG data to my laptop over Bluetooth. The laptop interpreted brainwave activity, including alpha and beta signals, as control states and passed commands to the Arduino over a second Bluetooth link.</p>
 
-      <p>The challenge was not just collecting data. It was building a loop that felt responsive enough to matter. That meant dealing with imperfect signals, defining thresholds that were stable enough to trigger actions, and designing a control scheme that worked with the strengths and limitations of the hardware instead of fighting them.</p>
+      <p>Instead of replacing the car’s onboard electronics, I used a servo to physically operate the original remote’s forward/backward trigger. The remote then controlled the car through its existing radio link. This was an experimental brainwave-driven interface, not a system that reads specific thoughts.</p>
 
       <h2>System architecture</h2>
-      <div class="grid-3">
-        <article class="card">
-          <h3>Acquisition</h3>
-          <p>EEG data came in through NeuroSky’s consumer headset, providing raw signal access plus derived focus and meditation style metrics.</p>
-        </article>
-        <article class="card">
-          <h3>Processing</h3>
-          <p>I filtered the incoming data, looked for stable patterns in alpha and beta activity, and built rules for converting those into actionable states.</p>
-        </article>
-        <article class="card">
-          <h3>Control</h3>
-          <p>An Arduino-based layer turned those states into physical commands, creating a live connection between mental input and movement.</p>
-        </article>
-      </div>
+      <ol class="build-steps">
+        <li><h3>Headset → laptop</h3><p>The MindWave headset collected EEG data and transmitted it to the laptop over Bluetooth.</p></li>
+        <li><h3>Laptop → Bluetooth receiver → Arduino</h3><p>The laptop mapped brainwave-derived activity into control commands. An HC-04 Bluetooth receiver passed those commands to the Arduino control layer.</p></li>
+        <li><h3>Arduino → servo → remote → car</h3><p>The Arduino drove the servo attached to the RC remote. The servo moved the forward/backward trigger, and the remote transmitted the resulting command to the car.</p></li>
+      </ol>
 
-      <h2>Proof artifacts</h2>
-      <div class="grid-3">
-        <article class="card">
-          <h3>Signal map</h3>
-          <p>Document the raw headset stream, derived attention values, threshold bands, and the rule that turns mental state into a command.</p>
-        </article>
-        <article class="card">
-          <h3>Control loop</h3>
-          <p>Show the Python-to-Arduino handoff, serial message format, debounce logic, and the physical output response.</p>
-        </article>
-        <article class="card">
-          <h3>Demo evidence</h3>
-          <p>Add a short clip or annotated image sequence showing calibration, attempted control, false triggers, and successful response.</p>
-        </article>
+      <h2>From headset to hardware</h2>
+      <div class="build-media-grid">
+        <figure class="build-media">
+          <a href="images/builds/bci-headset.webp"><img src="images/builds/bci-headset.webp" width="1350" height="1800" alt="Josh wearing the MindWave EEG headset used for the project" loading="lazy" decoding="async"></a>
+          <figcaption>The input side: wearing the EEG headset. This original project cover now sits alongside the build documentation.</figcaption>
+        </figure>
+        <figure class="build-media">
+          <a href="images/builds/bci-servo-control.webp"><img src="images/builds/bci-servo-control.webp" width="1350" height="1800" alt="Arduino-compatible UNO board and breadboard wired to a servo at the RC remote’s trigger" loading="lazy" decoding="async"></a>
+          <figcaption>The output side: Arduino, breadboard wiring, and the small servo positioned to actuate the remote’s trigger.</figcaption>
+        </figure>
       </div>
+      <figure class="build-media">
+        <a href="images/builds/bci-car-remote.webp"><img src="images/builds/bci-car-remote.webp" width="1600" height="1200" alt="Red RC car beside its original handheld remote" loading="lazy" decoding="async"></a>
+        <figcaption>The RC car and its original remote—the existing radio-control link remained part of the final system.</figcaption>
+      </figure>
 
       <h2>What made it interesting</h2>
       <p>Brain-computer interfaces are compelling because they sit at the edge of what feels possible, but this project was most valuable as a systems problem. It required signal processing, human factors, threshold tuning, and a lot of iteration around what kind of control is actually realistic for a person to sustain.</p>
