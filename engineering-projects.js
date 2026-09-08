@@ -1,3 +1,5 @@
+// Canonical live Engineering selection. Collection members live on 3Dprint.html;
+// STL Downloads is a separate link below the carousel, not a project card.
 window.ENGINEERING_PROJECTS = [
   {
     "id": "bci",
@@ -85,12 +87,24 @@ window.ENGINEERING_PROJECTS = [
     ]
   },
   {
+    "id": "pomodoro",
+    "title": "Focus Dial / Pomodoro Device",
+    "category": "project",
+    "year": "2026",
+    "summary": "A physical Pomodoro timer built around tactile input, embedded firmware, and visual feedback.",
+    "impact": "Combined a printed enclosure, compact display, and LED ring into a working desk prototype.",
+    "image": "./images/builds/focus-dial-desk.webp",
+    "link": "pomodoro.html",
+    "proof": "Prototype photos • Hardware architecture • Firmware logic",
+    "tags": ["Embedded Systems", "Electronics", "Product Design", "3D Printing"]
+  },
+  {
     "id": "print",
     "title": "3D Printing Product Series",
     "category": "project",
     "year": "2024",
-    "summary": "Designed and iterated practical consumer-focused printed products.",
-    "impact": "Shipped multiple iterations from concept sketches to final usable designs.",
+    "summary": "Camera storage, a plant shelf, the Dink Rack, and everyday printed products in one collection.",
+    "impact": "Explore the individual builds, product photos, and available design documentation.",
     "image": "./images/builds/camera-storage-overview.webp",
     "link": "3Dprint.html",
     "proof": "Product photos • CAD • Print timelapse • Camera fit check",
@@ -111,6 +125,19 @@ window.ENGINEERING_PROJECTS = [
     "link": "eboard.html",
     "proof": "",
     "tags": []
+  },
+  {
+    "id": "mars",
+    "title": "MARS Research",
+    "category": "research",
+    "filters": ["project"],
+    "year": "",
+    "summary": "Tackling one step of the challenge of creating livable infrastructure on Mars.",
+    "impact": "Explore the research overview and a materials test setup from the project archive.",
+    "image": "./images/mars.png",
+    "link": "mars.html",
+    "proof": "Research overview • Materials test setup",
+    "tags": ["Research", "Materials", "Space Infrastructure"]
   },
   {
     "id": "spacex",

@@ -87,7 +87,7 @@ function setup(reduce = false) {
 test('projects lead the carousel, SpaceX leads internships, and AI tools finish it', () => {
   const app = setup();
   const projects = app.window.ENGINEERING_PROJECTS;
-  const expected = ['bci', 'sentry-rover', 'self-balancing-robot', 'me2110', 'cycloidal-actuator', 'print', 'electric-skateboard', 'spacex', 'tesla', 'lg', 'price', 'stl-animator', 'stacy'];
+  const expected = ['bci', 'sentry-rover', 'self-balancing-robot', 'me2110', 'cycloidal-actuator', 'pomodoro', 'print', 'electric-skateboard', 'mars', 'spacex', 'tesla', 'lg', 'price', 'stl-animator', 'stacy'];
   assert.deepEqual(Array.from(projects, (project) => project.id), expected);
   assert.equal(app.refs['orbit-project-title'].textContent, 'Brain Controlled Interface');
   assert.deepEqual(app.buttons.map((button) => button.dataset.filter), ['all', 'project', 'internship', 'ai-tool']);
@@ -95,7 +95,7 @@ test('projects lead the carousel, SpaceX leads internships, and AI tools finish 
   assert.match(html, /id="orbit-project-title">Brain Controlled Interface<\/h2>/);
   const directory = html.match(/<details class="orbit-directory">([\s\S]*?)<\/details>/)[1];
   assert.deepEqual([...directory.matchAll(/<a href="([^"]+)"/g)].map((match) => match[1]), Array.from(projects).filter((project) => project.link).map((project) => project.link));
-  app.scrubber.value = '7'; app.scrubber.emit('input'); app.flush();
+  app.scrubber.value = String(projects.findIndex((project) => project.id === 'spacex')); app.scrubber.emit('input'); app.flush();
   assert.equal(app.refs['orbit-project-title'].textContent, 'SpaceX Avionics Manufacturing');
 });
 
@@ -132,11 +132,11 @@ test('skills stay prominent, accurate, and disappear for projects without suppli
 test('all projects and their actual assets are included', () => {
   const app = setup();
   const projects = app.window.ENGINEERING_PROJECTS;
-  assert.equal(projects.length, 13);
+  assert.equal(projects.length, 15);
   assert.equal(new Set(projects.map((project) => project.id)).size, projects.length);
   assert.equal(app.carousel.children.length, projects.length);
   assert.equal(app.refs['orbit-project-title'].textContent, projects[0].title);
-  assert.equal(app.refs['orbit-total'].textContent, '13');
+  assert.equal(app.refs['orbit-total'].textContent, '15');
   for (const project of projects) {
     assert.ok(fs.existsSync(new URL(`../${project.image}`, import.meta.url)), project.image);
     if (project.link) assert.ok(fs.existsSync(new URL(`../${project.link}`, import.meta.url)), project.link);
@@ -155,9 +155,9 @@ test('filters preserve internships, robots, and AI tools', () => {
   app.buttons.find((button) => button.dataset.filter === 'internship').emit('click');
   assert.equal(app.carousel.children.length, 4);
   app.buttons.find((button) => button.dataset.filter === 'project').emit('click');
-  assert.equal(app.carousel.children.length, 8);
+  assert.equal(app.carousel.children.length, 10);
   const labels = app.carousel.children.map((card) => card.attributes['aria-label']);
-  for (const title of ['Mechatronics Gauntlet Robot', 'Vision Tracking Robot', 'ME 2110 Barbenheimer Bot', 'Cycloidal Actuator', 'Electric Skateboard']) assert.ok(labels.some((label) => label.startsWith(title)));
+  for (const title of ['Mechatronics Gauntlet Robot', 'Vision Tracking Robot', 'ME 2110 Barbenheimer Bot', 'Cycloidal Actuator', 'Electric Skateboard', 'Focus Dial', 'MARS Research']) assert.ok(labels.some((label) => label.startsWith(title)));
   app.buttons[3].emit('click');
   assert.equal(app.carousel.children.length, 2);
   assert.equal(app.scrubber.max, '1');
@@ -196,7 +196,7 @@ test('wheel and range select projects; boundaries and zoom are not trapped', () 
   const cycloidalIndex = app.window.ENGINEERING_PROJECTS.findIndex((project) => project.id === 'cycloidal-actuator');
   app.scrubber.value = String(cycloidalIndex); app.scrubber.emit('input'); app.flush();
   assert.equal(app.refs['orbit-project-title'].textContent, 'Cycloidal Actuator');
-  assert.match(app.scrubber.attributes['aria-valuetext'], /5 of 13: Cycloidal Actuator/);
+  assert.match(app.scrubber.attributes['aria-valuetext'], /5 of 15: Cycloidal Actuator/);
 });
 
 test('keyboard does not override native range controls and reduced motion settles immediately', () => {
@@ -207,7 +207,7 @@ test('keyboard does not override native range controls and reduced motion settle
   assert.equal(app.refs['orbit-current'].textContent, '02');
   assert.equal(app.frames.size, 0);
   app.stage.emit('keydown', { key: 'End', target: app.viewport });
-  assert.equal(app.refs['orbit-current'].textContent, '13');
+  assert.equal(app.refs['orbit-current'].textContent, '15');
   app.stage.emit('keydown', { key: 'Home', target: app.viewport });
   app.carousel.children[0].emit('click');
   assert.equal(app.window.location.href, 'bci.html');

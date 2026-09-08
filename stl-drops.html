@@ -3,140 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STL Drops | Josh Murzello</title>
-  <meta name="description" content="Prototype storefront concept by Josh Murzello for presenting 3D printable product drops with richer context, previews, licensing, and maker notes.">
+  <title>STL Downloads | Josh Murzello</title>
+  <meta name="description" content="Explore Josh Murzello's 3D-printed builds and the home for future STL file releases, print notes, and assembly guidance.">
   <link rel="canonical" href="https://www.joshmurzello.com/stl-drops.html">
-  <meta property="og:title" content="STL Drops | Josh Murzello">
-  <meta property="og:description" content="Prototype storefront concept by Josh Murzello for presenting 3D printable product drops with richer context, previews, licensing, and maker notes.">
+  <meta property="og:title" content="STL Downloads | Josh Murzello">
+  <meta property="og:description" content="Explore Josh Murzello's 3D-printed builds and the home for future STL file releases, print notes, and assembly guidance.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/stl-drops.html">
-  <meta property="og:image" content="https://www.joshmurzello.com/images/A1picture.jpg">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/builds/camera-storage-overview.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="STL Drops | Josh Murzello">
-  <meta name="twitter:description" content="Prototype storefront concept by Josh Murzello for presenting 3D printable product drops with richer context, previews, licensing, and maker notes.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/A1picture.jpg">
+  <meta name="twitter:title" content="STL Downloads | Josh Murzello">
+  <meta name="twitter:description" content="Explore Josh Murzello's 3D-printed builds and the home for future STL file releases, print notes, and assembly guidance.">
+  <meta name="twitter:image" content="https://www.joshmurzello.com/images/builds/camera-storage-overview.webp">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
-  <link rel="stylesheet" href="stl-drops.css?v=20260718-1">
+  <link rel="stylesheet" href="portfolio-page.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <main id="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-backdrop" aria-hidden="true">
-        <div class="halo halo-warm"></div>
-        <div class="halo halo-cool"></div>
-        <div class="grid-noise"></div>
-      </div>
-      <div class="shell hero-shell reveal">
-        <div class="hero-copy">
-          <p class="eyebrow">Free STL Drops</p>
-          <h1 id="hero-title">Unlock the full drop, not just the file.</h1>
-          <p class="hero-summary">
-            Each release bundles the STL with the build story, print notes, and the media around it so the download feels like a full release instead of a one-click asset grab.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-link" href="#drop-detail">Unlock the current drop</a>
-            <a class="secondary-link" href="#community">See how the drop works</a>
-          </div>
+  <main id="main-content" class="article-layout">
+    <a class="back-link" href="Engineering.html">← Back to engineering</a>
+    <p class="eyebrow">From the workbench</p>
+    <h1 class="hero-title" style="font-size:clamp(2.6rem,2rem + 2vw,4.2rem);">STL Downloads</h1>
+    <p class="hero-copy" style="max-width:62ch; margin-top:1rem;">A home for the files, print notes, and assembly guidance behind my builds.</p>
+    <section class="page-section tight" aria-labelledby="release-status-title">
+      <div class="card">
+        <h2 id="release-status-title">Files are being prepared</h2>
+        <p>No downloadable files have been released on this page yet. In the meantime, explore the builds or visit my MakerWorld profile.</p>
+        <div class="button-row">
+          <a class="button-primary" href="https://makerworld.com/en/@jmurzello" target="_blank" rel="noopener">Visit MakerWorld ↗</a>
+          <a class="button-secondary" href="3Dprint.html">Explore the product series</a>
         </div>
-        <aside class="hero-panel reveal" aria-label="Promise summary">
-          <p class="panel-label">What you get</p>
-          <ul class="promise-list">
-            <li>The STL, unlocked after a short signup</li>
-            <li>The build context and related video</li>
-            <li>Print notes plus future drop updates</li>
-          </ul>
-          <p class="panel-footnote">Occasional updates only. No vague list growth gimmickry.</p>
-        </aside>
       </div>
     </section>
-
-    <section class="shell section-head reveal" aria-labelledby="featured-drop-title">
-      <p class="section-label">Featured Drop</p>
-      <h2 id="featured-drop-title">Current release</h2>
-      <p class="section-intro">Start with the active STL drop, then use the archive cards to swap in other releases without leaving the page.</p>
-    </section>
-
-    <section class="shell drop-stage" aria-labelledby="drop-detail-title">
-      <article class="featured-card reveal" id="featured-card" aria-live="polite"></article>
-      <div class="detail-layout">
-        <section class="drop-detail reveal" id="drop-detail" aria-labelledby="drop-detail-title"></section>
-        <aside class="archive-panel reveal" aria-labelledby="archive-title">
-          <div class="archive-head">
-            <p class="section-label">Archive</p>
-            <h2 id="archive-title">More free drops</h2>
-          </div>
-          <div class="drop-grid" id="drop-grid" aria-live="polite"></div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="shell community-strip reveal" id="community" aria-labelledby="community-title">
-      <div class="section-head tight">
-        <p class="section-label">Community Loop</p>
-        <h2 id="community-title">This should build a community, not just a file folder.</h2>
-      </div>
-      <div class="community-grid">
-        <article class="community-card">
-          <h3>Join future drops</h3>
-          <p>Keep the email promise simple: new free prints, build notes, and occasional updates when something worth downloading is ready.</p>
+    <section class="page-section tight" aria-labelledby="builds-title">
+      <p class="eyebrow">Behind the prints</p>
+      <h2 id="builds-title">Explore the builds</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Camera Storage System</h3>
+          <p>Modular homes for the camera and its accessories, from CAD to a physical fit check.</p>
+          <a class="button-secondary" href="camera-storage.html">View the build ↗</a>
         </article>
-        <article class="community-card">
-          <h3>Drive replies</h3>
-          <p>After unlock, ask what you should design next. That turns passive downloaders into people feeding the roadmap.</p>
+        <article class="card">
+          <h3>3D Printed Plant Shelf</h3>
+          <p>A compact wall shelf with a simple three-pin mounting approach.</p>
+          <a class="button-secondary" href="plant-shelf.html">View the shelf ↗</a>
         </article>
-        <article class="community-card">
-          <h3>Encourage remixes</h3>
-          <p>Invite print photos, tags, and remix ideas so each release becomes proof that real people are building with your work.</p>
+        <article class="card">
+          <h3>The Dink Rack</h3>
+          <p>A printed-product concept for pickleball players.</p>
+          <a class="button-secondary" href="dinkrack.html">View the concept ↗</a>
+        </article>
+        <article class="card">
+          <h3>Focus Dial</h3>
+          <p>A physical Pomodoro timer with a printed enclosure and visual feedback.</p>
+          <a class="button-secondary" href="pomodoro.html">View the device ↗</a>
         </article>
       </div>
-    </section>
-
-    <section class="shell faq-section reveal" aria-labelledby="faq-title">
-      <div class="section-head tight">
-        <p class="section-label">FAQ</p>
-        <h2 id="faq-title">Release policies for the framework</h2>
-      </div>
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary>Will every STL require an email unlock?</summary>
-          <p>The framework assumes yes for free drops, with immediate on-page unlock and a transparent note that signup also covers occasional future release emails.</p>
-        </details>
-        <details class="faq-item">
-          <summary>What printers and settings will be supported?</summary>
-          <p>Each release should include printer fit guidance, estimated print time, recommended material, layer height, and any support or orientation notes.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Can people use the files commercially?</summary>
-          <p>The current direction is personal-use distribution first, with commercial licensing handled separately for anyone who wants to sell prints.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Will the STL be delivered by email or on the page?</summary>
-          <p>This framework unlocks the file on the page immediately. A later backend integration can also send the same resource by email if you want a hybrid flow.</p>
-        </details>
-      </div>
+      <p style="margin-top:1.5rem;"><a class="button-secondary" href="3Dprint.html">See all printed products ↗</a></p>
     </section>
   </main>
-
-  <footer class="site-footer">
-      <div class="shell footer-shell reveal">
-      <p class="footer-kicker">Build Club</p>
-      <h2>Free files, stronger connection.</h2>
-      <p>Use this as the engineering-side home for future STL releases, then plug in real assets, policies, and delivery when you are ready.</p>
-      <div class="footer-links">
-        <a href="Engineering.html">Engineering</a>
-        <a href="3Dprint.html">3D Print Portfolio</a>
-        <a href="Creatives.html">Creatives</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="stl-drops.js" defer></script>
   <script src="site-header.js" defer></script>
 </body>
 </html>

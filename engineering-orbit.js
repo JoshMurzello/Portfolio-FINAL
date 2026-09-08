@@ -22,6 +22,7 @@
   const spacing = () => Math.min(window.innerWidth * 0.34, 470);
 
   function categoryLabel(project) {
+    if (project.category === 'research') return 'Research';
     if (project.category === 'internship') return 'Internship';
     if (project.category === 'ai-tool') return 'AI tool';
     return 'Project';

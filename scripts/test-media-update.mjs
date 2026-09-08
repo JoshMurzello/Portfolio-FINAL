@@ -63,9 +63,22 @@ test('new videos are opt-in, silent, captioned, and lightweight', () => {
   assert.equal(count, 3);
 });
 
-test('existing engineering case studies are linked from the product series', () => {
+test('approved project grouping keeps products together and Focus Dial standalone', () => {
   const html = read('3Dprint.html');
-  for (const page of ['camera-storage.html', 'pomodoro.html']) assert.ok(html.includes(`href="${page}"`));
+  for (const page of ['camera-storage.html', 'plant-shelf.html', 'dinkrack.html']) assert.ok(html.includes(`href="${page}"`));
+  assert.ok(!html.includes('href="pomodoro.html"'));
+  const engineering = read('Engineering.html');
+  for (const page of ['pomodoro.html', 'mars.html']) assert.ok(engineering.includes(`href="${page}"`));
+  const downloads = engineering.match(/<aside class="orbit-downloads"[\s\S]*?<\/aside>/)[0];
+  assert.match(downloads, /href="stl-drops.html"/);
+  assert.ok(engineering.indexOf(downloads) > engineering.indexOf('</main>'));
+  const catalogContext = vm.createContext({ window: {} });
+  vm.runInContext(read('engineering-projects.js'), catalogContext);
+  const catalog = catalogContext.window.ENGINEERING_PROJECTS;
+  for (const id of ['camera-storage', 'plant-shelf', 'dinkrack', 'stl-drops']) assert.ok(!catalog.some(project => project.id === id));
+  const drops = read('stl-drops.html');
+  assert.match(drops, /No downloadable files have been released/);
+  assert.doesNotMatch(drops, /<form|src="stl-drops.js"|Unlock the current drop/);
   assert.doesNotMatch(read('camera-storage.html'), /next revision gets photographed/);
   assert.doesNotMatch(read('pomodoro.html'), /artifact target:/);
 });

@@ -21,6 +21,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site-header.css">
   <link rel="stylesheet" href="portfolio-page.css">
+  <style>
+    .product-series-grid { align-items: start; }
+    .product-series-grid .feature-card > a img { display: block; width: 100%; height: auto; }
+    @media (min-width: 1025px) { .product-series-grid .feature-card:first-child { grid-row: span 2; } }
+  </style>
 </head>
 <body>
   <header class="site-header" id="site-header">
@@ -45,10 +50,11 @@
     </p>
     <div class="button-row" style="margin-top:1.25rem;">
       <a class="button-secondary" href="https://makerworld.com/en/@jmurzello" target="_blank" rel="noopener">Open MakerWorld profile</a>
+      <a class="button-secondary" href="stl-drops.html">STL Downloads ↗</a>
     </div>
 
     <section class="page-section tight">
-      <div class="grid-2">
+      <div class="grid-2 product-series-grid">
         <article class="feature-card panel">
           <a href="camera-storage.html"><img src="images/builds/camera-storage-overview.webp" width="1800" height="1200" alt="Camera kit arranged in its white 3D-printed storage modules" loading="lazy"></a>
           <div class="feature-body">
@@ -58,11 +64,19 @@
           </div>
         </article>
         <article class="feature-card panel">
-          <a href="pomodoro.html"><img src="images/builds/focus-dial-desk.webp" width="1800" height="1200" alt="Focus Dial physical timer in its printed enclosure with the LED ring lit" loading="lazy"></a>
           <div class="feature-body">
-            <h3>Focus Dial</h3>
-            <p>A physical timer with a printed enclosure, compact display, and LED feedback. See the assembled prototype up close.</p>
-            <a class="button-secondary" href="pomodoro.html">See the device &amp; documentation ↗</a>
+            <p class="eyebrow">Home &amp; living</p>
+            <h3>3D Printed Plant Shelf</h3>
+            <p>A small wall shelf designed around a lightweight form and a three-pin mounting approach.</p>
+            <a class="button-secondary" href="plant-shelf.html">Explore the shelf ↗</a>
+          </div>
+        </article>
+        <article class="feature-card panel">
+          <div class="feature-body">
+            <p class="eyebrow">Product concept</p>
+            <h3>The Dink Rack</h3>
+            <p>A 3D-printed product and business concept built around the everyday needs of pickleball players.</p>
+            <a class="button-secondary" href="dinkrack.html">Explore the Dink Rack ↗</a>
           </div>
         </article>
         <article class="feature-card panel">
