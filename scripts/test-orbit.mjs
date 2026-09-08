@@ -148,6 +148,9 @@ test('all projects and their actual assets are included', () => {
   assert.equal(trackingRobot.image, './images/optimized/tracking-robot-finished.jpg');
   assert.ok(trackingRobot.tags.includes('MobileNet-SSD'));
   assert.equal(trackingRobot.link, 'sentry-rover.html');
+  const animator = projects.find((project) => project.id === 'stl-animator');
+  assert.equal(animator.image, './images/optimized/stl-animator-preview.webp');
+  assert.equal(animator.imageMode, 'contain');
 });
 
 test('filters preserve internships, robots, and AI tools', () => {

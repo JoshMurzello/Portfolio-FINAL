@@ -219,7 +219,8 @@ window.ENGINEERING_PROJECTS = [
     "year": "2026",
     "summary": "Browser-based tool for loading STL files and generating turntable, dolly, hero, split, and explode animation clips.",
     "impact": "Runs fully client-side for static hosting, with upload-first workflow and in-browser recording export.",
-    "image": "./images/ME2110cadmodel.png",
+    "image": "./images/optimized/stl-animator-preview.webp",
+    "imageMode": "contain",
     "link": "tools/stl-animator/",
     "proof": "Three.js viewer, client-side recording, static-hosted tool workflow",
     "tags": [
