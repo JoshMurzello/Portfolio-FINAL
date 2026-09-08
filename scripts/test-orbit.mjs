@@ -84,15 +84,15 @@ function setup(reduce = false) {
   return { stage, viewport, carousel, scrubber, refs, buttons, window, media, frames, flush };
 }
 
-test('projects lead the carousel, SpaceX leads internships, and AI tools finish it', () => {
+test('newest work leads with the approved opening sequence and Stacy last', () => {
   const app = setup();
   const projects = app.window.ENGINEERING_PROJECTS;
-  const expected = ['bci', 'sentry-rover', 'self-balancing-robot', 'me2110', 'cycloidal-actuator', 'pomodoro', 'print', 'electric-skateboard', 'mars', 'spacex', 'tesla', 'lg', 'price', 'stl-animator', 'stacy'];
+  const expected = ['cycloidal-actuator', 'spacex', 'self-balancing-robot', 'pomodoro', 'stl-animator', 'tesla', 'bci', 'sentry-rover', 'print', 'lg', 'price', 'me2110', 'electric-skateboard', 'mars', 'stacy'];
   assert.deepEqual(Array.from(projects, (project) => project.id), expected);
-  assert.equal(app.refs['orbit-project-title'].textContent, 'Brain Controlled Interface');
+  assert.equal(app.refs['orbit-project-title'].textContent, 'Cycloidal Actuator');
   assert.deepEqual(app.buttons.map((button) => button.dataset.filter), ['all', 'project', 'internship', 'ai-tool']);
   const html = fs.readFileSync(new URL('../Engineering.html', import.meta.url), 'utf8');
-  assert.match(html, /id="orbit-project-title">Brain Controlled Interface<\/h2>/);
+  assert.match(html, /id="orbit-project-title">Cycloidal Actuator<\/h2>/);
   const directory = html.match(/<details class="orbit-directory">([\s\S]*?)<\/details>/)[1];
   assert.deepEqual([...directory.matchAll(/<a href="([^"]+)"/g)].map((match) => match[1]), Array.from(projects).filter((project) => project.link).map((project) => project.link));
   app.scrubber.value = String(projects.findIndex((project) => project.id === 'spacex')); app.scrubber.emit('input'); app.flush();
@@ -166,7 +166,7 @@ test('filters preserve internships, robots, and AI tools', () => {
   assert.equal(app.refs['orbit-link'].hidden, true);
   app.buttons[0].emit('click'); app.flush();
   assert.equal(app.refs['orbit-link'].hidden, false);
-  assert.equal(app.refs['orbit-link'].href, 'bci.html');
+  assert.equal(app.refs['orbit-link'].href, 'cyclodial-actuator.html');
 });
 
 test('the renamed mechatronics project retains its URL and full lab scope', () => {
@@ -192,11 +192,11 @@ test('wheel and range select projects; boundaries and zoom are not trapped', () 
   assert.equal(app.viewport.emit('wheel', { deltaY: 500, ctrlKey: true }).defaultPrevented, false);
   assert.equal(app.viewport.emit('wheel', { deltaY: 560 }).defaultPrevented, true);
   app.flush();
-  assert.equal(app.refs['orbit-project-title'].textContent, 'Vision Tracking Robot');
+  assert.equal(app.refs['orbit-project-title'].textContent, 'SpaceX Avionics Manufacturing');
   const cycloidalIndex = app.window.ENGINEERING_PROJECTS.findIndex((project) => project.id === 'cycloidal-actuator');
   app.scrubber.value = String(cycloidalIndex); app.scrubber.emit('input'); app.flush();
   assert.equal(app.refs['orbit-project-title'].textContent, 'Cycloidal Actuator');
-  assert.match(app.scrubber.attributes['aria-valuetext'], /5 of 15: Cycloidal Actuator/);
+  assert.match(app.scrubber.attributes['aria-valuetext'], /1 of 15: Cycloidal Actuator/);
 });
 
 test('keyboard does not override native range controls and reduced motion settles immediately', () => {
@@ -210,7 +210,7 @@ test('keyboard does not override native range controls and reduced motion settle
   assert.equal(app.refs['orbit-current'].textContent, '15');
   app.stage.emit('keydown', { key: 'Home', target: app.viewport });
   app.carousel.children[0].emit('click');
-  assert.equal(app.window.location.href, 'bci.html');
+  assert.equal(app.window.location.href, 'cyclodial-actuator.html');
 });
 
 test('a tap can open a project; a drag does not accidentally navigate', () => {
@@ -223,10 +223,10 @@ test('a tap can open a project; a drag does not accidentally navigate', () => {
   app.carousel.children[1].emit('click');
   assert.equal(app.window.location.href, '');
   app.flush();
-  assert.equal(app.refs['orbit-project-title'].textContent, 'Vision Tracking Robot');
+  assert.equal(app.refs['orbit-project-title'].textContent, 'SpaceX Avionics Manufacturing');
   assert.equal(app.viewport.hasPointerCapture(1), false);
   app.carousel.children[1].emit('click');
-  assert.equal(app.window.location.href, 'sentry-rover.html');
+  assert.equal(app.window.location.href, 'spacex.html');
 });
 
 test('touch scroll and pointer cancellation release drag state', () => {

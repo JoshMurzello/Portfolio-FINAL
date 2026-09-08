@@ -243,3 +243,12 @@ window.ENGINEERING_PROJECTS = [
     "tags": []
   }
 ];
+
+// Newest first, with Josh's chosen opening sequence and Stacy always last.
+// Unknown years follow dated work; stable sorting preserves same-year order.
+window.ENGINEERING_PROJECTS.sort((a, b) => {
+  const opening = ['cycloidal-actuator', 'spacex', 'self-balancing-robot'];
+  const rank = (project) => project.id === 'stacy' ? 4 :
+    opening.includes(project.id) ? opening.indexOf(project.id) : 3;
+  return rank(a) - rank(b) || Number(b.year) - Number(a.year);
+});

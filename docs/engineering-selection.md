@@ -2,6 +2,8 @@
 
 This records Josh's selected presentation following the project inventory audit.
 
+Ordering update: Cycloidal Actuator, SpaceX, and Mechatronics Gauntlet Robot lead, in that order. Remaining entries sort by recorded year descending, retaining their relative order for ties. Undated ME 2110, Electric Skateboard, and MARS Research follow dated work; Stacy stays last. Do not infer project dates from file modification or publication dates.
+
 - Live carousel data: `engineering-projects.js`; renderer: `engineering-orbit.js`.
 - 15 carousel entries: Brain Controlled Interface, Vision Tracking Robot, Mechatronics Gauntlet Robot, ME 2110 Barbenheimer Bot, Cycloidal Actuator, Focus Dial / Pomodoro Device, 3D Printing Product Series, Electric Skateboard, MARS Research, SpaceX, Tesla, LG Electronics, Price Industries, STL Animator Tool, and Stacy.
 - Focus Dial is a standalone entry linked to `pomodoro.html`, removed from the printed-product collection.
