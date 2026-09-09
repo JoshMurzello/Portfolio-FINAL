@@ -151,6 +151,12 @@ test('all projects and their actual assets are included', () => {
   const animator = projects.find((project) => project.id === 'stl-animator');
   assert.equal(animator.image, './images/optimized/stl-animator-preview.webp');
   assert.equal(animator.imageMode, 'contain');
+  assert.equal(projects.find((project) => project.id === 'self-balancing-robot').imageMode, 'full-frame');
+  const focus = projects.find((project) => project.id === 'pomodoro');
+  assert.equal(focus.image, './images/optimized/focus-dial-youtube.webp');
+  assert.equal(focus.imageMode, 'full-frame');
+  const css = fs.readFileSync(new URL('../engineering-orbit.css', import.meta.url), 'utf8');
+  assert.match(css, /\[data-image-mode="full-frame"\] img \{[^}]*object-fit: contain;[^}]*padding: 0;[^}]*filter: none;/);
 });
 
 test('filters preserve internships, robots, and AI tools', () => {

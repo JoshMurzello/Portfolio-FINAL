@@ -46,7 +46,7 @@ window.ENGINEERING_PROJECTS = [
     "summary": "Eight ME 4405 labs, from embedded C and sensor circuits to a robot navigating an obstacle gauntlet.",
     "impact": "STM32 firmware, motor calibration, PID distance control, maze scanning, and IMU orientation tracking.",
     "image": "./images/optimized/self-balancing-bench-still.jpg",
-    "imagePosition": "center 58%",
+    "imageMode": "full-frame",
     "link": "self-balancing-robot.html",
     "proof": "8 labs • STM32 • Sensing, control & navigation",
     "tags": ["Embedded C", "STM32", "PWM", "Encoders", "PID", "I2C", "IMU"]
@@ -94,7 +94,8 @@ window.ENGINEERING_PROJECTS = [
     "year": "2026",
     "summary": "A physical Pomodoro timer built around tactile input, embedded firmware, and visual feedback.",
     "impact": "Combined a printed enclosure, compact display, and LED ring into a working desk prototype.",
-    "image": "./images/builds/focus-dial-desk.webp",
+    "image": "./images/optimized/focus-dial-youtube.webp",
+    "imageMode": "full-frame",
     "link": "pomodoro.html",
     "proof": "Prototype photos • Hardware architecture • Firmware logic",
     "tags": ["Embedded Systems", "Electronics", "Product Design", "3D Printing"]

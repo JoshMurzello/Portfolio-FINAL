@@ -315,6 +315,14 @@ input { font: inherit; }
   background: #0c1015;
 }
 
+/* Photo previews that need their complete composition, without logo padding. */
+.orbit-card[data-image-mode="full-frame"] img {
+  object-fit: contain;
+  padding: 0;
+  background: #0c1015;
+  filter: none;
+}
+
 .orbit-card::after {
   content: "";
   position: absolute;
