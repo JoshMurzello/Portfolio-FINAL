@@ -364,7 +364,7 @@ input { font: inherit; }
   right: clamp(1.15rem, 4vw, 4.5rem);
   bottom: 1.35rem;
   display: grid;
-  grid-template-columns: auto minmax(180px, 1fr) auto;
+  grid-template-columns: minmax(180px, 1fr) auto;
   align-items: center;
   gap: 1.2rem;
 }
@@ -498,4 +498,37 @@ body { overflow-x: hidden; overflow-y: auto; }
   .orbit-filters { flex-wrap: wrap; }
   .orbit-card { max-width: 560px; }
   .orbit-card-caption { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+}
+
+/* Prominent browsing controls sit above, not underneath, the work. */
+.orbit-stage { min-height: 850px; }
+.orbit-browse {
+  position: absolute; z-index: 50; top: 6rem;
+  left: clamp(1.15rem, 4vw, 4.5rem); right: clamp(1.15rem, 4vw, 4.5rem);
+  display: flex; justify-content: space-between; align-items: end; gap: 1.5rem;
+  padding-bottom: 1.4rem; border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.orbit-browse h1 { margin: 0 0 .6rem; font: 500 clamp(1.9rem, 2.7vw, 2.8rem)/1.1 "Space Grotesk", sans-serif; letter-spacing: -.04em; }
+.orbit-browse-intro > p { margin: 0; color: #aeb9c8; font-size: .9rem; line-height: 1.6; }
+.orbit-sort > p { margin: 0 0 .65rem; color: #aeb9c8; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+.orbit-filters { gap: .5rem; overflow: visible; }
+.orbit-filters button {
+  min-height: 48px; padding: .75rem 1.1rem; border: 1px solid #354155; border-radius: 999px;
+  background: #0d1520; color: #c2cedd; font-size: .82rem; letter-spacing: .02em; text-transform: none;
+  white-space: nowrap; transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.orbit-filters button:hover { background: #1b2b40; border-color: #7aa3d5; color: #fff; }
+.orbit-filters button.is-active { background: #c2dcff; border-color: #c2dcff; color: #0b1726; }
+.orbit-copy { top: 15rem; max-height: calc(100% - 21rem); }
+.orbit-viewport { inset: 15rem 0 6rem 36%; }
+@media (max-width: 1100px) and (min-width: 901px) {
+  .orbit-browse-intro > p { max-width: 30ch; }
+  .orbit-filters button { padding-inline: .85rem; }
+}
+@media (max-width: 900px) {
+  .orbit-stage { min-height: 100svh; grid-template-rows: auto auto minmax(300px, 45svh) auto; }
+  .orbit-browse { position: relative; inset: auto; margin: 0 1.15rem; flex-direction: column; align-items: stretch; gap: 1.1rem; }
+  .orbit-filters { flex-wrap: wrap; }
+  .orbit-copy { top: auto; max-height: none; }
+  .orbit-viewport { inset: auto; }
 }

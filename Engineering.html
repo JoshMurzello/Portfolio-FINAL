@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="engineering-orbit.css?v=20260909-1">
+  <link rel="stylesheet" href="engineering-orbit.css?v=20260910-2">
   <link rel="stylesheet" href="site-header.css">
 </head>
 <body class="unified-site-header">
@@ -41,9 +41,24 @@
     <div class="orbit-glow" aria-hidden="true"></div>
     <div class="orbit-floor" aria-hidden="true"></div>
 
+    <section class="orbit-browse" aria-labelledby="orbit-title">
+      <div class="orbit-browse-intro">
+        <h1 id="orbit-title">Explore my work.</h1>
+        <p>Scroll through selected projects, internships, and tools.</p>
+      </div>
+      <div class="orbit-sort">
+        <p id="orbit-sort-label">Sort by</p>
+        <div class="orbit-filters" role="group" aria-labelledby="orbit-sort-label">
+          <button class="is-active" type="button" data-filter="all" aria-pressed="true">All work</button>
+          <button type="button" data-filter="project" aria-pressed="false">Projects</button>
+          <button type="button" data-filter="internship" aria-pressed="false">Internships</button>
+          <button type="button" data-filter="ai-tool" aria-pressed="false">AI tools</button>
+        </div>
+      </div>
+    </section>
+
     <section class="orbit-copy" aria-live="polite">
       <p class="orbit-kicker">Engineering projects</p>
-      <h1 id="orbit-title">Work in motion.</h1>
       <div class="project-counter"><span id="orbit-current">01</span><i></i><span id="orbit-total">15</span></div>
       <p class="project-meta" id="orbit-meta">Project / 2026</p>
       <h2 id="orbit-project-title">Cycloidal Actuator</h2>
@@ -65,12 +80,6 @@
     </section>
 
     <div class="orbit-controls">
-      <div class="orbit-filters" aria-label="Filter engineering projects">
-        <button class="is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="project" aria-pressed="false">Projects</button>
-        <button type="button" data-filter="internship" aria-pressed="false">Internships</button>
-        <button type="button" data-filter="ai-tool" aria-pressed="false">AI tools</button>
-      </div>
       <label class="orbit-scrubber-wrap">
         <span class="sr-only">Choose project</span>
         <input class="orbit-scrubber" type="range" min="0" max="14" step="1" value="0">

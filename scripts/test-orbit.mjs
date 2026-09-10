@@ -257,6 +257,9 @@ test('the live page has production navigation, metadata, and a script-free proje
   assert.match(html, /mailto:Josh.Murzello@gmail.com/);
   for (const path of ['index.html', 'Creatives.html', 'about.html', 'self-balancing-robot.html', 'me2110.html', 'cyclodial-actuator.html', 'eboard.html']) assert.ok(html.includes(`href="${path}"`));
   assert.match(html, /<noscript>/);
+  assert.ok(html.indexOf('class="orbit-filters"') < html.indexOf('class="orbit-copy"'));
+  assert.match(html, /id="orbit-sort-label">Sort by/);
+  assert.match(html, /id="orbit-title">Explore my work\./);
 });
 
 test('Barbenheimer remains a separate project with its original records and media', () => {
