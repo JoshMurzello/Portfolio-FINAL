@@ -143,6 +143,19 @@ body {
   pointer-events: none;
 }
 
+.hero { min-height: 640px; display: flex; align-items: center; }
+.hero-camera { position: absolute; right: 0; top: 0; width: 62%; height: 100%; object-fit: cover; object-position: center 42%; }
+.hero-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #090b10 15%, rgba(9,11,16,.94) 34%, rgba(9,11,16,.3) 70%), linear-gradient(0deg, #090b10, transparent 30%); }
+.hero .manifesto { max-width: 44ch; color: #d3d7df; }
+.hero-socials { display: flex; flex-wrap: wrap; gap: .65rem; margin-bottom: 1rem; }
+.hero-socials a { display: inline-flex; align-items: center; gap: .6rem; min-height: 46px; padding: .65rem 1rem; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; background: rgba(9,11,16,.65); color: #fff; font-size: .85rem; text-decoration: none; }
+.hero-socials a:hover, .hero-socials a:focus-visible { background: #fff; color: #090b10; outline-offset: 4px; }
+@media (max-width: 700px) {
+  .hero { min-height: 720px; align-items: end; padding-top: 13rem; }
+  .hero-camera { width: 100%; object-position: center 35%; }
+  .hero-backdrop::after { background: linear-gradient(0deg, #090b10 3%, rgba(9,11,16,.88) 45%, rgba(9,11,16,.15) 100%); }
+}
+
 .halo {
   position: absolute;
   border-radius: 999px;
