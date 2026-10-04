@@ -26,6 +26,16 @@
       { id:'austin', title:'Austin', country:'United States', lat:30.2672, lng:-97.7431, album:album('austin'), media:album('austin').media },
       { id:'san-francisco', title:'San Francisco', country:'United States', lat:37.7749, lng:-122.4194, album:album('california'), media:album('california').media.filter(m => m.src.includes('waterfront')) }
     ];
+    // Approximate destination centers until individual media locations are available.
+    places.push(...[
+      {id:'eleuthera', title:'Eleuthera', country:'Bahamas', lat:25.1, lng:-76.15},
+      {id:'panama', title:'Panama', country:'Central America', lat:8.5, lng:-80},
+      {id:'dominican-republic', title:'Dominican Republic', country:'Caribbean', lat:19, lng:-70.7},
+      {id:'new-york', title:'New York', country:'United States', lat:40.71, lng:-74.01},
+      {id:'spain', title:'Spain', country:'Europe', lat:40, lng:-4},
+      {id:'portugal', title:'Portugal', country:'Europe', lat:39.5, lng:-8},
+      {id:'big-sur', title:'Big Sur', country:'California, United States', lat:36.27, lng:-121.81}
+    ].map(place => ({...place, media:[]})));
     const collections = albums.map(a => ({id:`album-${a.id}`, title:a.title, country:'Photo journal', album:a, media:a.media, film:a.film}));
     const heading = el('div','tg-heading');
     heading.append(el('p','tg-eyebrow','A few places I’ve been'),el('h2','','Around the world, camera in hand.'),el('p','tg-intro','Pick a place. Explore the photographs and films that came home with me.'));
@@ -41,7 +51,7 @@
     [zoomIn,zoomOut,reset].forEach(b => {b.type='button'; b.disabled=true; tools.append(b);});
     stage.append(tools);
     mapPanel.append(stage,el('p','tg-map-hint','Drag to explore · scroll or pinch to zoom · select a red pin'));
-    const locations = el('div','tg-locations'); locations.setAttribute('role','group'); locations.setAttribute('aria-label','Explore a city');
+    const locations = el('div','tg-locations'); locations.setAttribute('role','group'); locations.setAttribute('aria-label','Explore a destination');
     const cityButtons = new Map(), allButtons = new Map(), pinButtons = new Map();
     places.forEach(p => { const b=el('button','tg-place',p.title); b.type='button'; b.addEventListener('click',()=>select(p)); locations.append(b); cityButtons.set(p.id,b); allButtons.set(p.id,b); });
     mapPanel.append(locations);
@@ -74,17 +84,24 @@
       items=[...(place.film?[{...place.film,type:'video'}]:[]),...place.media];
       gallery.replaceChildren();
       const top=el('div','tg-gallery-top'), title=el('div');
-      title.append(el('p','tg-eyebrow',`${place.country} · ${place.album.year}`),el('h3','',place.title));
+      title.append(el('p','tg-eyebrow',place.album ? `${place.country} · ${place.album.year}` : place.country),el('h3','',place.title));
       top.append(title,el('span','tg-count')); gallery.append(top);
       const viewer=el('div','tg-viewer'); gallery.append(viewer);
       const caption=el('p','tg-caption'); caption.setAttribute('aria-live','polite'); gallery.append(caption);
       const strip=el('div','tg-thumbnails'); strip.setAttribute('role','group'); strip.setAttribute('aria-label',`${place.title} photographs and films`);
       items.forEach((item,i)=>{const b=el('button','tg-thumb'); b.type='button'; b.setAttribute('aria-label',item.type==='video'?`View film: ${item.title}`:`View photograph: ${item.caption}`); const img=el('img'); img.src=mediaURL(item.poster || item.src.replace('.webp','-640.webp')); img.alt=''; img.loading='lazy'; b.append(img); if(item.type==='video') b.append(el('span','tg-play','▶')); b.addEventListener('click',()=>renderMedia(i)); strip.append(b);});
-      gallery.append(strip); renderMedia(0);
+      if (items.length) {
+        gallery.append(strip); renderMedia(0);
+      } else {
+        const placeholder=el('div','tg-placeholder');
+        placeholder.append(el('span','tg-eyebrow','More memories to come'),el('p','','Photos and videos coming soon.'));
+        viewer.append(placeholder);
+        caption.textContent=`${place.title} is on the map. The travel collection is coming soon.`;
+      }
       if(globe && Number.isFinite(place.lat)) {globe.pointOfView({lat:place.lat,lng:place.lng,altitude:1.25},reduced?0:900); globe.pointRadius(p=>p.id === place.id ? .8 : .4);}
     }
     select(selected);
-    function fail() {status.hidden=false; status.textContent='The 3D globe isn’t available here. Choose any city or trip below to explore.'; root.classList.add('tg-fallback'); [zoomIn,zoomOut,reset].forEach(b=>b.disabled=true);}
+    function fail() {status.hidden=false; status.textContent='The 3D globe isn’t available here. Choose any destination or trip below to explore.'; root.classList.add('tg-fallback'); [zoomIn,zoomOut,reset].forEach(b=>b.disabled=true);}
     async function start() {
       try {
         await new Promise((resolve,reject)=>{if(window.Globe){resolve();return;} const s=document.createElement('script');s.src=asset('globe.gl-2.45.0.min.js');s.onload=resolve;s.onerror=reject;document.head.append(s);});

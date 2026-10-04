@@ -48,3 +48,6 @@
 #travel-globe-section button.tg-pin:before{content:'';position:absolute;inset:12px;background:#ff6264;border:1px solid #ffd1d1;border-radius:50%;box-shadow:0 1px 5px #0009}
 #travel-globe-section button.tg-pin[aria-pressed=true]:after,#travel-globe-section button.tg-pin:hover:after{content:'';position:absolute;inset:6px;border:1px solid #ff8989;border-radius:50%;background:#ff62641c}
 #travel-globe-section.tg-fallback .tg-canvas{visibility:hidden}
+
+#travel-globe-section .tg-placeholder{padding:28px;text-align:center;color:#abb4ac;line-height:1.7}
+#travel-globe-section .tg-placeholder p{margin:12px 0 0;font-size:18px;color:#f1efea}
