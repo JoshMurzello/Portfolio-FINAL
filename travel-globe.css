@@ -1,0 +1,50 @@
+#travel-globe-section{color:#f1efea;font-family:Manrope,Arial,sans-serif;scroll-margin-top:36px}
+#travel-globe-section *{box-sizing:border-box}
+#travel-globe-section .tg-heading{max-width:720px;margin-bottom:34px}
+#travel-globe-section .tg-eyebrow{margin:0 0 9px;color:#a3aaa8;font:600 11px/1.5 Manrope,Arial,sans-serif;text-transform:uppercase;letter-spacing:1.5px}
+#travel-globe-section h2{font:500 clamp(28px,3.5vw,42px)/1.2 Manrope,Arial,sans-serif;letter-spacing:-1.5px;margin:0 0 14px;text-transform:none}
+#travel-globe-section .tg-intro{font-size:14px;line-height:1.75;color:#a6aaa7;margin:0}
+#travel-globe-section .tg-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+#travel-globe-section .tg-map-panel{min-width:0}
+#travel-globe-section .tg-stage{height:440px;position:relative;background:radial-gradient(ellipse at center,#172426 0%,#0c1112 45%,#090909 73%);isolation:isolate;overflow:hidden;border-radius:14px}
+#travel-globe-section .tg-canvas{width:100%;height:100%;cursor:grab}
+#travel-globe-section .tg-canvas:active{cursor:grabbing}
+#travel-globe-section .tg-canvas canvas{display:block;touch-action:none}
+#travel-globe-section .tg-status{position:absolute;inset:40% 25px auto;text-align:center;font-size:13px;color:#bac1bd;pointer-events:none}
+#travel-globe-section .tg-status[hidden]{display:none}
+#travel-globe-section .tg-map-tools{position:absolute;right:12px;bottom:12px;display:flex;gap:6px}
+#travel-globe-section button{cursor:pointer;font-family:inherit;color:inherit;background:#141918;border:1px solid #343c38;min-height:44px;transition:border-color .15s,background .15s}
+#travel-globe-section button:hover{border-color:#96a99b;background:#202b25}
+#travel-globe-section button:focus-visible{outline:2px solid #d5f2d2;outline-offset:4px}
+#travel-globe-section button:disabled{opacity:.4;cursor:default}
+#travel-globe-section .tg-map-tools button{border-radius:7px;min-width:44px;font-size:22px;line-height:1}
+#travel-globe-section .tg-map-tools .tg-reset{padding:0 13px;font-size:11px}
+#travel-globe-section .tg-map-hint{font-size:11px;line-height:1.7;color:#8a9690;text-align:center;margin:4px 0 19px}
+#travel-globe-section .tg-locations{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+#travel-globe-section .tg-place{padding:10px 13px;border-radius:30px;font-size:11px}
+#travel-globe-section .tg-place:before{content:'';display:inline-block;width:6px;height:6px;background:#ff6264;border-radius:50%;margin-right:7px;vertical-align:1px}
+#travel-globe-section button[aria-pressed=true]{border-color:#a8c5ac;background:#223329}
+#travel-globe-section .tg-gallery{min-width:0;border:1px solid #2a302d;padding:22px;border-radius:12px;background:#101311}
+#travel-globe-section .tg-gallery-top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:18px}
+#travel-globe-section .tg-gallery h3{font:500 27px/1.2 Manrope,Arial,sans-serif;letter-spacing:-.8px;margin:0;text-transform:none}
+#travel-globe-section .tg-gallery .tg-eyebrow{font-size:9px;letter-spacing:1.15px}
+#travel-globe-section .tg-count{font-size:11px;color:#9ba69e;white-space:nowrap;font-variant-numeric:tabular-nums}
+#travel-globe-section .tg-viewer{height:292px;background:#070909;display:flex;align-items:center;justify-content:center;border-radius:6px;overflow:hidden}
+#travel-globe-section .tg-full-media{display:block;width:100%;height:100%;object-fit:contain;max-width:100%}
+#travel-globe-section .tg-caption{font-size:11px;color:#abb4ac;line-height:1.65;margin:13px 0 16px;min-height:37px}
+#travel-globe-section .tg-thumbnails{display:flex;gap:7px;overflow-x:auto;padding:4px 4px 8px;margin:-4px;scrollbar-width:thin}
+#travel-globe-section .tg-thumb{flex:0 0 60px;height:58px;position:relative;padding:3px;border-radius:5px;overflow:hidden}
+#travel-globe-section .tg-thumb img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+#travel-globe-section .tg-play{position:absolute;inset:0;display:grid;place-items:center;background:#0004;font-size:17px;color:white;text-shadow:0 1px 4px #000}
+#travel-globe-section .tg-journals{border-top:1px solid #292d2a;margin-top:34px;padding-top:24px;display:flex;align-items:center;gap:25px;flex-wrap:wrap}
+#travel-globe-section .tg-journals .tg-eyebrow{margin:0;font-size:10px}
+#travel-globe-section .tg-journal-list{display:flex;gap:8px;flex-wrap:wrap}
+#travel-globe-section .tg-journal{border-radius:6px;padding:10px 15px;font-size:12px}
+#travel-globe-section.tg-fallback .tg-stage{height:180px}
+@media(max-width:760px){#travel-globe-section .tg-layout{grid-template-columns:1fr;gap:26px}#travel-globe-section .tg-stage{height:370px}#travel-globe-section .tg-heading{margin-bottom:20px}#travel-globe-section .tg-gallery{padding:17px}#travel-globe-section .tg-viewer{height:280px}#travel-globe-section .tg-journals{gap:14px}#travel-globe-section h2{letter-spacing:-1px}}
+@media(max-width:400px){#travel-globe-section .tg-stage{height:315px}#travel-globe-section .tg-map-hint{font-size:10px}#travel-globe-section .tg-viewer{height:235px}}
+@media(prefers-reduced-motion:reduce){#travel-globe-section button{transition:none}}
+#travel-globe-section button.tg-pin{pointer-events:auto;width:32px;height:32px;min-height:32px;padding:0;border:0;border-radius:50%;background:transparent;position:relative;box-shadow:none}
+#travel-globe-section button.tg-pin:before{content:'';position:absolute;inset:12px;background:#ff6264;border:1px solid #ffd1d1;border-radius:50%;box-shadow:0 1px 5px #0009}
+#travel-globe-section button.tg-pin[aria-pressed=true]:after,#travel-globe-section button.tg-pin:hover:after{content:'';position:absolute;inset:6px;border:1px solid #ff8989;border-radius:50%;background:#ff62641c}
+#travel-globe-section.tg-fallback .tg-canvas{visibility:hidden}

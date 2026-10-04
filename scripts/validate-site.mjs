@@ -14,6 +14,7 @@ const jsFiles = [
   "engineering-projects.js",
   "engineering-orbit.js",
   "creatives.js",
+  "creatives-feed.js",
   "travel-albums.js",
   "location-gallery.js",
   "site-header.js",
