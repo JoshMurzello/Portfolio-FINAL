@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="creatives-feed.css?v=20261004">
+  <link rel="stylesheet" href="creatives-feed.css?v=20261004-2">
   <link rel="stylesheet" href="travel-globe.css?v=20261004">
 </head>
 <body class="creator-refined">
@@ -63,11 +63,11 @@
 </aside>
 <div class="feed-body">
 <div class="section-head">
-<h2>Videos & builds.</h2>
+<h2 id="feed-heading">Videos & builds.</h2>
+<div class="feed-controls"><button type="button" id="feed-prev" aria-label="Previous videos" aria-controls="feed-rail" disabled>←</button><button type="button" id="feed-next" aria-label="Next videos" aria-controls="feed-rail">→</button></div>
 </div>
-<div class="feed-top">
-<div class="lead">
-<article class="card">
+<div class="feed-rail" id="feed-rail" role="region" aria-labelledby="feed-heading" tabindex="0">
+<article class="card lead">
 <button type="button" class="thumb" data-play="assembly" aria-label="Watch Building a cycloidal actuator">
 <img src="images/optimized/cycloidal-actuator-bench-1600.jpg" alt="Cycloidal actuator on a workbench" width="1200" height="800" fetchpriority="high">
 <span class="badge">▶ Watch clip</span>
@@ -75,8 +75,6 @@
 <h3>Building a cycloidal actuator</h3>
 <p class="meta">Featured / assembly clip</p>
 </article>
-</div>
-<div class="shorts">
 <article class="card">
 <button class="thumb" type="button" data-play="motion" aria-label="Watch cycloidal motion">
 <img src="images/optimized/cycloidal-actuator-closeup-1600.jpg" alt="Detail of the cycloidal prototype" width="1200" height="800" loading="lazy">
@@ -93,8 +91,32 @@
 <h3>Delhi, India</h3>
 <small>Travel film / 1 min 33 sec</small>
 </article>
+<article class="card">
+<button class="thumb" type="button" data-play="maze" aria-label="Watch Robot maze demo">
+<img src="images/optimized/self-balancing-maze-still.jpg" alt="Robot navigating a maze" width="720" height="1280" loading="lazy">
+<span class="badge">▶ Watch clip</span></button>
+<h3>Robot maze demo</h3><small>Robot / navigation test</small>
+</article>
+<article class="card">
+<button class="thumb" type="button" data-play="camera-print" aria-label="Watch Printing a camera holder">
+<img src="images/builds/camera-storage-print.webp" alt="Camera holder being 3D printed" width="720" height="1280" loading="lazy">
+<span class="badge">▶ Watch clip</span></button>
+<h3>Printing a camera holder</h3><small>3D printing / timelapse</small>
+</article>
+<article class="card">
+<button class="thumb" type="button" data-play="camera-fit" aria-label="Watch Camera-holder fit check">
+<img src="images/builds/camera-storage-fit.webp" alt="Camera holder fit check" width="720" height="1280" loading="lazy">
+<span class="badge">▶ Watch clip</span></button>
+<h3>Camera-holder fit check</h3><small>Design / prototype test</small>
+</article>
+<article class="card">
+<button class="thumb" type="button" data-play="robot-bench" aria-label="Watch Robot hardware close-up">
+<img src="images/optimized/self-balancing-bench-still.jpg" alt="Robot electronics on the bench" width="720" height="1280" loading="lazy">
+<span class="badge">▶ Watch clip</span></button>
+<h3>Robot hardware close-up</h3><small>Robot / bench footage</small>
+</article>
 </div>
-</div>
+<p class="feed-hint">Scroll or swipe to explore all 7 videos.</p>
 <div class="feed-more">
 <p>More build stories and films</p>
 <a class="textlink" href="https://www.youtube.com/@joshmurzello" target="_blank" rel="noopener">Visit my YouTube channel ↗</a>
@@ -130,7 +152,7 @@
 </p>
 <a class="textlink" href="https://www.youtube.com/@joshmurzello" target="_blank" rel="noopener">More videos on YouTube ↗</a>
 </dialog>
-<script src="creatives-feed.js?v=20261004">
+<script src="creatives-feed.js?v=20261004-2">
 </script>
 <script src="travel-albums.js">
 </script>

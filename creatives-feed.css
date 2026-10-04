@@ -216,3 +216,17 @@ dialog a{display:inline-block;margin-top:14px}
 }
 
 
+/* A native horizontal rail preserves the featured/portrait card rhythm. */
+.creator-refined .feed-controls{display:flex;gap:8px;flex-shrink:0}
+.creator-refined .feed-controls button{width:44px;height:44px;border:1px solid #555;border-radius:50%;background:#151617;color:#f6f6f4;font-size:21px}
+.creator-refined .feed-controls button:disabled{opacity:.3;cursor:default}
+.creator-refined .feed-rail{display:flex;gap:2.5%;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#666 #191919;padding:6px 3px 16px;scroll-padding-inline:3px}
+.creator-refined .feed-rail>.card{flex:0 0 20%;scroll-snap-align:start;min-width:0}
+.creator-refined .feed-rail>.lead{flex-basis:52%}
+.creator-refined .feed-rail .thumb{aspect-ratio:9/16}
+.creator-refined .feed-rail .lead .thumb{aspect-ratio:16/11}
+.creator-refined .feed-rail h3{font-size:14px}
+.creator-refined .feed-rail .lead h3{font-size:16px}
+.creator-refined .feed-hint{font-size:12px;margin-top:10px;color:var(--muted)}
+@media(max-width:900px){.creator-refined .feed-rail{gap:18px}.creator-refined .feed-rail>.card{flex-basis:40%}.creator-refined .feed-rail>.lead{flex-basis:80%}.creator-refined .feed-rail .lead .thumb{aspect-ratio:18/16}}
+@media(max-width:600px){.creator-refined .feed-rail>.card,.creator-refined .feed-rail>.lead{flex-basis:84%}.creator-refined .feed-rail .thumb,.creator-refined .feed-rail .lead .thumb{aspect-ratio:4/3}.creator-refined .feed-controls{gap:6px}.creator-refined .feed-body .section-head{align-items:center}.creator-refined .feed-body .section-head h2{font-size:26px}}
