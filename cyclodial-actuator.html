@@ -1,383 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cycloidal Actuator | Josh Murzello</title>
-  <meta name="description" content="Engineering case study for Josh Murzello's 3D printed cycloidal actuator with reduction math, parametric CAD, motor selection, and tolerance iteration.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cycloidal Actuator V1 — Build Resources | Josh Murzello</title>
+  <meta name="description" content="Build notes and resources for Josh Murzello's first 3D-printed cycloidal actuator: a 15:1 NEMA 23 robot joint, confirmed parts, assembly notes and preliminary testing.">
   <link rel="canonical" href="https://www.joshmurzello.com/cyclodial-actuator.html">
-  <meta property="og:title" content="Cycloidal Actuator | Josh Murzello">
-  <meta property="og:description" content="Engineering case study for Josh Murzello's 3D printed cycloidal actuator with reduction math, parametric CAD, motor selection, and tolerance iteration.">
+  <meta property="og:title" content="My First Robotic Joint — Cycloidal Actuator V1">
+  <meta property="og:description" content="The parts, mechanism, lessons and first scale check behind my 3D-printed cycloidal actuator.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joshmurzello.com/cyclodial-actuator.html">
   <meta property="og:image" content="https://www.joshmurzello.com/images/optimized/cycloidal-actuator-bench-1600.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cycloidal Actuator | Josh Murzello">
-  <meta name="twitter:description" content="Engineering case study for Josh Murzello's 3D printed cycloidal actuator with reduction math, parametric CAD, motor selection, and tolerance iteration.">
-  <meta name="twitter:image" content="https://www.joshmurzello.com/images/optimized/cycloidal-actuator-bench-1600.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site-header.css">
-  <link rel="stylesheet" href="project-media.css">
   <style>
-    :root {
-      --bg: #0c1017;
-      --panel: #141b26;
-      --line: #2a3547;
-      --text: #e8edf6;
-      --muted: #aeb8c8;
-      --accent: #95c6ff;
-    }
+.unified-site-header {
+  --ush-text: #f5f5f4;
+  --ush-muted: #bcb8b0;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+.unified-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1200;
+  background: linear-gradient(180deg, rgba(7, 10, 15, 0.66), rgba(7, 10, 15, 0.2));
+  backdrop-filter: blur(6px) saturate(1.05);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
 
-    body {
-      margin: 0;
-      background:
-        radial-gradient(1100px 650px at 88% -12%, #1a2943 0%, rgba(26, 41, 67, 0) 62%),
-        radial-gradient(850px 520px at -12% 22%, #10243b 0%, rgba(16, 36, 59, 0) 58%),
-        var(--bg);
-      color: var(--text);
-      font-family: Manrope, sans-serif;
-      line-height: 1.6;
-    }
+.unified-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -18px;
+  width: 100%;
+  height: 18px;
+  background: linear-gradient(180deg, rgba(11, 14, 22, 0.64), rgba(11, 14, 22, 0));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
-    .page {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 5.5rem 1.25rem 4rem;
-    }
+.unified-header.scrolled {
+  background: linear-gradient(180deg, rgba(8, 11, 16, 0.94), rgba(8, 11, 16, 0.82));
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42);
+}
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1rem;
-      color: #cfe0f7;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
+.unified-header.scrolled::after {
+  opacity: 1;
+}
 
-    .back-link:hover,
-    .back-link:focus-visible {
-      border-bottom-color: #cfe0f7;
-      outline: none;
-    }
+.unified-header-shell {
+  width: min(1220px, calc(100vw - 2.2rem));
+  margin-inline: auto;
+  min-height: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    section {
-      margin-bottom: 2.3rem;
-      padding: 1.3rem;
-      background: rgba(20, 27, 38, 0.75);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      backdrop-filter: blur(3px);
-    }
+.unified-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--ush-text);
+  text-decoration: none;
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: clamp(0.92rem, 1vw, 1rem);
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
 
-    h1 {
-      margin: 0 0 0.35rem;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(1.9rem, 4vw, 2.7rem);
-      letter-spacing: 0.02em;
-    }
+.unified-brand-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 
-    h2 {
-      margin: 0 0 0.8rem;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.18rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
+.unified-nav {
+  display: flex;
+  gap: 0.45rem;
+}
 
-    h3 {
-      margin: 0.9rem 0 0.4rem;
-      font-size: 1rem;
-      color: #d8e7ff;
-    }
+.unified-nav a {
+  color: var(--ush-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(0.74rem, 0.9vw, 0.84rem);
+  border-radius: 999px;
+  padding: 0.58rem 0.82rem;
+  border: 1px solid transparent;
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
 
-    p {
-      margin: 0 0 0.75rem;
-    }
+.unified-nav a:hover,
+.unified-nav a:focus-visible,
+.unified-nav a[aria-current="page"] {
+  color: var(--ush-text);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
 
-    .subtitle {
-      margin: 0 0 1rem;
-      font-weight: 600;
-      color: #d4deed;
-    }
+.unified-menu-toggle {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ush-text);
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+}
 
-    ul {
-      margin: 0.3rem 0 0;
-      padding-left: 1.15rem;
-    }
+@media (max-width: 860px) {
+  .unified-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    li {
-      margin-bottom: 0.45rem;
-    }
+  .unified-nav {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: max(1rem, calc((100vw - 1220px) / 2 + 1.1rem));
+    flex-direction: column;
+    min-width: 210px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(6, 10, 18, 0.96);
+    backdrop-filter: blur(8px);
+    padding: 0.55rem;
+    display: none;
+  }
 
-    .split {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
+  .unified-nav a {
+    border-radius: 10px;
+  }
 
-    .formula {
-      margin: 0.8rem 0;
-      padding: 0.7rem 0.85rem;
-      border: 1px solid #3b4d64;
-      border-radius: 10px;
-      background: rgba(14, 22, 33, 0.6);
-      font-family: "Space Grotesk", sans-serif;
-      color: #d7e8ff;
-      letter-spacing: 0.01em;
-    }
+  .unified-nav.open {
+    display: flex;
+  }
 
-    .artifact-callout {
-      margin-top: 0.9rem;
-      border: 1px dashed #4f637f;
-      border-radius: 10px;
-      min-height: 180px;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      text-align: center;
-      padding: 0.9rem;
-      background: rgba(10, 16, 24, 0.45);
-      font-size: 0.95rem;
-    }
+  .unified-nav[data-open="true"] {
+    display: flex;
+  }
+}
 
-    .project-photo {
-      margin: 1.15rem 0 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #090d13;
-    }
+/* Full-frame documentation media for the build case studies. */
+.build-media { margin: 1.5rem 0; overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: #080b10; }
+.build-media img, .build-media video { display: block; width: 100%; height: auto; max-width: 100%; }
+.build-media a { display: block; }
+.build-media a:focus-visible { outline: 3px solid #8aa8d8; outline-offset: -4px; }
+.build-media figcaption { padding: .85rem 1rem; color: #b7c0d1; font: 400 .82rem/1.65 Manrope, sans-serif; }
+.build-media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; align-items: start; }
+.build-media-grid .build-media { margin: .5rem 0; }
+.build-note { color: #b7c0d1; font-size: .85rem; line-height: 1.7; }
+.build-steps { counter-reset: step; display: grid; gap: 1rem; padding: 0; list-style: none; }
+.build-steps li { counter-increment: step; padding: 1rem 1.1rem; border-left: 2px solid #8aa8d8; background: rgba(255,255,255,.025); }
+.build-steps h3 { margin: 0 0 .35rem; }
+.build-steps h3::before { content: "0" counter(step) " / "; color: #8aa8d8; font-size: .78em; }
+.build-steps p { margin: 0; }
+@media (max-width: 620px) { .build-media-grid { grid-template-columns: 1fr; } }
 
-    .project-photo img {
-      display: block;
-      width: 100%;
-      max-height: 680px;
-      object-fit: cover;
-    }
-
-    .project-photo--portrait img {
-      aspect-ratio: 4 / 3;
-      object-position: center 42%;
-    }
-
-    .project-photo figcaption {
-      padding: 0.7rem 0.85rem;
-      color: var(--muted);
-      font-size: 0.86rem;
-      border-top: 1px solid var(--line);
-    }
+    :root { --bg:#0c1017; --panel:#141b26; --line:#2a3547; --text:#e8edf6; --muted:#aeb8c8; --accent:#95c6ff; --good:#b8e4d3; --warm:#f1c782; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:6rem; }
+    body { margin:0; color:var(--text); background:radial-gradient(1100px 650px at 88% -12%,#1a2943 0%,transparent 62%),radial-gradient(850px 520px at -12% 22%,#10243b 0%,transparent 58%),var(--bg); font:400 1rem/1.7 Manrope,sans-serif; }
+    a { color:var(--accent); text-underline-offset:.2em; }
+    a:hover { color:#d6e9ff; }
+    :focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    .skip-link { position:fixed; top:-5rem; left:1rem; z-index:2000; padding:.7rem 1rem; color:#0c1017; background:white; border-radius:.4rem; }
+    .skip-link:focus { top:.8rem; }
+    .page { width:min(1160px,calc(100% - 2.5rem)); margin:auto; padding:6.9rem 0 3rem; }
+    .back-link { display:inline-block; margin-bottom:1.2rem; color:var(--muted); font-size:.85rem; text-decoration:none; }
+    .eyebrow { margin:0 0 .8rem; color:var(--accent); font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+    h1,h2,h3,.stat-value { font-family:"Space Grotesk",Manrope,sans-serif; line-height:1.15; }
+    h1 { margin:0 0 1rem; font-size:clamp(2.65rem,5.2vw,4.4rem); letter-spacing:-.045em; }
+    h2 { margin:0 0 .9rem; font-size:clamp(1.65rem,3vw,2.2rem); letter-spacing:-.025em; }
+    h3 { margin:0 0 .65rem; font-size:1.12rem; }
+    p { margin:0 0 1rem; }
+    .lead { color:#d4deed; font-size:1.07rem; max-width:58ch; }
+    .muted,.small { color:var(--muted); }
+    .small { font-size:.85rem; }
+    .hero { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; margin-bottom:2rem; }
+    .hero-image { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:#080b10; }
+    .hero-image img { width:100%; height:auto; display:block; }
+    figcaption { color:var(--muted); font-size:.77rem; padding:.8rem 1rem; }
+    .pills,.actions { display:flex; flex-wrap:wrap; gap:.6rem; }
+    .pills { margin:1.25rem 0 1.6rem; }
+    .pill { display:inline-flex; align-items:center; gap:.5rem; border:1px solid #3a4c64; color:#d1e4fb; padding:.32rem .7rem; border-radius:99px; font-size:.72rem; font-weight:600; }
+    .pill.draft { border-color:#655132; color:var(--warm); }
+    .dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:.7rem; min-height:44px; padding:.6rem 1rem; border:1px solid #486382; border-radius:9px; color:#dbeaff; text-decoration:none; font-size:.85rem; font-weight:700; background:rgba(149,198,255,.06); cursor:pointer; }
+    .button.primary { color:#0b1422; background:var(--accent); border-color:var(--accent); }
+    .button:hover { color:white; background:#263b55; }
+    .button.primary:hover { color:#0b1422; background:#bedcff; }
+    .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:1.5rem 0 2rem; }
+    .stat { background:#111923; padding:1.1rem 1.3rem; }
+    .stat-value { display:block; font-size:1.65rem; color:#d8eaff; margin-bottom:.3rem; }
+    .stat-label { font-size:.76rem; color:var(--muted); }
+    .jump-nav { display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; margin:0 0 3.4rem; padding:.5rem 0 1.1rem; border-bottom:1px solid var(--line); }
+    .jump-nav a { padding:.35rem 0; font-size:.8rem; color:#bdcde0; text-decoration:none; }
+    .jump-nav a:hover { color:white; }
+    section { margin-bottom:3.8rem; }
+    .section-head { display:flex; align-items:start; justify-content:space-between; gap:1.5rem; margin-bottom:1.2rem; }
+    .section-head p { max-width:64ch; color:var(--muted); margin-bottom:0; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+    .card { padding:1.4rem; border:1px solid var(--line); border-radius:14px; background:rgba(20,27,38,.75); min-width:0; }
+    .card p:last-child { margin-bottom:0; }
+    .card-label { display:block; color:var(--accent); font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.75rem; }
+    .availability { display:inline-block; color:var(--warm); border:1px solid #655132; border-radius:5px; padding:.14rem .45rem; font-size:.65rem; font-weight:700; margin-bottom:.8rem; text-transform:uppercase; letter-spacing:.05em; }
+    .available { color:var(--good); border-color:#36584c; }
+    .card .button { margin-top:.8rem; }
+    .note { padding:.9rem 1.1rem; border-left:2px solid #5c82af; background:rgba(149,198,255,.045); border-radius:0 8px 8px 0; color:var(--muted); font-size:.85rem; margin-top:1rem; }
+    .formula { color:#d6e9ff; font:700 clamp(1.3rem,3.3vw,2.2rem)/1.5 "Space Grotesk",sans-serif; letter-spacing:-.025em; padding:1.2rem 0 .6rem; }
+    .inline-equation { font-family:"Space Grotesk",sans-serif; color:#cfe5ff; }
+    .list-clean { padding-left:1.1rem; margin:.6rem 0 0; color:var(--muted); }
+    .list-clean li { margin:.5rem 0; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:#101823; }
+    table { width:100%; border-collapse:collapse; text-align:left; font-size:.83rem; }
+    caption { text-align:left; color:var(--muted); font-size:.78rem; padding:1rem 1.2rem; background:rgba(255,255,255,.02); }
+    th,td { padding:1rem 1.2rem; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { color:#dcecff; background:rgba(149,198,255,.04); font-size:.72rem; letter-spacing:.03em; }
+    tbody tr:last-child td,tbody tr:last-child th { border-bottom:0; }
+    tbody th { color:var(--text); font-size:.83rem; background:transparent; font-weight:600; letter-spacing:0; }
+    td { color:var(--muted); }
+    .qty { text-align:center; min-width:3.3rem; }
+    .unpriced { color:#aeb8c8; white-space:nowrap; font-style:italic; }
+    .bom-actions { display:flex; justify-content:space-between; gap:1rem; align-items:center; margin-top:.9rem; }
+    .bom-actions p { margin:0; }
+    .calc { margin-top:1.5rem; display:grid; grid-template-columns:1fr 1.1fr; gap:2rem; align-items:start; }
+    .calc-fields { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    label { display:block; font-size:.8rem; font-weight:600; color:#dbe8f8; margin-bottom:.4rem; }
+    input { width:100%; min-height:46px; border:1px solid #40526b; background:#0b121c; color:white; border-radius:8px; padding:.7rem .8rem; font:inherit; }
+    input::placeholder { color:#8292a7; }
+    .calc-output { grid-column:1 / -1; border-top:1px solid var(--line); padding-top:1rem; display:flex; gap:1rem; align-items:center; justify-content:space-between; }
+    output { color:#d8eaff; display:block; font:700 1.6rem/1.3 "Space Grotesk",sans-serif; }
+    .calc-error { color:var(--warm); font-size:.78rem; margin-top:.7rem; min-height:1.4em; }
+    .build-steps { grid-template-columns:1fr 1fr; gap:.85rem; }
+    .build-steps li { border:1px solid var(--line); border-radius:10px; border-left:2px solid #6b96c6; padding:1.2rem; }
+    .build-steps h3 { font-size:1rem; line-height:1.5; }
+    .build-steps p { font-size:.83rem; color:var(--muted); }
+    .media-title { margin-bottom:.35rem; }
+    .build-media-grid { gap:1.2rem; }
+    .build-media { margin:0; }
+    .build-media video { background:#080b10; aspect-ratio:16 / 9; object-fit:contain; }
+    .build-media figcaption { font-size:.77rem; }
+    .result-number { display:block; color:#d9ecff; font:700 2.5rem/1.1 "Space Grotesk",sans-serif; margin:.2rem 0 .5rem; }
+    .result-number span { font-size:1rem; font-weight:500; }
+    .results { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .readout { border:1px solid var(--line); padding:1.2rem; border-radius:10px; background:#101823; }
+    .link-card { text-decoration:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; color:var(--text); }
+    .link-card:hover { border-color:#779cc8; color:white; }
+    .link-card .small { display:block; margin-top:.35rem; }
+    .arrow { color:var(--accent); font-size:1.5rem; }
+    .contact { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1.5rem; align-items:center; margin-bottom:2rem; }
+    .contact h2 { margin-bottom:.5rem; }
+    .contact a { overflow-wrap:anywhere; }
+    footer { color:var(--muted); font-size:.74rem; padding-top:1.2rem; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:.5rem; justify-content:space-between; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media(max-width:900px) { .hero { gap:1.5rem; } .grid-3 { grid-template-columns:1fr; } .calc { gap:1.2rem; } .table-wrap table { min-width:660px; } }
+    @media(max-width:680px) { .page { width:calc(100% - 2rem); padding-top:6rem; } .hero,.grid-2,.calc,.build-steps { grid-template-columns:1fr; } .hero { gap:1.4rem; } h1 { font-size:3rem; } .stats { grid-template-columns:1fr 1fr; } .stat { padding:1rem; } .section-head { display:block; } .card { padding:1.1rem; } .bom-actions { align-items:start; flex-direction:column; } .jump-nav { gap:.15rem 1.2rem; margin-bottom:2.7rem; } section { margin-bottom:2.7rem; } .contact { display:block; } .contact .button { margin-top:.8rem; } .unified-brand { font-size:.85rem; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
+    @media print { .unified-header,.jump-nav,.actions,.calc button { display:none; } .page { padding-top:1rem; width:100%; } body { color:#111; background:white; } .card,.stat,.table-wrap { background:white; } .muted,.small,td,.build-steps p { color:#333; } section { break-inside:avoid; } }
   </style>
 </head>
-<body>
-  <main class="page">
-    <a class="back-link" href="Engineering.html">&#8592; Back to Engineering</a>
-
-    <section aria-labelledby="hero-heading">
-      <h2 id="hero-heading">Hero Section</h2>
-      <h1>Cycloidal Actuator</h1>
-      <p class="subtitle">Designing a Compact, High-Reduction Drive System for Robotics</p>
-      <p>
-        This project explores the design and prototyping of a 3D-printed cycloidal actuator intended for robotic joint applications.
-      </p>
-      <p>
-        The goal was to create a compact, high-torque, low-backlash transmission system capable of significant reduction ratios while
-        maintaining structural rigidity and manufacturability.
-      </p>
-      <figure class="project-photo">
-        <img src="images/optimized/cycloidal-actuator-bench-1600.jpg" alt="3D-printed cycloidal actuator connected to its stepper driver and development electronics on a workbench">
-        <figcaption>Current bench prototype with the actuator, stepper driver, and control electronics connected for testing.</figcaption>
-      </figure>
-    </section>
-
-    <section aria-labelledby="why-heading">
-      <h2 id="why-heading">Why Cycloidal Drives?</h2>
-      <p>
-        Robotic joints in humanoid systems and industrial manipulators require high torque density in constrained package volume.
-        Conventional spur and planetary stages are practical, but backlash accumulation and tooth contact behavior can limit precision
-        for dynamic motion control.
-      </p>
-      <p>
-        Harmonic drives offer strong precision characteristics, but they are often costly and mechanically complex for early-stage student
-        prototyping. Cycloidal drives present an effective alternative with high reduction in compact space, high shock load capacity,
-        reduced backlash potential, and fewer failure-prone teeth under repeated load cycling.
-      </p>
-    </section>
-
-    <section aria-labelledby="objectives-heading">
-      <h2 id="objectives-heading">Design Objectives</h2>
-      <ul>
-        <li>Achieve ~15:1 reduction ratio (16 rollers / 15 lobes configuration)</li>
-        <li>Compact form factor (desktop-scale prototype)</li>
-        <li>Compatible with NEMA 17 stepper motor (initial version)</li>
-        <li>Designed for upgrade to NEMA 23 in future iteration</li>
-        <li>Incorporate real steel roller pins + bearings</li>
-        <li>Fully parametric CAD model for ratio adjustments</li>
-        <li>Optimized for 3D printing tolerances</li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="math-heading">
-      <h2 id="math-heading">The Reduction Mathematics</h2>
-      <p>
-        Cycloidal reduction behavior is governed by the relationship between the number of outer ring rollers and the number of cycloidal lobes
-        on the disk profile. A one-count difference between these features generates a large relative speed reduction.
-      </p>
-      <p class="formula">Reduction = (Number of Rollers - Number of Lobes)</p>
-      <p>
-        In this prototype, 16 rollers engage a 15-lobe disk, producing a 15:1 reduction characteristic. The eccentric input shaft introduces
-        an offset orbit that drives the cycloidal disk through a controlled wobble motion; this kinematic profile is then converted to a reduced-speed,
-        amplified-torque output through drive pin coupling.
-      </p>
-    </section>
-
-    <section aria-labelledby="concept-animation-heading">
-      <h2 id="concept-animation-heading">The Cycloidal Motion, Explained</h2>
-      <p>I made this animation to visualize the mechanism I was working with: two cycloidal discs moving around the ring of pins. Seeing the motion makes the concept easier to follow than a static CAD view.</p>
-      <figure class="build-media">
-        <video controls playsinline preload="metadata" aria-label="Cycloidal mechanism animation by Josh Murzello" aria-describedby="cycloidal-animation-caption">
-          <source src="videos/optimized/cycloidal-detail-v2-horizontal.mp4" type="video/mp4">
-          <a href="videos/optimized/cycloidal-detail-v2-horizontal.mp4">Download the cycloidal motion animation</a>
-        </video>
-        <figcaption id="cycloidal-animation-caption">Animation by Josh Murzello showing the two cycloidal discs moving around the pins. Play, pause, or scrub through the video to study the motion. This is a concept visualization, not footage of the physical prototype.</figcaption>
-      </figure>
-    </section>
-
-    <section aria-labelledby="architecture-heading">
-      <h2 id="architecture-heading">Mechanical Architecture</h2>
-      <div class="split">
-        <div>
-          <h3>Core Components</h3>
-          <ul>
-            <li>Input shaft with eccentric offset</li>
-            <li>Cycloidal disk (parametrically generated)</li>
-            <li>Fixed ring of roller pins</li>
-            <li>Output shaft with drive pins</li>
-            <li>Internal needle / radial bearings</li>
-            <li>Housing structure</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Power Flow</h3>
-          <p>
-            Motor input rotates the eccentric shaft at high speed and low torque. The eccentricity drives orbital motion of the cycloidal
-            disk against the fixed roller ring. Output pins capture the relative disk motion and transfer reduced rotational speed with
-            increased torque to the actuator output shaft.
-          </p>
-        </div>
+<body class="unified-site-header">
+  <a href="#main" class="skip-link">Skip to project resources</a>
+  <header class="unified-header" id="site-header">
+    <div class="unified-header-shell">
+      <a href="https://www.joshmurzello.com/index.html" class="unified-brand"><img src="favicon.svg" alt="" class="unified-brand-logo" aria-hidden="true">JOSH MURZELLO</a>
+      <button class="unified-menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">Menu</button>
+      <nav id="site-nav" class="site-nav unified-nav" aria-label="Primary navigation">
+        <a href="https://www.joshmurzello.com/index.html">Home</a>
+        <a href="https://www.joshmurzello.com/Engineering.html" aria-current="page">Engineering</a>
+        <a href="https://www.joshmurzello.com/Creatives.html">Creatives</a>
+        <a href="https://www.joshmurzello.com/about.html">About</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page" id="main">
+    <a class="back-link" href="https://www.joshmurzello.com/Engineering.html">← Back to Engineering</a>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Robotics / Build resources</p>
+        <h1>My first<br>robotic joint.</h1>
+        <p class="lead">A 3D-printed cycloidal actuator, built to get my hands dirty with robotics.</p>
+        <p class="muted">This is V1: two cycloidal disks in a printed housing, a NEMA 23 stepper motor, and a lot of lessons about fits, cracked parts and getting everything to move together.</p>
+        <div class="pills"><span class="pill"><span class="dot" aria-hidden="true"></span>Working bench prototype</span><span class="pill">V1 build guide · Oct 2026</span></div>
+        <div class="actions"><a class="button primary" href="#parts">See the parts <span aria-hidden="true">↓</span></a><a class="button" href="#assembly">Assembly notes <span aria-hidden="true">↓</span></a></div>
       </div>
-      <figure class="project-photo project-photo--portrait">
-        <img src="images/optimized/cycloidal-actuator-closeup-1600.jpg" alt="Close view of the orange cycloidal actuator prototype showing the roller pins, housing, and output plate" loading="lazy">
-        <figcaption>Close-up of the printed housing, roller-pin ring, cycloidal disk, and output plate during assembly.</figcaption>
-      </figure>
-      <figure class="build-media">
-        <video controls playsinline muted preload="none" poster="images/builds/cycloidal-assembly.webp" width="1280" height="720" aria-label="Twelve-second silent cycloidal actuator assembly walkthrough" aria-describedby="actuator-assembly-caption">
-          <source src="videos/optimized/cycloidal-assembly.mp4" type="video/mp4">
-          <a href="videos/optimized/cycloidal-assembly.mp4">Download the assembly clip</a>
-        </video>
-        <figcaption id="actuator-assembly-caption">A 12-second assembly walkthrough from the September 2026 bench footage, showing the open housing, roller ring, and internal disk by hand. Audio omitted; this is assembly documentation, not a torque or backlash test.</figcaption>
-      </figure>
+      <figure class="hero-image"><img src="images/optimized/cycloidal-actuator-bench-1600.jpg" width="1600" height="1200" alt="Orange printed actuator on its NEMA 23 motor beside the TB6600 driver and Nucleo controller on Josh's bench"><figcaption>The actual V1 prototype and bench electronics.</figcaption></figure>
+    </div>
+    <div class="stats" aria-label="Confirmed V1 configuration">
+      <div class="stat"><span class="stat-value">15:1</span><span class="stat-label">Input-to-output reduction</span></div>
+      <div class="stat"><span class="stat-value">16 / 15</span><span class="stat-label">Outer rollers / disk lobes</span></div>
+      <div class="stat"><span class="stat-value">2 disks</span><span class="stat-label">Inside the printed housing</span></div>
+      <div class="stat"><span class="stat-value">NEMA 23</span><span class="stat-label">Stepper motor input</span></div>
+    </div>
+    <nav class="jump-nav" aria-label="Project sections"><a href="#resources">Files &amp; status</a><a href="#mechanism">How it works</a><a href="#parts">Parts &amp; PLA cost</a><a href="#assembly">Assembly</a><a href="#code">Controls &amp; code</a><a href="#testing">First test</a><a href="#videos">Videos</a><a href="#contact">Contact</a></nav>
+
+    <section id="resources" aria-labelledby="resources-title">
+      <div class="section-head"><div><p class="eyebrow">01 / Start here</p><h2 id="resources-title">What’s available right now</h2><p>The printed set, matching controller files and parts list are collected here, along with the assembly notes and what still needs measuring.</p></div></div>
+      <div class="grid-3">
+        <article class="card"><span class="availability available">Available</span><h3>Parts &amp; hardware BOM</h3><p class="small">Verified printed quantities and known hardware, with uncertain dimensions and purchase prices left explicit.</p><a class="button" href="downloads/cycloidal-actuator-v1-bom.csv" download>Download BOM CSV <span aria-hidden="true">↓</span></a></article>
+        <article class="card"><span class="availability available">Available</span><h3>STLs &amp; Bambu project</h3><p class="small">Eleven STL files for 26 printed pieces, plus the matching three-plate 3MF project, quantities and mesh dimensions. Import the STLs in millimeters.</p><a class="button" href="downloads/cycloidal-actuator-v1-print-files.zip" download>Download print files <span aria-hidden="true">↓</span></a><p class="small" style="margin-top:.7rem"><a href="downloads/cycloidal-actuator-v1-project.3mf" download>Bambu project only (.3mf)</a></p><p class="small" style="margin-top:.8rem">Mesh-based print files; this is not a parametric Fusion CAD download.</p></article>
+        <article class="card"><span class="availability available">Available</span><h3>Firmware &amp; USB panel</h3><p class="small">The matching protocol 3 CubeIDE firmware, browser bench panel and wiring/build instructions in one source package.</p><a class="button" href="downloads/cycloidal-actuator-usb-panel-v3-source.zip" download>Download controller files <span aria-hidden="true">↓</span></a></article>
+      </div>
+
+      <details class="card print-details" style="margin-top:1.2rem"><summary style="cursor:pointer;font-weight:700">26 printed pieces · see file quantities and dimensions</summary><p class="small" style="margin-top:1rem">The ZIP contains eleven STL files and the three-plate 3MF. Dimensions below are rounded mesh bounding boxes in saved print orientation (X × Y × Z), not bearing-fit tolerances. The two disks remain separate files.</p><div class="table-wrap" role="region" aria-label="Printed file quantities and mesh dimensions, horizontally scrollable" tabindex="0"><table><caption>Verified mesh extents in millimeters · total print quantity 26</caption><thead><tr><th scope="col">Printed part</th><th scope="col" class="qty">Qty</th><th scope="col">Mesh bounds (mm)</th></tr></thead><tbody><tr><th scope="row">Torque-test lever</th><td class="qty">1</td><td>212.50 × 102.49 × 22.50</td></tr><tr><th scope="row">Main housing (saved name: Pin)</th><td class="qty">1</td><td>135.00 × 134.98 × 34.25</td></tr><tr><th scope="row">Motor attachment</th><td class="qty">1</td><td>94.84 × 94.84 × 28.75</td></tr><tr><th scope="row">Output shaft</th><td class="qty">1</td><td>89.99 × 90.00 × 27.00</td></tr><tr><th scope="row">Top cap</th><td class="qty">1</td><td>135.00 × 135.00 × 13.00</td></tr><tr><th scope="row">Cycloidal disk 01</th><td class="qty">1</td><td>101.60 × 102.09 × 6.00</td></tr><tr><th scope="row">Cycloidal disk 02</th><td class="qty">1</td><td>101.60 × 102.09 × 6.00</td></tr><tr><th scope="row">Output shaft attachment</th><td class="qty">1</td><td>79.94 × 79.95 × 9.50</td></tr><tr><th scope="row">Eccentric shaft</th><td class="qty">1</td><td>40.95 × 44.10 × 18.03</td></tr><tr><th scope="row">Motor shaft lock</th><td class="qty">1</td><td>34.95 × 34.95 × 19.50</td></tr><tr><th scope="row">Spacer (saved name: Spacer 16)</th><td class="qty">16</td><td>12.90 × 12.90 × 6.00</td></tr></tbody></table></div><p class="small" style="margin-top:1rem"><a href="downloads/cycloidal-actuator-v1-printed-parts.csv" download>Download the printed-parts dimensions CSV</a>. The saved object named “Pin” is the housing-like ring, not an instruction to print a steel dowel. Sixteen “Spacer 16” instances have 6 mm mesh height.</p></details>
     </section>
 
-    <section aria-labelledby="motor-heading">
-      <h2 id="motor-heading">Motor Selection &amp; Control</h2>
-      <p>
-        Development started with a NEMA 17 stepper to accelerate prototyping and reduce integration risk during early mechanical validation.
-        The architecture is intentionally sized with an upgrade path to NEMA 23 when higher continuous torque becomes necessary.
-      </p>
-      <p>
-        Driver tradeoffs were evaluated between TMC2209-class drivers (smoother motion, quieter stepping, finer current control) and TB6600-class
-        drivers (higher current headroom and robust external driver packaging). Selection depends on torque demand, thermal budget, and desired motion quality.
-      </p>
-      <p class="formula">V = IR + Ke\omega</p>
-      <p>
-        This relationship frames actuator behavior: as speed increases, back EMF term <em>Ke\omega</em> reduces effective current margin,
-        while stall torque is highest near zero speed where back EMF is minimal.
-      </p>
+    <section id="mechanism" aria-labelledby="mechanism-title">
+      <div class="section-head"><div><p class="eyebrow">02 / The mechanism</p><h2 id="mechanism-title">Speed in. Slower rotation out.</h2><p>The motor turns an eccentric input. That offset moves the center of each disk around the fixed outer roller ring; the output pins collect the disks’ slower rotation.</p></div></div>
+      <div class="grid-2">
+        <article class="card"><span class="card-label">The V1 reduction</span><p>Each disk has <strong>15 lobes</strong> working against <strong>16 outer rollers</strong>.</p><p class="formula" aria-label="Reduction magnitude: 15 divided by 16 minus 15 equals 15 to 1">15 ÷ (16 − 15) = 15:1</p><p class="small">Reduction magnitude = disk lobes ÷ (outer rollers − disk lobes). That means fifteen turns of the input for one revolution of the output.</p></article>
+        <article class="card"><span class="card-label">What the motor rating means</span><h3>A reference, not a test result</h3><p>The STEPPERONLINE motor is rated at <strong>2.4 N·m holding torque</strong>. Holding torque describes an energized, stationary motor under its rated conditions.</p><p class="small"><span class="inline-equation">2.4 × 15 = 36 N·m</span> is an ideal holding-based reference. It is not a measured output torque or a promise of moving torque; driver settings, speed, losses and the printed mechanism all matter.</p></article>
+      </div>
     </section>
 
-    <section aria-labelledby="cad-heading">
-      <h2 id="cad-heading">Parametric CAD Development</h2>
-      <p>
-        The actuator was developed in Fusion 360 using a custom parametric workflow with script-assisted geometry generation for cycloidal curves.
-        The model allows rapid variation of key drivetrain dimensions without rebuilding the assembly from scratch.
-      </p>
-      <ul>
-        <li>Number of lobes</li>
-        <li>Eccentricity</li>
-        <li>Roller diameter</li>
-        <li>Bearing outer diameter</li>
-        <li>Disk thickness</li>
-        <li>Tolerance compensation for FDM printing</li>
-      </ul>
-      <p>
-        Iteration followed a print-fit-adjust loop: generate geometry, print critical interfaces, measure fit and backlash, then update
-        parameters to converge on manufacturable tolerances.
-      </p>
-      <div class="artifact-callout">CAD artifact target: parametric sketch or Fusion timeline capture showing lobe count, eccentricity, roller diameter, and tolerance offsets.</div>
+    <section id="parts" aria-labelledby="parts-title">
+      <div class="section-head"><div><p class="eyebrow">03 / Parts</p><h2 id="parts-title">The confirmed starting list</h2><p>The downloaded BOM separates the verified printed set from the purchased hardware. The core hardware is summarized below; exact bearing and fastener specifications still need confirmation.</p></div></div>
+      <div class="table-wrap" role="region" aria-label="Confirmed V1 parts table, horizontally scrollable" tabindex="0">
+        <table><caption>Confirmed components · unit prices not entered · USD</caption><thead><tr><th scope="col">Part</th><th scope="col" class="qty">Qty</th><th scope="col">Identity / specification</th><th scope="col">Still to confirm</th><th scope="col">Unit price</th></tr></thead><tbody>
+          <tr><th scope="row">Stepper motor</th><td class="qty">1</td><td>STEPPERONLINE NEMA 23<br>2.4 N·m holding · 4 A/phase · 8 mm shaft<br><a href="https://www.omc-stepperonline.com/nema-23-stepper-motor-2-4nm-339-79oz-in-4a-57x57x82mm-8mm-shaft-4-wires-23hs32-4004s">Manufacturer matching model: 23HS32-4004S</a></td><td>Physical nameplate not photographed; actual operating current and supply voltage</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Driver</th><td class="qty">1</td><td>EASON TB6600<br>Step/direction control</td><td>Actual unit label, selected current and microsteps</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Controller</th><td class="qty">1</td><td><a href="https://www.st.com/en/evaluation-tools/nucleo-l476rg.html">STM32 Nucleo-L476RG</a><br>Protocol 3: PB4 STEP · PB5 DIR · PB6 ENA</td><td>Matching protocol 3 package included</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Metal coupler</th><td class="qty">1</td><td>8 mm → 6 mm</td><td>Length, outside diameter and final attachment details</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Outer roller assemblies</th><td class="qty">16</td><td>Fixed ring in the housing</td><td>Bearing/pin dimensions and components per roller</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Printed cycloidal disks</th><td class="qty">2</td><td>15 lobes per disk</td><td>6 mm mesh thickness; verify mating fits and stack phasing</td><td class="unpriced">Unpriced</td></tr>
+        </tbody></table>
+      </div>
+      <div class="bom-actions"><p class="small">On a phone, swipe across the table to see every column.</p><a class="button" href="downloads/cycloidal-actuator-v1-bom.csv" download>Download full BOM <span aria-hidden="true">↓</span></a></div>
+      <p class="note">The print package includes the saved housing/ring, shaft, cap, attachment and spacer meshes. Purchased bearing part numbers, rod lengths, fastener sizes, wiring and selected electrical settings still need confirmation; mesh bounds are not a tolerance drawing.</p>
+      <div class="card calc" aria-labelledby="pla-title">
+        <div><span class="card-label">My refill estimate</span><h3 id="pla-title">About $4.15 in PLA</h3><p class="small">The saved three-plate set estimates <strong>296.56 g</strong>, including the torque-test lever. At my approximate <strong>$14/kg refill rate</strong>, that’s <strong>$4.15</strong> in filament.</p><ul class="list-clean small"><li>My approximate rate: $14/kg → <strong>$4.15</strong></li><li><a href="https://us.store.bambulab.com/products/pla-basic-filament">Official Bambu PLA Basic refill listing</a>: $14.99/kg observed October 30, 2026 → <strong>$4.45</strong></li><li>Earlier saved slicer rate: $19.99/kg → <strong>$5.93</strong></li></ul><p class="small" style="margin-top:.8rem">Change either input for your own estimate. The mass is a saved slicer estimate, not a weighed build total. PLA only; hardware, failed iterations, shipping, tax and electricity are excluded.</p></div>
+        <form id="pla-calculator" novalidate>
+          <div class="calc-fields"><div><label for="pla-grams">PLA mass (g)</label><input id="pla-grams" name="grams" value="296.56" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter slicer mass" aria-describedby="calc-status"></div><div><label for="pla-price">Spool price (USD / kg)</label><input id="pla-price" name="price" value="14" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter your price" aria-describedby="calc-status"></div><div class="calc-output"><div><span class="small">PLA material estimate</span><output id="pla-result" for="pla-grams pla-price" aria-live="polite" aria-atomic="true">$4.15</output></div><button class="button" type="reset">Clear</button></div></div><p id="calc-status" class="calc-error" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
 
-    <section aria-labelledby="challenges-heading">
-      <h2 id="challenges-heading">Key Engineering Challenges</h2>
-      <ul>
-        <li>Bearing press-fit tolerances, especially around 13 mm OD interfaces.</li>
-        <li>Balancing roller hole sizing against friction and rotational smoothness.</li>
-        <li>Maintaining eccentric shaft concentric alignment through assembly stack-up.</li>
-        <li>Reducing backlash while preserving low-friction operation.</li>
-        <li>Maintaining structural rigidity under load and transient shock.</li>
-        <li>Managing FDM print anisotropy and layer-direction strength limits.</li>
-      </ul>
-      <p>
-        These constraints were treated as coupled failure-mode risks rather than isolated issues, guiding both geometry updates and material/print-orientation decisions.
-      </p>
+    <section id="assembly" aria-labelledby="assembly-title">
+      <div class="section-head"><div><p class="eyebrow">04 / Assembly notes</p><h2 id="assembly-title">How the stack comes together</h2><p>The sequence I worked through in V1. Use the included print project and parts list, and confirm the purchased hardware and mating fits before assembly.</p></div></div>
+      <ol class="build-steps">
+        <li><h3>Match the model to the hardware</h3><p>Start with the included 3MF and its printed-parts list: 15 lobes per disk and 16 outer rollers. Check the bearing, pin and shaft interfaces against your actual hardware; the 3MF is a print layout, not an assembled CAD model.</p></li>
+        <li><h3>Print the custom parts</h3><p>The saved set has 26 pieces on three plates. Its slice used a P1S / 0.4 mm nozzle, 0.20 mm layers, 15% infill, two walls and no supports. Review the project for your own printer; the saved estimate is 296.56 g.</p></li>
+        <li><h3>Check the bearing fits</h3><p>Measure the bearing seats and try the fits before building the full stack. The downloads give mesh dimensions, not a validated press-fit specification. Confirm actual bearing sizes and clearances; forcing a tight printed fit can crack the part.</p></li>
+        <li><h3>Build the outer roller ring</h3><p>Install the sixteen roller assemblies in the housing with their bearings and spacing hardware. Confirm the individual roller stack, purchased bearing dimensions and fastener lengths against the actual parts.</p></li>
+        <li><h3>Connect the motor input</h3><p>The connection evolved from a printed friction fit to inserts/set screws, then a metal coupler. V1 uses an 8 mm → 6 mm coupler; verify alignment and access to its screws.</p></li>
+        <li><h3>Add the two disks and spacers</h3><p>Confirm the disks’ eccentric phasing and stack order against the build. The saved set has sixteen spacer instances with 6 mm mesh height. Align the output holes and check that tightening does not squeeze the moving parts together.</p></li>
+        <li><h3>Fit the output carrier</h3><p>The output pins pass through the larger disk holes and collect the slower rotation. Check clearance and free movement as the assembly is tightened; purchased-pin dimensions and the final mating fits still need confirmation.</p></li>
+        <li><h3>Bring up the controls</h3><p>Use the included matching firmware, USB panel and wiring guide. Record the actual driver current, microsteps and supply voltage before interpreting commanded motion or a scale reading.</p></li>
+      </ol>
+      <figure class="build-media"><video controls playsinline muted preload="none" poster="images/builds/cycloidal-assembly.webp" width="1280" height="720" aria-label="Silent real-footage cycloidal actuator assembly overview" aria-describedby="assembly-caption"><source src="videos/optimized/cycloidal-assembly.mp4" type="video/mp4"><a href="videos/optimized/cycloidal-assembly.mp4">Open the assembly video</a></video><figcaption id="assembly-caption">Real bench assembly footage showing the open housing, roller ring and disk by hand. Silent documentation; this does not demonstrate torque or backlash.</figcaption></figure>
     </section>
 
-    <section aria-labelledby="testing-heading">
-      <h2 id="testing-heading">Testing &amp; Performance Observations</h2>
-      <p>
-        Current prototype testing is qualitative and focused on motion behavior. Rotation smoothness improved across revisions as bearing fit and roller clearances
-        were tuned. The output stage shows clear torque amplification compared to direct motor drive, with remaining backlash primarily linked to printed interface tolerances.
-      </p>
-      <p>
-        Efficiency and vibration are being tracked through iterative runs; noise increases at higher motor speeds, indicating opportunities for tighter balance and improved
-        pin/bearing alignment in future builds. Quantitative torque and backlash characterization is planned in the next validation phase.
-      </p>
+    <section id="code" aria-labelledby="code-title">
+      <div class="section-head"><div><p class="eyebrow">05 / Controls</p><h2 id="code-title">A simple bench-control setup</h2><p>The current setup uses the STM32 Nucleo-L476RG, an EASON TB6600 and a local USB browser panel.</p></div></div>
+      <div class="grid-2"><article class="card"><span class="card-label">What it does</span><h3>Jog, hold and load slowly</h3><ul class="list-clean"><li>Hold Forward or Reverse to jog; release to stop and hold.</li><li>Run a slower loading move while observing the scale.</li><li>Use Stop &amp; Hold or Release as appropriate for the supported mechanism.</li><li>Show commanded pulse position, not encoder-measured position.</li></ul><p class="note">The scale is not a feedback sensor for the controller. The panel does not measure torque or automatically correct for friction or arm gravity.</p></article><article class="card" data-package-slot="protocol3"><span class="availability available">Source package ready</span><h3>Matching protocol 3 files</h3><p class="small">CubeIDE/HAL firmware, the static USB panel, wiring and build/flash guides, protocol notes, tests and matching v3 release files.</p><a class="button" href="downloads/cycloidal-actuator-usb-panel-v3-source.zip" download>Download controller source <span aria-hidden="true">↓</span></a><p class="small" style="margin-top:.8rem">Read the included README and wiring guide first. The older PlatformIO/button controller has different pins and lowercase commands and is not bundled.</p><p class="small"><a href="https://github.com/JoshMurzello/Portfolio-FINAL/blob/main/downloads/cycloidal-actuator-usb-panel-v3-source.zip">Source archive on GitHub</a> · The archive includes the existing license notices. Offline checks do not replace checking your own wiring and driver settings.</p></article></div>
     </section>
 
-    <section aria-labelledby="future-heading">
-      <h2 id="future-heading">Future Iterations</h2>
-      <ul>
-        <li>CNC-machined metal housing</li>
-        <li>Hardened steel rollers</li>
-        <li>Custom output shaft spline</li>
-        <li>Integrated encoder for closed-loop control</li>
-        <li>Higher reduction ratio versions (30:1, 50:1)</li>
-        <li>Application in robotic arm joint or quadruped prototype</li>
-      </ul>
+    <section id="testing" aria-labelledby="testing-title">
+      <div class="section-head"><div><p class="eyebrow">06 / First scale check</p><h2 id="testing-title">A starting point for the next version</h2><p>I got the actuator moving, then tried a preliminary scale test. These are the two visible entries recovered from the test video.</p></div></div>
+      <div class="grid-2"><div class="card"><span class="card-label">Recorded app entries</span><div class="results"><div class="readout"><span class="small">1,275.0 g</span><strong class="result-number">2.001 <span>N·m</span></strong><span class="small">Calculated contact moment</span></div><div class="readout"><span class="small">2,200.0 g</span><strong class="result-number">3.452 <span>N·m</span></strong><span class="small">Calculated contact moment</span></div></div><p class="small" style="margin-top:1rem">Entered moment arm: <strong>160 mm</strong><br>Visible software baseline: <strong>0 g</strong></p></div><article class="card"><span class="card-label">How to read those numbers</span><h3>Preliminary, not maximum torque</h3><p class="small">These are calculated scale-contact moments. Arm gravity and friction were not corrected, and the perpendicular moment arm was not independently verified.</p><p class="small">The printed stand was a quick support and I held the motor down because I didn’t have proper clamps. Actual test supply, current, microsteps and the limiting condition were not fully recorded.</p><p class="small">This check does not establish maximum output torque or gearbox efficiency. Better restraint, geometry and repeatable test conditions are the next step.</p></article></div>
     </section>
 
-    <section aria-labelledby="demonstrates-heading">
-      <h2 id="demonstrates-heading">What This Project Demonstrates</h2>
-      <p>
-        This project demonstrates a deep understanding of mechanical power transmission and how reduction-drive theory converts into physical actuator architecture.
-      </p>
-      <p>
-        It shows the ability to move from equations to parametric CAD, while considering manufacturability, tolerance control, and integration of motors, bearings,
-        and structural components as a complete system.
-      </p>
-      <p>
-        The result aligns directly with robotics and automation development, where compact, reliable, and scalable actuation is a core engineering requirement.
-      </p>
+    <section id="videos" aria-labelledby="videos-title">
+      <div class="section-head"><div><p class="eyebrow">07 / Watch the build</p><h2 id="videos-title">Motion makes it click</h2><p>A concept animation and two earlier videos from the project.</p></div></div>
+      <figure class="build-media"><video controls playsinline preload="metadata" width="1920" height="1080" aria-label="Cycloidal mechanism concept animation by Josh Murzello" aria-describedby="animation-caption"><source src="videos/optimized/cycloidal-detail-v2-horizontal.mp4" type="video/mp4"><a href="videos/optimized/cycloidal-detail-v2-horizontal.mp4">Open the cycloidal animation</a></video><figcaption id="animation-caption">My concept animation of two disks moving around a fixed pin ring. This illustrates the mechanism; it is not footage of V1 or a dimensioned CAD reference.</figcaption></figure>
+      <div class="grid-2" style="margin-top:1.2rem"><a class="card link-card" href="https://youtube.com/shorts/zJ4uvhhWRFY"><span><strong>I Built a Cycloidal Actuator</strong><span class="small">The first actuator reveal · YouTube Short</span></span><span class="arrow" aria-hidden="true">↗</span></a><a class="card link-card" href="https://youtube.com/shorts/bjPSmwaMiJg"><span><strong>I Built a Robot Hand for the Wrong Reason</strong><span class="small">Adding a hand to the actuator · YouTube Short</span></span><span class="arrow" aria-hidden="true">↗</span></a></div>
     </section>
+    <section id="contact" class="card contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep building</p><h2 id="contact-title">Questions or ideas for V2?</h2><p class="small" style="margin-bottom:0">I’m using this build as a starting point for bigger robotics projects.</p></div><a class="button" href="mailto:murzello.josh@gmail.com">murzello.josh@gmail.com <span aria-hidden="true">↗</span></a></section>
+    <footer><span>Josh Murzello · Cycloidal Actuator V1</span><span>Build guide · Updated October 2026</span><a href="#main">Back to top ↑</a></footer>
   </main>
-
-  <script src="site-header.js" defer></script>
-  <script src="scroll-reveal.js?v=20260910-1" defer></script>
+  <script>
+    (() => {
+      'use strict';
+      const header = document.getElementById('site-header');
+      const menu = header.querySelector('.unified-menu-toggle');
+      const nav = document.getElementById('site-nav');
+      const closeMenu = () => { menu.setAttribute('aria-expanded','false'); nav.classList.remove('open'); };
+      menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded',String(open)); nav.classList.toggle('open',open); });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', event => { if(event.key==='Escape' && menu.getAttribute('aria-expanded')==='true') { closeMenu(); menu.focus(); } });
+      const updateHeader = () => header.classList.toggle('scrolled',window.scrollY>40);
+      updateHeader(); window.addEventListener('scroll',updateHeader,{passive:true});
+      const form = document.getElementById('pla-calculator');
+      const grams = document.getElementById('pla-grams');
+      const price = document.getElementById('pla-price');
+      const result = document.getElementById('pla-result');
+      const status = document.getElementById('calc-status');
+      const currency = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'});
+      function calculate() {
+        status.textContent=''; grams.removeAttribute('aria-invalid'); price.removeAttribute('aria-invalid');
+        const g=grams.value.trim(), p=price.value.trim();
+        if(g==='' || p==='') { result.textContent='Unpriced'; return; }
+        const mass=Number(g), unitPrice=Number(p);
+        if(!Number.isFinite(mass) || mass<0 || !Number.isFinite(unitPrice) || unitPrice<0) {
+          result.textContent='Unpriced'; status.textContent='Enter a zero or positive number in both fields.';
+          if(!Number.isFinite(mass)||mass<0) grams.setAttribute('aria-invalid','true');
+          if(!Number.isFinite(unitPrice)||unitPrice<0) price.setAttribute('aria-invalid','true');
+          return;
+        }
+        const cost=mass/1000*unitPrice;
+        if(!Number.isFinite(cost)) { result.textContent='Unpriced'; status.textContent='Those values are too large to calculate.'; return; }
+        result.textContent=currency.format(cost);
+      }
+      form.addEventListener('input',calculate);
+      form.addEventListener('submit',event=>event.preventDefault());
+      form.addEventListener('reset',event=>{ event.preventDefault(); grams.value=''; price.value=''; calculate(); });
+      calculate();
+    })();
+  </script>
 </body>
 </html>
