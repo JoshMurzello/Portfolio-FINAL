@@ -213,9 +213,6 @@
     .stat { background:#111923; padding:1.1rem 1.3rem; }
     .stat-value { display:block; font-size:1.65rem; color:#d8eaff; margin-bottom:.3rem; }
     .stat-label { font-size:.76rem; color:var(--muted); }
-    .jump-nav { display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; margin:0 0 3.4rem; padding:.5rem 0 1.1rem; border-bottom:1px solid var(--line); }
-    .jump-nav a { padding:.35rem 0; font-size:.8rem; color:#bdcde0; text-decoration:none; }
-    .jump-nav a:hover { color:white; }
     section { margin-bottom:3.8rem; }
     .section-head { display:flex; align-items:start; justify-content:space-between; gap:1.5rem; margin-bottom:1.2rem; }
     .section-head p { max-width:64ch; color:var(--muted); margin-bottom:0; }
@@ -275,9 +272,27 @@
     footer { color:var(--muted); font-size:.74rem; padding-top:1.2rem; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:.5rem; justify-content:space-between; }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     @media(max-width:900px) { .hero { gap:1.5rem; } .grid-3 { grid-template-columns:1fr; } .calc { gap:1.2rem; } .table-wrap table { min-width:660px; } }
-    @media(max-width:680px) { .page { width:calc(100% - 2rem); padding-top:6rem; } .hero,.grid-2,.calc,.build-steps { grid-template-columns:1fr; } .hero { gap:1.4rem; } h1 { font-size:3rem; } .stats { grid-template-columns:1fr 1fr; } .stat { padding:1rem; } .section-head { display:block; } .card { padding:1.1rem; } .bom-actions { align-items:start; flex-direction:column; } .jump-nav { gap:.15rem 1.2rem; margin-bottom:2.7rem; } section { margin-bottom:2.7rem; } .contact { display:block; } .contact .button { margin-top:.8rem; } .unified-brand { font-size:.85rem; } }
+    @media(max-width:680px) { .page { width:calc(100% - 2rem); padding-top:6rem; } .hero,.grid-2,.calc,.build-steps { grid-template-columns:1fr; } .hero { gap:1.4rem; } h1 { font-size:3rem; } .stats { grid-template-columns:1fr 1fr; } .stat { padding:1rem; } .section-head { display:block; } .card { padding:1.1rem; } .bom-actions { align-items:start; flex-direction:column; } section { margin-bottom:2.7rem; } .contact { display:block; } .contact .button { margin-top:.8rem; } .unified-brand { font-size:.85rem; } }
+    .guide-layout { display:grid; grid-template-columns:190px minmax(0,1fr); gap:2.5rem; width:min(1410px,calc(100% - 3rem)); margin-inline:auto; padding-top:6.9rem; align-items:start; }
+    .guide-layout .page { width:100%; min-width:0; padding:0 0 3rem; }
+    .guide-sidebar { position:sticky; top:6rem; max-height:calc(100dvh - 7rem); overflow-y:auto; border:1px solid var(--line); border-radius:14px; background:rgba(16,24,35,.94); padding:1rem .65rem; }
+    .toc-panel summary { color:var(--muted); font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em; cursor:pointer; padding:.2rem .55rem .8rem; }
+    .toc-list { list-style:none; padding:0; margin:0; display:grid; gap:.2rem; }
+    .toc-list a { display:block; min-height:44px; padding:.65rem .65rem; border-left:2px solid transparent; border-radius:0 6px 6px 0; color:var(--muted); font-size:.78rem; line-height:1.5; text-decoration:none; }
+    .toc-list a:hover,.toc-list a[aria-current="location"] { color:var(--text); background:rgba(149,198,255,.09); border-left-color:var(--accent); }
+    .youtube-player { display:block; width:100%; height:auto; aspect-ratio:16 / 9; border:0; background:#080b10; }
+    .featured-video { margin-top:2.5rem; margin-bottom:1.5rem; }
+    .featured-video figcaption a { display:inline; }
+    section { scroll-margin-top:1rem; }
+    @media(max-width:1100px) {
+      .guide-layout { display:block; width:min(920px,calc(100% - 2rem)); padding-top:6rem; }
+      .guide-sidebar { position:static; max-height:none; margin-bottom:1.5rem; padding:.7rem; }
+      .toc-panel summary { padding:.25rem .5rem; min-height:32px; }
+      .toc-list { grid-template-columns:1fr 1fr; padding-top:.65rem; }
+    }
+    @media print { .guide-layout { display:block; width:100%; padding-top:1rem; } .youtube-player { display:none; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
-    @media print { .unified-header,.jump-nav,.actions,.calc button { display:none; } .page { padding-top:1rem; width:100%; } body { color:#111; background:white; } .card,.stat,.table-wrap { background:white; } .muted,.small,td,.build-steps p { color:#333; } section { break-inside:avoid; } }
+    @media print { .unified-header,.guide-sidebar,.actions,.calc button { display:none; } .page { padding-top:1rem; width:100%; } body { color:#111; background:white; } .card,.stat,.table-wrap { background:white; } .muted,.small,td,.build-steps p { color:#333; } section { break-inside:avoid; } }
   </style>
 </head>
 <body class="unified-site-header">
@@ -294,6 +309,25 @@
       </nav>
     </div>
   </header>
+  <div class="guide-layout">
+    <aside class="guide-sidebar" aria-label="Build guide navigation">
+      <details class="toc-panel" open>
+        <summary>On this page</summary>
+        <nav aria-label="Table of contents">
+          <ol class="toc-list">
+            <li><a href="#build-video" aria-current="location">Watch the full build</a></li>
+            <li><a href="#parts">BOM</a></li>
+            <li><a href="#resources">CAD &amp; print files</a></li>
+            <li><a href="#assembly">Instructions</a></li>
+            <li><a href="#mechanism">How it works</a></li>
+            <li><a href="#code">Controls &amp; code</a></li>
+            <li><a href="#testing">First test</a></li>
+            <li><a href="#videos">More videos</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ol>
+        </nav>
+      </details>
+    </aside>
   <main class="page" id="main">
     <a class="back-link" href="https://www.joshmurzello.com/Engineering.html">← Back to Engineering</a>
     <div class="hero">
@@ -302,21 +336,52 @@
         <h1>My first<br>robotic joint.</h1>
         <p class="lead">A 3D-printed cycloidal actuator, built to get my hands dirty with robotics.</p>
         <p class="muted">This is V1: two cycloidal disks in a printed housing, a NEMA 23 stepper motor, and a lot of lessons about fits, cracked parts and getting everything to move together.</p>
-        <div class="pills"><span class="pill"><span class="dot" aria-hidden="true"></span>Working bench prototype</span><span class="pill">V1 build guide · Oct 2026</span></div>
+        <div class="pills"><span class="pill"><span class="dot" aria-hidden="true"></span>Working bench prototype</span><span class="pill">V1 build guide · Nov 2026</span></div>
         <div class="actions"><a class="button primary" href="#parts">See the parts <span aria-hidden="true">↓</span></a><a class="button" href="#assembly">Assembly notes <span aria-hidden="true">↓</span></a></div>
       </div>
       <figure class="hero-image"><img src="images/optimized/cycloidal-actuator-bench-1600.jpg" width="1600" height="1200" alt="Orange printed actuator on its NEMA 23 motor beside the TB6600 driver and Nucleo controller on Josh's bench"><figcaption>The actual V1 prototype and bench electronics.</figcaption></figure>
     </div>
+    <section id="build-video" class="featured-video" aria-labelledby="build-video-title">
+      <div class="section-head"><div><p class="eyebrow">Watch the full build</p><h2 id="build-video-title">I Built a Robotic Actuator from Scratch</h2><p>The complete V1 build: the mechanism, assembly, iterations and first test.</p></div></div>
+      <figure class="build-media">
+        <iframe class="youtube-player" width="1280" height="720" src="https://www.youtube-nocookie.com/embed/jRUGEKpLHAw" title="I Built a Robotic Actuator from Scratch — full build by Josh Murzello" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <figcaption><a href="https://youtu.be/jRUGEKpLHAw?si=28rM1rlmGJaz4XVL">Watch the full actuator video on YouTube ↗</a></figcaption>
+      </figure>
+    </section>
     <div class="stats" aria-label="Confirmed V1 configuration">
       <div class="stat"><span class="stat-value">15:1</span><span class="stat-label">Input-to-output reduction</span></div>
       <div class="stat"><span class="stat-value">16 / 15</span><span class="stat-label">Outer rollers / disk lobes</span></div>
       <div class="stat"><span class="stat-value">2 disks</span><span class="stat-label">Inside the printed housing</span></div>
       <div class="stat"><span class="stat-value">NEMA 23</span><span class="stat-label">Stepper motor input</span></div>
     </div>
-    <nav class="jump-nav" aria-label="Project sections"><a href="#resources">Files &amp; status</a><a href="#mechanism">How it works</a><a href="#parts">Parts &amp; PLA cost</a><a href="#assembly">Assembly</a><a href="#code">Controls &amp; code</a><a href="#testing">First test</a><a href="#videos">Videos</a><a href="#contact">Contact</a></nav>
+
+    <section id="parts" aria-labelledby="parts-title">
+      <div class="section-head"><div><p class="eyebrow">01 / BOM</p><h2 id="parts-title">BOM: parts &amp; hardware</h2><p>The downloaded BOM separates the verified printed set from the purchased hardware. The purchased parts used in V1 are linked below. Quantities and dimensions that still need measuring are called out in the table.</p></div></div>
+      <div class="table-wrap" role="region" aria-label="Confirmed V1 parts table, horizontally scrollable" tabindex="0">
+        <table><caption>Confirmed components · unit prices not entered · USD</caption><thead><tr><th scope="col">Part</th><th scope="col" class="qty">Qty</th><th scope="col">Identity / specification</th><th scope="col">Still to confirm</th><th scope="col">Unit price</th></tr></thead><tbody>
+          <tr><th scope="row">Stepper motor</th><td class="qty">1</td><td>STEPPERONLINE NEMA 23<br>2.4 N·m holding · 4 A/phase · 8 mm shaft<br><a href="https://www.omc-stepperonline.com/nema-23-stepper-motor-2-4nm-339-79oz-in-4a-57x57x82mm-8mm-shaft-4-wires-23hs32-4004s">Manufacturer matching model: 23HS32-4004S</a></td><td>Physical nameplate not photographed; actual operating current and supply voltage</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Driver</th><td class="qty">1</td><td>EASON TB6600<br>Step/direction control</td><td>Actual unit label, selected current and microsteps</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Controller</th><td class="qty">1</td><td><a href="https://www.st.com/en/evaluation-tools/nucleo-l476rg.html">STM32 Nucleo-L476RG</a><br>Protocol 3: PB4 STEP · PB5 DIR · PB6 ENA</td><td>Matching protocol 3 package included</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Metal coupler</th><td class="qty">1</td><td>8 mm → 6 mm<br><a href="https://www.amazon.com/dp/B07P6XB2MJ">Coupler used in V1 · Amazon</a></td><td>Length, outside diameter and final attachment details</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Outer roller assemblies (overview)</th><td class="qty">16</td><td>Fixed ring in the housing</td><td>Components per roller and final stack spacing</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Housing bearings</th><td class="qty">16</td><td>6 mm bearings used in the housing<br><a href="https://www.amazon.com/dp/B07TP2RL75">Housing bearings · Amazon</a></td><td>Verify the selected bearing size and fit against your printed housing</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Steel dowels / pins</th><td class="qty">TBC</td><td>6 mm steel dowel<br><a href="https://www.amazon.com/dp/B0D5CJWJNN">Steel dowel used in V1 · Amazon</a></td><td>Cut lengths, total quantity and retention</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Large disk bearings</th><td class="qty">TBC</td><td>Large bearings used for the cycloidal disks<br><a href="https://www.amazon.com/dp/B0C74YZBQ6">Disk bearings · Amazon</a></td><td>Quantity, selected size and mating fits</td><td class="unpriced">Unpriced</td></tr>
+          <tr><th scope="row">Printed cycloidal disks</th><td class="qty">2</td><td>15 lobes per disk</td><td>6 mm mesh thickness; verify mating fits and stack phasing</td><td class="unpriced">Unpriced</td></tr>
+        </tbody></table>
+      </div>
+      <div class="bom-actions"><p class="small">On a phone, swipe across the table to see every column.</p><a class="button" href="downloads/cycloidal-actuator-v1-bom.csv" download>Download full BOM <span aria-hidden="true">↓</span></a></div>
+      <p class="note">The print package includes the saved housing/ring, shaft, cap, attachment and spacer meshes. The four Amazon links identify the housing bearings, 6 mm steel dowel, large disk bearings and coupler used in this build. Check the selected size when ordering. Rod lengths/counts, fastener sizes, wiring and selected electrical settings still need confirmation; mesh bounds are not a tolerance drawing. TBC means to be confirmed.</p>
+      <div class="card calc" aria-labelledby="pla-title">
+        <div><span class="card-label">My refill estimate</span><h3 id="pla-title">About $4.15 in PLA</h3><p class="small">The saved three-plate set estimates <strong>296.56 g</strong>, including the torque-test lever. At my approximate <strong>$14/kg refill rate</strong>, that’s <strong>$4.15</strong> in filament.</p><ul class="list-clean small"><li>My approximate rate: $14/kg → <strong>$4.15</strong></li><li><a href="https://us.store.bambulab.com/products/pla-basic-filament">Official Bambu PLA Basic refill listing</a>: $14.99/kg observed October 30, 2026 → <strong>$4.45</strong></li><li>Earlier saved slicer rate: $19.99/kg → <strong>$5.93</strong></li></ul><p class="small" style="margin-top:.8rem">Change either input for your own estimate. The mass is a saved slicer estimate, not a weighed build total. PLA only; hardware, failed iterations, shipping, tax and electricity are excluded.</p></div>
+        <form id="pla-calculator" novalidate>
+          <div class="calc-fields"><div><label for="pla-grams">PLA mass (g)</label><input id="pla-grams" name="grams" value="296.56" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter slicer mass" aria-describedby="calc-status"></div><div><label for="pla-price">Spool price (USD / kg)</label><input id="pla-price" name="price" value="14" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter your price" aria-describedby="calc-status"></div><div class="calc-output"><div><span class="small">PLA material estimate</span><output id="pla-result" for="pla-grams pla-price" aria-live="polite" aria-atomic="true">$4.15</output></div><button class="button" type="reset">Clear</button></div></div><p id="calc-status" class="calc-error" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
 
     <section id="resources" aria-labelledby="resources-title">
-      <div class="section-head"><div><p class="eyebrow">01 / Start here</p><h2 id="resources-title">What’s available right now</h2><p>The printed set, matching controller files and parts list are collected here, along with the assembly notes and what still needs measuring.</p></div></div>
+      <div class="section-head"><div><p class="eyebrow">02 / CAD files</p><h2 id="resources-title">CAD &amp; print files</h2><p>Download the STL set and Bambu print project, then check the printed quantities and dimensions below. The BOM and controller source are also available here.</p></div></div>
       <div class="grid-3">
         <article class="card"><span class="availability available">Available</span><h3>Parts &amp; hardware BOM</h3><p class="small">Verified printed quantities and known hardware, with uncertain dimensions and purchase prices left explicit.</p><a class="button" href="downloads/cycloidal-actuator-v1-bom.csv" download>Download BOM CSV <span aria-hidden="true">↓</span></a></article>
         <article class="card"><span class="availability available">Available</span><h3>STLs &amp; Bambu project</h3><p class="small">Eleven STL files for 26 printed pieces, plus the matching three-plate 3MF project, quantities and mesh dimensions. Import the STLs in millimeters.</p><a class="button" href="downloads/cycloidal-actuator-v1-print-files.zip" download>Download print files <span aria-hidden="true">↓</span></a><p class="small" style="margin-top:.7rem"><a href="downloads/cycloidal-actuator-v1-project.3mf" download>Bambu project only (.3mf)</a></p><p class="small" style="margin-top:.8rem">Mesh-based print files; this is not a parametric Fusion CAD download.</p></article>
@@ -326,38 +391,8 @@
       <details class="card print-details" style="margin-top:1.2rem"><summary style="cursor:pointer;font-weight:700">26 printed pieces · see file quantities and dimensions</summary><p class="small" style="margin-top:1rem">The ZIP contains eleven STL files and the three-plate 3MF. Dimensions below are rounded mesh bounding boxes in saved print orientation (X × Y × Z), not bearing-fit tolerances. The two disks remain separate files.</p><div class="table-wrap" role="region" aria-label="Printed file quantities and mesh dimensions, horizontally scrollable" tabindex="0"><table><caption>Verified mesh extents in millimeters · total print quantity 26</caption><thead><tr><th scope="col">Printed part</th><th scope="col" class="qty">Qty</th><th scope="col">Mesh bounds (mm)</th></tr></thead><tbody><tr><th scope="row">Torque-test lever</th><td class="qty">1</td><td>212.50 × 102.49 × 22.50</td></tr><tr><th scope="row">Main housing (saved name: Pin)</th><td class="qty">1</td><td>135.00 × 134.98 × 34.25</td></tr><tr><th scope="row">Motor attachment</th><td class="qty">1</td><td>94.84 × 94.84 × 28.75</td></tr><tr><th scope="row">Output shaft</th><td class="qty">1</td><td>89.99 × 90.00 × 27.00</td></tr><tr><th scope="row">Top cap</th><td class="qty">1</td><td>135.00 × 135.00 × 13.00</td></tr><tr><th scope="row">Cycloidal disk 01</th><td class="qty">1</td><td>101.60 × 102.09 × 6.00</td></tr><tr><th scope="row">Cycloidal disk 02</th><td class="qty">1</td><td>101.60 × 102.09 × 6.00</td></tr><tr><th scope="row">Output shaft attachment</th><td class="qty">1</td><td>79.94 × 79.95 × 9.50</td></tr><tr><th scope="row">Eccentric shaft</th><td class="qty">1</td><td>40.95 × 44.10 × 18.03</td></tr><tr><th scope="row">Motor shaft lock</th><td class="qty">1</td><td>34.95 × 34.95 × 19.50</td></tr><tr><th scope="row">Spacer (saved name: Spacer 16)</th><td class="qty">16</td><td>12.90 × 12.90 × 6.00</td></tr></tbody></table></div><p class="small" style="margin-top:1rem"><a href="downloads/cycloidal-actuator-v1-printed-parts.csv" download>Download the printed-parts dimensions CSV</a>. The saved object named “Pin” is the housing-like ring, not an instruction to print a steel dowel. Sixteen “Spacer 16” instances have 6 mm mesh height.</p></details>
     </section>
 
-    <section id="mechanism" aria-labelledby="mechanism-title">
-      <div class="section-head"><div><p class="eyebrow">02 / The mechanism</p><h2 id="mechanism-title">Speed in. Slower rotation out.</h2><p>The motor turns an eccentric input. That offset moves the center of each disk around the fixed outer roller ring; the output pins collect the disks’ slower rotation.</p></div></div>
-      <div class="grid-2">
-        <article class="card"><span class="card-label">The V1 reduction</span><p>Each disk has <strong>15 lobes</strong> working against <strong>16 outer rollers</strong>.</p><p class="formula" aria-label="Reduction magnitude: 15 divided by 16 minus 15 equals 15 to 1">15 ÷ (16 − 15) = 15:1</p><p class="small">Reduction magnitude = disk lobes ÷ (outer rollers − disk lobes). That means fifteen turns of the input for one revolution of the output.</p></article>
-        <article class="card"><span class="card-label">What the motor rating means</span><h3>A reference, not a test result</h3><p>The STEPPERONLINE motor is rated at <strong>2.4 N·m holding torque</strong>. Holding torque describes an energized, stationary motor under its rated conditions.</p><p class="small"><span class="inline-equation">2.4 × 15 = 36 N·m</span> is an ideal holding-based reference. It is not a measured output torque or a promise of moving torque; driver settings, speed, losses and the printed mechanism all matter.</p></article>
-      </div>
-    </section>
-
-    <section id="parts" aria-labelledby="parts-title">
-      <div class="section-head"><div><p class="eyebrow">03 / Parts</p><h2 id="parts-title">The confirmed starting list</h2><p>The downloaded BOM separates the verified printed set from the purchased hardware. The core hardware is summarized below; exact bearing and fastener specifications still need confirmation.</p></div></div>
-      <div class="table-wrap" role="region" aria-label="Confirmed V1 parts table, horizontally scrollable" tabindex="0">
-        <table><caption>Confirmed components · unit prices not entered · USD</caption><thead><tr><th scope="col">Part</th><th scope="col" class="qty">Qty</th><th scope="col">Identity / specification</th><th scope="col">Still to confirm</th><th scope="col">Unit price</th></tr></thead><tbody>
-          <tr><th scope="row">Stepper motor</th><td class="qty">1</td><td>STEPPERONLINE NEMA 23<br>2.4 N·m holding · 4 A/phase · 8 mm shaft<br><a href="https://www.omc-stepperonline.com/nema-23-stepper-motor-2-4nm-339-79oz-in-4a-57x57x82mm-8mm-shaft-4-wires-23hs32-4004s">Manufacturer matching model: 23HS32-4004S</a></td><td>Physical nameplate not photographed; actual operating current and supply voltage</td><td class="unpriced">Unpriced</td></tr>
-          <tr><th scope="row">Driver</th><td class="qty">1</td><td>EASON TB6600<br>Step/direction control</td><td>Actual unit label, selected current and microsteps</td><td class="unpriced">Unpriced</td></tr>
-          <tr><th scope="row">Controller</th><td class="qty">1</td><td><a href="https://www.st.com/en/evaluation-tools/nucleo-l476rg.html">STM32 Nucleo-L476RG</a><br>Protocol 3: PB4 STEP · PB5 DIR · PB6 ENA</td><td>Matching protocol 3 package included</td><td class="unpriced">Unpriced</td></tr>
-          <tr><th scope="row">Metal coupler</th><td class="qty">1</td><td>8 mm → 6 mm</td><td>Length, outside diameter and final attachment details</td><td class="unpriced">Unpriced</td></tr>
-          <tr><th scope="row">Outer roller assemblies</th><td class="qty">16</td><td>Fixed ring in the housing</td><td>Bearing/pin dimensions and components per roller</td><td class="unpriced">Unpriced</td></tr>
-          <tr><th scope="row">Printed cycloidal disks</th><td class="qty">2</td><td>15 lobes per disk</td><td>6 mm mesh thickness; verify mating fits and stack phasing</td><td class="unpriced">Unpriced</td></tr>
-        </tbody></table>
-      </div>
-      <div class="bom-actions"><p class="small">On a phone, swipe across the table to see every column.</p><a class="button" href="downloads/cycloidal-actuator-v1-bom.csv" download>Download full BOM <span aria-hidden="true">↓</span></a></div>
-      <p class="note">The print package includes the saved housing/ring, shaft, cap, attachment and spacer meshes. Purchased bearing part numbers, rod lengths, fastener sizes, wiring and selected electrical settings still need confirmation; mesh bounds are not a tolerance drawing.</p>
-      <div class="card calc" aria-labelledby="pla-title">
-        <div><span class="card-label">My refill estimate</span><h3 id="pla-title">About $4.15 in PLA</h3><p class="small">The saved three-plate set estimates <strong>296.56 g</strong>, including the torque-test lever. At my approximate <strong>$14/kg refill rate</strong>, that’s <strong>$4.15</strong> in filament.</p><ul class="list-clean small"><li>My approximate rate: $14/kg → <strong>$4.15</strong></li><li><a href="https://us.store.bambulab.com/products/pla-basic-filament">Official Bambu PLA Basic refill listing</a>: $14.99/kg observed October 30, 2026 → <strong>$4.45</strong></li><li>Earlier saved slicer rate: $19.99/kg → <strong>$5.93</strong></li></ul><p class="small" style="margin-top:.8rem">Change either input for your own estimate. The mass is a saved slicer estimate, not a weighed build total. PLA only; hardware, failed iterations, shipping, tax and electricity are excluded.</p></div>
-        <form id="pla-calculator" novalidate>
-          <div class="calc-fields"><div><label for="pla-grams">PLA mass (g)</label><input id="pla-grams" name="grams" value="296.56" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter slicer mass" aria-describedby="calc-status"></div><div><label for="pla-price">Spool price (USD / kg)</label><input id="pla-price" name="price" value="14" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter your price" aria-describedby="calc-status"></div><div class="calc-output"><div><span class="small">PLA material estimate</span><output id="pla-result" for="pla-grams pla-price" aria-live="polite" aria-atomic="true">$4.15</output></div><button class="button" type="reset">Clear</button></div></div><p id="calc-status" class="calc-error" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-
     <section id="assembly" aria-labelledby="assembly-title">
-      <div class="section-head"><div><p class="eyebrow">04 / Assembly notes</p><h2 id="assembly-title">How the stack comes together</h2><p>The sequence I worked through in V1. Use the included print project and parts list, and confirm the purchased hardware and mating fits before assembly.</p></div></div>
+      <div class="section-head"><div><p class="eyebrow">03 / Instructions</p><h2 id="assembly-title">Assembly instructions</h2><p>The sequence I worked through in V1. Use the included print project and parts list, and confirm the purchased hardware and mating fits before assembly.</p></div></div>
       <ol class="build-steps">
         <li><h3>Match the model to the hardware</h3><p>Start with the included 3MF and its printed-parts list: 15 lobes per disk and 16 outer rollers. Check the bearing, pin and shaft interfaces against your actual hardware; the 3MF is a print layout, not an assembled CAD model.</p></li>
         <li><h3>Print the custom parts</h3><p>The saved set has 26 pieces on three plates. Its slice used a P1S / 0.4 mm nozzle, 0.20 mm layers, 15% infill, two walls and no supports. Review the project for your own printer; the saved estimate is 296.56 g.</p></li>
@@ -369,6 +404,14 @@
         <li><h3>Bring up the controls</h3><p>Use the included matching firmware, USB panel and wiring guide. Record the actual driver current, microsteps and supply voltage before interpreting commanded motion or a scale reading.</p></li>
       </ol>
       <figure class="build-media"><video controls playsinline muted preload="none" poster="images/builds/cycloidal-assembly.webp" width="1280" height="720" aria-label="Silent real-footage cycloidal actuator assembly overview" aria-describedby="assembly-caption"><source src="videos/optimized/cycloidal-assembly.mp4" type="video/mp4"><a href="videos/optimized/cycloidal-assembly.mp4">Open the assembly video</a></video><figcaption id="assembly-caption">Real bench assembly footage showing the open housing, roller ring and disk by hand. Silent documentation; this does not demonstrate torque or backlash.</figcaption></figure>
+    </section>
+
+    <section id="mechanism" aria-labelledby="mechanism-title">
+      <div class="section-head"><div><p class="eyebrow">04 / How it works</p><h2 id="mechanism-title">Speed in. Slower rotation out.</h2><p>The motor turns an eccentric input. That offset moves the center of each disk around the fixed outer roller ring; the output pins collect the disks’ slower rotation.</p></div></div>
+      <div class="grid-2">
+        <article class="card"><span class="card-label">The V1 reduction</span><p>Each disk has <strong>15 lobes</strong> working against <strong>16 outer rollers</strong>.</p><p class="formula" aria-label="Reduction magnitude: 15 divided by 16 minus 15 equals 15 to 1">15 ÷ (16 − 15) = 15:1</p><p class="small">Reduction magnitude = disk lobes ÷ (outer rollers − disk lobes). That means fifteen turns of the input for one revolution of the output.</p></article>
+        <article class="card"><span class="card-label">What the motor rating means</span><h3>A reference, not a test result</h3><p>The STEPPERONLINE motor is rated at <strong>2.4 N·m holding torque</strong>. Holding torque describes an energized, stationary motor under its rated conditions.</p><p class="small"><span class="inline-equation">2.4 × 15 = 36 N·m</span> is an ideal holding-based reference. It is not a measured output torque or a promise of moving torque; driver settings, speed, losses and the printed mechanism all matter.</p></article>
+      </div>
     </section>
 
     <section id="code" aria-labelledby="code-title">
@@ -386,9 +429,11 @@
       <figure class="build-media"><video controls playsinline preload="metadata" width="1920" height="1080" aria-label="Cycloidal mechanism concept animation by Josh Murzello" aria-describedby="animation-caption"><source src="videos/optimized/cycloidal-detail-v2-horizontal.mp4" type="video/mp4"><a href="videos/optimized/cycloidal-detail-v2-horizontal.mp4">Open the cycloidal animation</a></video><figcaption id="animation-caption">My concept animation of two disks moving around a fixed pin ring. This illustrates the mechanism; it is not footage of V1 or a dimensioned CAD reference.</figcaption></figure>
       <div class="grid-2" style="margin-top:1.2rem"><a class="card link-card" href="https://youtube.com/shorts/zJ4uvhhWRFY"><span><strong>I Built a Cycloidal Actuator</strong><span class="small">The first actuator reveal · YouTube Short</span></span><span class="arrow" aria-hidden="true">↗</span></a><a class="card link-card" href="https://youtube.com/shorts/bjPSmwaMiJg"><span><strong>I Built a Robot Hand for the Wrong Reason</strong><span class="small">Adding a hand to the actuator · YouTube Short</span></span><span class="arrow" aria-hidden="true">↗</span></a></div>
     </section>
+
     <section id="contact" class="card contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep building</p><h2 id="contact-title">Questions or ideas for V2?</h2><p class="small" style="margin-bottom:0">I’m using this build as a starting point for bigger robotics projects.</p></div><a class="button" href="mailto:murzello.josh@gmail.com">murzello.josh@gmail.com <span aria-hidden="true">↗</span></a></section>
-    <footer><span>Josh Murzello · Cycloidal Actuator V1</span><span>Build guide · Updated October 2026</span><a href="#main">Back to top ↑</a></footer>
+    <footer><span>Josh Murzello · Cycloidal Actuator V1</span><span>Build guide · Updated November 4, 2026</span><a href="#main">Back to top ↑</a></footer>
   </main>
+  </div>
   <script>
     (() => {
       'use strict';
@@ -401,6 +446,31 @@
       document.addEventListener('keydown', event => { if(event.key==='Escape' && menu.getAttribute('aria-expanded')==='true') { closeMenu(); menu.focus(); } });
       const updateHeader = () => header.classList.toggle('scrolled',window.scrollY>40);
       updateHeader(); window.addEventListener('scroll',updateHeader,{passive:true});
+      const tocPanel = document.querySelector('.toc-panel');
+      const compactToc = window.matchMedia('(max-width:1100px)');
+      const syncTocLayout = () => { tocPanel.open = !compactToc.matches; };
+      syncTocLayout(); compactToc.addEventListener('change',syncTocLayout);
+      const tocLinks = [...document.querySelectorAll('.toc-list a')];
+      const tocSections = tocLinks.map(link => document.querySelector(link.hash));
+      let tocFramePending = false;
+      const updateToc = () => {
+        const marker = 160;
+        let current = tocSections[0];
+        for (const section of tocSections) {
+          if (section.getBoundingClientRect().top <= marker) current = section;
+        }
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) current = tocSections[tocSections.length - 1];
+        for (const link of tocLinks) {
+          if (link.hash === '#' + current.id) link.setAttribute('aria-current','location');
+          else link.removeAttribute('aria-current');
+        }
+        tocFramePending = false;
+      };
+      const scheduleTocUpdate = () => {
+        if (!tocFramePending) { tocFramePending = true; requestAnimationFrame(updateToc); }
+      };
+      updateToc(); window.addEventListener('scroll',scheduleTocUpdate,{passive:true});
+      window.addEventListener('resize',scheduleTocUpdate);
       const form = document.getElementById('pla-calculator');
       const grams = document.getElementById('pla-grams');
       const price = document.getElementById('pla-price');
