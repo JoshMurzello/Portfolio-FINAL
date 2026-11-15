@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humanoid Robot | Josh Murzello</title>
+  <meta name="description" content="A stationary upper-body robot with a five-axis right-arm design and a separate gripper servo. See the powered prototype, CAN bus controls, and camera tracking experiments.">
+  <link rel="canonical" href="https://www.joshmurzello.com/humanoid-robot.html">
+  <meta property="og:title" content="Humanoid Robot | Josh Murzello">
+  <meta property="og:description" content="A stationary upper-body robot with a five-axis right-arm design and a separate gripper servo. See the powered prototype, CAN bus controls, and camera tracking experiments.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.joshmurzello.com/humanoid-robot.html">
+  <meta property="og:image" content="https://www.joshmurzello.com/images/humanoid-robot/right-arm-cad.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portfolio-page.css">
+  <link rel="stylesheet" href="site-header.css">
+  <link rel="stylesheet" href="humanoid-robot.css">
+</head>
+<body class="unified-site-header humanoid">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="unified-header" id="site-header">
+    <div class="unified-header-shell">
+      <a class="unified-brand" href="index.html"><img class="unified-brand-logo" src="favicon.svg" alt="">JOSH MURZELLO</a>
+      <button class="menu-toggle unified-menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">Menu</button>
+      <nav class="site-nav unified-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="Engineering.html">Engineering</a>
+        <a href="Creatives.html">Creatives</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="humanoid-shell humanoid-hero" aria-labelledby="humanoid-title">
+      <div class="humanoid-intro">
+        <a class="humanoid-back" href="Engineering.html">← Engineering</a>
+        <p class="humanoid-label humanoid-status"><span></span> Build in progress <i></i> 2026</p>
+        <h1 id="humanoid-title">Humanoid<br>Robot<span aria-hidden="true">.</span></h1>
+        <p class="humanoid-subtitle">One arm at a time.</p>
+        <p class="humanoid-intro-copy">I’m building a stationary upper-body robot that can eventually mirror my movements. The bench prototype can hit a commanded pose. The redesigned right arm has five degrees of freedom and a separately powered gripper for its first pick-and-place task.</p>
+        <div class="humanoid-actions">
+          <a class="humanoid-primary" href="#bench-test">Watch the arm move <span aria-hidden="true">↓</span></a>
+          <a class="humanoid-text-link" href="#build-videos">Build videos <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <figure class="humanoid-hero-media">
+        <img src="images/humanoid-robot/right-arm-cad.png" width="1228" height="1145" alt="CAD view of the redesigned right arm, from the shoulder and elbow down to the wrist and gripper, with a Kinect above the shoulder." fetchpriority="high">
+        <figcaption><span>Right arm redesign</span><span>Fusion 360 CAD / Nov 2026</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="humanoid-shell">
+      <dl class="humanoid-facts" aria-label="Project at a glance">
+        <div><dt>Mechanism</dt><dd>5 arm axes + powered gripper</dd></div>
+        <div><dt>Control</dt><dd>Raspberry Pi 5 + CAN bus</dd></div>
+        <div><dt>First task</dt><dd>Block-to-tray transfer</dd></div>
+      </dl>
+    </div>
+
+    <section class="humanoid-shell humanoid-section" id="bench-test" aria-labelledby="bench-title">
+      <div class="humanoid-section-heading">
+        <p class="humanoid-label">01 / Hardware in motion</p>
+        <h2 id="bench-title">From a test rig to a working pose.</h2>
+      </div>
+      <div class="humanoid-demo">
+        <figure class="humanoid-demo-video">
+          <video controls playsinline preload="metadata" poster="images/humanoid-robot/powered-pose-poster.webp" width="800" height="1000" aria-label="Powered right arm pose test, silent bench footage" aria-describedby="pose-caption">
+            <source src="videos/humanoid-robot/powered-pose-test.mp4" type="video/mp4">
+            <a href="videos/humanoid-robot/powered-pose-test.mp4">Open the bench test clip</a>
+          </video>
+          <figcaption id="pose-caption">The prototype moves into a dab pose and starts moving out of it. Silent footage.</figcaption>
+        </figure>
+        <div class="humanoid-demo-detail">
+          <div>
+            <p class="humanoid-label">What I built</p>
+            <h3>From three axes to five.</h3>
+            <p>Three RobStride 02 actuators drive two shoulder axes and the elbow. The Raspberry Pi commands those joints over a shared CAN bus and reads back their encoder positions. That’s the setup in the bench footage, where I got the arm to dab on command.</p>
+            <p>In the redesign, two 25 kg-class servos add two wrist axes. Together with the shoulder and elbow, those give the arm five degrees of freedom to position and orient the gripper. A third servo opens and closes the rack-and-pinion gripper independently.</p>
+          </div>
+          <figure class="humanoid-detail-photo">
+            <img src="images/humanoid-robot/pi-control.webp" width="878" height="495" loading="lazy" alt="Raspberry Pi next to the angled touchscreen on the robot test cart.">
+            <figcaption>Pi and touchscreen on the test rig. I use the touchscreen and a desktop interface to jog joints and save poses.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="humanoid-shell humanoid-section" id="build-videos" aria-labelledby="videos-title">
+      <div class="humanoid-section-heading">
+        <p class="humanoid-label">02 / Build videos</p>
+        <h2 id="videos-title">A closer look at the build.</h2>
+        <p>Three short videos from the bench, the camera test, and the control stack.</p>
+      </div>
+      <div class="humanoid-films">
+        <a class="humanoid-film" href="https://www.youtube.com/shorts/7vAIUhweWxQ" target="_blank" rel="noopener">
+          <div class="humanoid-film-image humanoid-film-rig"><img src="images/humanoid-robot/first-test-rig.webp" width="794" height="447" loading="lazy" alt=""><span aria-hidden="true">▶</span></div>
+          <div class="humanoid-film-body">
+            <p class="humanoid-label">01 / Bench build</p>
+            <h3>The first test rig</h3>
+            <p>Early printed parts, the actuator stand, and the first movements.</p>
+            <span class="humanoid-film-link">Watch on YouTube <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        <a class="humanoid-film" href="https://www.youtube.com/shorts/l8ZXdegyWRA" target="_blank" rel="noopener">
+          <div class="humanoid-film-image humanoid-film-vision"><img src="images/humanoid-robot/vision-tracking.webp" width="1080" height="1440" loading="lazy" alt=""><span aria-hidden="true">▶</span></div>
+          <div class="humanoid-film-body">
+            <p class="humanoid-label">02 / Computer vision</p>
+            <h3>Can the robot see my arm?</h3>
+            <p>Comparing MediaPipe with depth-assisted tracking on the same camera feed.</p>
+            <span class="humanoid-film-link">Watch on YouTube <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        <a class="humanoid-film" href="https://www.youtube.com/shorts/2p4bh14FIc8" target="_blank" rel="noopener">
+          <div class="humanoid-film-image humanoid-film-can"><img src="images/humanoid-robot/can-short.webp" width="360" height="480" loading="lazy" alt=""><span aria-hidden="true">▶</span></div>
+          <div class="humanoid-film-body">
+            <p class="humanoid-label">03 / Motor control</p>
+            <h3>How the arm knows where to move</h3>
+            <p>I explain CAN communication with the real arm and a game of telephone.</p>
+            <span class="humanoid-film-link">Watch on YouTube <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="humanoid-shell humanoid-section" aria-labelledby="next-title">
+      <div class="humanoid-section-heading">
+        <p class="humanoid-label">03 / Next on the bench</p>
+        <h2 id="next-title">Pick up a block. Put it in a tray.</h2>
+        <p>One repeatable task will give me a way to test the mechanics, controls, and sensing on the same setup.</p>
+      </div>
+      <div class="humanoid-next">
+        <figure class="humanoid-parts">
+          <img src="images/humanoid-robot/arm-parts.webp" width="1152" height="410" loading="lazy" alt="Slicer previews of the redesigned right-arm links, mounts, and center housing.">
+          <figcaption>Selected print plates from the redesigned right arm.</figcaption>
+        </figure>
+        <ol class="humanoid-next-steps">
+          <li><strong>Print and assemble the redesign.</strong> The right-arm CAD is complete. I’ve prepared the printed parts in the slicer and designed a servo-driven rack-and-pinion gripper for the first pickup tests.</li>
+          <li><strong>Make the pickup repeatable.</strong> I’ll bench-test the gripper, then work toward a reliable block-to-tray transfer with the gripper mounted.</li>
+          <li><strong>Connect perception to motion.</strong> Live shoulder and elbow tracking already works in a separate viewer. Forward and backward motion is still the harder part. I’m testing depth sensing before using the camera to drive the arm. The longer-term goal is two arms that mirror me in real time.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="humanoid-shell humanoid-footer">
+    <a href="Engineering.html">← All engineering work</a>
+    <a href="cyclodial-actuator.html">Related project: Cycloidal Actuator <span aria-hidden="true">↗</span></a>
+  </footer>
+  <script src="site-header.js" defer></script>
+</body>
+</html>

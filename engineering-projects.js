@@ -2,6 +2,19 @@
 // STL Downloads is a separate link below the carousel, not a project card.
 window.ENGINEERING_PROJECTS = [
   {
+    "id": "humanoid-robot",
+    "title": "Humanoid Robot",
+    "category": "project",
+    "year": "2026",
+    "summary": "Building a stationary upper-body robot, starting with one powered arm and a simple pickup task.",
+    "impact": "The bench prototype hits a commanded pose over CAN. The redesign adds two wrist axes for five arm degrees of freedom, plus a separate gripper servo.",
+    "image": "./images/humanoid-robot/right-arm-cad.png",
+    "imageMode": "full-frame",
+    "link": "humanoid-robot.html",
+    "proof": "Powered pose test • CAN controls • Live vision experiment",
+    "tags": ["Robotics", "Raspberry Pi", "CAN Bus", "Fusion 360"]
+  },
+  {
     "id": "bci",
     "title": "Brain Controlled Interface",
     "category": "project",
