@@ -256,6 +256,10 @@
     .media-title { margin-bottom:.35rem; }
     .build-media-grid { gap:1.2rem; }
     .build-media { margin:0; }
+    .product-photos { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .product-photos .build-media { margin:0; }
+    .bench-photo { max-width:38rem; margin-top:1.2rem; }
+    @media(max-width:680px) { .product-photos { grid-template-columns:1fr; } }
     .build-media video { background:#080b10; aspect-ratio:16 / 9; object-fit:contain; }
     .build-media figcaption { font-size:.77rem; }
     .result-number { display:block; color:#d9ecff; font:700 2.5rem/1.1 "Space Grotesk",sans-serif; margin:.2rem 0 .5rem; }
@@ -315,7 +319,8 @@
         <summary>On this page</summary>
         <nav aria-label="Table of contents">
           <ol class="toc-list">
-            <li><a href="#build-video" aria-current="location">Watch the full build</a></li>
+            <li><a href="#photos" aria-current="location">Actuator photos</a></li>
+            <li><a href="#build-video">Watch the full build</a></li>
             <li><a href="#parts">BOM</a></li>
             <li><a href="#resources">CAD &amp; print files</a></li>
             <li><a href="#assembly">Instructions</a></li>
@@ -339,8 +344,28 @@
         <div class="pills"><span class="pill"><span class="dot" aria-hidden="true"></span>Working bench prototype</span><span class="pill">V1 build guide · Nov 2026</span></div>
         <div class="actions"><a class="button primary" href="#parts">See the parts <span aria-hidden="true">↓</span></a><a class="button" href="#assembly">Assembly notes <span aria-hidden="true">↓</span></a></div>
       </div>
-      <figure class="hero-image"><img src="images/optimized/cycloidal-actuator-bench-1600.jpg" width="1600" height="1200" alt="Orange printed actuator on its NEMA 23 motor beside the TB6600 driver and Nucleo controller on Josh's bench"><figcaption>The actual V1 prototype and bench electronics.</figcaption></figure>
+      <figure class="hero-image">
+        <img src="images/optimized/cycloidal-actuator-v1-product-1600.webp" width="1600" height="1067" fetchpriority="high" alt="Three-quarter view of the orange actuator with its top cover and black printed lever attached">
+        <figcaption>The V1 actuator with the torque-test lever attached.</figcaption>
+      </figure>
     </div>
+    <section id="photos" aria-labelledby="photos-title">
+      <div class="section-head"><h2 id="photos-title">Actuator photos</h2></div>
+      <div class="build-media-grid product-photos">
+        <figure class="build-media">
+          <a href="images/optimized/cycloidal-actuator-v1-overhead-1280.webp"><img src="images/optimized/cycloidal-actuator-v1-overhead-1280.webp" width="1280" height="853" loading="lazy" alt="Overhead view of the black printed lever and exposed ring of metal rollers"></a>
+          <figcaption>Overhead view with the cover removed.</figcaption>
+        </figure>
+        <figure class="build-media">
+          <a href="images/optimized/cycloidal-actuator-v1-disk-stack-1280.webp"><img src="images/optimized/cycloidal-actuator-v1-disk-stack-1280.webp" width="1280" height="853" loading="lazy" alt="Low side angle showing two orange disks stacked inside the open housing"></a>
+          <figcaption>Side view of the two cycloidal disks.</figcaption>
+        </figure>
+        <figure class="build-media">
+          <a href="images/optimized/cycloidal-actuator-v1-handheld-1280.webp"><img src="images/optimized/cycloidal-actuator-v1-handheld-1280.webp" width="1280" height="853" loading="lazy" alt="A hand holding the actuator and lever in front of a window"></a>
+          <figcaption>Handheld view for scale.</figcaption>
+        </figure>
+      </div>
+    </section>
     <section id="build-video" class="featured-video" aria-labelledby="build-video-title">
       <div class="section-head"><div><p class="eyebrow">Watch the full build</p><h2 id="build-video-title">I Built a Robotic Actuator from Scratch</h2><p>The complete V1 build: the mechanism, assembly, iterations and first test.</p></div></div>
       <figure class="build-media">
@@ -417,6 +442,10 @@
     <section id="code" aria-labelledby="code-title">
       <div class="section-head"><div><p class="eyebrow">05 / Controls</p><h2 id="code-title">A simple bench-control setup</h2><p>The current setup uses the STM32 Nucleo-L476RG, an EASON TB6600 and a local USB browser panel.</p></div></div>
       <div class="grid-2"><article class="card"><span class="card-label">What it does</span><h3>Jog, hold and load slowly</h3><ul class="list-clean"><li>Hold Forward or Reverse to jog; release to stop and hold.</li><li>Run a slower loading move while observing the scale.</li><li>Use Stop &amp; Hold or Release as appropriate for the supported mechanism.</li><li>Show commanded pulse position, not encoder-measured position.</li></ul><p class="note">The scale is not a feedback sensor for the controller. The panel does not measure torque or automatically correct for friction or arm gravity.</p></article><article class="card" data-package-slot="protocol3"><span class="availability available">Source package ready</span><h3>Matching protocol 3 files</h3><p class="small">CubeIDE/HAL firmware, the static USB panel, wiring and build/flash guides, protocol notes, tests and matching v3 release files.</p><a class="button" href="downloads/cycloidal-actuator-usb-panel-v3-source.zip" download>Download controller source <span aria-hidden="true">↓</span></a><p class="small" style="margin-top:.8rem">Read the included README and wiring guide first. The older PlatformIO/button controller has different pins and lowercase commands and is not bundled.</p><p class="small"><a href="https://github.com/JoshMurzello/cycloidal-actuator-v1">Actuator firmware &amp; USB panel on GitHub</a> · The archive includes the existing license notices. Offline checks do not replace checking your own wiring and driver settings.</p></article></div>
+      <figure class="build-media bench-photo">
+        <img src="images/optimized/cycloidal-actuator-bench-1600.jpg" width="1600" height="1200" loading="lazy" alt="Orange printed actuator on its NEMA 23 motor beside the TB6600 driver and Nucleo controller on Josh's bench">
+        <figcaption>The V1 prototype wired up on the bench.</figcaption>
+      </figure>
     </section>
 
     <section id="testing" aria-labelledby="testing-title">
